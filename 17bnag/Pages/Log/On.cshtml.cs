@@ -16,7 +16,7 @@ namespace _17bnag.Log
     //[AddHeader]
     public class OnModel : _LayoutModel
     {
-        public OnModel(_17bnagContext context):base(context)
+        public OnModel(_17bnagContext context) : base(context)
         {
             _context = context;
         }
@@ -86,6 +86,6 @@ namespace _17bnag.Log
                 Response.Redirect("/Index");
             }
         }
-       
+
     }
 }

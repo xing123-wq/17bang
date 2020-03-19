@@ -10,7 +10,7 @@ using _17bnag.Data;
 namespace _17bnag.Migrations
 {
     [DbContext(typeof(_17bnagContext))]
-    [Migration("20200316062920_first")]
+    [Migration("20200319084247_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

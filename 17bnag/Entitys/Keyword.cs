@@ -7,7 +7,7 @@ namespace _17bnag.Entitys
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public IList<Map> helps { get; set; }
+        //public IList<Map> helps { get; kcset; }
 
     }
 }
