@@ -10,7 +10,7 @@ using _17bnag.Data;
 namespace _17bnag.Migrations
 {
     [DbContext(typeof(_17bnagContext))]
-    [Migration("20200319084247_first")]
+    [Migration("20200322123330_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,17 +28,13 @@ namespace _17bnag.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Body")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasMaxLength(21113);
 
-                    b.Property<string>("KeyWord")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("KeyWordId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Moneys")
                         .IsRequired()
@@ -55,11 +51,46 @@ namespace _17bnag.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId");
+                    b.HasIndex("KeyWordId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("HelpRelease");
+                });
+
+            modelBuilder.Entity("_17bnag.Entitys.Keyword", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Keywords");
+                });
+
+            modelBuilder.Entity("_17bnag.Entitys.KeywordMiddle", b =>
+                {
+                    b.Property<int>("HelpreleaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KeywordId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HelpreleaseId", "KeywordId");
+
+                    b.HasIndex("KeywordId");
+
+                    b.ToTable("KeywordMiddle");
                 });
 
             modelBuilder.Entity("_17bnag.Entitys.PublishArticle", b =>
@@ -137,11 +168,47 @@ namespace _17bnag.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("_17bnag.Entitys.UsersMiddle", b =>
+                {
+                    b.Property<int>("HelpReleaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HelpReleaseId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UsersMiddle");
+                });
+
             modelBuilder.Entity("_17bnag.Entitys.HelpRelease", b =>
                 {
-                    b.HasOne("_17bnag.Entitys.User", "Author")
+                    b.HasOne("_17bnag.Entitys.Keyword", "KeyWord")
                         .WithMany()
-                        .HasForeignKey("AuthorId");
+                        .HasForeignKey("KeyWordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("_17bnag.Entitys.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("_17bnag.Entitys.KeywordMiddle", b =>
+                {
+                    b.HasOne("_17bnag.Entitys.HelpRelease", "HelpReleases")
+                        .WithMany()
+                        .HasForeignKey("HelpreleaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("_17bnag.Entitys.Keyword", "Keywords")
+                        .WithMany("HelpReleases")
+                        .HasForeignKey("KeywordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("_17bnag.Entitys.PublishArticle", b =>
@@ -149,6 +216,21 @@ namespace _17bnag.Migrations
                     b.HasOne("_17bnag.Entitys.User", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
+                });
+
+            modelBuilder.Entity("_17bnag.Entitys.UsersMiddle", b =>
+                {
+                    b.HasOne("_17bnag.Entitys.HelpRelease", "Help")
+                        .WithMany()
+                        .HasForeignKey("HelpReleaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("_17bnag.Entitys.User", "Users")
+                        .WithMany("HelpRelease")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

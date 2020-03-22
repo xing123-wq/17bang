@@ -23,7 +23,7 @@ namespace _17bnag.Pages
         {
             pagesize = 5;
             pageindex = Convert.ToInt32(Request.Query["Page"]);
-            Problems = _context.HelpRelease.Include(h => h.Author).ToList();
+            Problems = _context.HelpRelease.Include(h => h.User).ToList();
             Problems = Get(pageindex, pagesize);
             ViewData["title"] = "首页-一起帮";
             base.SetLogOnStatus();

@@ -30,8 +30,8 @@ namespace _17bnag
         {
             // Use LINQ to get list of genres.
             IQueryable<string> genreQuery = from m in _context.HelpRelease
-                                            orderby m.KeyWord
-                                            select m.KeyWord;
+                                            orderby m.KeyWord.Name
+                                            select m.KeyWord.Name;
 
             var movies = from m in _context.HelpRelease
                          select m;
@@ -43,11 +43,11 @@ namespace _17bnag
 
             if (!string.IsNullOrEmpty(MovieGenre))
             {
-                movies = movies.Where(x => x.KeyWord == MovieGenre);
+                movies = movies.Where(x => x.KeyWord.Name == MovieGenre);
             }
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
             Release = await movies.ToListAsync();
         }
-        
+
     }
 }

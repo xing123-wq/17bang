@@ -8,6 +8,7 @@ namespace _17bnag.Entitys
 {
     public class HelpRelease
     {
+        [Key]
         public int Id { get; set; }
         [Display(Name = "标题:(* 必填)")]
         [Required(ErrorMessage = "* 标题不能为空")]
@@ -16,14 +17,11 @@ namespace _17bnag.Entitys
         [Display(Name = "说明(* 必填)")]
         [Required(ErrorMessage = "* 正文不能为空")]
         [StringLength(21113, MinimumLength = 25, ErrorMessage = "* 正文的长度不能小于{2}，大于{1}")]
-        //public string Body { get; set; }
-        //[Display(Name = "关键字：（* 使用空格分隔）")]
-        //[Required(ErrorMessage = "* 关键字不能为空")]
-        //public IList<Map> KeyWord { get; set; }
         public string Body { get; set; }
+        //public int keywordId { get; set; }
         [Display(Name = "关键字：（* 使用空格分隔）")]
         [Required(ErrorMessage = "* 关键字不能为空")]
-        public string KeyWord { get; set; }
+        public Keyword KeyWord { get; set; }
         [Display(Name = "定向求助：")]
         public string Resort { get; set; }
         [Display(Name = "悬赏")]
@@ -32,6 +30,7 @@ namespace _17bnag.Entitys
         public string Moneys { get; set; }
         [DataType(DataType.Date)]
         public DateTime PublishDateTime { get; set; }
-        public User Author { get; set; }
+        //public int UserId { get; set; }
+        public User User { get; set; }
     }
 }
