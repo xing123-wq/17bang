@@ -62,19 +62,22 @@
                                 </span>
                             </small>
                         </span>
-                        <span class="pull-right">
-                            <span data-author-id="2720" zyf-problem-author="">
-                                <span data-toggle="tooltip" title="" data-original-title="">
-                                    <span class="fa fa-user-circle-o"></span>
-                                    @*<a href="/User/@problem.Author.Id">
-                                            @problem.Author.Name
-                                        </a>*@
+                        @foreach (var item in problem.User)
+                        {
+                            <span class="pull-right">
+                                <span data-author-id="2720" zyf-problem-author="">
+                                    <span data-toggle="tooltip" title="" data-original-title="">
+                                        <span class="fa fa-user-circle-o"></span>
+                                        <a href="/User/@item.users.Id">
+                                            @item.users.Name
+                                        </a>
+                                    </span>
+                                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="导师">
+                                        <span>⑦</span>
+                                    </a>
                                 </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="导师">
-                                    <span>⑦</span>
-                                </a>
                             </span>
-                        </span>
+                        }
                         <div style="font-size:24px;word-break:break-all;">
                             <span class="problem-status label-default">待协助</span>
                             <span class="hide" zyf-problem-status="" data-problem-status="Cancel"></span>
@@ -88,16 +91,12 @@
                         </div>
                         <p style="clear:both;">
                             <span class="fa fa-tags " style="margin-right:10px;"></span>
-                            @*@foreach (var keywords in problem.KeyWord)
-                                {
-                                    <span zyf-keyword="1" title="" data-toggle="tooltip" class="badge badge-has-used" style="margin-right:5px;" data-original-title="已使用 1 次">
-                                        <a href="/Problem?keyword=@keywords.Keyword.Id" style="color:white;">@keywords.Keyword.Name</a>
-                                    </span>
-                                }*@
-                            <span zyf-keyword="1" title="" data-toggle="tooltip" class="badge badge-has-used" style="margin-right:5px;" data-original-title="已使用 1 次">
-                                <a href="/Problem?keyword=" style=" color:white;">@problem.KeyWord</a>
-                            </span>
-
+                            @foreach (var keywords in problem.Keywords)
+                            {
+                                <span zyf-keyword="1" title="" data-toggle="tooltip" class="badge badge-has-used" style="margin-right:5px;" data-original-title="已使用 1 次">
+                                    <a href="/Problem?keyword=@keywords.Keyword.Id" style="color:white;">@keywords.Keyword.Name</a>
+                                </span>
+                            }
                         </p>
                         <div class="status">
                             <span>

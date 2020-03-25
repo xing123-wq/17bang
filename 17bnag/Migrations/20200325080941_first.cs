@@ -8,6 +8,23 @@ namespace _17bnag.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "HelpRelease",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(maxLength: 10, nullable: false),
+                    Body = table.Column<string>(maxLength: 21113, nullable: false),
+                    Resort = table.Column<string>(nullable: true),
+                    Moneys = table.Column<string>(nullable: false),
+                    PublishDateTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HelpRelease", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Keywords",
                 columns: table => new
                 {
@@ -35,34 +52,27 @@ namespace _17bnag.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HelpRelease",
+                name: "KeywordMiddles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(maxLength: 10, nullable: false),
-                    Body = table.Column<string>(maxLength: 21113, nullable: false),
-                    KeyWordId = table.Column<int>(nullable: false),
-                    Resort = table.Column<string>(nullable: true),
-                    Moneys = table.Column<string>(nullable: false),
-                    PublishDateTime = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<int>(nullable: true)
+                    HelpReleaseId = table.Column<int>(nullable: false),
+                    KeywordId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HelpRelease", x => x.Id);
+                    table.PrimaryKey("PK_KeywordMiddles", x => new { x.HelpReleaseId, x.KeywordId });
                     table.ForeignKey(
-                        name: "FK_HelpRelease_Keywords_KeyWordId",
-                        column: x => x.KeyWordId,
+                        name: "FK_KeywordMiddles_Keywords_HelpReleaseId",
+                        column: x => x.HelpReleaseId,
                         principalTable: "Keywords",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HelpRelease_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_KeywordMiddles_HelpRelease_KeywordId",
+                        column: x => x.KeywordId,
+                        principalTable: "HelpRelease",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,31 +104,7 @@ namespace _17bnag.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "KeywordMiddle",
-                columns: table => new
-                {
-                    HelpreleaseId = table.Column<int>(nullable: false),
-                    KeywordId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_KeywordMiddle", x => new { x.HelpreleaseId, x.KeywordId });
-                    table.ForeignKey(
-                        name: "FK_KeywordMiddle_HelpRelease_HelpreleaseId",
-                        column: x => x.HelpreleaseId,
-                        principalTable: "HelpRelease",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_KeywordMiddle_Keywords_KeywordId",
-                        column: x => x.KeywordId,
-                        principalTable: "Keywords",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UsersMiddle",
+                name: "UsersMiddles",
                 columns: table => new
                 {
                     UserId = table.Column<int>(nullable: false),
@@ -126,34 +112,24 @@ namespace _17bnag.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UsersMiddle", x => new { x.HelpReleaseId, x.UserId });
+                    table.PrimaryKey("PK_UsersMiddles", x => new { x.HelpReleaseId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_UsersMiddle_HelpRelease_HelpReleaseId",
+                        name: "FK_UsersMiddles_Users_HelpReleaseId",
                         column: x => x.HelpReleaseId,
-                        principalTable: "HelpRelease",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UsersMiddle_Users_UserId",
+                        name: "FK_UsersMiddles_HelpRelease_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "HelpRelease",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_HelpRelease_KeyWordId",
-                table: "HelpRelease",
-                column: "KeyWordId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HelpRelease_UserId",
-                table: "HelpRelease",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_KeywordMiddle_KeywordId",
-                table: "KeywordMiddle",
+                name: "IX_KeywordMiddles_KeywordId",
+                table: "KeywordMiddles",
                 column: "KeywordId");
 
             migrationBuilder.CreateIndex(
@@ -162,30 +138,30 @@ namespace _17bnag.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UsersMiddle_UserId",
-                table: "UsersMiddle",
+                name: "IX_UsersMiddles_UserId",
+                table: "UsersMiddles",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "KeywordMiddle");
+                name: "KeywordMiddles");
 
             migrationBuilder.DropTable(
                 name: "PublishArticles");
 
             migrationBuilder.DropTable(
-                name: "UsersMiddle");
-
-            migrationBuilder.DropTable(
-                name: "HelpRelease");
+                name: "UsersMiddles");
 
             migrationBuilder.DropTable(
                 name: "Keywords");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "HelpRelease");
         }
     }
 }

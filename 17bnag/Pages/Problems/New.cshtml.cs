@@ -25,8 +25,6 @@ namespace _17bnag.Problems
         }
         public async Task<IActionResult> OnPost()
         {
-            //help.Author = OnUserName;
-
             help.PublishDateTime = DateTime.Now;
             _context.HelpRelease.Add(help);
             await _context.SaveChangesAsync();

@@ -15,7 +15,7 @@ namespace _17bnag.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -30,9 +30,6 @@ namespace _17bnag.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasMaxLength(21113);
-
-                    b.Property<int>("KeyWordId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Moneys")
                         .IsRequired()
@@ -49,14 +46,7 @@ namespace _17bnag.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("KeyWordId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("HelpRelease");
                 });
@@ -78,17 +68,17 @@ namespace _17bnag.Migrations
 
             modelBuilder.Entity("_17bnag.Entitys.KeywordMiddle", b =>
                 {
-                    b.Property<int>("HelpreleaseId")
+                    b.Property<int>("HelpReleaseId")
                         .HasColumnType("int");
 
                     b.Property<int>("KeywordId")
                         .HasColumnType("int");
 
-                    b.HasKey("HelpreleaseId", "KeywordId");
+                    b.HasKey("HelpReleaseId", "KeywordId");
 
                     b.HasIndex("KeywordId");
 
-                    b.ToTable("KeywordMiddle");
+                    b.ToTable("KeywordMiddles");
                 });
 
             modelBuilder.Entity("_17bnag.Entitys.PublishArticle", b =>
@@ -178,32 +168,19 @@ namespace _17bnag.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UsersMiddle");
-                });
-
-            modelBuilder.Entity("_17bnag.Entitys.HelpRelease", b =>
-                {
-                    b.HasOne("_17bnag.Entitys.Keyword", "KeyWord")
-                        .WithMany()
-                        .HasForeignKey("KeyWordId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("_17bnag.Entitys.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.ToTable("UsersMiddles");
                 });
 
             modelBuilder.Entity("_17bnag.Entitys.KeywordMiddle", b =>
                 {
-                    b.HasOne("_17bnag.Entitys.HelpRelease", "HelpReleases")
-                        .WithMany()
-                        .HasForeignKey("HelpreleaseId")
+                    b.HasOne("_17bnag.Entitys.Keyword", "Keyword")
+                        .WithMany("HelpReleases")
+                        .HasForeignKey("HelpReleaseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_17bnag.Entitys.Keyword", "Keywords")
-                        .WithMany("HelpReleases")
+                    b.HasOne("_17bnag.Entitys.HelpRelease", "HelpRelease")
+                        .WithMany("Keywords")
                         .HasForeignKey("KeywordId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -218,14 +195,14 @@ namespace _17bnag.Migrations
 
             modelBuilder.Entity("_17bnag.Entitys.UsersMiddle", b =>
                 {
-                    b.HasOne("_17bnag.Entitys.HelpRelease", "Help")
-                        .WithMany()
+                    b.HasOne("_17bnag.Entitys.User", "users")
+                        .WithMany("HelpRelease")
                         .HasForeignKey("HelpReleaseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_17bnag.Entitys.User", "users")
-                        .WithMany("HelpRelease")
+                    b.HasOne("_17bnag.Entitys.HelpRelease", "HelpRelease")
+                        .WithMany("User")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

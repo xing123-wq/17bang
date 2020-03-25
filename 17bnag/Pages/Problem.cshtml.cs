@@ -14,7 +14,6 @@ namespace _17bnag.Pages
         {
             _context = context;
         }
-
         public IList<HelpRelease> Problems { get; set; }
         public int pagesize { get; set; }
         public int pageindex { get; set; }

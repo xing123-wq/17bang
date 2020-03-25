@@ -10,6 +10,6 @@ namespace _17bnag.Entitys
         public int UserId { get; set; }
         public User users { get; set; }
         public int HelpReleaseId { get; set; }
-        public HelpRelease Help { get; set; }
+        public HelpRelease HelpRelease { get; set; }
     }
 }
