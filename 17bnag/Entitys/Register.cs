@@ -8,11 +8,6 @@ namespace _17bnag.Entitys
 {
     public class Register
     {
-        [Display(Name = "验证密码：（* 必填）")]
-        [Required(ErrorMessage = "* 确认密码不能为空")]
-        //[Compare("Password", ErrorMessage = "* 确认密码和密码不一致")]
-        public string ValidatePassword { get; set; }
-
         [Display(Name = "邀请人：")]
         [Required(ErrorMessage = "* 邀请人不能为空")]
         [StringLength(8, MinimumLength = 4, ErrorMessage = "* 邀请人长度不能小于{2}也不能大于{1}")]

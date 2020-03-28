@@ -13,7 +13,6 @@ namespace _17bnag.Data
         public DbSet<HelpRelease> HelpRelease { get; set; }
         public DbSet<PublishArticle> PublishArticles { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
-
         public DbSet<KeywordMiddle> KeywordMiddles { get; set; }
         public DbSet<UsersMiddle> UsersMiddles { get; set; }
         public _17bnagContext(DbContextOptions<_17bnagContext> options)

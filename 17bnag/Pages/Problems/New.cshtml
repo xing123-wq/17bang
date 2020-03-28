@@ -72,34 +72,45 @@
                     <label asp-for="help.Body"></label>
                     <textarea asp-for="help.Body" class="form-control" style="width:100%;height:450px;" id="MyEidtor"></textarea>
                     <span class="field-validation-valid" asp-validation-for="help.Body" style="color:red"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="help.Keywords"></label>
-                    @*<div class="input-group">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default ">--- 1级 ---</button>
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a data-keyword-id="163">编程开发语言</a></li>
-                                    <li><a data-keyword-id="162">工具软件</a></li>
-                                    <li><a data-keyword-id="164">顾问咨询</a></li>
-                                    <li><a data-keyword-id="161">操作系统</a></li>
-                                </ul>
-                            </div>
-                            <div class="input-group-btn input-group-btn-middle">
-                                <button type="button" class="btn btn-default ">--- 2级 ---</button>
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <ul class="dropdown-menu" zyf-keyword-dropdownlist="2"></ul>
-                            </div>
-                        </div>*@
-                    <input type="text" asp-for="help.Keywords" class="form-control" placeholder="自定义关键字，使用空格分隔">
-                    <span class="field-validation-valid" asp-validation-for="help.Keywords" style="color:red"></span>
+                </div><div class="form-group">
+                    <label>关键字：（* 使用空格分隔）</label>
+                    <div zyf-keyword-show="" style="padding-bottom:3px;"></div>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default ">--- 1级 ---</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" zyf-keyword-dropdownlist="1">
+                                <li><a data-keyword-id="3">编程开发语言</a></li>
+                                <li><a data-keyword-id="2">工具软件</a></li>
+                                <li><a data-keyword-id="1">操作系统</a></li>
+                                <li><a data-keyword-id="4">顾问咨询</a></li>
+
+                            </ul>
+                        </div>
+                        <div class="input-group-btn input-group-btn-middle" zyf-keyword-dropdownlist-2="">
+                            <button type="button" class="btn btn-default ">--- 2级 ---</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" zyf-keyword-dropdownlist="2">
+                                <li><a data-keyword-id="10">JAVA</a></li>
+                                <li><a data-keyword-id="13">Python</a></li>
+                                <li><a data-keyword-id="9">C#</a></li>
+                                <li><a data-keyword-id="11">Javascript</a></li>
+                                <li><a data-keyword-id="12">PHP</a></li>
+                                <li><a data-keyword-id="14">SQL</a></li>
+                                <li><a data-keyword-id="15">C++</a></li>
+                                <li><a data-keyword-id="16">C</a></li>
+                            </ul>
+                        </div>
+                        <input type="text" class="form-control" placeholder="自定义关键字，使用空格分隔" zyf-keyword-input="">
+                    </div>
+                    <input data-val="true" data-val-required="* 关键字不能为空" id="Keywords" name="Keywords" type="hidden" value="" zyf-keyword-submit-value="">
+                    <span class="field-validation-valid" data-valmsg-for="Keywords" data-valmsg-replace="true"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="help.Resort">（<a zyf-user-recommend="">推荐</a> <small><span class="fa fa-question-circle text-info" data-toggle="tooltip" title="" data-original-title="根据关键字筛选用户"></span></small>）</label>

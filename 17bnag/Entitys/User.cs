@@ -19,6 +19,11 @@ namespace _17bnag.Entitys
         [Required(ErrorMessage = "* 密码不能为空")]
         [StringLength(20, MinimumLength = 4, ErrorMessage = "* 密码必须在{2} 和{1}之间")]
         public string Password { get; set; }
+
+        [Display(Name = "验证密码：（* 必填）")]
+        [Required(ErrorMessage = "* 确认密码不能为空")]
+        [Compare("Password", ErrorMessage = "* 确认密码和密码不一致")]
+        public string ValidatePassword { get; set; }
         public ICollection<UsersMiddle> HelpRelease { get; set; }
     }
 }
