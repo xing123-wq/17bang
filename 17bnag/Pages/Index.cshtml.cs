@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _17bnag.Data;
+using _17bnag.Filter;
 using _17bnag.Layout;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,7 +16,7 @@ namespace _17bnag.Pages
         public IndexModel(_17bnagContext context) : base(context)
         {
         }
-
+        
         public void OnGet()
         {
             base.SetLogOnStatus();

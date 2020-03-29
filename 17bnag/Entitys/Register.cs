@@ -20,6 +20,11 @@ namespace _17bnag.Entitys
         [MinLength(4, ErrorMessage = "* 邀请码只能是4位")]
         public string Invitationcode { get; set; }
 
+        [Display(Name = "验证密码：（* 必填）")]
+        [Required(ErrorMessage = "* 确认密码不能为空")]
+        //[Compare("Password", ErrorMessage = "* 确认密码和密码不一致")]
+        public string ValidatePassword { get; set; }
+
         [Display(Name = "验证码:(*必填)")]
         [Required(ErrorMessage = "* 验证码不能为空")]
         [MaxLength(4)]
