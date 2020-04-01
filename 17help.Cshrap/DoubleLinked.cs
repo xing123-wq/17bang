@@ -21,7 +21,6 @@ namespace ConsoleApp3
         ///链表的排序（时间顺序，大小顺序）
         ///判断插入的节点是不是尾和头
 
-
         /// <summary>
         /// 之前节点
         /// </summary>
@@ -140,6 +139,7 @@ namespace ConsoleApp3
                 return false;
             }
         }
+
 
 
     }
