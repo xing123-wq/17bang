@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp3
 {
-    class Stack
+    class Stack<T> : IComparable
     {
         private string[] _container;
         private int top { get; set; }
@@ -56,5 +56,24 @@ namespace ConsoleApp3
                 }
             }
         }
+
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
+        //public T[] GetMax(T[] score)
+        //{
+        //    Console.WriteLine("\nSeek Max：");
+        //    T max = score[0];
+        //    for (int i = 0; i < score.Length; i++)
+        //    {
+        //        if (max < score[i])
+        //        {
+        //            max = score[i];
+        //        }
+        //    }
+        //    Console.WriteLine(max);
+        //    return score;
+        //}
     }
 }

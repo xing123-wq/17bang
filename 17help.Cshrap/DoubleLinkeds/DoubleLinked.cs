@@ -71,11 +71,11 @@ namespace ConsoleApp3.DoubleLinkeds
             this.Preivous = node;
             if (node.Next == null)
             {
+                this.Next = node.Next;
                 node.Next = this;
             }
             else
             {
-                this.Next = node.Next;
                 this.Next.Preivous = this;
             }
         }

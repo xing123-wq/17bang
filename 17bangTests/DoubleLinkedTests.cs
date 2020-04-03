@@ -31,17 +31,21 @@ namespace _17bangTests
         [Test]
         public void SetupCorrect()
         {
+            Assert.IsTrue(node1.IsHead);
+
             Assert.IsNull(node1.Preivous);
 
-            Assert.AreEqual(node1.Next,node2);
+            Assert.AreEqual(node1.Next, node2);
 
-            Assert.AreEqual(node2.Next,node3);
-            
-            Assert.AreEqual(node3.Next,node4);
-            
-            Assert.AreEqual(node4.Next,node5);
-            
+            Assert.AreEqual(node2.Next, node3);
+
+            Assert.AreEqual(node3.Next, node4);
+
+            Assert.AreEqual(node4.Next, node5);
+
             Assert.IsNull(node5.Next);
+
+            Assert.IsTrue(node5.IsTail);
         }
 
         [Test]
@@ -50,17 +54,17 @@ namespace _17bangTests
             //1 3 4 5 [2]
             node2.InsretAfter(node5);
 
-            Assert.AreEqual(node1.Next,node3);
+            //Assert.AreEqual(node1.Next,node3);
             Assert.IsNull(node1.Preivous);
 
-            Assert.AreEqual(node3.Next,node4);
+            Assert.AreEqual(node3.Next, node4);
 
-            Assert.AreEqual(node4.Next,node5);
+            Assert.AreEqual(node4.Next, node5);
 
-            Assert.AreEqual(node5.Next,node2);
+            Assert.AreEqual(node5.Next, node2);
 
-            Assert.AreEqual(node2.Next, node3) ;
-
+            Assert.IsTrue(node2.IsTail);
+            Assert.IsNull(node2.Next);
         }
 
         [Test]

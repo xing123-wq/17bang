@@ -53,6 +53,21 @@ namespace ConsoleApp3
             //    a[i] = random.Next(1, 100);
             //}
             //getmax(a);
+            ConsoleApp3.DoubleLinkeds.DoubleLinked node1, node2, node3, node4, node5;
+
+            node1 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node2 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node3 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node4 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node5 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+
+            node2.InsretAfter(node1);
+            node3.InsretAfter(node2);
+            node4.InsretAfter(node3);
+            node5.InsretAfter(node4);
+
+            node2.InsretAfter(node5);
+
         }
         static int getmax(params int[] array)
         {
