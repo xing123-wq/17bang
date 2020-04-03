@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp3
 {
-    sealed public class User : Entity, ISendMessage, IChat
+    sealed public class User : Entity<int>, ISendMessage, IChat
     {
         private int _reward;
         private string _name;

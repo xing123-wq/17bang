@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp3.UserFunctionality;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,13 +7,23 @@ namespace ConsoleApp3
 {
     public class Comment : IAppraise
     {
-        public string Body { get;  set; }
-        public Article Article { get; set; }
-        public User Author { get;  set; }
+        public string Body { get; set; }
+        private Article _article;
 
+        public User Authors { get; set; }
+        public IList<Evaluate> Evaluates { get; set; }
+        public Article Articles { get; set; }
         public Comment(Article article)//记录文章
         {
-            this.Article = article;
+            this._article = article;
+            if (_article != null)
+            {
+                new Article();
+            }
+            else
+            {
+                Console.WriteLine("每个评论，不能没有文章生成！");
+            }
         }
         public void Agree(User voter)
         {

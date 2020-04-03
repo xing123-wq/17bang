@@ -2,11 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace ConsoleApp3
 {
-    public class Student : Entity
+    public class Student : Entity<int>
     {
         public string Name { get; set; }
         public int Age { get; set; }

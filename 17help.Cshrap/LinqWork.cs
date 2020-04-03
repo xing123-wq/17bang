@@ -37,30 +37,30 @@ namespace ConsoleApp3
             {
                 Author = fg,
                 Title = "SQL",
-                keywords = new List<Keyword> { sql }
+                Keywords = new List<Keyword> { sql }
             };
             JAVA = new Article("文章")
             {
                 Author = fg,
                 Title = "JAVA",
-                keywords = new List<Keyword> { java, html }
+                Keywords = new List<Keyword> { java, html }
             };
             UI = new Article("文章")
             {
                 Author = xy,
                 Title = "UI",
-                keywords = new List<Keyword> { js, html, net }
+                Keywords = new List<Keyword> { js, html, net }
             };
             CSharp = new Article("文章")
             {
                 Author = xy,
                 Title = "CSharp",
-                keywords = new List<Keyword> { csharp }
+                Keywords = new List<Keyword> { csharp }
             };
             wx = new Comment(JAVA)
             {
                 Body = "写的不行",
-                Author = new User
+                Authors = new User
                 {
                     Name = "王欣"
                 }
@@ -68,7 +68,7 @@ namespace ConsoleApp3
             atai = new Comment(SQL)
             {
                 Body = "写的很好",
-                Author = new User
+                Authors = new User
                 {
                     Name = "阿泰"
                 }
@@ -76,7 +76,7 @@ namespace ConsoleApp3
             pzq = new Comment(UI)
             {
                 Body = "还可以",
-                Author = new User
+                Authors = new User
                 {
                     Name = "彭志强"
                 }
@@ -84,7 +84,7 @@ namespace ConsoleApp3
             cbw = new Comment(CSharp)
             {
                 Body = "一般般",
-                Author = new User
+                Authors = new User
                 {
                     Name = "陈百万"
                 }
@@ -92,7 +92,7 @@ namespace ConsoleApp3
             ljp = new Comment(CSharp)
             {
                 Body = "看得下去",
-                Author = new User
+                Authors = new User
                 {
                     Name = "刘江平"
                 }
@@ -176,7 +176,7 @@ namespace ConsoleApp3
         public static void GetKey(Keyword keyword, Keyword Keyword)
         {
             Console.WriteLine("\n找出包含关键字“C#”或“.NET”的文章");
-            var SeekKey = articles.Where(a => a.keywords.Contains(keyword) || a.keywords.Contains(Keyword));
+            var SeekKey = articles.Where(a => a.Keywords.Contains(keyword) || a.Keywords.Contains(Keyword));
             foreach (var item in SeekKey)
             {
                 Console.WriteLine($"{item.Author.Name}:{ item.Title}");

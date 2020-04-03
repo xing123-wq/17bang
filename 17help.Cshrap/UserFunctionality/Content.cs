@@ -19,7 +19,7 @@ namespace ConsoleApp3
     //自己的属性和方法
     //再为之前所有类（含User、HelpMoney等）抽象一个基类：
     //Entity，包含一个只读的Id属性。试一试，Suggest能有Id属性么？
-    public abstract class Content : Entity
+    public abstract class Content : Entity<int>
     {
         private DateTime _createTime;
         protected DateTime _publishTime;

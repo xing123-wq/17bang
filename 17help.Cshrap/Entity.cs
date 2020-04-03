@@ -4,8 +4,8 @@ using System.Text;
 
 namespace ConsoleApp3
 {
-    public abstract class Entity
+    public class Entity<T>
     {
-        public int Id { get; set; }
+        public T Id { get; set; }
     }
 }
