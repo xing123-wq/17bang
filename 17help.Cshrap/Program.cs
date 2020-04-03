@@ -41,18 +41,18 @@ namespace ConsoleApp3
             //LinqWork.Do();
 
             //XML.Do();
-            
+
             //Repoistory.Do();
 
             //new Student().Delete();
 
-            Random random = new Random();
-            int[] a = new int[10];
-            for (int i = 0; i < a.Length; i++)
-            {
-                a[i] = random.Next(1, 100);
-            }
-            getmax(a);
+            //Random random = new Random();
+            //int[] a = new int[10];
+            //for (int i = 0; i < a.Length; i++)
+            //{
+            //    a[i] = random.Next(1, 100);
+            //}
+            //getmax(a);
         }
         static int getmax(params int[] array)
         {
@@ -82,7 +82,7 @@ namespace ConsoleApp3
                     temp = array[i];
                 }
             }
-            Console.WriteLine("\n最大值："+temp+"!");
+            Console.WriteLine("\n最大值：" + temp + "!");
             return temp;
         }
         //源栈的学费是按周计费的，所以请实现这两个功能：

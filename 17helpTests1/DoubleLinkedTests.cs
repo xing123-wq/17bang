@@ -28,10 +28,21 @@ namespace ConsoleApp3.Tests
             //1 3 4 5 [2]
             node2.InsretAfter(node5);
 
-            Assert.AreEqual(node5.Next, node2);
+            Assert.IsNull(node2.Next);
+            Assert.IsNull(node1.Next);
+            Assert.IsNull(node3.Next);
+            Assert.IsNull(node4.Next);
+            //Assert.IsNull(node5.Next);
+            Assert.IsNull(node1.Preivous);
+            //Assert.IsNull(node2.Preivous);
+            Assert.IsNull(node3.Preivous);
+            Assert.IsNull(node4.Preivous);
+            Assert.IsNull(node5.Preivous);
 
-            Assert.AreEqual(node2.Next, null);
             Assert.AreEqual(node2.Preivous, node5);
+
+
+
         }
 
         [TestMethod()]
@@ -39,15 +50,8 @@ namespace ConsoleApp3.Tests
         {
             ///1 2 3 4 5
             ///2 3 4 5 [1]
-            node1.InsretAfter(node5);
-            Assert.AreEqual(node5.Next, node1);
 
-            Assert.AreEqual(node1.IsTail, node2);
-            Assert.AreEqual(node2.Next,node3);
-            Assert.AreEqual(node5.Preivous,node4);
 
-            Assert.AreEqual(node4.Next,node5);
-            Assert.AreEqual(node4.Preivous,node3);
         }
 
         [TestMethod()]
@@ -56,15 +60,6 @@ namespace ConsoleApp3.Tests
             //1 2 3 4 5
             //1 3 4 2 5
             //1 3 4 [2] 5
-            node2.InsertBefore(node5);
-
-            Assert.AreEqual(node5.Next, null);
-
-            Assert.AreEqual(node2.Next, node5);
-            Assert.AreEqual(node5.Preivous, node2);
-
-            Assert.AreEqual(node2.Preivous, node4);
-            Assert.AreEqual(node4.Next, node2);
         }
 
         [TestMethod()]

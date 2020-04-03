@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConsoleApp3
+namespace ConsoleApp3.DoubleLinkeds
 {
     public class DoubleLinked
     {
@@ -54,7 +54,7 @@ namespace ConsoleApp3
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public DoubleLinked FindBy(int value)
+        public DoubleLinked FindBy(DoubleLinked value)
         {
             //向上找一次
 
@@ -65,7 +65,7 @@ namespace ConsoleApp3
         /// <summary>
         /// 在node之后插入当前节点 
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">节点</param>
         public void InsretAfter(DoubleLinked node)
         {
             this.Preivous = node;
