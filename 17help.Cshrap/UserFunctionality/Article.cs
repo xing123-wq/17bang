@@ -1,5 +1,4 @@
-﻿using ConsoleApp3.UserFunctionality;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ConsoleApp3
@@ -13,7 +12,7 @@ namespace ConsoleApp3
         public List<Keyword> Keywords { get; set; }
 
         public List<Comment> Comments { get; set; }
-        public IList<Evaluate> Evaluates { get; set; }
+        public IList<Appraise> Appraises { get; set; }
         public string Title
         {
             get

@@ -31,7 +31,7 @@ namespace ConsoleApp3.DoubleLinkeds
         /// </summary>
         public DoubleLinked Next { get; private set; }
 
-        public DoubleLinked Value { get; set; }
+        public int? Value { get; set; }
 
         /// <summary>
         /// 头节点
@@ -71,11 +71,12 @@ namespace ConsoleApp3.DoubleLinkeds
             this.Preivous = node;
             if (node.Next == null)
             {
-                this.Next = node.Next;
                 node.Next = this;
+                Console.WriteLine(this.Value);
             }
             else
             {
+                this.Next = node.Next;
                 this.Next.Preivous = this;
             }
         }
@@ -86,6 +87,7 @@ namespace ConsoleApp3.DoubleLinkeds
         public void InsertBefore(DoubleLinked node)
         {
             this.Next = node;
+
             if (node.Preivous == null)
             {
                 node.Preivous = this;
@@ -94,6 +96,7 @@ namespace ConsoleApp3.DoubleLinkeds
             {
                 this.Preivous = node.Preivous;
                 this.Preivous.Next = this;
+                node.Preivous = this;
             }
         }
 

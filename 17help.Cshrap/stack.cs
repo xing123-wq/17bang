@@ -4,76 +4,52 @@ using System.Text;
 
 namespace ConsoleApp3
 {
-    class Stack<T> : IComparable
+    public class stack<T> where T : IComparable
     {
-        private string[] _container;
-        private int top { get; set; }
-        public Stack(int length)
+        T[] StackArray;
+        int StackPointer = 0;
+
+        public void Push(T x)
         {
-            _container = new string[length];
-        }
-        public void Push(string[] element)
-        {
-            for (int i = 0; i < element.Length; i++)
-            {
-                if (top >= _container.Length)
-                {
-                    Console.WriteLine("栈满了,挤不进去了");
-                }
-                else
-                {
-                    //do nothing
-                }
-            }
-        }
-        public string Pop()
-        {
-            if (_container[0] == null)
-            {
-                Console.WriteLine("栈空了,弹不出去");
-            }
-            else
-            {
-                for (int i = (_container.Length); i >= 0; i++)
-                {
-                    if (_container[i] != null)
-                    {
-                        _container[i] = null;
-                        Console.WriteLine("弹出去了一个");
-                        break;
-                    }
-                }
-            }
-            return _container[top];
-        }
-        public void Output(string[] numbers)
-        {
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (numbers[i] != null)
-                {
-                    Console.WriteLine(numbers[i]);
-                }
-            }
+            if (!IsStackFull)
+                StackArray[StackPointer++] = x;
         }
 
-        public int CompareTo(object obj)
+        public T Pop()
         {
-            throw new NotImplementedException();
+            return (!IsStackEmpty)
+                ? StackArray[++StackPointer]
+                : StackArray[0];
         }
-        //public T[] GetMax(T[] score)
-        //{
-        //    Console.WriteLine("\nSeek Max：");
-        //    T max = score[0];
-        //    for (int i = 0; i < score.Length; i++)
-        //    {
-        //        if (max < score[i])
-        //        {
-        //            max = score[i];
-        //        }
-        //    }
-        //    Console.WriteLine(max);
-        //    return score;
-        //}
+
+        const int MaxStack = 10;
+        bool IsStackFull { get { return StackPointer >= MaxStack; } }
+        bool IsStackEmpty { get { return StackPointer <= 0; } }
+
+        public stack()
+        {
+            StackArray = new T[MaxStack];
+        }
+
+        public void Print()
+        {
+            for (int i = StackPointer - 1; i >= 0; i--)
+            {
+                Console.WriteLine("Value:{0}", StackArray[i]);
+            }
+        }
+        public T GetMax(T[] array)
+        {
+            T max = array[0];
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (max.CompareTo(array[i]) < 0)
+                {
+                    max = array[i];
+                }
+            }
+            Console.WriteLine(max);
+            return max;
+        }
     }
 }

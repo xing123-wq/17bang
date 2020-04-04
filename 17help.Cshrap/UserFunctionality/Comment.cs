@@ -1,5 +1,4 @@
-﻿using ConsoleApp3.UserFunctionality;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +10,7 @@ namespace ConsoleApp3
         private Article _article;
 
         public User Authors { get; set; }
-        public IList<Evaluate> Evaluates { get; set; }
+        public IList<Appraise> Appraises { get; set; }
         public Article Articles { get; set; }
         public Comment(Article article)//记录文章
         {

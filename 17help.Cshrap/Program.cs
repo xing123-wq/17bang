@@ -53,20 +53,42 @@ namespace ConsoleApp3
             //    a[i] = random.Next(1, 100);
             //}
             //getmax(a);
-            ConsoleApp3.DoubleLinkeds.DoubleLinked node1, node2, node3, node4, node5;
+            //ConsoleApp3.DoubleLinkeds.DoubleLinked node1, node2, node3, node4, node5, node6;
 
-            node1 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            node2 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            node3 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            node4 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            node5 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            //node1 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            //node2 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            //node3 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            //node4 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            //node5 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            //node6 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
 
-            node2.InsretAfter(node1);
-            node3.InsretAfter(node2);
-            node4.InsretAfter(node3);
-            node5.InsretAfter(node4);
+            //node1.Value = 1;
+            //node2.Value = 2;
+            //node3.Value = 3;
+            //node4.Value = 4;
+            //node5.Value = 5;
+            //node6.Value = 6;
 
-            node2.InsretAfter(node5);
+            //node2.InsretAfter(node1);
+            //node3.InsretAfter(node2);
+            //node4.InsretAfter(node3);
+            //node5.InsretAfter(node4);
+            //node6.InsretAfter(node2);
+
+            stack<int> StackInt = new stack<int>();
+            stack<string> StackString = new stack<string>();
+
+            StackInt.Push(3);
+            StackInt.Push(5);
+            StackInt.Push(7);
+            StackInt.Push(9);
+            StackInt.Print();
+
+            StackString.Push("This is a stack");
+            StackString.Push("Hello World!");
+            StackString.Print();
+
+            Console.ReadLine();
 
         }
         static int getmax(params int[] array)

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp3
 {
-    class Appraise
+    public class Appraise
     {
         Content Iarget { get; set; }
         User Wotter { get; set; }
