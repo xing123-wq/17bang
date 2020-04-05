@@ -103,9 +103,10 @@ namespace ConsoleApp3.DoubleLinkeds
         /// <summary>
         /// 删除当前对象
         /// </summary>
-        public void Delete()
+        public void Delete(DoubleLinked node)
         {
-
+            node.Value = node.Next.Value;
+            node.Next = node.Next.Next;
         }
 
         /// <summary>

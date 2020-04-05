@@ -110,7 +110,8 @@ namespace _17bangTests
         [Test]
         public void DeleteTest()
         {
-
+            node1.Delete(node2);
+            Assert.AreEqual(node1.Next, node3);
         }
 
         [Test]

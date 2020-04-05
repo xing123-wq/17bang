@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Xml.Linq;
 using ConsoleApp3;
@@ -75,20 +76,22 @@ namespace ConsoleApp3
             //node5.InsretAfter(node4);
             //node6.InsretAfter(node2);
 
-            stack<int> StackInt = new stack<int>();
-            stack<string> StackString = new stack<string>();
+            //stack<int> StackInt = new stack<int>();
+            //stack<string> StackString = new stack<string>();
 
-            StackInt.Push(3);
-            StackInt.Push(5);
-            StackInt.Push(7);
-            StackInt.Push(9);
-            StackInt.Print();
+            //StackInt.Push(3);
+            //StackInt.Push(5);
+            //StackInt.Push(7);
+            //StackInt.Push(9);
+            //StackInt.Print();
 
-            StackString.Push("This is a stack");
-            StackString.Push("Hello World!");
-            StackString.Print();
+            //StackString.Push("This is a stack");
+            //StackString.Push("Hello World!");
+            //StackString.Print();
 
-            Console.ReadLine();
+            //Console.ReadLine();
+
+            
 
         }
         static int getmax(params int[] array)
