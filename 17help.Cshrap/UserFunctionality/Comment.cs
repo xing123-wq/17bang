@@ -8,21 +8,22 @@ namespace ConsoleApp3
     {
         public string Body { get; set; }
         private Article _article;
-
         public User Authors { get; set; }
         public IList<Appraise> Appraises { get; set; }
-        public Article Articles { get; set; }
+        public DateTime PublishDateTime { get; set; }
+        public Comment()
+        {
+
+        }
         public Comment(Article article)//记录文章
         {
             this._article = article;
-            if (_article != null)
-            {
-                new Article();
-            }
-            else
+            if (_article == null)
             {
                 Console.WriteLine("每个评论，不能没有文章生成！");
             }
+            //else do nothing
+
         }
         public void Agree(User voter)
         {

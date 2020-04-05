@@ -8,9 +8,9 @@ namespace ConsoleApp3
     {
         public IList<Problem> Get()
         {
-            User pk = new User { Id = 1, Name = "彭昆" };
-            User at = new User { Id = 2, Name = "阿泰" };
-            User cy = new User { Id = 3, Name = "陈元" };
+            User pk = new User(1, "彭昆");
+            User at = new User(2, "阿泰");
+            User cy = new User(3, "陈元");
             Keyword sql = new Keyword { Id = 1, Name = "SQL" };
             Keyword java = new Keyword { Id = 2, Name = "JAVA" };
             Keyword CSharp = new Keyword { Id = 3, Name = "C#" };

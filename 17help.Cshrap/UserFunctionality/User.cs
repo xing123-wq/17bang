@@ -4,12 +4,12 @@ using System.Text;
 
 namespace ConsoleApp3
 {
-    sealed public class User : Entity<int>, ISendMessage, IChat
+    sealed public class User : ISendMessage, IChat
     {
         private int _reward;
         private string _name;
-        private string _Password;
-        //public int /*Id*/ { get; set; }
+        private string _password;
+        public int Id { get; set; }
         internal TokenManager Manager { get; set; }
         internal int HelpMony { get; set; }
         internal int credit { get; set; }
@@ -46,21 +46,23 @@ namespace ConsoleApp3
                 {
                     _name = "系统管理员";
                 }
-                else
-                {
-                    Console.WriteLine("不是系统管理员");
-                }
+                //else do nothing
             }
+        }
+        public User(int id, string name)
+        {
+            Id = id;
+            _name = name;
         }
         private string Password
         {
             get
             {
-                return _Password;
+                return _password;
             }
             set
             {
-                if (_Password.Length < 6)
+                if (_password.Length < 6)
                 {
                     Console.WriteLine("密码不能小于6位!");
                 }
@@ -69,14 +71,6 @@ namespace ConsoleApp3
         public User Invitedby { get; set; }
         public string Grade { get; set; }//等级属性
         public int HelpMoney { get; internal set; }
-        internal User(string inviter)
-        {
-
-        }
-        public User()
-        {
-
-        }
         internal void elevaterank(string label, int integral)
         {
 

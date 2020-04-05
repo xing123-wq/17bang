@@ -39,7 +39,7 @@ namespace ConsoleApp3
             //Problem keyword = new Problem();
             //Console.WriteLine(keyword[1]);
 
-            //LinqWork.Do();
+            LinqWork.Do();
 
             //XML.Do();
 
@@ -91,7 +91,7 @@ namespace ConsoleApp3
 
             //Console.ReadLine();
 
-            
+
 
         }
         static int getmax(params int[] array)

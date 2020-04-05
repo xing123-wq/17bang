@@ -5,30 +5,7 @@ namespace ConsoleApp3
 {
     public class Article : Content
     {
-        private string title;
-        //private DateTime _publishTime;
 
-        //public Article(string kind) : base(kind) { }
-        public List<Keyword> Keywords { get; set; }
-
-        public List<Comment> Comments { get; set; }
-        public IList<Appraise> Appraises { get; set; }
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("标题不能为null或空值");
-                }
-
-                title = value.Trim();
-            }
-        }
         //在现有作业的基础上，观察一起帮的文章板块，以此为蓝本，补充（如果还没有的话）声明：
         //评论（Comment）类
         //评价（Appraise）类：包括“赞”和“踩”
@@ -38,31 +15,15 @@ namespace ConsoleApp3
         //一个评论必须有一个它所评论的文章
         //每个文章和评论都有一个评价
         //一篇文章可以有多个关键字，一个关键字可以对应多篇文章
-        public Article(string kind)
+        public Article(string kind) : base(kind)
         {
+        }
 
-        }
-        public Article()
-        {
-            if (Comments == null)
-            {
-                Console.WriteLine("");
-            }
-        }
         public void MoneyAeount(int reward)
         {
             Console.WriteLine("覆盖" + reward + "了");
         }
-        public void PublishDateTimre()
-        {
-            if (Author == null)
-            {
-                throw new ArgumentException("不能没有作者");
-            }
-            _publishTime = DateTime.Now;//在发布时调用此方法为PublishTime赋值
-            Author.HelpMoney += 1;
 
-        }
     }
     //确保文章（Article）的标题不能为null值，
     //也不能为一个或多个空字符组成的字符串，而且如果标题前后有空格，也予以删除

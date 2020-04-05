@@ -19,28 +19,46 @@ namespace ConsoleApp3
     //自己的属性和方法
     //再为之前所有类（含User、HelpMoney等）抽象一个基类：
     //Entity，包含一个只读的Id属性。试一试，Suggest能有Id属性么？
-    public abstract class Content : Entity<int>
+    public class Content : Entity<int>
     {
-        private DateTime _createTime;
-        protected DateTime _publishTime;
-        public DateTime PublishTime { get { return _publishTime; } }
-        protected string kind;
+        protected string Kind;
         private User author;
-        public User Author
+        private string _title;
+        private DateTime _publishTime;
+        public DateTime PublishDateTime { get; set; }
+        public IList<Keyword> Keywords { get; set; }
+        public IList<Comment> Comments { get; set; }
+        public IList<Appraise> Appraises { get; set; }
+        public User Author { get; set; }
+        public string Title
         {
             get
             {
-                return author;
+                return _title;
             }
             set
             {
-                author = value;
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("标题不能为null或空值");
+                }
+
+                _title = value.Trim();
             }
         }
-        //public Content(string kind)
-        //{
-        //    this.kind = kind;
-        //}
+        public void PublishDateTimre()
+        {
+            if (Author == null)
+            {
+                throw new ArgumentException("不能没有作者");
+            }
+            _publishTime = DateTime.Now;//在发布时调用此方法为PublishTime赋值
+            Author.HelpMoney += 1;
+        }
+        public Content(string kind)
+        {
+
+        }
         public void Publish()
         {
 
@@ -53,9 +71,6 @@ namespace ConsoleApp3
         {
             return indetail;
         }
-
-
-
     }
     //之前的Content类，其中的CreateTime（创建时间）和PublishTime（发布时间）都是只读的属性，想一想他们应该在哪里赋值比较好，并完成相应代码
     //在Content之外封装一个方法，可以修改Content的CreateTime和PublishTime
