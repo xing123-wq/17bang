@@ -22,7 +22,7 @@ namespace ConsoleApp3
     public class Content : Entity<int>
     {
         protected string Kind;
-        private User author;
+        //private User _author;
         private string _title;
         private DateTime _publishTime;
         public DateTime PublishDateTime { get; set; }

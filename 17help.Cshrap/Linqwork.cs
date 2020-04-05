@@ -18,32 +18,33 @@ namespace ConsoleApp3
         //声明一个委托：打水（ProvideWater），可以接受一个Person类的参数，返回值为int类型
         //使用方,匿名方,lambda表达式,给上述委托赋值，并运行该委托,
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
+
         /// <summary>
         /// 用户
         /// </summary>
-        static readonly User fg, xy;
+        public static User fg, xy;
         /// <summary>
         /// 关键字
         /// </summary>
-        static Keyword sql, csharp, net, java, js, html;
+        public static Keyword sql, csharp, net, java, js, html;
         /// <summary>
         /// 文章
         /// </summary>
-        static readonly Article SQL, JAVA, UI, CSharp;
+        public static Article SQL, JAVA, UI, CSharp;
         /// <summary>
         /// 评论
         /// </summary>
-        static readonly Comment wx, atai, pzq, cbw, ljp;
+        public static Comment wx, atai, pzq, cbw, ljp;
         static LinqWork()
         {
             fg = new User(1, "飞哥");
             xy = new User(2, "小余");
-            sql = new Keyword { Content = "SQL" };
-            csharp = new Keyword { Content = "C#" };
-            net = new Keyword { Content = ".NET" };
-            java = new Keyword { Content = "JAVA" };
-            js = new Keyword { Content = "JAVASCRIPT" };
-            html = new Keyword { Content = "HTML" };
+            sql = new Keyword { Name = "SQL" };
+            csharp = new Keyword { Name = "C#" };
+            net = new Keyword { Name = ".NET" };
+            java = new Keyword { Name = "JAVA" };
+            js = new Keyword { Name = "JAVASCRIPT" };
+            html = new Keyword { Name = "HTML" };
             SQL = new Article("文章")
             {
                 Author = fg,
@@ -108,7 +109,18 @@ namespace ConsoleApp3
                 Body = "看得下去",
                 Authors = new User(7, "刘江平"),
             };
+            SQL.Comments = new List<Comment> { atai };
+            JAVA.Comments = new List<Comment> { wx };
+            UI.Comments = new List<Comment> { pzq };
+            CSharp.Comments = new List<Comment> { cbw, ljp };
+            sql.Articles = new List<Article> { SQL };
+            csharp.Articles = new List<Article> { CSharp };
+            net.Articles = new List<Article> { UI };
+            java.Articles = new List<Article> { JAVA };
+            js.Articles = new List<Article> { UI };
+            html.Articles = new List<Article> { JAVA, UI };
             articles = new List<Article> { SQL, JAVA, UI, CSharp };
+
             //ContentService.Publish(UI);
             //ContentService.Publish(CSharp);
             //ContentService.Publish(SQL);

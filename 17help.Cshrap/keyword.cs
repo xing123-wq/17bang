@@ -13,5 +13,10 @@ namespace ConsoleApp3
         public IList<Article> Articles { get; set; }//关键字对应多个文章
         public int Id { get; set; }//关键字的Id
         public string Name { get; set; }
+        //public Keyword(int id, string name)
+        //{
+        //    Id = id;
+        //    Name = name;
+        //}
     }
 }
