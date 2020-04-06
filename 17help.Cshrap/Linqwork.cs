@@ -79,7 +79,7 @@ namespace ConsoleApp3
                 Keywords = new List<Keyword> { csharp }
             };
 
-            wx = new Comment()
+            wx = new Comment(UI)
             {
                 PublishDateTime = new DateTime(2020, 12, 30),
                 Body = "写的不行",
