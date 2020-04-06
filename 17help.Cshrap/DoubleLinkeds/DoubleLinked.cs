@@ -54,12 +54,12 @@ namespace ConsoleApp3.DoubleLinkeds
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public DoubleLinked FindBy(DoubleLinked value)
+        public static DoubleLinked FindBy(DoubleLinked value)
         {
             //向上找一次
 
             //向下找一次
-            return null;
+            return value;
         }
 
         /// <summary>
@@ -68,11 +68,11 @@ namespace ConsoleApp3.DoubleLinkeds
         /// <param name="node">节点</param>
         public void InsretAfter(DoubleLinked node)
         {
+            this.Delete();
             this.Preivous = node;
             if (node.Next == null)
             {
                 node.Next = this;
-                Console.WriteLine(this.Value);
             }
             else
             {
@@ -86,8 +86,8 @@ namespace ConsoleApp3.DoubleLinkeds
         /// <param name="node"></param>
         public void InsertBefore(DoubleLinked node)
         {
+            this.Delete();
             this.Next = node;
-
             if (node.Preivous == null)
             {
                 node.Preivous = this;
@@ -96,17 +96,25 @@ namespace ConsoleApp3.DoubleLinkeds
             {
                 this.Preivous = node.Preivous;
                 this.Preivous.Next = this;
-                node.Preivous = this;
             }
         }
 
         /// <summary>
         /// 删除当前对象
         /// </summary>
-        public void Delete(DoubleLinked node)
+        public void Delete()
         {
-            node.Value = node.Next.Value;
-            node.Next = node.Next.Next;
+            DoubleLinked nodePreivous = Preivous;
+            DoubleLinked nodeNext = Next;
+            if (nodePreivous != null)
+            {
+                nodePreivous.Next = nodeNext;
+            }// else do nothing
+            if (nodeNext != null)
+            {
+                nodeNext.Preivous = nodePreivous;
+            }// else do nothing
+            Preivous = Next = null;
         }
 
         /// <summary>
@@ -114,7 +122,7 @@ namespace ConsoleApp3.DoubleLinkeds
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        public void Swap(DoubleLinked a, DoubleLinked b)
+        public static void Swap(/*DoubleLinked a, DoubleLinked b*/)
         {
 
         }
@@ -123,7 +131,7 @@ namespace ConsoleApp3.DoubleLinkeds
         /// 通过计算获得长度
         /// </summary>
         /// <returns></returns>
-        public int GetLingth(int Lingth)
+        public static int GetLingth(int Lingth)
         {
             return Lingth;
         }

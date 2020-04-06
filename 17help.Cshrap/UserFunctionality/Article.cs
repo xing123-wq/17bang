@@ -19,7 +19,7 @@ namespace ConsoleApp3
         {
         }
 
-        public void MoneyAeount(int reward)
+        public static void MoneyAeount(int reward)
         {
             Console.WriteLine("覆盖" + reward + "了");
         }

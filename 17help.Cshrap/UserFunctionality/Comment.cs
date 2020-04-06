@@ -7,7 +7,7 @@ namespace ConsoleApp3
     public class Comment : IAppraise
     {
         public string Body { get; set; }
-        private Article _article;
+        private readonly Article _article;
         public User Authors { get; set; }
         public IList<Appraise> Appraises { get; set; }
         public DateTime PublishDateTime { get; set; }
