@@ -53,7 +53,7 @@ namespace ConsoleApp3
                 throw new ArgumentException("不能没有作者");
             }
             _publishTime = DateTime.Now;//在发布时调用此方法为PublishTime赋值
-            Author.HelpMoney += 1;
+            Author.HelpMony += 1;
         }
         public Content(string kind)
         {

@@ -8,11 +8,11 @@ namespace ConsoleApp3
     {
         private int _reward;
         private string _name;
-        private string _password;
         public int Id { get; set; }
         internal TokenManager Manager { get; set; }
-        internal int HelpMony { get; set; }
-        internal int credit { get; set; }
+        public int? HelpMony { get; set; }
+        internal int Credit { get; set; }
+        public Comment Comment { get; set; }
         public int Reward
         {
             get
@@ -54,15 +54,22 @@ namespace ConsoleApp3
             Id = id;
             _name = name;
         }
-        private string Password
+        public User()
+        {
+            if (HelpMony != null)
+            {
+
+            }
+        }
+        public string Password
         {
             get
             {
-                return _password;
+                return Password;
             }
-            set
+            internal set
             {
-                if (_password.Length < 6)
+                if (Password.Length < 6)
                 {
                     Console.WriteLine("密码不能小于6位!");
                 }
@@ -70,21 +77,20 @@ namespace ConsoleApp3
         }
         public User Invitedby { get; set; }
         public string Grade { get; set; }//等级属性
-        public int HelpMoney { get; internal set; }
-        internal void elevaterank(string label, int integral)
+        internal void Elevaterank(/*string label, int integral*/)
         {
 
         }
         //提升等级的方法
-        static void Register()
+        public static void Register()
         {
 
         }
-        static void Login()
+        public static void Login()
         {
 
         }
-        internal void ChangePasword(string data)
+        internal void ChangePasword()
         {
 
 

@@ -27,7 +27,6 @@ namespace ConsoleApp3
         {
             voter.HelpMony += 1;
         }
-
         public void Disagree(User voter)
         {
             voter.HelpMony -= 1;
