@@ -17,6 +17,13 @@ namespace _17bangTests
             node5 = new DoubleLinked();
             node6 = new DoubleLinked();
 
+            node1.Value = 1;
+            node2.Value = 2;
+            node3.Value = 3;
+            node4.Value = 4;
+            node5.Value = 5;
+            node6.Value = 6;
+
             node2.InsretAfter(node1);
             node3.InsretAfter(node2);
             node4.InsretAfter(node3);
@@ -114,7 +121,7 @@ namespace _17bangTests
             Assert.AreEqual(node2.Next, node5);
 
             Assert.IsTrue(node5.IsTail);
-            Assert.AreEqual(node5.Preivous, node4);
+            Assert.AreEqual(node5.Preivous, node2);
             Assert.IsNull(node5.Next);
         }
 
@@ -208,12 +215,18 @@ namespace _17bangTests
             //[5]
             node5.Delete();
 
+            Assert.IsNull(node5.Preivous) ;
+            Assert.IsNull(node5.Next);
         }
 
         [Test]
         public void SwapTest()
         {
-            //Assert.Fail();
+            //1 2 3 4 5
+            //1 [2] 3 4 [5]
+            //1 [5] 3 4 [2]
+            //node2.Swap(node5);
+            //Assert.AreEqual(node1.Next, node5);
         }
     }
 }

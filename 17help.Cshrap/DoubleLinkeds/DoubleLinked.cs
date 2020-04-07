@@ -52,14 +52,14 @@ namespace ConsoleApp3.DoubleLinkeds
         /// <summary>
         /// 根据当前节点向上向下指定value的第一个链表节点
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="node"></param>
         /// <returns></returns>
-        public static DoubleLinked FindBy(DoubleLinked value)
+        public DoubleLinked FindBy(DoubleLinked node)
         {
             //向上找一次
 
             //向下找一次
-            return value;
+            return null;
         }
 
         /// <summary>
@@ -87,6 +87,7 @@ namespace ConsoleApp3.DoubleLinkeds
         public void InsertBefore(DoubleLinked node)
         {
             this.Delete();
+
             this.Next = node;
             if (node.Preivous == null)
             {
@@ -122,7 +123,7 @@ namespace ConsoleApp3.DoubleLinkeds
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
-        public static void Swap(/*DoubleLinked a, DoubleLinked b*/)
+        public void Swap(DoubleLinked node)
         {
 
         }
@@ -131,9 +132,9 @@ namespace ConsoleApp3.DoubleLinkeds
         /// 通过计算获得长度
         /// </summary>
         /// <returns></returns>
-        public static int GetLingth(int Lingth)
+        public  void GetLingth(DoubleLinked DBLingth)
         {
-            return Lingth;
+            
         }
 
         /// <summary>
