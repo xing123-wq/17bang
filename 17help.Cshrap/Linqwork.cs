@@ -30,103 +30,124 @@ namespace ConsoleApp3
         /// <summary>
         /// 文章
         /// </summary>
-        public static Article SQL, JAVA, UI, CSharp;
+        public static Article SQL, JAVA, UI, CSharp, NET;
         /// <summary>
         /// 评论
         /// </summary>
         public static Comment wx, atai, pzq, cbw, ljp;
+        /// <summary>
+        /// 点赞点踩
+        /// </summary>
+        public static Appraise AppraiseorNot, AppraiseorNot1, AppraiseorNot2, AppraiseorNot3, AppraiseorNot4;
+        public static IEnumerable<Article> articles;
         static LinqWork()
         {
             fg = new User(1, "飞哥");
             xy = new User(2, "小余");
-            sql = new Keyword { Name = "SQL" };
-            csharp = new Keyword { Name = "C#" };
-            net = new Keyword { Name = ".NET" };
-            java = new Keyword { Name = "JAVA" };
-            js = new Keyword { Name = "JAVASCRIPT" };
-            html = new Keyword { Name = "HTML" };
+            sql = new Keyword { Id = 1, Name = "SQL" };
+            csharp = new Keyword { Id = 2, Name = "C#" };
+            net = new Keyword { Id = 3, Name = ".NET" };
+            java = new Keyword { Id = 4, Name = "JAVA" };
+            js = new Keyword { Id = 5, Name = "JAVASCRIPT" };
+            html = new Keyword { Id = 6, Name = "HTML" };
+            AppraiseorNot = new Appraise { AgreeNumber = 12, NotNumber = 1 };
+            AppraiseorNot1 = new Appraise { AgreeNumber = 3, NotNumber = 12 };
+            AppraiseorNot2 = new Appraise { AgreeNumber = 23, NotNumber = 10 };
+            AppraiseorNot3 = new Appraise { AgreeNumber = 32, NotNumber = 4 };
+            AppraiseorNot4 = new Appraise { AgreeNumber = 12, NotNumber = 32 };
             SQL = new Article("文章")
             {
+                Id = 1,
                 Author = fg,
+                Body = "SQL1",
                 Title = "SQL",
                 Keywords = new List<Keyword> { sql },
                 PublishDateTime = new DateTime(2020, 3, 3),
                 Comments = new List<Comment> { wx, cbw, pzq },
-                Id = 1
+                Appraises = new List<Appraise> { AppraiseorNot2 }
             };
             JAVA = new Article("文章")
             {
+                Id = 2,
                 Author = xy,
                 Title = "JAVA",
+                Body = "java1",
                 Keywords = new List<Keyword> { java, html },
                 Comments = new List<Comment> { wx, atai, pzq },
-                PublishDateTime = new DateTime(2019, 5, 3)
+                PublishDateTime = new DateTime(2019, 5, 3),
+                Appraises = new List<Appraise> { AppraiseorNot }
             };
             UI = new Article("文章")
             {
-                Author = fg,
+                Id = 3,
                 Title = "UI",
+                Author = fg,
+                Body = "ui操作",
                 Comments = new List<Comment> { wx, cbw, pzq, atai },
                 PublishDateTime = new DateTime(2020, 10, 1),
-                Keywords = new List<Keyword> { js, html, net }
+                Keywords = new List<Keyword> { js, html, net },
+                Appraises = new List<Appraise> { AppraiseorNot1 }
             };
             CSharp = new Article("文章")
             {
-                Author = xy,
+                Id = 5,
                 Title = "CSharp",
+                Author = xy,
+                Body = "C#操作",
                 PublishDateTime = new DateTime(2019, 1, 1),
                 Comments = new List<Comment> { wx, cbw, pzq },
-                Keywords = new List<Keyword> { csharp }
+                Keywords = new List<Keyword> { csharp },
+                Appraises = new List<Appraise> { AppraiseorNot4 }
+            };
+            NET = new Article("文章")
+            {
+                Id = 6,
+                Title = ".NET",
+                Author = fg,
+                Body = ".NET操作",
+                PublishDateTime = new DateTime(2020, 10, 5),
+                Comments = new List<Comment> { wx, atai, cbw, ljp },
+                Keywords = new List<Keyword> { net, csharp, sql },
+                Appraises = new List<Appraise> { AppraiseorNot3 }
             };
 
             wx = new Comment(UI)
             {
                 PublishDateTime = new DateTime(2020, 12, 30),
                 Body = "写的不行",
-                Authors = new User(3, "王欣")
+                Authors = new User(3, "王欣"),
+                Appraises = new List<Appraise> { AppraiseorNot1 }
             };
             atai = new Comment(SQL)
             {
                 PublishDateTime = new DateTime(2020, 2, 20),
                 Body = "写的很好",
-                Authors = new User(4, "阿泰")
+                Authors = new User(4, "阿泰"),
+                Appraises = new List<Appraise> { AppraiseorNot2 }
             };
             pzq = new Comment(UI)
             {
                 PublishDateTime = new DateTime(2020, 4, 8),
                 Body = "还可以",
                 Authors = new User(5, "彭志强"),
+                Appraises = new List<Appraise> { AppraiseorNot3 }
             };
             cbw = new Comment(CSharp)
             {
                 PublishDateTime = new DateTime(2020, 3, 19),
                 Body = "一般般",
                 Authors = new User(6, "陈百万"),
+                Appraises = new List<Appraise> { AppraiseorNot4 }
             };
             ljp = new Comment(CSharp)
             {
                 PublishDateTime = new DateTime(2020, 5, 3),
                 Body = "看得下去",
                 Authors = new User(7, "刘江平"),
+                Appraises = new List<Appraise> { AppraiseorNot2 }
             };
-            SQL.Comments = new List<Comment> { atai };
-            JAVA.Comments = new List<Comment> { wx };
-            UI.Comments = new List<Comment> { pzq };
-            CSharp.Comments = new List<Comment> { cbw, ljp };
-            sql.Articles = new List<Article> { SQL };
-            csharp.Articles = new List<Article> { CSharp };
-            net.Articles = new List<Article> { UI };
-            java.Articles = new List<Article> { JAVA };
-            js.Articles = new List<Article> { UI };
-            html.Articles = new List<Article> { JAVA, UI };
-            articles = new List<Article> { SQL, JAVA, UI, CSharp };
-
-            //ContentService.Publish(UI);
-            //ContentService.Publish(CSharp);
-            //ContentService.Publish(SQL);
-            //ContentService.Publish(JAVA);
+            articles = new List<Article> { SQL, JAVA, UI, CSharp, NET };
         }
-        public static IEnumerable<Article> articles;
         public static void Do()
         {
             PublishArticleFg();

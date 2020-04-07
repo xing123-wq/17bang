@@ -18,7 +18,10 @@ namespace ConsoleApp3
         public Article(string kind) : base(kind)
         {
         }
+        public Article()
+        {
 
+        }
         public static void MoneyAeount(int reward)
         {
             Console.WriteLine("覆盖" + reward + "了");

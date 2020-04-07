@@ -21,7 +21,7 @@ namespace ConsoleApp3
     //Entity，包含一个只读的Id属性。试一试，Suggest能有Id属性么？
     public class Content : Entity<int>
     {
-        protected string Kind;
+        protected string _kind;
         //private User _author;
         private string _title;
         private DateTime _publishTime;
@@ -29,6 +29,7 @@ namespace ConsoleApp3
         public IList<Keyword> Keywords { get; set; }
         public IList<Comment> Comments { get; set; }
         public IList<Appraise> Appraises { get; set; }
+        public string Body { get; set; }
         public User Author { get; set; }
         public string Title
         {
@@ -55,9 +56,16 @@ namespace ConsoleApp3
             _publishTime = DateTime.Now;//在发布时调用此方法为PublishTime赋值
             Author.HelpMony += 1;
         }
-        public Content(string kind)
+        public Content(string Kind)
         {
-
+            this._kind = Kind;
+        }
+        public Content()
+        {
+            if (_kind == null)
+            {
+                Console.WriteLine("种类不能为空");
+            }
         }
         public void Publish()
         {
