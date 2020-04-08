@@ -10,11 +10,7 @@ namespace ConsoleApp3
         //请为其设置索引器，以便于我们通过其整数下标进行读写。
         //internal User Author { get; set; }
         public string Body { get; set; }
-        public int Reward
-        {
-            get; set;
-        }
-
+        public int Reward { get; set; }
         public string Title { get; internal set; }
         public List<Keyword> Keywords { get; internal set; }
         public User Author { get; internal set; }
@@ -45,7 +41,7 @@ namespace ConsoleApp3
         {
 
         }
-        static void Delete(int id)
+        public static void Delete(int id)
         {
 
         }
