@@ -39,7 +39,7 @@ namespace ConsoleApp3
             //Problem keyword = new Problem();
             //Console.WriteLine(keyword[1]);
 
-            LinqWork.Do();
+            //LinqWork.Do();
 
             //XML.Do();
 
@@ -90,7 +90,44 @@ namespace ConsoleApp3
             //StackString.Print();
 
             //Console.ReadLine();
+            Person Waters = new Person { Name = "阿泰", age = 17 };
+            ProvideWater persons = AssginWay;
+            persons(Waters);
 
+        }
+        //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
+        public static int GetWater(ProvideWater provide)
+        {
+            Person person = new Person();
+            return provide(person);
+        }
+
+        public static int assignDelegate(Person person)
+        {
+            return 10;
+        }
+
+        public static int AssginWay(Person person)
+        {
+            //使用方法给委托赋值
+            ProvideWater provideWater1 = new ProvideWater(assignDelegate);
+            Console.WriteLine(provideWater1(person));
+
+            //使用匿名方法给委托赋值
+            ProvideWater provideWater2 = delegate (Person person)
+            {
+                return person.age;
+            };
+            Console.WriteLine(provideWater2(person));
+
+            //使用lambda表达式给上述委托赋值，并运行该委托
+            ProvideWater provideWater3 = p => 3;
+            Console.WriteLine(provideWater3(person));
+
+            //将ProvideWater的返回值输出
+            ProvideWater provideWater4 = p => 4;
+            Console.WriteLine(GetWater(provideWater4));
+            return 1;
         }
         public static int Getmax(params int[] array)
         {
