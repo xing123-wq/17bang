@@ -39,6 +39,11 @@ namespace ConsoleApp3
         /// 点赞点踩
         /// </summary>
         public static Appraise AppraiseorNot, AppraiseorNot1, AppraiseorNot2, AppraiseorNot3, AppraiseorNot4;
+        /// <summary>
+        /// 求助
+        /// </summary>
+        public static Problem problem1, problem2, problem3, problem4;
+        public static IEnumerable<Problem> Problems;
         public static IEnumerable<Article> articles;
         static LinqWork()
         {
@@ -147,6 +152,62 @@ namespace ConsoleApp3
                 Appraises = new List<Appraise> { AppraiseorNot2 }
             };
             articles = new List<Article> { SQL, JAVA, UI, CSharp, NET };
+
+            problem1 = new Problem()
+            {
+                PublishDateTime = new DateTime(2020, 2, 1),
+                Author = fg,
+                Reward = 21,
+                Body = "期望功能：当U盘被拔下后，系统崩溃或者退出。" +
+                "经历：之前看到别人做过，按我正常的理解，系统本身会有检查U盘存在与否的功能，" +
+                "但是别人并没有这样做，也就是说他并没有动系统的代码，而是直接对程序一通操作，" +
+                "然后就加密了。哪位大神有相关经验或者思路，求一个——————……",
+                Title = " 如何使用U盘防护系统的运行",
+                Keywords = new List<Keyword>
+                {
+                   sql,java,csharp
+                },
+            };
+            problem2 = new Problem()
+            {
+                PublishDateTime = new DateTime(2019, 10, 7),
+                Author = fg,
+                Reward = 1,
+                Body = "……",
+                Title = " 为什么在给变量a赋值后，再使a=a++之后，输出a的值没有变化。",
+                Keywords = new List<Keyword>
+                {
+                   java,csharp,js
+                },
+            };
+            problem3 = new Problem()
+            {
+                PublishDateTime = new DateTime(2020, 1, 21),
+                Author = xy,
+                Reward = 22,
+                Body = "RT，也不知道描述的清楚不清楚。求一个思路……c",
+                Title = " 有一个自定义UI控件，此控件使用在不同的系统中会有不同的呈现，" +
+                "之前的做法是各种switch case，阅读代码时让人很难受，另外新创建一个用到此控件的系统，" +
+                "要修改代码的地方也多，只要有swich case 的地方都要再加一个case。" +
+                "请教一个好一些的方式来处理这个问题，目的是让代码更加清楚",
+                Keywords = new List<Keyword>
+                {
+                    net,html,sql
+                }
+            };
+            problem4 = new Problem()
+            {
+                PublishDateTime = new DateTime(219, 2, 4),
+                Author = fg,
+                Reward = 5,
+                Body = "数据库操作",
+                Title = "SQLsever",
+                Keywords = new List<Keyword>
+                {
+                    csharp,html,net
+                }
+            };
+            Problems = new List<Problem> { problem1, problem2, problem3, problem4 };
         }
         public static void Do()
         {
@@ -157,6 +218,7 @@ namespace ConsoleApp3
             GetKey(csharp, net);
             MaxComment();
             RecentlyArticle();
+            SelectRewar();
         }
         public static void PublishArticleFg()
         {
@@ -229,6 +291,15 @@ namespace ConsoleApp3
             foreach (var item in recently)
             {
                 Console.WriteLine(item.Title);
+            }
+        }
+        public static void SelectRewar()
+        {
+            Console.WriteLine("\n找出悬赏大于5的求助");
+            var rewar = Problems.Where(p => p.Reward > 5);
+            foreach (var item in rewar)
+            {
+                Console.WriteLine($"{item.Author.Name}:{item.Reward}");
             }
         }
     }

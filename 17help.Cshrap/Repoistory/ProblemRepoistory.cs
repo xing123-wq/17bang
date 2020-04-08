@@ -26,6 +26,7 @@ namespace ConsoleApp3
               {
                 PublishDateTime = new DateTime(2020, 2, 1),
                 Author = pk,
+                Reward=12,
                 Body = "期望功能：当U盘被拔下后，系统崩溃或者退出。" +
                 "经历：之前看到别人做过，按我正常的理解，系统本身会有检查U盘存在与否的功能，" +
                 "但是别人并没有这样做，也就是说他并没有动系统的代码，而是直接对程序一通操作，" +
@@ -41,6 +42,7 @@ namespace ConsoleApp3
               {
                 PublishDateTime = new DateTime(2019, 10, 7),
                 Author = at,
+                Reward=1,
                 Body = "……",
                 Title = " 为什么在给变量a赋值后，再使a=a++之后，输出a的值没有变化。",
                 Keywords = new List<Keyword>
@@ -53,6 +55,7 @@ namespace ConsoleApp3
               {
                 PublishDateTime = new DateTime(2020, 1, 21),
                 Author = cy,
+                Reward=22,
                 Body = "RT，也不知道描述的清楚不清楚。求一个思路……c",
                 Title = " 有一个自定义UI控件，此控件使用在不同的系统中会有不同的呈现，" +
                 "之前的做法是各种switch case，阅读代码时让人很难受，另外新创建一个用到此控件的系统，" +

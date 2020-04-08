@@ -10,21 +10,9 @@ namespace ConsoleApp3
         //请为其设置索引器，以便于我们通过其整数下标进行读写。
         //internal User Author { get; set; }
         public string Body { get; set; }
-        public int _reward;
         public int Reward
         {
-            get { return _reward; }
-            set
-            {
-                if (_reward > 0)
-                {
-                    _reward = value;
-                }
-                else
-                {
-                    //do nothing 
-                }
-            }
+            get; set;
         }
 
         public string Title { get; internal set; }
