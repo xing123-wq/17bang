@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp3.DoubleLinkeds
 {
-    public class DoubleLinked
+    public class DoubleLinked : IEnumerable
     {
         ///链表需求：
         ///怎么获取链表的长度
@@ -132,9 +133,9 @@ namespace ConsoleApp3.DoubleLinkeds
         /// 通过计算获得长度
         /// </summary>
         /// <returns></returns>
-        public  void GetLingth(DoubleLinked DBLingth)
+        public void GetLingth(DoubleLinked DBLingth)
         {
-            
+
         }
 
         /// <summary>
@@ -153,7 +154,23 @@ namespace ConsoleApp3.DoubleLinkeds
             }
         }
 
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public struct NodEnumerator : IEnumerator
+    {
+        public object Current => throw new NotImplementedException();
 
+        public bool MoveNext()
+        {
+            throw new NotImplementedException();
+        }
 
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

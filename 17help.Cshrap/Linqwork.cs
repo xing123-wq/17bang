@@ -356,16 +356,11 @@ namespace ConsoleApp3
 
             //找出包含关键字“C#”或“.NET”的文章
             var keyword = from a in articles
-                          join k in Keywords on a.Id equals k.Id
-                          where a.Keywords.Contains(csharp) || a.Keywords.Contains(net)
-                          select new
-                          {
-                              language = k.Name,
-                              article = a.Title
-                          };
+                          where a.Keywords.Any(k => k.Name == "C#") || a.Keywords.Any(k => k.Name == ".NET")
+                          select a;
             foreach (var item in keyword)
             {
-                Console.WriteLine(item.article);
+                Console.WriteLine(item.Title);
             }
 
             //找出评论数量最多的文章
