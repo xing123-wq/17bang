@@ -34,7 +34,7 @@ namespace ConsoleApp3
         /// <summary>
         /// 评论
         /// </summary>
-        public static Comment wx, atai, pzq, cbw, ljp;
+        public static Comment wx, atai, pzq, cbw, ljp, wmz;
         /// <summary>
         /// 点赞点踩
         /// </summary>
@@ -43,8 +43,15 @@ namespace ConsoleApp3
         /// 求助
         /// </summary>
         public static Problem problem1, problem2, problem3, problem4;
+        /// <summary>
+        /// 求助集合
+        /// </summary>
         public static IEnumerable<Problem> Problems;
+        /// <summary>
+        /// 文章集合
+        /// </summary>
         public static IEnumerable<Article> articles;
+        public static IEnumerable<Keyword> Keywords;
         static LinqWork()
         {
             fg = new User(1, "飞哥");
@@ -55,11 +62,6 @@ namespace ConsoleApp3
             java = new Keyword { Id = 4, Name = "JAVA" };
             js = new Keyword { Id = 5, Name = "JAVASCRIPT" };
             html = new Keyword { Id = 6, Name = "HTML" };
-            AppraiseorNot = new Appraise { AgreeNumber = 12, NotNumber = 1 };
-            AppraiseorNot1 = new Appraise { AgreeNumber = 3, NotNumber = 12 };
-            AppraiseorNot2 = new Appraise { AgreeNumber = 23, NotNumber = 10 };
-            AppraiseorNot3 = new Appraise { AgreeNumber = 32, NotNumber = 4 };
-            AppraiseorNot4 = new Appraise { AgreeNumber = 12, NotNumber = 32 };
             SQL = new Article("文章")
             {
                 Id = 1,
@@ -68,8 +70,7 @@ namespace ConsoleApp3
                 Title = "SQL",
                 Keywords = new List<Keyword> { sql },
                 PublishDateTime = new DateTime(2020, 3, 3),
-                Comments = new List<Comment> { wx, cbw, pzq },
-                Appraises = new List<Appraise> { AppraiseorNot2 }
+                Comments = new List<Comment> { wx },
             };
             JAVA = new Article("文章")
             {
@@ -78,9 +79,8 @@ namespace ConsoleApp3
                 Title = "JAVA",
                 Body = "java1",
                 Keywords = new List<Keyword> { java, html },
-                Comments = new List<Comment> { wx, atai, pzq },
+                Comments = new List<Comment> { atai },
                 PublishDateTime = new DateTime(2019, 5, 3),
-                Appraises = new List<Appraise> { AppraiseorNot }
             };
             UI = new Article("文章")
             {
@@ -88,32 +88,29 @@ namespace ConsoleApp3
                 Title = "UI",
                 Author = fg,
                 Body = "ui操作",
-                Comments = new List<Comment> { wx, cbw, pzq, atai },
+                Comments = new List<Comment> { pzq },
                 PublishDateTime = new DateTime(2020, 10, 1),
                 Keywords = new List<Keyword> { js, html, net },
-                Appraises = new List<Appraise> { AppraiseorNot1 }
             };
             CSharp = new Article("文章")
             {
                 Id = 5,
-                Title = "CSharp",
+                Title = "csharp",
                 Author = xy,
                 Body = "C#操作",
                 PublishDateTime = new DateTime(2019, 1, 1),
-                Comments = new List<Comment> { wx, cbw, pzq },
+                Comments = new List<Comment> { cbw, wmz },
                 Keywords = new List<Keyword> { csharp },
-                Appraises = new List<Appraise> { AppraiseorNot4 }
             };
             NET = new Article("文章")
             {
                 Id = 6,
-                Title = ".NET",
+                Title = "net",
                 Author = fg,
                 Body = ".NET操作",
                 PublishDateTime = new DateTime(2020, 10, 5),
-                Comments = new List<Comment> { wx, atai, cbw, ljp },
+                Comments = new List<Comment> { ljp },
                 Keywords = new List<Keyword> { net, csharp, sql },
-                Appraises = new List<Appraise> { AppraiseorNot3 }
             };
 
             wx = new Comment(UI)
@@ -121,37 +118,50 @@ namespace ConsoleApp3
                 PublishDateTime = new DateTime(2020, 12, 30),
                 Body = "写的不行",
                 Authors = new User(3, "王欣"),
-                Appraises = new List<Appraise> { AppraiseorNot1 }
             };
             atai = new Comment(SQL)
             {
                 PublishDateTime = new DateTime(2020, 2, 20),
                 Body = "写的很好",
                 Authors = new User(4, "阿泰"),
-                Appraises = new List<Appraise> { AppraiseorNot2 }
             };
-            pzq = new Comment(UI)
+            pzq = new Comment(JAVA)
             {
                 PublishDateTime = new DateTime(2020, 4, 8),
                 Body = "还可以",
                 Authors = new User(5, "彭志强"),
-                Appraises = new List<Appraise> { AppraiseorNot3 }
             };
-            cbw = new Comment(CSharp)
+            cbw = new Comment(NET)
             {
                 PublishDateTime = new DateTime(2020, 3, 19),
                 Body = "一般般",
                 Authors = new User(6, "陈百万"),
-                Appraises = new List<Appraise> { AppraiseorNot4 }
             };
             ljp = new Comment(CSharp)
             {
                 PublishDateTime = new DateTime(2020, 5, 3),
                 Body = "看得下去",
                 Authors = new User(7, "刘江平"),
-                Appraises = new List<Appraise> { AppraiseorNot2 }
             };
+            wmz = new Comment(CSharp)
+            {
+                PublishDateTime = new DateTime(2019, 3, 5),
+                Body = "这样的你不行",
+                Authors = new User(10, "王明智"),
+            };
+
+            SQL.Comments = new List<Comment> { atai };
+            JAVA.Comments = new List<Comment> { wx };
+            UI.Comments = new List<Comment> { pzq };
+            CSharp.Comments = new List<Comment> { cbw, ljp };
+            sql.Articles = new List<Article> { SQL };
+            csharp.Articles = new List<Article> { CSharp, NET };
+            net.Articles = new List<Article> { UI };
+            java.Articles = new List<Article> { JAVA, SQL };
+            js.Articles = new List<Article> { UI };
+            html.Articles = new List<Article> { JAVA, UI };
             articles = new List<Article> { SQL, JAVA, UI, CSharp, NET };
+            Keywords = new List<Keyword> { sql, java, js, net, html, csharp };
 
             problem1 = new Problem()
             {
@@ -211,14 +221,15 @@ namespace ConsoleApp3
         }
         public static void Do()
         {
-            PublishArticleFg();
-            PublishArticleXy();
-            ArticleTime();
-            UserArticle();
-            GetKey(csharp, net);
-            MaxComment();
-            RecentlyArticle();
-            SelectRewar();
+            //PublishArticleFg();
+            //PublishArticleXy();
+            //ArticleTime();
+            //UserArticle();
+            //GetKey(csharp, net);
+            //MaxComment();
+            //RecentlyArticle();
+            //SelectRewar();
+            LinqSelect();
         }
         public static void PublishArticleFg()
         {
@@ -299,8 +310,69 @@ namespace ConsoleApp3
             var rewar = Problems.Where(p => p.Reward > 5);
             foreach (var item in rewar)
             {
-                Console.WriteLine($"{item.Author.Name}:{item.Reward}");
+                Console.WriteLine($"{item.Author.Name}:{item.Title}");
             }
+        }
+        public static void LinqSelect()
+        {
+            //找出“飞哥”发布的文章
+            var selectfg = from s in articles
+                           where s.Author.Name == fg.Name
+                           select s;
+            foreach (var item in selectfg)
+            {
+                Console.WriteLine($"{item.Author.Name}:{item.Title}");
+            }
+            //找出2019年1月1日以后“小鱼”发布的文章
+            var selectxy = from s in articles
+                           where s.Author.Name == xy.Name &&
+                           s.PublishDateTime > new DateTime(2019, 1, 1)
+                           select s;
+            foreach (var xy in selectxy)
+            {
+                Console.WriteLine($"{xy.Author.Name}:{xy.Title}:{xy.PublishDateTime}");
+            }
+            //按发布时间升序/降序排列显示文章
+            var ascending = from a in articles
+                            orderby a.PublishDateTime ascending //descending
+                            select a;
+            foreach (var article in ascending)
+            {
+                Console.WriteLine(article.Title);
+            }
+            //统计每个用户各发布了多少篇文章
+            var maxarticle = from a in articles
+                             group a by a.Author.Name into gm
+                             select new
+                             {
+                                 Author = gm.Key,
+                                 count = gm.Count()
+                             };
+
+            foreach (var m in maxarticle)
+            {
+                Console.WriteLine($"{m.Author }:{m.count}");
+            }
+
+            //找出包含关键字“C#”或“.NET”的文章
+            var keyword = from a in articles
+                          join k in Keywords on a.Id equals k.Id
+                          where a.Keywords.Contains(csharp) || a.Keywords.Contains(net)
+                          select new
+                          {
+                              language = k.Name,
+                              article = a.Title
+                          };
+            foreach (var item in keyword)
+            {
+                Console.WriteLine(item.article);
+            }
+
+            //找出评论数量最多的文章
+            var slectcomment = (from c in articles
+                                orderby c.Comments.Count() descending
+                                select c).First();
+            Console.WriteLine($"{ slectcomment.Title}:{slectcomment.Comments.Count()}");
         }
     }
 }

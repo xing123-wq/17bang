@@ -39,7 +39,7 @@ namespace ConsoleApp3
             //Problem keyword = new Problem();
             //Console.WriteLine(keyword[1]);
 
-            //LinqWork.Do();
+            LinqWork.Do();
 
             //XML.Do();
 
@@ -92,9 +92,9 @@ namespace ConsoleApp3
             ////Console.ReadLine();
 
             ///委托
-            Person Waters = new Person { Name = "阿泰", age = 17 };
-            ProvideWater persons = AssginWay;
-            persons(Waters);
+            //Person Waters = new Person { Name = "阿泰", age = 17 };
+            //ProvideWater persons = AssginWay;
+            //persons(Waters);
 
         }
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
