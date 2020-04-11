@@ -235,7 +235,7 @@ namespace ConsoleApp3
             //MaxComment();
             //RecentlyArticle();
             //SelectRewar();
-            LinqSelect();
+            //LinqSelect();
             //MaxArticle();
         }
         public static void PublishArticleFg()
@@ -327,7 +327,7 @@ namespace ConsoleApp3
             var rewar = Problems.Where(p => p.Reward > 5);
             foreach (var item in rewar)
             {
-                Console.WriteLine($"{item.Author.Name}:{item.Title}");
+                Console.WriteLine($"{item.Author.Name}:{item.Title}:{item.Reward}");
             }
         }
         public static void LinqSelect()
