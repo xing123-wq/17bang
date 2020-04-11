@@ -34,7 +34,7 @@ namespace ConsoleApp3
         /// <summary>
         /// 评论
         /// </summary>
-        public static Comment wx, atai, pzq, cbw, ljp, wmz;
+        public static Comment wx, atai, pzq, cbw, ljp, wmz, dfg;
         /// <summary>
         /// 点赞点踩
         /// </summary>
@@ -70,7 +70,7 @@ namespace ConsoleApp3
                 Title = "SQL",
                 Keywords = new List<Keyword> { sql },
                 PublishDateTime = new DateTime(2020, 3, 3),
-                Comments = new List<Comment> { wx },
+                Comments = new List<Comment> { wx, dfg },
             };
             JAVA = new Article("文章")
             {
@@ -149,8 +149,14 @@ namespace ConsoleApp3
                 Body = "这样的你不行",
                 Authors = new User(10, "王明智"),
             };
+            dfg = new Comment(SQL)
+            {
+                PublishDateTime = new DateTime(2019, 12, 30),
+                Body = "写的没我好",
+                Authors = new User(4, "大飞哥")
+            };
 
-            SQL.Comments = new List<Comment> { atai };
+            SQL.Comments = new List<Comment> { atai ,dfg};
             JAVA.Comments = new List<Comment> { wx };
             UI.Comments = new List<Comment> { pzq };
             CSharp.Comments = new List<Comment> { cbw, ljp };
@@ -225,11 +231,12 @@ namespace ConsoleApp3
             //PublishArticleXy();
             //ArticleTime();
             //UserArticle();
-            //GetKey(csharp, net);
+            //GetKey();
             //MaxComment();
             //RecentlyArticle();
             //SelectRewar();
             LinqSelect();
+            //MaxArticle();
         }
         public static void PublishArticleFg()
         {
@@ -275,10 +282,10 @@ namespace ConsoleApp3
                 Console.WriteLine(item.Author.Name + ":" + item.count);
             }
         }
-        public static void GetKey(Keyword keyword, Keyword Keyword)
+        public static void GetKey()
         {
             Console.WriteLine("\n找出包含关键字“C#”或“.NET”的文章");
-            var SeekKey = articles.Where(a => a.Keywords.Contains(keyword) || a.Keywords.Contains(Keyword));
+            var SeekKey = articles.Where(a => a.Keywords.Any(a => a.Name == "C#") || a.Keywords.Any(a => a.Name == ".NET"));
             foreach (var item in SeekKey)
             {
                 Console.WriteLine($"{item.Author.Name}:{ item.Title}");
@@ -301,7 +308,17 @@ namespace ConsoleApp3
                 (p => p.PublishDateTime).First());
             foreach (var item in recently)
             {
-                Console.WriteLine(item.Title);
+                Console.WriteLine($"{item.Author.Name}:{item.Title}");
+            }
+        }
+        public static void MaxArticle()
+        {
+            Console.WriteLine("-----------------");
+            var max = articles.GroupBy(a => a.Author)
+                .Select(a => a.OrderByDescending(c => c.Comments.Count()).First());
+            foreach (var item in max)
+            {
+                Console.WriteLine($"{item.Author.Name}:{item.Title}");
             }
         }
         public static void SelectRewar()
@@ -368,6 +385,34 @@ namespace ConsoleApp3
                                 orderby c.Comments.Count() descending
                                 select c).First();
             Console.WriteLine($"{ slectcomment.Title}:{slectcomment.Comments.Count()}");
+
+            //找出每个作者评论最多的文章
+            Console.WriteLine("-------------");
+            var selectcomment = from a in articles
+                                orderby a.Comments.Count() descending
+                                group a by a.Author into ga
+                                select new
+                                {
+                                    author = ga.Key,
+                                    comment = ga.First()
+                                };
+            foreach (var item in selectcomment)
+            {
+                Console.WriteLine($"{item.author.Name}:{item.comment.Title}:{item.comment.Comments.Count()}");
+            }
+            var selectrecently = from a in articles
+                                 orderby a.PublishDateTime descending
+                                 group a by a.Author into ga
+                                 select new
+                                 {
+                                     author = ga.Key,
+                                     publish = ga.First()
+                                 };
+
+            foreach (var item in selectrecently)
+            {
+                Console.WriteLine($"{item.author.Name}:{item.publish.Title}:{item.publish.PublishDateTime}");
+            }
         }
     }
 }
