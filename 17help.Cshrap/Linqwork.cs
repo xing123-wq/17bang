@@ -169,7 +169,7 @@ namespace ConsoleApp3
             articles = new List<Article> { SQL, JAVA, UI, CSharp, NET };
             Keywords = new List<Keyword> { sql, java, js, net, html, csharp };
 
-            problem1 = new Problem()
+            problem1 = new Problem
             {
                 PublishDateTime = new DateTime(2020, 2, 1),
                 Author = fg,
@@ -184,11 +184,11 @@ namespace ConsoleApp3
                    sql,java,csharp
                 },
             };
-            problem2 = new Problem()
+            problem2 = new Problem
             {
                 PublishDateTime = new DateTime(2019, 10, 7),
                 Author = fg,
-                Reward = 1,
+                Reward = -1,
                 Body = "……",
                 Title = " 为什么在给变量a赋值后，再使a=a++之后，输出a的值没有变化。",
                 Keywords = new List<Keyword>
@@ -196,7 +196,7 @@ namespace ConsoleApp3
                    java,csharp,js
                 },
             };
-            problem3 = new Problem()
+            problem3 = new Problem
             {
                 PublishDateTime = new DateTime(2020, 1, 21),
                 Author = xy,
@@ -211,7 +211,7 @@ namespace ConsoleApp3
                     net,html,sql
                 }
             };
-            problem4 = new Problem()
+            problem4 = new Problem
             {
                 PublishDateTime = new DateTime(219, 2, 4),
                 Author = fg,

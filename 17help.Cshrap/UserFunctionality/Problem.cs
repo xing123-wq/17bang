@@ -10,7 +10,23 @@ namespace ConsoleApp3
         //请为其设置索引器，以便于我们通过其整数下标进行读写。
         //internal User Author { get; set; }
         public string Body { get; set; }
-        public int Reward { get; set; }
+        private int _reward;
+        public int Reward
+        {
+            get
+            {
+                return _reward;
+            }
+
+            set
+            {
+                _reward = value;
+                if (_reward < 0)
+                {
+                    throw new Exception("参数越界！");
+                }
+            }
+        }
         public string Title { get; set; }
         public List<Keyword> Keywords { get; set; }
         public User Author { get; set; }

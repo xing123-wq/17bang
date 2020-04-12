@@ -22,7 +22,6 @@ namespace ConsoleApp3
     public class Content : Entity<int>
     {
         protected string _kind;
-        //private User _author;
         private string _title;
         private DateTime _publishTime;
         public DateTime PublishDateTime { get; set; }
