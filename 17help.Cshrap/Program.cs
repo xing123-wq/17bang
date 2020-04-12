@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Xml.Linq;
 using ConsoleApp3;
+using ConsoleApp3.DoubleLinkeds;
 
 namespace ConsoleApp3
 {
@@ -39,7 +40,7 @@ namespace ConsoleApp3
             //Problem keyword = new Problem();
             //Console.WriteLine(keyword[1]);
 
-            LinqWork.Do();
+            //LinqWork.Do();
 
             //XML.Do();
 
@@ -54,21 +55,21 @@ namespace ConsoleApp3
             //    a[i] = random.Next(1, 100);
             //}
             //getmax(a);
-            //ConsoleApp3.DoubleLinkeds.DoubleLinked node1, node2, node3, node4, node5, node6;
+            ConsoleApp3.DoubleLinkeds.DoubleLinked node1, node2, node3, node4, node5, node6;
 
-            //node1 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node2 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node3 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node4 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node5 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node6 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node1 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node2 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node3 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node4 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node5 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
+            node6 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
 
-            //node1.Value = 1;
-            //node2.Value = 2;
-            //node3.Value = 3;
-            //node4.Value = 4;
-            //node5.Value = 5;
-            //node6.Value = 6;
+            node1.Value = 1;
+            node2.Value = 2;
+            node3.Value = 3;
+            node4.Value = 4;
+            node5.Value = 5;
+            node6.Value = 6;
 
             //node2.InsretAfter(node1);
             //node3.InsretAfter(node2);
@@ -96,6 +97,11 @@ namespace ConsoleApp3
             //ProvideWater persons = AssginWay;
             //persons(Waters);
 
+            DoubleLinked node = new DoubleLinked();
+            foreach (var item in node)
+            {
+                Console.WriteLine(node.Value);
+            }
         }
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
         public static int GetWater(ProvideWater provide)
