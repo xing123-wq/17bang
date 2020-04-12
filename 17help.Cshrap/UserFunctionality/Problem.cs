@@ -11,10 +11,10 @@ namespace ConsoleApp3
         //internal User Author { get; set; }
         public string Body { get; set; }
         public int Reward { get; set; }
-        public string Title { get; internal set; }
-        public List<Keyword> Keywords { get; internal set; }
-        public User Author { get; internal set; }
-        public DateTime PublishDateTime { get; internal set; }
+        public string Title { get; set; }
+        public List<Keyword> Keywords { get; set; }
+        public User Author { get; set; }
+        public DateTime PublishDateTime { get; set; }
 
         public string[] Keyword = {
             "C#", "编程语言",
