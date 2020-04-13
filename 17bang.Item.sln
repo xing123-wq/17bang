@@ -33,7 +33,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceInterface", "Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{A11F63AB-1869-4B80-9C60-08D5F0845DCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17bangTests", "17bangTests\17bangTests.csproj", "{854A1A6F-0573-415C-97AE-900F34CE43D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "17bangTests", "17bangTests\17bangTests.csproj", "{854A1A6F-0573-415C-97AE-900F34CE43D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentItem", "DocumentItem\DocumentItem.csproj", "{53847A99-EAF2-4B89-ABC1-015B445D122D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,10 @@ Global
 		{854A1A6F-0573-415C-97AE-900F34CE43D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{854A1A6F-0573-415C-97AE-900F34CE43D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{854A1A6F-0573-415C-97AE-900F34CE43D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53847A99-EAF2-4B89-ABC1-015B445D122D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53847A99-EAF2-4B89-ABC1-015B445D122D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53847A99-EAF2-4B89-ABC1-015B445D122D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53847A99-EAF2-4B89-ABC1-015B445D122D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -65,7 +65,7 @@ namespace DrawingOperations
             image.Save(path, ImageFormat.Jpeg);   //保存到文件
         }
         private static char[] constant = "1234567890,qwertyuiopasdfghjklzxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
-        public static string GenerateRandomNumber(int length)
+        private static string GenerateRandomNumber(int length)
         {
             StringBuilder newRandom = new StringBuilder(length);
             Random rd = new Random();
