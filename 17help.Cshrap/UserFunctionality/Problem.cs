@@ -27,25 +27,29 @@ namespace ConsoleApp3
                 }
             }
         }
-        public string Title { get; set; }
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("标题不能为null或空值");
+                }
+
+                _title = value.Trim();
+            }
+        }
         public List<Keyword> Keywords { get; set; }
         public User Author { get; set; }
         public DateTime PublishDateTime { get; set; }
-
-        public string[] Keyword = {
-            "C#", "编程语言",
-            "JavaScript", "工具软件",
-            "Java", "顾问咨询", "SQL",
-            "职场", "法律", ".net"
-        };
+        private string _title;
         public Problem()
         {
 
-        }
-        public string this[int Index]
-        {
-            get { return Keyword[Index]; }
-            set { Keyword[Index] = value; }
         }
         //public Problem(string kind) : base(kind) { }
         //public void Publish()
@@ -61,8 +65,6 @@ namespace ConsoleApp3
         {
 
         }
-
-
     }
 
 }

@@ -42,6 +42,7 @@ namespace ConsoleApp3
 
             LinqWork.Do();
 
+
             //XML.Do();
 
             //Repoistory.Do();
@@ -101,7 +102,6 @@ namespace ConsoleApp3
             //foreach (var item in node)
             //{
             //    Console.WriteLine(node.Value);
-            //}
         }
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
         public static int GetWater(ProvideWater provide)

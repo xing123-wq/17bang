@@ -54,8 +54,8 @@ namespace ConsoleApp3
         public static IEnumerable<Keyword> Keywords;
         static LinqWork()
         {
-            fg = new User(1, "飞哥");
-            xy = new User(2, "小余");
+            fg = new User { Id = 1, Name = "飞哥", HelpMony = 12 };
+            xy = new User { Id = 2, Name = "小余", HelpMony = 11 };
             sql = new Keyword { Id = 1, Name = "SQL" };
             csharp = new Keyword { Id = 2, Name = "C#" };
             net = new Keyword { Id = 3, Name = ".NET" };
@@ -117,46 +117,51 @@ namespace ConsoleApp3
             {
                 PublishDateTime = new DateTime(2020, 12, 30),
                 Body = "写的不行",
-                Authors = new User(3, "王欣"),
+                Authors = new User { Id = 3, Name = "王欣", HelpMony = 8 }
             };
             atai = new Comment(SQL)
             {
                 PublishDateTime = new DateTime(2020, 2, 20),
                 Body = "写的很好",
-                Authors = new User(4, "阿泰"),
+                Authors = new User { Id = 4, Name = "阿泰", HelpMony = 100 }
+
             };
             pzq = new Comment(JAVA)
             {
                 PublishDateTime = new DateTime(2020, 4, 8),
                 Body = "还可以",
-                Authors = new User(5, "彭志强"),
+                Authors = new User { Id = 5, Name = "陈百万", HelpMony = 7 }
+
             };
             cbw = new Comment(NET)
             {
                 PublishDateTime = new DateTime(2020, 3, 19),
                 Body = "一般般",
-                Authors = new User(6, "陈百万"),
+                Authors = new User { Id = 6, Name = "刘江平", HelpMony = 4 }
+
             };
             ljp = new Comment(CSharp)
             {
                 PublishDateTime = new DateTime(2020, 5, 3),
                 Body = "看得下去",
-                Authors = new User(7, "刘江平"),
+                Authors = new User { Id = 7, Name = "王明智", HelpMony = 8 }
+
             };
             wmz = new Comment(CSharp)
             {
                 PublishDateTime = new DateTime(2019, 3, 5),
                 Body = "这样的你不行",
-                Authors = new User(10, "王明智"),
+                Authors = new User { Id = 8, Name = "大飞哥", HelpMony = 3 }
+
             };
             dfg = new Comment(SQL)
             {
                 PublishDateTime = new DateTime(2019, 12, 30),
                 Body = "写的没我好",
-                Authors = new User(4, "大飞哥")
+                Authors = new User { Id = 9, Name = "赵淼", HelpMony = 2 }
             };
 
-            SQL.Comments = new List<Comment> { atai ,dfg};
+            SQL.Comments = new List<Comment> { atai, dfg };
             JAVA.Comments = new List<Comment> { wx };
             UI.Comments = new List<Comment> { pzq };
             CSharp.Comments = new List<Comment> { cbw, ljp };
@@ -188,7 +193,7 @@ namespace ConsoleApp3
             {
                 PublishDateTime = new DateTime(2019, 10, 7),
                 Author = fg,
-                Reward = -1,
+                Reward = 1,
                 Body = "……",
                 Title = " 为什么在给变量a赋值后，再使a=a++之后，输出a的值没有变化。",
                 Keywords = new List<Keyword>
@@ -224,19 +229,24 @@ namespace ConsoleApp3
                 }
             };
             Problems = new List<Problem> { problem1, problem2, problem3, problem4 };
+            ContentService.Publish(CSharp);
+            ContentService.Publish(SQL);
+            ContentService.Publish(NET);
+            ContentService.Publish(JAVA);
+            ContentService.Publish(UI);
         }
         public static void Do()
         {
-            //PublishArticleFg();
-            //PublishArticleXy();
-            //ArticleTime();
-            //UserArticle();
-            //GetKey();
-            //MaxComment();
-            //RecentlyArticle();
-            //SelectRewar();
-            //LinqSelect();
-            //MaxArticle();
+            PublishArticleFg();
+            PublishArticleXy();
+            ArticleTime();
+            UserArticle();
+            GetKey();
+            MaxComment();
+            RecentlyArticle();
+            SelectRewar();
+            LinqSelect();
+            MaxArticle();
         }
         public static void PublishArticleFg()
         {

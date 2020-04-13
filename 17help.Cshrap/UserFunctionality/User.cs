@@ -6,34 +6,13 @@ namespace ConsoleApp3
 {
     sealed public class User : ISendMessage, IChat
     {
-        private int _reward;
         private string _name;
         public int Id { get; set; }
         internal TokenManager Manager { get; set; }
         public int? HelpMony { get; set; }
         internal int Credit { get; set; }
-        public Comment Comment { get; set; }
-        public int Reward
-        {
-            get
-            {
-                return _reward;
-            }
-            set
-            {
-                if (value < 0)
-                {
-                    Console.WriteLine("奖赏不能为负数!");
-                }
-                else
-                {
-                    _reward = value;
-                }
-
-
-
-            }
-        }
+        public List<Comment> Comments { get; set; }
+        public List<Article> Articles { get; set; }
         public string Name
         {
             get
@@ -42,6 +21,7 @@ namespace ConsoleApp3
             }
             set
             {
+                _name = value;
                 if (value == "admin")
                 {
                     _name = "系统管理员";
@@ -49,17 +29,9 @@ namespace ConsoleApp3
                 //else do nothing
             }
         }
-        public User(int id, string name)
-        {
-            Id = id;
-            _name = name;
-        }
         public User()
         {
-            if (HelpMony != null)
-            {
-
-            }
+           
         }
         public string Password
         {

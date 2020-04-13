@@ -23,7 +23,9 @@ namespace DrawingOperations
             Color[] RandomColor = { Color.Black, Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Brown, Color.Brown, Color.DarkBlue };
             int[] Pen = { 44, 20, 30, 40, 33, 44, 22, 32 };
             int[] Point = { 43, 25, 35, 45, 41, 39, 29 };
+            int[] line = { 100, 55, 34, 99, 34 };
 
+            int linerandom = line[random.Next(line.Length)];
             Color tempColor = RandomColor[random.Next(RandomColor.Length)];
             string typeface = fonts[random.Next(fonts.Length)];
             int MyPen = Pen[random.Next(Pen.Length)];
@@ -43,7 +45,7 @@ namespace DrawingOperations
             }
 
             //画噪音线
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < linerandom; i++)
             {
                 int x1 = random.Next(image.Width);
                 int x2 = random.Next(image.Width);
@@ -58,10 +60,9 @@ namespace DrawingOperations
                 new SolidBrush(tempColor),      //绘制时使用的刷子
                 new PointF(MyPen, MyPoint)                    //左上角定位
             );
-
+            const string path = @"E:\17bang\hello.jpg";
             image.SetPixel(195, 95, Color.BlueViolet);  //绘制一个像素的点
-            image.Save(@"E:\17bang\hello.jpg", ImageFormat.Jpeg);   //保存到文件
-
+            image.Save(path, ImageFormat.Jpeg);   //保存到文件
         }
         private static char[] constant = "1234567890,qwertyuiopasdfghjklzxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
         public static string GenerateRandomNumber(int length)
