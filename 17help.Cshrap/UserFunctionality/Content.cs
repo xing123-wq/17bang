@@ -23,13 +23,27 @@ namespace ConsoleApp3
     {
         protected string _kind;
         private string _title;
-        private DateTime _publishTime;
+        private User _user;
         public DateTime PublishDateTime { get; set; }
         public IList<Keyword> Keywords { get; set; }
         public IList<Comment> Comments { get; set; }
         public IList<Appraise> Appraises { get; set; }
         public string Body { get; set; }
-        public User Author { get; set; }
+        public User Author
+        {
+            get
+            {
+                return _user;
+            }
+            set
+            {
+                if (value.Articles != null)
+                {
+                    PublishDateTimre();
+                }
+                _user = value;
+            }
+        }
         public string Title
         {
             get
@@ -52,7 +66,7 @@ namespace ConsoleApp3
             {
                 throw new ArgumentException("不能没有作者");
             }
-            _publishTime = DateTime.Now;//在发布时调用此方法为PublishTime赋值
+            //_publishTime = DateTime.Now;//在发布时调用此方法为PublishTime赋值
             Author.HelpMony += 1;
         }
         public Content(string Kind)
@@ -63,11 +77,8 @@ namespace ConsoleApp3
         {
             if (_kind == null)
             {
-                Console.WriteLine("种类不能为空");
+                throw new NullReferenceException("kind不能为空");
             }
-        }
-        public void Publish()
-        {
 
         }
         static void headline()

@@ -8,7 +8,7 @@ namespace ConsoleApp3
     {
         public string Body { get; set; }
         private readonly Article _article;
-        public User Authors { get; set; }
+        public User Author { get; set; }
         public IList<Appraise> Appraises { get; set; }
         public DateTime PublishDateTime { get; set; }
         public Comment(Article article)//记录文章
@@ -19,7 +19,7 @@ namespace ConsoleApp3
         {
             if (_article == null)
             {
-                Console.WriteLine("每个评论，不能没有文章生成！");
+                throw new NullReferenceException("不能没有文章，发布评论");
             }
             //else do nothing
         }

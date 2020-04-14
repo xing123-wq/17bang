@@ -156,25 +156,32 @@ namespace ConsoleApp3.DoubleLinkeds
 
         public IEnumerator GetEnumerator()
         {
-            return new NodEnumerator();
+            return new NodEnumerator(this);
         }
     }
     public class NodEnumerator : IEnumerator
     {
-        DoubleLinked node = new DoubleLinked();
-        int linked = -1;
+        DoubleLinked node;
+        public NodEnumerator(DoubleLinked node)
+        {
+            this.node = node;
+        }
         public object Current
         {
             get
             {
-                return node;
+                return node.Preivous;
             }
         }
 
         public bool MoveNext()
         {
-
-            return (linked < node.Value);
+            if (node == null)
+            {
+                return false;
+            }
+            node = node.Next;
+            return true;
         }
 
         public void Reset()

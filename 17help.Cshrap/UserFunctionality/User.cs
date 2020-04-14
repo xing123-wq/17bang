@@ -11,6 +11,7 @@ namespace ConsoleApp3
         internal TokenManager Manager { get; set; }
         public int? HelpMony { get; set; }
         internal int Credit { get; set; }
+        public List<Problem> Problems { get; set; }
         public List<Comment> Comments { get; set; }
         public List<Article> Articles { get; set; }
         public string Name
@@ -21,17 +22,16 @@ namespace ConsoleApp3
             }
             set
             {
-                _name = value;
                 if (value == "admin")
                 {
                     _name = "系统管理员";
                 }
                 //else do nothing
+                _name = value;
             }
         }
         public User()
         {
-           
         }
         public string Password
         {
@@ -47,34 +47,10 @@ namespace ConsoleApp3
                 }
             }
         }
-        public User Invitedby { get; set; }
-        public string Grade { get; set; }//等级属性
-        internal void Elevaterank(/*string label, int integral*/)
-        {
 
-        }
-        //提升等级的方法
-        public static void Register()
+        public void send()
         {
-
-        }
-        public static void Login()
-        {
-
-        }
-        internal void ChangePasword()
-        {
-
-
-
-        }
-        void ISendMessage.send()
-        {
-            Console.WriteLine("实现ISendMessage接口方法");
-        }
-        void IChat.send()
-        {
-            Console.WriteLine("实现IChat接口方法");
+            throw new NotImplementedException();
         }
     }
 }

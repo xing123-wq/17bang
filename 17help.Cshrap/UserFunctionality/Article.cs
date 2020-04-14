@@ -17,7 +17,7 @@ namespace ConsoleApp3
         //一篇文章可以有多个关键字，一个关键字可以对应多篇文章
         public Article(string kind) : base(kind)
         {
-          
+       
         }
         public Article()
         {

@@ -22,7 +22,7 @@ namespace ConsoleApp3
         /// <summary>
         /// 用户
         /// </summary>
-        public static User fg, xy;
+        public static User fg, xy, Ljp, AT, CBW, WMZ, DFG, ZM, WX;
         /// <summary>
         /// 关键字
         /// </summary>
@@ -34,7 +34,7 @@ namespace ConsoleApp3
         /// <summary>
         /// 评论
         /// </summary>
-        public static Comment wx, atai, pzq, cbw, ljp, wmz, dfg;
+        public static Comment wx, atai, zm, cbw, ljp, wmz, dfg;
         /// <summary>
         /// 点赞点踩
         /// </summary>
@@ -52,10 +52,18 @@ namespace ConsoleApp3
         /// </summary>
         public static IEnumerable<Article> articles;
         public static IEnumerable<Keyword> Keywords;
+        public static IEnumerable<Comment> comments;
         static LinqWork()
         {
             fg = new User { Id = 1, Name = "飞哥", HelpMony = 12 };
             xy = new User { Id = 2, Name = "小余", HelpMony = 11 };
+            Ljp = new User { Id = 6, Name = "刘江平", HelpMony = 4 };
+            AT = new User { Id = 4, Name = "阿泰", HelpMony = 100 };
+            CBW = new User { Id = 5, Name = "陈百万", HelpMony = 7 };
+            WMZ = new User { Id = 7, Name = "王明智", HelpMony = 8 };
+            DFG = new User { Id = 8, Name = "大飞哥", HelpMony = 3 };
+            ZM = new User { Id = 9, Name = "赵淼", HelpMony = 2 };
+            WX = new User { Id = 3, Name = "王欣", HelpMony = 8 };
             sql = new Keyword { Id = 1, Name = "SQL" };
             csharp = new Keyword { Id = 2, Name = "C#" };
             net = new Keyword { Id = 3, Name = ".NET" };
@@ -88,7 +96,7 @@ namespace ConsoleApp3
                 Title = "UI",
                 Author = fg,
                 Body = "ui操作",
-                Comments = new List<Comment> { pzq },
+                Comments = new List<Comment> { zm },
                 PublishDateTime = new DateTime(2020, 10, 1),
                 Keywords = new List<Keyword> { js, html, net },
             };
@@ -117,53 +125,53 @@ namespace ConsoleApp3
             {
                 PublishDateTime = new DateTime(2020, 12, 30),
                 Body = "写的不行",
-                Authors = new User { Id = 3, Name = "王欣", HelpMony = 8 }
+                Author = WX
             };
             atai = new Comment(SQL)
             {
                 PublishDateTime = new DateTime(2020, 2, 20),
                 Body = "写的很好",
-                Authors = new User { Id = 4, Name = "阿泰", HelpMony = 100 }
+                Author = AT
 
             };
-            pzq = new Comment(JAVA)
+            zm = new Comment(JAVA)
             {
                 PublishDateTime = new DateTime(2020, 4, 8),
                 Body = "还可以",
-                Authors = new User { Id = 5, Name = "陈百万", HelpMony = 7 }
+                Author = ZM
 
             };
             cbw = new Comment(NET)
             {
                 PublishDateTime = new DateTime(2020, 3, 19),
                 Body = "一般般",
-                Authors = new User { Id = 6, Name = "刘江平", HelpMony = 4 }
+                Author = CBW
 
             };
             ljp = new Comment(CSharp)
             {
                 PublishDateTime = new DateTime(2020, 5, 3),
                 Body = "看得下去",
-                Authors = new User { Id = 7, Name = "王明智", HelpMony = 8 }
+                Author = Ljp
 
             };
             wmz = new Comment(CSharp)
             {
                 PublishDateTime = new DateTime(2019, 3, 5),
                 Body = "这样的你不行",
-                Authors = new User { Id = 8, Name = "大飞哥", HelpMony = 3 }
+                Author = WMZ
 
             };
             dfg = new Comment(SQL)
             {
                 PublishDateTime = new DateTime(2019, 12, 30),
                 Body = "写的没我好",
-                Authors = new User { Id = 9, Name = "赵淼", HelpMony = 2 }
+                Author = DFG
             };
 
             SQL.Comments = new List<Comment> { atai, dfg };
             JAVA.Comments = new List<Comment> { wx };
-            UI.Comments = new List<Comment> { pzq };
+            UI.Comments = new List<Comment> { zm };
             CSharp.Comments = new List<Comment> { cbw, ljp };
             sql.Articles = new List<Article> { SQL };
             csharp.Articles = new List<Article> { CSharp, NET };
@@ -173,8 +181,9 @@ namespace ConsoleApp3
             html.Articles = new List<Article> { JAVA, UI };
             articles = new List<Article> { SQL, JAVA, UI, CSharp, NET };
             Keywords = new List<Keyword> { sql, java, js, net, html, csharp };
+            comments = new List<Comment> { wx, cbw, ljp, wmz, dfg, atai, zm };
 
-            problem1 = new Problem
+            problem1 = new Problem("求助")
             {
                 PublishDateTime = new DateTime(2020, 2, 1),
                 Author = fg,
@@ -189,7 +198,7 @@ namespace ConsoleApp3
                    sql,java,csharp
                 },
             };
-            problem2 = new Problem
+            problem2 = new Problem("求助")
             {
                 PublishDateTime = new DateTime(2019, 10, 7),
                 Author = fg,
@@ -201,7 +210,7 @@ namespace ConsoleApp3
                    java,csharp,js
                 },
             };
-            problem3 = new Problem
+            problem3 = new Problem("求助")
             {
                 PublishDateTime = new DateTime(2020, 1, 21),
                 Author = xy,
@@ -216,7 +225,7 @@ namespace ConsoleApp3
                     net,html,sql
                 }
             };
-            problem4 = new Problem
+            problem4 = new Problem("求助")
             {
                 PublishDateTime = new DateTime(219, 2, 4),
                 Author = fg,
@@ -237,16 +246,16 @@ namespace ConsoleApp3
         }
         public static void Do()
         {
-            PublishArticleFg();
-            PublishArticleXy();
-            ArticleTime();
-            UserArticle();
-            GetKey();
-            MaxComment();
-            RecentlyArticle();
-            SelectRewar();
-            LinqSelect();
-            MaxArticle();
+            //PublishArticleFg();
+            //PublishArticleXy();
+            //ArticleTime();
+            //UserArticle();
+            //GetKey();
+            //MaxComment();
+            //RecentlyArticle();
+            //SelectRewar();
+            //LinqSelect();
+            //MaxArticle();
         }
         public static void PublishArticleFg()
         {
@@ -289,7 +298,7 @@ namespace ConsoleApp3
                 });
             foreach (var item in authorArticle)
             {
-                Console.WriteLine(item.Author.Name + ":" + item.count);
+                Console.WriteLine(item.Author.Name + ":" + item.count + ":" + item.Author.HelpMony);
             }
         }
         public static void GetKey()

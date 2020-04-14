@@ -17,12 +17,11 @@ namespace ConsoleApp3
         {
             try
             {
-                content.Publish();
+                content.PublishDateTimre();
             }
             catch (ArgumentNullException e1)
             {
                 Console.WriteLine("内容的作者不能为空" + e1.InnerException);
-
             }
             catch (ArgumentException e2)
             {
