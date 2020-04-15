@@ -31,7 +31,7 @@ namespace ConsoleApp3
             }
             finally
             {
-                Console.WriteLine($"{DateTime.Now}请求发布内容（id={content.Author.Id})");
+                Console.WriteLine($"{DateTime.Now}请求发布内容（id={content.Id})");
             }
         }
     }

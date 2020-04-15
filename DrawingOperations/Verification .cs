@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,26 +16,36 @@ namespace DrawingOperations
         //随机字符串
         //混淆用的各色像素点
         //混淆用的直线（或曲线）
-        public static void Code()
+        static Random random = new Random();
+        static string[] fonts = { "微软雅黑", "宋体", "黑体", "隶书", "仿宋", "粗体", "篆书", "燕体", "楷书", "草书" };
+        static Color[] RandomColor = { Color.Black, Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Brown, Color.Brown, Color.DarkBlue };
+        static int[] Pen = { 44, 20, 30, 40, 33, 44, 22, 32 };
+        static int[] Point = { 43, 25, 35, 45, 41, 39, 29 };
+        static int[] line = { 100, 55, 34, 99, 34 };
+        static Bitmap image = new Bitmap(200, 100);  //生成一个像素图“画板”
+
+        static int linerandom = line[random.Next(line.Length)];
+        static Color tempColor = RandomColor[random.Next(RandomColor.Length)];
+        static string typeface = fonts[random.Next(fonts.Length)];
+        static int MyPen = Pen[random.Next(Pen.Length)];
+        static int MyPoint = Point[random.Next(Point.Length)];
+        static Graphics g = Graphics.FromImage(image);    //在画板的基础上生成一个绘图对象
+        private static char[] constant = "1234567890,qwertyuiopasdfghjklzxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
+        private static string GenerateRandomNumber(int length)
         {
-            Random random = new Random();
-
-            string[] fonts = { "微软雅黑", "宋体", "黑体", "隶书", "仿宋", "粗体", "篆书", "燕体", "楷书", "草书" };
-            Color[] RandomColor = { Color.Black, Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Brown, Color.Brown, Color.DarkBlue };
-            int[] Pen = { 44, 20, 30, 40, 33, 44, 22, 32 };
-            int[] Point = { 43, 25, 35, 45, 41, 39, 29 };
-            int[] line = { 100, 55, 34, 99, 34 };
-
-            int linerandom = line[random.Next(line.Length)];
-            Color tempColor = RandomColor[random.Next(RandomColor.Length)];
-            string typeface = fonts[random.Next(fonts.Length)];
-            int MyPen = Pen[random.Next(Pen.Length)];
-            int MyPoint = Point[random.Next(Point.Length)];
-
-            Bitmap image = new Bitmap(200, 100);  //生成一个像素图“画板”
-            Graphics g = Graphics.FromImage(image);    //在画板的基础上生成一个绘图对象
-            g.Clear(Color.AliceBlue);           //添加底色
-
+            if (length > 4)
+            {
+                throw new ArgumentException("字符串长度不能超过4");
+            }
+            StringBuilder newRandom = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+                newRandom.Append(constant[random.Next(length)]);
+            }
+            return newRandom.ToString();
+        }
+        public static void map()
+        {
             //画噪音点
             for (int j = 0; j < 100; j++)
             {
@@ -54,26 +65,69 @@ namespace DrawingOperations
                 Color Color = RandomColor[random.Next(RandomColor.Length)];
                 g.DrawLine(new Pen(Color), new Point(x1, y1), new Point(x2, y2));
             }
-
-            g.DrawString(GenerateRandomNumber(4),       //绘制字符串
-                new Font(typeface, MyPen),                //指定字体
-                new SolidBrush(tempColor),      //绘制时使用的刷子
-                new PointF(MyPen, MyPoint)                    //左上角定位
-            );
-            const string path = @"E:\17bang\hello.jpg";
-            image.SetPixel(195, 95, Color.BlueViolet);  //绘制一个像素的点
-            image.Save(path, ImageFormat.Jpeg);   //保存到文件
         }
-        private static char[] constant = "1234567890,qwertyuiopasdfghjklzxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
-        private static string GenerateRandomNumber(int length)
+        public static void Code()
         {
-            StringBuilder newRandom = new StringBuilder(length);
-            Random rd = new Random();
-            for (int i = 0; i < length; i++)
+            //为了捕获异常特意声明的一个Try catch
+            try
             {
-                newRandom.Append(constant[rd.Next(length)]);
+                g.Clear(Color.AliceBlue);           //添加底色
+                g.DrawString(GenerateRandomNumber(4),       //绘制字符串
+                    new Font(typeface, MyPen),                //指定字体
+                    new SolidBrush(tempColor),      //绘制时使用的刷子
+                    new PointF(MyPen, MyPoint));                    //左上角定位
+                map();
+                image.SetPixel(195, 95, Color.BlueViolet);  //绘制一个像素的点
             }
-            return newRandom.ToString();
+            catch (ArgumentException e)
+            {
+                Sava(e);
+                //重新抛出
+                throw new ArgumentException("字符串长度不能超过4");
+            }
+            catch (OutOfMemoryException e1)
+            {
+                Sava(e1);
+                throw new OutOfMemoryException("内存空间不够");
+            }
+            catch (Generateabnormal e2)
+            {
+                Sava(e2);
+                throw new Generateabnormal("生成过程出现了异常");
+            }
+            image.Save(@"E:\17bang\\.jpg", ImageFormat.Jpeg);   //保存到文件
+        }
+        public static void Sava(Exception Record)
+        {
+            const string path = @"E:\17bang\\.txt";
+            using (StreamWriter writer = File.AppendText(path))
+            {
+                DateTime date = DateTime.Now;//设置日志时间
+                string time = date.ToString("yyyy年MM月dd日HH点mm分ss秒");
+                writer.WriteLine("异常时间" + time);
+                writer.WriteLine("异常对象" + Record.Source);
+                writer.WriteLine("调用堆栈" + Record.StackTrace.Trim());
+                writer.WriteLine("调用堆栈" + Record.ToString());
+                writer.Flush();
+            }
+        }
+
+        [Serializable] //声明为可序列化的 因为要写入文件中
+        public class Generateabnormal : Exception//由用户程序引发，用于派生自定义的异常类型
+        {
+            /// <summary>
+            /// 默认构造函数
+            /// </summary>
+            public Generateabnormal() { }
+            public Generateabnormal(string message)
+                : base(message) { }
+            public Generateabnormal(string message, Exception inner)
+                : base(message, inner) { }
+
+            protected Generateabnormal(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
