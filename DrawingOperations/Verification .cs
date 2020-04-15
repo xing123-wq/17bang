@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DrawingOperations
@@ -31,9 +32,9 @@ namespace DrawingOperations
         static int MyPoint = Point[random.Next(Point.Length)];
         static Graphics g = Graphics.FromImage(image);    //在画板的基础上生成一个绘图对象
         private static char[] constant = "1234567890,qwertyuiopasdfghjklzxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
-        private static string GenerateRandomNumber(int length)
+        public static string GenerateRandomNumber(int length)
         {
-            if (length > 4)
+            if (length > 4 || 4 < length)
             {
                 throw new ArgumentException("字符串长度不能超过4");
             }
@@ -66,6 +67,15 @@ namespace DrawingOperations
                 g.DrawLine(new Pen(Color), new Point(x1, y1), new Point(x2, y2));
             }
         }
+        //重构之前的验证码作业：
+        //创建一个新的前台线程（Thread），在这个线程上运行生成随机字符串的代码
+        //在一个任务（Task）中生成画布
+        //使用生成的画布，用两个任务完成：
+        //在画布上添加干扰线条
+        //在画布上添加干扰点
+        //将生成的验证码图片异步的存入文件
+        //能捕获抛出的若干异常，并相应的处理
+        //以上作业，需要在控制台输出线程和Task的Id，以演示异步并发的运行。
         public static void Code()
         {
             //为了捕获异常特意声明的一个Try catch
