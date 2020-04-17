@@ -246,16 +246,16 @@ namespace ConsoleApp3
         }
         public static void Do()
         {
-            //PublishArticleFg();
-            //PublishArticleXy();
-            //ArticleTime();
-            //UserArticle();
-            //GetKey();
-            //MaxComment();
-            //RecentlyArticle();
-            //SelectRewar();
-            //LinqSelect();
-            //MaxArticle();
+            PublishArticleFg();
+            PublishArticleXy();
+            ArticleTime();
+            UserArticle();
+            GetKey();
+            MaxComment();
+            RecentlyArticle();
+            SelectRewar();
+            LinqSelect();
+            MaxArticle();
         }
         public static void PublishArticleFg()
         {

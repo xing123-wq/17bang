@@ -48,7 +48,7 @@ namespace DrawingOperations
         public static void map()
         {
             //画噪音点
-            for (int j = 0; j < 100; j++)
+            for (int j = 0; j < linerandom; j++)
             {
                 int x = random.Next(image.Width);
                 int y = random.Next(image.Height);

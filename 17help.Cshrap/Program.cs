@@ -40,7 +40,7 @@ namespace ConsoleApp3
             //Problem keyword = new Problem();
             //Console.WriteLine(keyword[1]);
 
-            LinqWork.Do();
+            //LinqWork.Do();
 
 
             //XML.Do();
@@ -56,27 +56,6 @@ namespace ConsoleApp3
             //    a[i] = random.Next(1, 100);
             //}
             //getmax(a);
-            //ConsoleApp3.DoubleLinkeds.DoubleLinked node1, node2, node3, node4, node5, node6;
-
-            //node1 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node2 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node3 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node4 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node5 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-            //node6 = new ConsoleApp3.DoubleLinkeds.DoubleLinked();
-
-            //node1.Value = 1;
-            //node2.Value = 2;
-            //node3.Value = 3;
-            //node4.Value = 4;
-            //node5.Value = 5;
-            //node6.Value = 6;
-
-            //node2.InsretAfter(node1);
-            //node3.InsretAfter(node2);
-            //node4.InsretAfter(node3);
-            //node5.InsretAfter(node4);
-            //node6.InsretAfter(node2);
 
             //stack<int> StackInt = new stack<int>();
             //stack<string> StackString = new stack<string>();
@@ -97,11 +76,25 @@ namespace ConsoleApp3
             //Person Waters = new Person { Name = "阿泰", age = 17 };
             //ProvideWater persons = AssginWay;
             //persons(Waters);
+            DoubleLinkList node0 = new DoubleLinkList { Item = 0 };
+            DoubleLinkList node1 = new DoubleLinkList { Item = 1 };
+            DoubleLinkList node2 = new DoubleLinkList { Item = 2 };
+            DoubleLinkList node3 = new DoubleLinkList { Item = 3 };
+            DoubleLinkList node4 = new DoubleLinkList { Item = 4 };
+            DoubleLinkList node5 = new DoubleLinkList { Item = 5 };
+            DoubleLinkList node6 = new DoubleLinkList { Item = 6 };
 
-            //DoubleLinked node = new DoubleLinked();
-            //foreach (var item in node)
-            //{
-            //    Console.WriteLine(node.Value);
+            //node1.InsertAfter(node0);
+            node2.InsertAfter(node1);
+            node3.InsertAfter(node2);
+            node4.InsertAfter(node3);
+            node5.InsertAfter(node4);
+            
+
+            foreach (var item in node1)
+            {
+                Console.WriteLine(item);
+            }
         }
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
         public static int GetWater(ProvideWater provide)
