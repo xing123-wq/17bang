@@ -76,25 +76,25 @@ namespace ConsoleApp3
             //Person Waters = new Person { Name = "阿泰", age = 17 };
             //ProvideWater persons = AssginWay;
             //persons(Waters);
-            DoubleLinkList node0 = new DoubleLinkList { Item = 0 };
-            DoubleLinkList node1 = new DoubleLinkList { Item = 1 };
-            DoubleLinkList node2 = new DoubleLinkList { Item = 2 };
-            DoubleLinkList node3 = new DoubleLinkList { Item = 3 };
-            DoubleLinkList node4 = new DoubleLinkList { Item = 4 };
-            DoubleLinkList node5 = new DoubleLinkList { Item = 5 };
-            DoubleLinkList node6 = new DoubleLinkList { Item = 6 };
+            //DoubleLinkList node0 = new DoubleLinkList { Item = 0 };
+            //DoubleLinkList node1 = new DoubleLinkList { Item = 1 };
+            //DoubleLinkList node2 = new DoubleLinkList { Item = 2 };
+            //DoubleLinkList node3 = new DoubleLinkList { Item = 3 };
+            //DoubleLinkList node4 = new DoubleLinkList { Item = 4 };
+            //DoubleLinkList node5 = new DoubleLinkList { Item = 5 };
+            //DoubleLinkList node6 = new DoubleLinkList { Item = 6 };
 
-            //node1.InsertAfter(node0);
-            node2.InsertAfter(node1);
-            node3.InsertAfter(node2);
-            node4.InsertAfter(node3);
-            node5.InsertAfter(node4);
+            ////node1.InsertAfter(node0);
+            //node2.InsertAfter(node1);
+            //node3.InsertAfter(node2);
+            //node4.InsertAfter(node3);
+            //node5.InsertAfter(node4);
             
 
-            foreach (var item in node1)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in node1)
+            //{
+            //    Console.WriteLine(item);
+            //}
         }
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
         public static int GetWater(ProvideWater provide)

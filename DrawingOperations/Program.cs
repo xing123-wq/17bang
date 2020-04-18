@@ -11,9 +11,6 @@ namespace DrawingOperations
     {
         static void Main(string[] args)
         {
-            Thread thread = new Thread(() => Verification.GenerateRandomNumber(4));
-            thread.IsBackground = true;
-            thread.Start();
             Verification.Code();
         }
     }

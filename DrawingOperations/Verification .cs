@@ -23,8 +23,7 @@ namespace DrawingOperations
         static int[] Pen = { 44, 20, 30, 40, 33, 44, 22, 32 };
         static int[] Point = { 43, 25, 35, 45, 41, 39, 29 };
         static int[] line = { 100, 55, 34, 99, 34 };
-        static Bitmap image = new Bitmap(200, 100);  //生成一个像素图“画板”
-
+        static Bitmap image = new Bitmap(200, 100);
         static int linerandom = line[random.Next(line.Length)];
         static Color tempColor = RandomColor[random.Next(RandomColor.Length)];
         static string typeface = fonts[random.Next(fonts.Length)];
@@ -69,6 +68,13 @@ namespace DrawingOperations
         }
         //重构之前的验证码作业：
         //创建一个新的前台线程（Thread），在这个线程上运行生成随机字符串的代码
+        Task getup = Task.Run(() =>     //getup已经Run()起来了
+        {
+            Thread thread = new Thread(() => GenerateRandomNumber(4));
+            thread.IsBackground = true;
+            thread.Start();
+        });
+        //生成一个像素图“画板”
         //在一个任务（Task）中生成画布
         //使用生成的画布，用两个任务完成：
         //在画布上添加干扰线条
@@ -88,16 +94,22 @@ namespace DrawingOperations
                     new PointF(MyPen, MyPoint));                    //左上角定位
                 map();
                 image.SetPixel(195, 95, Color.BlueViolet);  //绘制一个像素的点
+                Console.WriteLine(Task.CurrentId);
             }
-            catch (ArgumentException e)
+            catch (ArgumentNullException e)
             {
                 Sava(e);
+                throw new ArgumentNullException("参数为null");
+            }
+            catch (ArgumentException e1)
+            {
+                Sava(e1);
                 //重新抛出
                 throw new ArgumentException("字符串长度不能超过4");
             }
-            catch (OutOfMemoryException e1)
+            catch (OutOfMemoryException e2)
             {
-                Sava(e1);
+                Sava(e2);
                 throw new OutOfMemoryException("内存空间不够");
             }
             catch (Generateabnormal e2)

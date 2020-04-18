@@ -33,6 +33,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EO.Base, Version=20.0.81.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.Pdf.20.0.81\lib\EO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.Pdf, Version=20.0.81.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.Pdf.20.0.81\lib\EO.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebBrowser, Version=20.0.81.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.Pdf.20.0.81\lib\EO.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="EO.WebEngine, Version=20.0.81.0, Culture=neutral, PublicKeyToken=e92353a6bf73fffc, processorArchitecture=MSIL">
+      <HintPath>..\packages\EO.Pdf.20.0.81\lib\EO.WebEngine.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -51,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
