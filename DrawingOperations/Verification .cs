@@ -24,13 +24,14 @@ namespace DrawingOperations
         static int[] Point = { 43, 25, 35, 45, 41, 39, 29 };
         static int[] line = { 100, 55, 34, 99, 34 };
         static Bitmap image = new Bitmap(200, 100);
+        private static char[] constant = "1234567890,qwertyuiopasdfghjklzxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
+
         static int linerandom = line[random.Next(line.Length)];
         static Color tempColor = RandomColor[random.Next(RandomColor.Length)];
         static string typeface = fonts[random.Next(fonts.Length)];
         static int MyPen = Pen[random.Next(Pen.Length)];
         static int MyPoint = Point[random.Next(Point.Length)];
         static Graphics g = Graphics.FromImage(image);    //在画板的基础上生成一个绘图对象
-        private static char[] constant = "1234567890,qwertyuiopasdfghjklzxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
         public static string GenerateRandomNumber(int length)
         {
             if (length > 4 || 4 < length)
@@ -44,36 +45,40 @@ namespace DrawingOperations
             }
             return newRandom.ToString();
         }
-        public static void map()
+        public static async void PointMethod()
         {
             //画噪音点
-            for (int j = 0; j < linerandom; j++)
+            await Task.Run(() =>
             {
-                int x = random.Next(image.Width);
-                int y = random.Next(image.Height);
-                Color Color = RandomColor[random.Next(RandomColor.Length)];
-                image.SetPixel(x, y, Color);
-            }
-
+                for (int j = 0; j < linerandom; j++)
+                {
+                    int x = random.Next(image.Width);
+                    int y = random.Next(image.Height);
+                    Color Color = RandomColor[random.Next(RandomColor.Length)];
+                    image.SetPixel(x, y, Color);
+                }
+                Console.WriteLine($"point:{Thread.CurrentThread.ManagedThreadId}");
+            });
+        }
+        public static async void Line()
+        {
             //画噪音线
-            for (int i = 0; i < linerandom; i++)
+            await Task.Run(() =>
             {
-                int x1 = random.Next(image.Width);
-                int x2 = random.Next(image.Width);
-                int y1 = random.Next(image.Height);
-                int y2 = random.Next(image.Height);
-                Color Color = RandomColor[random.Next(RandomColor.Length)];
-                g.DrawLine(new Pen(Color), new Point(x1, y1), new Point(x2, y2));
-            }
+                for (int i = 0; i < linerandom; i++)
+                {
+                    int x1 = random.Next(image.Width);
+                    int x2 = random.Next(image.Width);
+                    int y1 = random.Next(image.Height);
+                    int y2 = random.Next(image.Height);
+                    Color Color = RandomColor[random.Next(RandomColor.Length)];
+                    g.DrawLine(new Pen(Color), new Point(x1, y1), new Point(x2, y2));
+                }
+                Console.WriteLine($"line:{Thread.CurrentThread.ManagedThreadId}");
+            });
         }
         //重构之前的验证码作业：
         //创建一个新的前台线程（Thread），在这个线程上运行生成随机字符串的代码
-        Task getup = Task.Run(() =>     //getup已经Run()起来了
-        {
-            Thread thread = new Thread(() => GenerateRandomNumber(4));
-            thread.IsBackground = true;
-            thread.Start();
-        });
         //生成一个像素图“画板”
         //在一个任务（Task）中生成画布
         //使用生成的画布，用两个任务完成：
@@ -82,9 +87,12 @@ namespace DrawingOperations
         //将生成的验证码图片异步的存入文件
         //能捕获抛出的若干异常，并相应的处理
         //以上作业，需要在控制台输出线程和Task的Id，以演示异步并发的运行。
-        public static void Code()
+        public static async void Code()
         {
-            //为了捕获异常特意声明的一个Try catch
+            Thread thread = new Thread(() => GenerateRandomNumber(4));
+            thread.IsBackground = true;
+            Console.WriteLine($"thread:{Thread.CurrentThread.ManagedThreadId}");
+            thread.Start();
             try
             {
                 g.Clear(Color.AliceBlue);           //添加底色
@@ -92,32 +100,36 @@ namespace DrawingOperations
                     new Font(typeface, MyPen),                //指定字体
                     new SolidBrush(tempColor),      //绘制时使用的刷子
                     new PointF(MyPen, MyPoint));                    //左上角定位
-                map();
+                PointMethod();
+                Line();
                 image.SetPixel(195, 95, Color.BlueViolet);  //绘制一个像素的点
-                Console.WriteLine(Task.CurrentId);
             }
             catch (ArgumentNullException e)
             {
                 Sava(e);
-                throw new ArgumentNullException("参数为null");
+                throw new ArgumentNullException("参数null异常");
             }
             catch (ArgumentException e1)
             {
                 Sava(e1);
                 //重新抛出
-                throw new ArgumentException("字符串长度不能超过4");
+                throw new ArgumentException("参数异常");
             }
             catch (OutOfMemoryException e2)
             {
                 Sava(e2);
-                throw new OutOfMemoryException("内存空间不够");
+                throw new OutOfMemoryException("内存空间异常");
             }
             catch (Generateabnormal e2)
             {
                 Sava(e2);
-                throw new Generateabnormal("生成过程出现了异常");
+                throw new Generateabnormal("生成异常");
             }
-            image.Save(@"E:\17bang\\.jpg", ImageFormat.Jpeg);   //保存到文件
+            await Task.Run(() =>
+            {
+                Console.WriteLine($"imagesave:{Thread.CurrentThread.ManagedThreadId}");
+                image.Save(@"E:\17bang\\.jpg", ImageFormat.Jpeg);   //保存到文件
+            });
         }
         public static void Sava(Exception Record)
         {
