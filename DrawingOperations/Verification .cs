@@ -23,7 +23,6 @@ namespace DrawingOperations
         static int[] Pen = { 44, 20, 30, 40, 33, 44, 22, 32 };
         static int[] Point = { 43, 25, 35, 45, 41, 39, 29 };
         static int[] line = { 100, 55, 34, 99, 34 };
-        static Bitmap image = new Bitmap(200, 100);
         private static char[] constant = "1234567890,qwertyuiopasdfghjklzxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
 
         static int linerandom = line[random.Next(line.Length)];
@@ -31,7 +30,55 @@ namespace DrawingOperations
         static string typeface = fonts[random.Next(fonts.Length)];
         static int MyPen = Pen[random.Next(Pen.Length)];
         static int MyPoint = Point[random.Next(Point.Length)];
-        static Graphics g = Graphics.FromImage(image);    //在画板的基础上生成一个绘图对象
+        static Bitmap image;
+        static Graphics g;
+        public static void Do()
+        {
+            Task<Bitmap>.Run(() => NewBitmap());
+            Console.Read();
+            Task.Run(() => SetPixels());
+            Console.Read();
+            Task.Run(() => DrawLines());
+            Console.Read();
+        }
+        public static void NewBitmap()
+        {
+            //生成一个像素图“画板”
+            //在一个任务（Task）中生成画布
+            image = new Bitmap(200, 100);
+            g = Graphics.FromImage(image);    //在画板的基础上生成一个绘图对象
+            Console.WriteLine($"imagethread:{Thread.CurrentThread.ManagedThreadId}");
+            Console.Read();
+        }
+        //使用生成的画布，用两个任务完成：
+        public static void SetPixels()
+        {
+            //在画布上添加干扰线条
+            for (int j = 0; j < linerandom; j++)
+            {
+                int x = random.Next(image.Width);
+                int y = random.Next(image.Height);
+                Color Color = RandomColor[random.Next(RandomColor.Length)];
+                image.SetPixel(x, y, Color);
+            }
+            Console.WriteLine($"point:{Thread.CurrentThread.ManagedThreadId}");
+            Console.Read();
+        }
+        public static void DrawLines()
+        {
+            //在画布上添加干扰点
+            for (int i = 0; i < linerandom; i++)
+            {
+                int x1 = random.Next(image.Width);
+                int x2 = random.Next(image.Width);
+                int y1 = random.Next(image.Height);
+                int y2 = random.Next(image.Height);
+                Color Color = RandomColor[random.Next(RandomColor.Length)];
+                g.DrawLine(new Pen(Color), new Point(x1, y1), new Point(x2, y2));
+            }
+            Console.Read();
+            Console.WriteLine($"line:{Thread.CurrentThread.ManagedThreadId}");
+        }
         public static string GenerateRandomNumber(int length)
         {
             if (length > 4 || 4 < length)
@@ -45,63 +92,36 @@ namespace DrawingOperations
             }
             return newRandom.ToString();
         }
-        public static async void PointMethod()
-        {
-            //画噪音点
-            await Task.Run(() =>
-            {
-                for (int j = 0; j < linerandom; j++)
-                {
-                    int x = random.Next(image.Width);
-                    int y = random.Next(image.Height);
-                    Color Color = RandomColor[random.Next(RandomColor.Length)];
-                    image.SetPixel(x, y, Color);
-                }
-                Console.WriteLine($"point:{Thread.CurrentThread.ManagedThreadId}");
-            });
-        }
-        public static async void Line()
-        {
-            //画噪音线
-            await Task.Run(() =>
-            {
-                for (int i = 0; i < linerandom; i++)
-                {
-                    int x1 = random.Next(image.Width);
-                    int x2 = random.Next(image.Width);
-                    int y1 = random.Next(image.Height);
-                    int y2 = random.Next(image.Height);
-                    Color Color = RandomColor[random.Next(RandomColor.Length)];
-                    g.DrawLine(new Pen(Color), new Point(x1, y1), new Point(x2, y2));
-                }
-                Console.WriteLine($"line:{Thread.CurrentThread.ManagedThreadId}");
-            });
-        }
         //重构之前的验证码作业：
-        //创建一个新的前台线程（Thread），在这个线程上运行生成随机字符串的代码
-        //生成一个像素图“画板”
-        //在一个任务（Task）中生成画布
-        //使用生成的画布，用两个任务完成：
-        //在画布上添加干扰线条
-        //在画布上添加干扰点
-        //将生成的验证码图片异步的存入文件
-        //能捕获抛出的若干异常，并相应的处理
         //以上作业，需要在控制台输出线程和Task的Id，以演示异步并发的运行。
         public static async void Code()
         {
-            Thread thread = new Thread(() => GenerateRandomNumber(4));
+            //创建一个新的前台线程（Thread），在这个线程上运行生成随机字符串的代码
+            Thread thread = new Thread(() =>
+            {
+                try
+                {
+                    GenerateRandomNumber(4);
+                }
+                catch (ArgumentException e)
+                {
+                    Sava(e);
+                    throw new ArgumentException("参数异常");
+                }
+            });
             thread.IsBackground = true;
             Console.WriteLine($"thread:{Thread.CurrentThread.ManagedThreadId}");
             thread.Start();
+            //能捕获抛出的若干异常，并相应的处理
             try
             {
+                Do();
+                Console.Read();
                 g.Clear(Color.AliceBlue);           //添加底色
                 g.DrawString(GenerateRandomNumber(4),       //绘制字符串
                     new Font(typeface, MyPen),                //指定字体
                     new SolidBrush(tempColor),      //绘制时使用的刷子
                     new PointF(MyPen, MyPoint));                    //左上角定位
-                PointMethod();
-                Line();
                 image.SetPixel(195, 95, Color.BlueViolet);  //绘制一个像素的点
             }
             catch (ArgumentNullException e)
@@ -125,6 +145,7 @@ namespace DrawingOperations
                 Sava(e2);
                 throw new Generateabnormal("生成异常");
             }
+            //将生成的验证码图片异步的存入文件
             await Task.Run(() =>
             {
                 Console.WriteLine($"imagesave:{Thread.CurrentThread.ManagedThreadId}");
