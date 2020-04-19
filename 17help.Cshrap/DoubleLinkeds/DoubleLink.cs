@@ -17,6 +17,7 @@ namespace ConsoleApp3.DoubleLinkeds
             this.Item = item;
         }
         internal DoubleLink<T> Next { get { return _next; } }
+        internal DoubleLink<T> Preivous { get { return _prev; } }
 
         public void InsertAfter(DoubleLink<T> after)
         {

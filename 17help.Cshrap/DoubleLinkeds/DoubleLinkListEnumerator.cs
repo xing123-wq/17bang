@@ -5,12 +5,12 @@ using System.Text;
 
 namespace ConsoleApp3.DoubleLinkeds
 {
-    internal class DoubleLinkListEnumerator : IEnumerator
+    public class DoubleLinkListEnumerator : IEnumerator
     {
         private DoubleLinkList _list;
         private DoubleLink<object> _current;
 
-        internal DoubleLinkListEnumerator(DoubleLinkList list)
+        public DoubleLinkListEnumerator(DoubleLinkList list)
         {
             _list = list;
             _current = list;
