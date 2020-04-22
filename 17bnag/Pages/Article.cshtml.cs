@@ -13,14 +13,16 @@ namespace _17bnag.Pages
         public IList<PublishArticle> articles { get; set; }
         public int Pageindex { get; set; }
         public int Pagesize { get; set; }
-        public ArticleModel(_17bnagContext context) :base(context)
+        public int Sum { get; set; }
+        public ArticleModel(_17bnagContext context) : base(context)
         {
             _context = context;
         }
         public void OnGet()
         {
-            Pagesize = 5;
+            Pagesize = Helper.Const.PAGE_SIZE;
             Pageindex = Convert.ToInt32(Request.Query["Page"]);
+            Sum = _context.GetArticle();
             articles = _context.PublishArticles.Include(h => h.Author).ToList();
             articles = Get(Pageindex, Pagesize);
             base.SetLogOnStatus();

@@ -1,5 +1,6 @@
 ﻿@page
 @model _17bnag.Pages.ArticleModel
+@using _17bnag.Helper;
 @{
     Layout = "~/Pages/Layout/_DualColumn.cshtml";
 }
@@ -78,12 +79,23 @@
         </div><!-- /.modal -->
     </div>
     <nav>
+        @{
+            int currentPageIndex = Convert.ToInt32(Request.Query["Page"]);
+            int SumProblems = Model.Sum;
+        }
         <ul class="pagination">
-            @for (int i = 1; i <= 10; i++)
+            @if (currentPageIndex > 1)
             {
-                <li class="active"><a id="1" href="/Article?Page=@i">@(i)</a></li>
+                <li><a href="/Article?Page=@(currentPageIndex-1)">&lt;&lt;</a></li>
             }
-            <li><a id="2" href="#">&gt;&gt;</a></li>
+            @for (int i = 1; i < (SumProblems / Const.PAGE_SIZE) + 1; i++)
+            {
+                <li class="active"><a href="/Article?Page=@i">@(i)</a></li>
+            }
+            @if (currentPageIndex < SumProblems / Const.PAGE_SIZE)
+            {
+                <li><a href="/Article?Page=@(currentPageIndex+1)">&gt;&gt;</a></li>
+            }
         </ul>
     </nav>
     <a zyf-global-feedback="" href="/Contact/Us" style="bottom: 132px; right: 339.5px;" class="feedback flag text-center">

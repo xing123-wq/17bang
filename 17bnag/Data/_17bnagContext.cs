@@ -54,7 +54,10 @@ namespace _17bnag.Data
                 .HasForeignKey(b => b.UserId)
                 ;
         }
-
+        public int GetArticle()
+        {
+            return PublishArticles.Count()+1;
+        }
         public int GetSum()
         {
             return HelpRelease.Count() + 1;
