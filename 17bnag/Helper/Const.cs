@@ -19,5 +19,7 @@ namespace _17bnag.Helper
         public const string REGISTER_NAME = "RegisteerOne.Name";
 
         public const string TEMP_MODELSTATE = "TempModelstate";
+
+        public const int PAGE_SIZE = 2;
     }
 }

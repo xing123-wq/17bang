@@ -19,7 +19,7 @@ namespace _17bnag.Pages
         public IList<HelpRelease> Problems { get; set; }
         public int pagesize { get; set; }
         public int pageindex { get; set; }
-
+        public int sum { get; set; }
         public void OnGet()
         {
             //string exclude = Request.Query["exclude"];
@@ -32,8 +32,9 @@ namespace _17bnag.Pages
             //{
             //    Problems = GetExclude(Enum.Parse<ProblemStatus>(exclude));
             //}
-            pagesize = 5;
+            pagesize = Const.PAGE_SIZE;
             pageindex = Convert.ToInt32(Request.Query["Page"]);
+            sum = _context.GetSum();
             Problems = _context.HelpRelease.Include(h => h.Users).ToList();
             Problems = Get(pageindex, pagesize);
             ViewData["title"] = "首页-一起帮";
@@ -42,6 +43,7 @@ namespace _17bnag.Pages
         public void Post()
         {
         }
+
         public IList<HelpRelease> Get(int pageindex, int pagesize)
         {
             return Problems.OrderByDescending(p => p.PublishDateTime)

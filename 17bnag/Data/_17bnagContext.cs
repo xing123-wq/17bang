@@ -55,5 +55,9 @@ namespace _17bnag.Data
                 ;
         }
 
+        public int GetSum()
+        {
+            return HelpRelease.Count() + 1;
+        }
     }
 }

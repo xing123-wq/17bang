@@ -141,12 +141,23 @@
                 <hr>
             }
             <nav>
+                @{
+                    int currentPageIndex = Convert.ToInt32(Request.Query["Page"]);
+                    int SumProblems = Model.sum;
+                }
                 <ul class="pagination">
-                    @for (int i = 1; i <= 10; i++)
+                    @if (currentPageIndex > 1)
                     {
-                        <li class="active"><a id="1" href="/Problem?Page=@i">@(i)</a></li>
+                        <li><a href="/Problem?Page=@(currentPageIndex-1)">&lt;&lt;</a></li>
                     }
-                    <li><a id="2" href="#">&gt;&gt;</a></li>
+                    @for (int i = 1; i < SumProblems / (Const.PAGE_SIZE) + 1; i++)
+                    {
+                        <li class="active"><a href="/Problem?Page=@i">@(i)</a></li>
+                    }
+                    @if (currentPageIndex < SumProblems / Const.PAGE_SIZE)
+                    {
+                        <li><a href="/Problem?Page=@(currentPageIndex+1)">&gt;&gt;</a></li>
+                    }
                 </ul>
             </nav>
             <div class="modal fade" tabindex="-1" role="dialog" zyf-keyword-update-modal="">
