@@ -42,7 +42,7 @@ namespace _17bnag
             {
                 return Page();
             }
-
+            help.PublishDateTime = DateTime.Now;
             _context.Attach(help).State = EntityState.Modified;
 
             try

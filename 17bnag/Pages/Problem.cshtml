@@ -3,6 +3,7 @@
 @{
     Layout = "~/Pages/Layout/_DualColumn.cshtml";
 }
+@using _17bnag.Helper;
 @*添加Problem.cshtml，让其只显示页面本身内容（如：<h1>我是Promblem内容页</h1>），不显示_Layout.cshtml中的内容。*@
 @section Description
 {
@@ -19,22 +20,23 @@
 <div class="container body-content">
     <div style="margin-top:55px" class="row">
         <div class="col-md-8">
-            <form action="/Page-1?excludeCanceled=False&amp;excludeRewarded=False&amp;excludeInProgress=False&amp;onlyMyFocus=False&amp;onlySummaried=False" method="post" novalidate="novalidate">
-                <div class="clearfix" style="        border-left: 6px solid gray;
-        margin-bottom: 20px
-">
+            <form method="post" novalidate="novalidate">
+                <div class="clearfix" style="border-left: 6px solid gray;margin-bottom: 20px">
                     <div class="pull-left text-muted" style="margin:5px 0;">
                         <label class="checkbox-inline">
                             <span class="fa fa-eye-slash"></span> 不显示
                         </label>
                         <label class="checkbox-inline">
-                            <input data-val="true" data-val-required="ExcludeRewarded 字段是必需的。" id="ExcludeRewarded" name="ExcludeRewarded" type="checkbox" value="true" zyf-filter-problems=""><input name="ExcludeRewarded" type="hidden" value="false">已酬谢
+                            <input data-val="true" data-val-required="ExcludeRewarded 字段是必需的。" id="ExcludeRewarded" name="ExcludeRewarded" type="checkbox" value="true" href="/Problem?exclude=@ProblemStatus.Rewarded">
+                            <input name="ExcludeRewarded" type="hidden" value="false" href="/Problem?exclude=@ProblemStatus.Rewarded">@ProblemStatus.Rewarded.GetDescription()
                         </label>
                         <label class="checkbox-inline">
-                            <input data-val="true" data-val-required="ExcludeCanceled 字段是必需的。" id="ExcludeCanceled" name="ExcludeCanceled" type="checkbox" value="true" zyf-filter-problems=""><input name="ExcludeCanceled" type="hidden" value="false">已撤销
+                            <input data-val="true" data-val-required="ExcludeCanceled 字段是必需的。" href="/Problem?exclude=@ProblemStatus.Cancelled" id="ExcludeCanceled" name="ExcludeCanceled" type="checkbox" value="true">
+                            <input name="ExcludeCanceled" type="hidden" value="false" href="/Problem?exclude=@ProblemStatus.Cancelled">@ProblemStatus.Cancelled.GetDescription()
                         </label>
                         <label class="checkbox-inline">
-                            <input data-val="true" data-val-required="ExcludeInProgress 字段是必需的。" id="ExcludeInProgress" name="ExcludeInProgress" type="checkbox" value="true" zyf-filter-problems=""><input name="ExcludeInProgress" type="hidden" value="false">协助中
+                            <input data-val="true" data-val-required="ExcludeInProgress 字段是必需的。" id="ExcludeInProgress" name="ExcludeInProgress" type="checkbox" href="/Problem?exclude=@ProblemStatus.InProcess">
+                            <input name="ExcludeInProgress" type="hidden" value="false" href="/Problem?exclude=@ProblemStatus.InProcess">@ProblemStatus.InProcess.GetDescription()
                         </label>
                     </div>
                     <div class="pull-left text-info" style="margin:5px 0;">
@@ -42,10 +44,12 @@
                             <span class="fa fa-eye"></span> 只显示
                         </label>
                         <label class="checkbox-inline">
-                            <input data-val="true" data-val-required="OnlyMyFocus 字段是必需的。" id="OnlyMyFocus" name="OnlyMyFocus" type="checkbox" value="true" zyf-filter-problems=""><input name="OnlyMyFocus" type="hidden" value="false"> 我的关注
+                            <input data-val="true" data-val-required="OnlyMyFocus 字段是必需的。" id="OnlyMyFocus" name="OnlyMyFocus" type="checkbox" value="true">
+                            <input name="OnlyMyFocus" type="hidden" value="false"> 我的关注
                         </label>
                         <label class="checkbox-inline">
-                            <input data-val="true" data-val-required="OnlySummaried 字段是必需的。" id="OnlySummaried" name="OnlySummaried" type="checkbox" value="true" zyf-filter-problems=""><input name="OnlySummaried" type="hidden" value="false"> 有总结
+                            <input data-val="true" data-val-required="OnlySummaried 字段是必需的。" id="OnlySummaried" name="OnlySummaried" type="checkbox" value="true">
+                            <input name="OnlySummaried" type="hidden" value="false"> 有总结
                         </label>
                     </div>
 
@@ -62,13 +66,13 @@
                                 </span>
                             </small>
                         </span>
-                        @foreach (var item in problem.User)
+                        @foreach (var item in problem.Users)
                         {
                             <span class="pull-right">
                                 <span data-author-id="2720" zyf-problem-author="">
                                     <span data-toggle="tooltip" title="" data-original-title="">
                                         <span class="fa fa-user-circle-o"></span>
-                                        <a href="/User/@item.users.Id">
+                                        <a href="/User/@item.UserId">
                                             @item.users.Name
                                         </a>
                                     </span>
@@ -79,7 +83,7 @@
                             </span>
                         }
                         <div style="font-size:24px;word-break:break-all;">
-                            <span class="problem-status label-default">待协助</span>
+                            <span class="problem-status label-default">@ProblemStatus.Rewarded.GetDescription()</span>
                             <span class="hide" zyf-problem-status="" data-problem-status="Cancel"></span>
                             <a href="/Problems/@problem.Id" style="color:black;">@problem.Title</a>
                         </div>
@@ -91,12 +95,16 @@
                         </div>
                         <p style="clear:both;">
                             <span class="fa fa-tags " style="margin-right:10px;"></span>
-                            @foreach (var keywords in problem.Keywords)
-                            {
-                                <span zyf-keyword="1" title="" data-toggle="tooltip" class="badge badge-has-used" style="margin-right:5px;" data-original-title="已使用 1 次">
-                                    <a href="/Problem?keyword=@keywords.Keyword.Id" style="color:white;">@keywords.Keyword.Name</a>
-                                </span>
-                            }
+                            @*@foreach (var keywords in problem.Keywords)
+                                {
+                                    <span zyf-keyword="1" title="" data-toggle="tooltip" class="badge badge-has-used" style="margin-right:5px;" data-original-title="已使用 1 次">
+                                        <a href="/Problem?keyword=@keywords.Keyword.Id" style="color:white;">@keywords.Keyword.Name</a>
+                                    </span>
+                                }*@
+
+                            <span zyf-keyword="1" title="" data-toggle="tooltip" class="badge badge-has-used" style="margin-right:5px;" data-original-title="已使用 1 次">
+                                <a href="/Problem?keyword=" style="color:white;">@problem.Keywords</a>
+                            </span>
                         </p>
                         <div class="status">
                             <span>

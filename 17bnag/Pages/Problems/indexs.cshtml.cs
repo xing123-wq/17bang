@@ -29,10 +29,10 @@ namespace _17bnag
         public async Task OnGet()
         {
             // Use LINQ to get list of genres.
-            //IQueryable<string> genreQuery = from m in _context.HelpRelease
-            //                                orderby m.Keywords.Name
-            //                                select m.KeyWord.Name;
-            IQueryable<string> genreQuery = null;
+            IQueryable<string> genreQuery = from m in _context.HelpRelease
+                                            orderby m.Keywords
+                                            select m.Keywords;
+
 
 
             var movies = from m in _context.HelpRelease

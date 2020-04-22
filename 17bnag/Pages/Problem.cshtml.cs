@@ -5,6 +5,8 @@ using _17bnag.Data;
 using _17bnag.Entitys;
 using _17bnag.Layout;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
+using _17bnag.Helper;
 
 namespace _17bnag.Pages
 {
@@ -20,9 +22,19 @@ namespace _17bnag.Pages
 
         public void OnGet()
         {
+            //string exclude = Request.Query["exclude"];
+            //if (string.IsNullOrEmpty(exclude))
+            //{
+            //    Problems = _context.HelpRelease.Include(h => h.Users).ToList();
+            //    Problems = Get(pageindex, pagesize);
+            //}
+            //else
+            //{
+            //    Problems = GetExclude(Enum.Parse<ProblemStatus>(exclude));
+            //}
             pagesize = 5;
             pageindex = Convert.ToInt32(Request.Query["Page"]);
-            Problems = _context.HelpRelease.Include(h => h.User).ToList();
+            Problems = _context.HelpRelease.Include(h => h.Users).ToList();
             Problems = Get(pageindex, pagesize);
             ViewData["title"] = "首页-一起帮";
             base.SetLogOnStatus();
@@ -35,5 +47,18 @@ namespace _17bnag.Pages
             return Problems.OrderByDescending(p => p.PublishDateTime)
                 .Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();
         }
+        //public IList<HelpRelease> GetExclude(ProblemStatus status)
+        //{
+        //    return Problems.Where(p => p.Status != status.GetDescription()).ToList();
+        //}
+    }
+    public enum ProblemStatus
+    {
+        [Description("已撤销")]
+        Cancelled,
+        [Description("协助中")]
+        InProcess,
+        [Description("已酬谢")]
+        Rewarded
     }
 }

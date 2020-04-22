@@ -13,7 +13,7 @@ namespace _17bnag.Data
         public DbSet<HelpRelease> HelpRelease { get; set; }
         public DbSet<PublishArticle> PublishArticles { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
-        public DbSet<KeywordMiddle> KeywordMiddles { get; set; }
+        //public DbSet<KeywordMiddle> KeywordMiddles { get; set; }
         public DbSet<UsersMiddle> UsersMiddles { get; set; }
         public _17bnagContext(DbContextOptions<_17bnagContext> options)
             : base(options)
@@ -24,20 +24,20 @@ namespace _17bnag.Data
             //modelBuilder.Entity<HelpRelease>().ToTable("HelpRelease");
             //modelBuilder.Entity<Keyword>().ToTable("Keywords");
             //modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<KeywordMiddle>()
-                .HasKey(bk => new { bk.HelpReleaseId, bk.KeywordId });  //唯一可以（推荐）使用联合主键的情景
+            //modelBuilder.Entity<KeywordMiddle>()
+            //    .HasKey(bk => new { bk.HelpReleaseId, bk.KeywordId });  //唯一可以（推荐）使用联合主键的情景
 
-            modelBuilder.Entity<KeywordMiddle>()
-                .HasOne(bk => bk.Keyword)
-                .WithMany(b => b.HelpReleases)
-                .HasForeignKey(b => b.HelpReleaseId)
-                ;
+            //modelBuilder.Entity<KeywordMiddle>()
+            //    .HasOne(bk => bk.Keyword)
+            //    .WithMany(b => b.HelpReleases)
+            //    .HasForeignKey(b => b.HelpReleaseId)
+            //    ;
 
-            modelBuilder.Entity<KeywordMiddle>()
-                .HasOne(bk => bk.HelpRelease)
-                .WithMany(b => b.Keywords)
-                .HasForeignKey(b => b.KeywordId)
-                ;
+            //modelBuilder.Entity<KeywordMiddle>()
+            //    .HasOne(bk => bk.HelpRelease)
+            //    .WithMany(b => b.Keywords)
+            //    .HasForeignKey(b => b.KeywordId)
+            //;
 
             modelBuilder.Entity<UsersMiddle>()
                 .HasKey(bk => new { bk.HelpReleaseId, bk.UserId });  //唯一可以（推荐）使用联合主键的情景
@@ -50,7 +50,7 @@ namespace _17bnag.Data
 
             modelBuilder.Entity<UsersMiddle>()
                 .HasOne(bk => bk.HelpRelease)
-                .WithMany(b => b.User)
+                .WithMany(b => b.Users)
                 .HasForeignKey(b => b.UserId)
                 ;
         }

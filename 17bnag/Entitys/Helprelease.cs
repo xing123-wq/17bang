@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-
+using _17bnag.Pages;
 namespace _17bnag.Entitys
 {
     public class HelpRelease
@@ -21,9 +21,14 @@ namespace _17bnag.Entitys
         [StringLength(21113, MinimumLength = 25, ErrorMessage = "* 正文的长度不能小于{2}，大于{1}")]
         public string Body { get; set; }
 
+        //[Display(Name = "关键字：（* 使用空格分隔）")]
+        //[Required(ErrorMessage = "* 关键字不能为空")]
+        //public IList<KeywordMiddle> Keywords { get; set; }
+
+
         [Display(Name = "关键字：（* 使用空格分隔）")]
         [Required(ErrorMessage = "* 关键字不能为空")]
-        public IList<KeywordMiddle> Keywords { get; set; }
+        public string Keywords { get; set; }
 
         [Display(Name = "定向求助：")]
         public string Resort { get; set; }
@@ -36,6 +41,9 @@ namespace _17bnag.Entitys
         [DataType(DataType.Date)]
         public DateTime PublishDateTime { get; set; }
 
-        public IList<UsersMiddle> User { get; set; }
+        public int UserId { get; set; }
+        public IList<UsersMiddle> Users { get; set; }
+
+        //public string Status { get; set; }
     }
 }
