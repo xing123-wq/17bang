@@ -43,7 +43,6 @@ namespace _17bnag.Pages
         public void Post()
         {
         }
-
         public IList<HelpRelease> Get(int pageindex, int pagesize)
         {
             return Problems.OrderByDescending(p => p.PublishDateTime)

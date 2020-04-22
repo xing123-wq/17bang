@@ -66,22 +66,19 @@
                                 </span>
                             </small>
                         </span>
-                        @foreach (var item in problem.Users)
-                        {
-                            <span class="pull-right">
-                                <span data-author-id="2720" zyf-problem-author="">
-                                    <span data-toggle="tooltip" title="" data-original-title="">
-                                        <span class="fa fa-user-circle-o"></span>
-                                        <a href="/User/@item.UserId">
-                                            @item.users.Name
-                                        </a>
-                                    </span>
-                                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="导师">
-                                        <span>⑦</span>
+                        <span class="pull-right">
+                            <span data-author-id="2720" zyf-problem-author="">
+                                <span data-toggle="tooltip" title="" data-original-title="">
+                                    <span class="fa fa-user-circle-o"></span>
+                                    <a href="/User/@problem.UserId">
+                                        @problem.Users.Name
                                     </a>
                                 </span>
+                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="导师">
+                                    <span>⑦</span>
+                                </a>
                             </span>
-                        }
+                        </span>
                         <div style="font-size:24px;word-break:break-all;">
                             <span class="problem-status label-default">@ProblemStatus.Rewarded.GetDescription()</span>
                             <span class="hide" zyf-problem-status="" data-problem-status="Cancel"></span>

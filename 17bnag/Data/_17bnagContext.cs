@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using _17bnag.Entitys;
+using System.Numerics;
 
 namespace _17bnag.Data
 {
@@ -14,7 +15,6 @@ namespace _17bnag.Data
         public DbSet<PublishArticle> PublishArticles { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
         //public DbSet<KeywordMiddle> KeywordMiddles { get; set; }
-        public DbSet<UsersMiddle> UsersMiddles { get; set; }
         public _17bnagContext(DbContextOptions<_17bnagContext> options)
             : base(options)
         {
@@ -39,24 +39,14 @@ namespace _17bnag.Data
             //    .HasForeignKey(b => b.KeywordId)
             //;
 
-            modelBuilder.Entity<UsersMiddle>()
-                .HasKey(bk => new { bk.HelpReleaseId, bk.UserId });  //唯一可以（推荐）使用联合主键的情景
-
-            modelBuilder.Entity<UsersMiddle>()
-                .HasOne(bk => bk.users)
-                .WithMany(b => b.HelpRelease)
-                .HasForeignKey(b => b.HelpReleaseId)
-                ;
-
-            modelBuilder.Entity<UsersMiddle>()
-                .HasOne(bk => bk.HelpRelease)
-                .WithMany(b => b.Users)
-                .HasForeignKey(b => b.UserId)
-                ;
+            modelBuilder.Entity<User>()
+              .HasMany<HelpRelease>(g => g.HelpRelease)
+                .WithOne(s => s.Users)
+                .HasForeignKey(s => s.UserId);
         }
         public int GetArticle()
         {
-            return PublishArticles.Count()+1;
+            return PublishArticles.Count() + 1;
         }
         public int GetSum()
         {

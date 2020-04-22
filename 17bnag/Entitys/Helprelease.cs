@@ -42,7 +42,7 @@ namespace _17bnag.Entitys
         public DateTime PublishDateTime { get; set; }
 
         public int UserId { get; set; }
-        public IList<UsersMiddle> Users { get; set; }
+        public User Users { get; set; }
 
         //public string Status { get; set; }
     }
