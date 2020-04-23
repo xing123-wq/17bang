@@ -19,6 +19,12 @@ namespace _17bnag.Data
             : base(options)
         {
         }
+
+        internal PublishArticle GetSngle(int id)
+        {
+            return PublishArticles.SingleOrDefault(a => a.Id == id);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<HelpRelease>().ToTable("HelpRelease");
