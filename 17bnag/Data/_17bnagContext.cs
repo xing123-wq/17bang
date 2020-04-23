@@ -43,6 +43,10 @@ namespace _17bnag.Data
               .HasMany<HelpRelease>(g => g.HelpRelease)
                 .WithOne(s => s.Users)
                 .HasForeignKey(s => s.UserId);
+            modelBuilder.Entity<User>()
+              .HasMany<PublishArticle>(g => g.PublishArticles)
+                .WithOne(s => s.Author)
+                .HasForeignKey(s => s.AuthorId);
         }
         public int GetArticle()
         {

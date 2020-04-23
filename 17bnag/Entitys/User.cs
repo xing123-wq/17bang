@@ -21,5 +21,6 @@ namespace _17bnag.Entitys
         public string Password { get; set; }
 
         public IList<HelpRelease> HelpRelease { get; set; }
+        public IList<PublishArticle> PublishArticles { get; set; }
     }
 }

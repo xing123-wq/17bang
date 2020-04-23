@@ -10,6 +10,7 @@ namespace _17bnag.Entitys
     {
         public int Id { get; set; }
         public User Author { get; set; }
+        public int AuthorId { get; set; }
 
         [Display(Name = "内容：（* 必填）")]
         [Required(ErrorMessage = "* 正文不能为空")]
