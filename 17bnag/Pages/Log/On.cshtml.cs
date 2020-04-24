@@ -22,6 +22,7 @@ namespace _17bnag.Log
         }
         public LogOn Log { get; set; }
         public User LogOnOne { get; set; }
+        public IList<User> Users { get; set; }
         public PageResult OnGet()
         {
             base.SetLogOnStatus();

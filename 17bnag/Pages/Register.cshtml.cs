@@ -44,6 +44,7 @@ namespace _17bnag.Pages
                     return Page();
                 }
             }
+            RegisteerOne.Time = DateTime.Now;
             _context.Users.Add(RegisteerOne);
             _context.SaveChanges();
             Cookies();

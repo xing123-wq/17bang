@@ -15,6 +15,10 @@ namespace _17bnag.Layout
         {
             _context = context;
         }
+        public _LayoutModel()
+        {
+
+        }
         public virtual void SetLogOnStatus()
         {
             bool hasUserId = Request.Cookies.TryGetValue(Const.USER_ID, out string userId);
