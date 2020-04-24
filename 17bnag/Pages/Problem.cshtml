@@ -140,18 +140,18 @@
             <nav>
                 @{
                     int currentPageIndex = Convert.ToInt32(Request.Query["Page"]);
-                    int SumProblems = Model.sum;
+                    int SumProblems = Model.sum / Const.PAGE_SIZE;
                 }
                 <ul class="pagination">
                     @if (currentPageIndex > 1)
                     {
                         <li><a href="/Problem?Page=@(currentPageIndex-1)">&lt;&lt;</a></li>
                     }
-                    @for (int i = 1; i < (SumProblems / Const.PAGE_SIZE) + 1; i++)
+                    @for (int i = 1; i <= SumProblems + 1; i++)
                     {
                         <li class="active"><a href="/Problem?Page=@i">@(i)</a></li>
                     }
-                    @if (currentPageIndex < SumProblems / Const.PAGE_SIZE)
+                    @if (currentPageIndex <= SumProblems)
                     {
                         <li><a href="/Problem?Page=@(currentPageIndex+1)">&gt;&gt;</a></li>
                     }
@@ -174,8 +174,6 @@
             <partial name="_RankingList" />
             <partial name="_Article" />
             <partial name="_Advertising" />
-            <div class="modal fade" tabindex="-1" role="dialog" zyf-adinwidget-free-modal="">
-            </div><!-- /.modal -->
         </div>
         <a zyf-global-feedback="" href="/Contact/Us" style="bottom: 132px; right: 339.5px;" class="feedback flag text-center">
             <span class="fa fa-question-circle-o"></span><br>帮助

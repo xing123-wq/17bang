@@ -56,11 +56,11 @@ namespace _17bnag.Data
         }
         public int GetArticle()
         {
-            return PublishArticles.Count() + 1;
+            return PublishArticles.Count();
         }
         public int GetSum()
         {
-            return HelpRelease.Count() + 1;
+            return HelpRelease.Count();
         }
     }
 }

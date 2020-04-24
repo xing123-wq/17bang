@@ -9,25 +9,15 @@
 }
 <h2>User:@PageContext.RouteData.Values["id"]</h2>
 
-@for (int i = 1; i <= 4; i++)
+@for (int i = 1; i < 5; i++)
 {
-    for (int k = 1; k <= 4 - i; k++)
-    {
-        <span>&nbsp;</span>
-    }
-    for (int j = 1; j <= 2 * i - 1; j++)
-    {
-        if (i % 2 == 0)
+    <div style="text-align:center;">
+        @for (int j = 1; j <= i * 2 - 1; j++)
         {
-            <span class="xy" style="color:red">i</span>
-
+            string color = i % 2 == 0 ? "red" : "blue";
+            <span style="color:@color">i</span>
         }
-        else
-        {
-            <span class="xyz" style="color:blue">i</span>
-        }
-    }
-    <br />
+    </div>
 }
 <nav>
     <ul class="pager">
