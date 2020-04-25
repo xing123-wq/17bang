@@ -41,6 +41,7 @@ namespace _17bnag
                 opt.Conventions.AddPageRoute("/Problems/Delete", "/Problems/Delete/{id:int}");
                 opt.Conventions.AddPageRoute("/Problems/Details", "/Problems/Details/{id:int}");
                 opt.Conventions.AddPageRoute("/Problems/Edit", "/Problems/Edit/{id:int}");
+                opt.Conventions.AddPageRoute("/Problem", "/Problem/Page-{id:int}");
 
             });
 

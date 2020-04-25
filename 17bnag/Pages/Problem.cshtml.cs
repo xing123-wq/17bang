@@ -33,7 +33,7 @@ namespace _17bnag.Pages
             //    Problems = GetExclude(Enum.Parse<ProblemStatus>(exclude));
             //}
             pagesize = Const.PAGE_SIZE;
-            pageindex = Convert.ToInt32(Request.Query["Page"]);
+            pageindex = Convert.ToInt32(Request.RouteValues["id"]);
             sum = _context.GetSum();
             Problems = _context.HelpRelease.Include(h => h.Users).ToList();
             Problems = Get(pageindex, pagesize);
