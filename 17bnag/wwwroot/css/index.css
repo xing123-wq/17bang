@@ -310,11 +310,7 @@ a {
 }
 
 .container.visible-md.visible-lg.top-user-message {
-    margin-top: -18px;
-}
-
-.navbar.navbar-default.navbar-fixed-top {
-    position: inherit;
+    margin-top: 56px;
 }
 
 .top-user-message {

@@ -20,6 +20,7 @@ namespace _17bnag.Article
         {
             int articleId = Convert.ToInt32(Request.RouteValues["id"]);
             Articles = _context.GetSngle(articleId);
+            ViewData["title"] = Articles.Title;
             base.SetLogOnStatus();
         }
     }
