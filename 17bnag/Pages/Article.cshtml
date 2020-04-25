@@ -79,21 +79,21 @@
     </div>
     <nav>
         @{
-            int currentPageIndex = Convert.ToInt32(Request.Query["Page"]);
+            int currentPageIndex = Convert.ToInt32(Request.RouteValues["id"]);
             int SumProblems = Model.Sum / Const.PAGE_SIZE;
         }
         <ul class="pagination">
             @if (currentPageIndex > 1)
             {
-                <li><a href="/Article?Page=@(currentPageIndex-1)">&lt;&lt;</a></li>
+                <li><a href="/Article/Page-@(currentPageIndex-1)">&lt;&lt;</a></li>
             }
             @for (int i = 1; i <= SumProblems + 1; i++)
             {
-                <li class="active"><a href="/Article?Page=@i">@(i)</a></li>
+                <li class="active"><a href="/Article/Page-@i">@(i)</a></li>
             }
             @if (currentPageIndex <= SumProblems)
             {
-                <li><a href="/Article?Page=@(currentPageIndex+1)">&gt;&gt;</a></li>
+                <li><a href="/Article/Page-@(currentPageIndex+1)">&gt;&gt;</a></li>
             }
         </ul>
     </nav>

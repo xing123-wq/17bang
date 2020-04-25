@@ -21,7 +21,7 @@ namespace _17bnag.Pages
         public void OnGet()
         {
             Pagesize = Helper.Const.PAGE_SIZE;
-            Pageindex = Convert.ToInt32(Request.Query["Page"]);
+            Pageindex = Convert.ToInt32(Request.RouteValues["id"]);
             Sum = _context.GetArticle();
             articles = _context.PublishArticles.Include(h => h.Author).ToList();
             articles = Get(Pageindex, Pagesize);
