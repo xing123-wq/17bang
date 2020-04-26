@@ -45,7 +45,7 @@ namespace _17bnag
 
             if (!string.IsNullOrEmpty(MovieGenre))
             {
-                //movies = movies.Where(x => x.KeyWord.Name == MovieGenre);
+                movies = movies.Where(x => x.Keywords == MovieGenre);
             }
             Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
             Release = await movies.ToListAsync();

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using _17bnag.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace _17bnag
 {
@@ -42,10 +43,7 @@ namespace _17bnag
                 opt.Conventions.AddPageRoute("/Problems/Details", "/Problems/Details/{id:int}");
                 opt.Conventions.AddPageRoute("/Problems/Edit", "/Problems/Edit/{id:int}");
                 opt.Conventions.AddPageRoute("/Problem", "/Problem/Page-{id:int}");
-
-            });
-
-            //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            })/*.SetCompatibilityVersion(CompatibilityVersion.Version_3_0)*/;
             services.AddMvc()
             .AddSessionStateTempDataProvider();
             //services.AddMvc().AddMvcOptions(opt =>

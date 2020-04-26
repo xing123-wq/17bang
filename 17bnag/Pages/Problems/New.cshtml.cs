@@ -34,7 +34,7 @@ namespace _17bnag.Problems
             _context.HelpRelease.Add(help);
             help.UserId = Convert.ToInt32(Request.Cookies[Const.USER_ID]);
             await _context.SaveChangesAsync();
-            return RedirectToPage("/Problem");
+            return RedirectToPage("/Problem", new { id = 1 });
         }
 
     }
