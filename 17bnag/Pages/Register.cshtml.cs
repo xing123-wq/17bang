@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using _17bnag.Data;
 using _17bnag.Entitys;
 using _17bnag.Helper;
@@ -19,9 +20,7 @@ namespace _17bnag.Pages
         {
             _context = context;
         }
-
         public User RegisteerOne { get; set; }
-        public Register Register { get; set; }
         public PageResult OnGet()
         {
             base.SetLogOnStatus();
@@ -44,13 +43,23 @@ namespace _17bnag.Pages
                     return Page();
                 }
             }
+            if (RegisteerOne.inviter != user.inviter)
+            {
+                ModelState.AddModelError(Const.REGISTER_inviter, "* 没有这个邀请人");
+                return Page();
+            }
+            if (user.Invitationcode != RegisteerOne.Invitationcode)
+            {
+                ModelState.AddModelError(Const.REGISTER_INVITATIONCODE, "* 邀请码不正确");
+                return Page();
+            }
             RegisteerOne.Time = DateTime.Now;
+            RegisteerOne.Invitationcode = StringExtension.GenerateRandomNumber(4);
             _context.Users.Add(RegisteerOne);
             _context.SaveChanges();
             Cookies();
             GetUrl();
             return Page();
-
         }
         public User GetLog(string name)
         {

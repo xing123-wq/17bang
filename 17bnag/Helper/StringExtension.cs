@@ -26,5 +26,20 @@ namespace _17bnag.Helper
                 return sBuilder.ToString();
             }
         }
+        static Random random = new Random();
+        private static char[] constant = "1234567890".ToArray();
+        public static string GenerateRandomNumber(int length)
+        {
+            if (length > 4 || 4 < length)
+            {
+                throw new ArgumentException("字符串长度不能超过4");
+            }
+            StringBuilder newRandom = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+                newRandom.Append(constant[random.Next(length)]);
+            }
+            return newRandom.ToString();
+        }
     }
 }

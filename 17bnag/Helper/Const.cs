@@ -15,8 +15,10 @@ namespace _17bnag.Helper
         public const string LOGON_LOGONPASSWORD = "LogOnOne.Password";
         public const string LOGON_REMEMBERME = "LogOnOne.RememberMe";
 
-        public const string REGISTER_PASSWORD = "RegisterOn.Password";
+        public const string REGISTER_PASSWORD = "RegisteerOne.Password";
         public const string REGISTER_NAME = "RegisteerOne.Name";
+        public const string REGISTER_INVITATIONCODE = "RegisteerOne.Invitationcode";
+        public const string REGISTER_inviter = "RegisteerOne.inviter";
 
         public const string TEMP_MODELSTATE = "TempModelstate";
 

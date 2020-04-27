@@ -37,15 +37,15 @@
                             <a href="/FAQ/Account#invite"><span class="fa fa-question-circle"></span> 为什么需要邀请</a>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Register.inviter"></label>（* 必填，
+                            <label asp-for="RegisteerOne.inviter"></label>（* 必填，
                             <a href="/User/Inviters" class="text-info" data-toggle="tooltip" title="" data-original-title="点击由系统推荐">没有邀请人</a>）
-                            <input class="form-control" asp-for="Register.inviter" placeholder="他的用户名，模糊查询只能从头开始" type="text" />
-                            <span asp-validation-for="Register.inviter" style="color:red"></span>
+                            <input class="form-control" asp-for="RegisteerOne.inviter" placeholder="他的用户名，模糊查询只能从头开始" type="text" />
+                            <span asp-validation-for="RegisteerOne.inviter" style="color:red"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Register.Invitationcode"></label>
-                            <input class="form-control" asp-for="Register.Invitationcode" placeholder="4位数字" type="text">
-                            <span asp-validation-for="Register.Invitationcode" style="color:red"></span>
+                            <label asp-for="RegisteerOne.Invitationcode"></label>
+                            <input class="form-control" asp-for="RegisteerOne.Invitationcode" placeholder="4位数字" type="text">
+                            <span asp-validation-for="RegisteerOne.Invitationcode" style="color:red"></span>
                         </div>
                     </section>
                     <div class="form-group">
@@ -59,16 +59,16 @@
                         <span asp-validation-for="RegisteerOne.Password" style="color:red"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Register.ValidatePassword"></label>
-                        <input class="form-control" placeholder="和密码相同" asp-for="Register.ValidatePassword" type="password">
-                        <span asp-validation-for="Register.ValidatePassword" style="color:red"></span>
+                        <label asp-for="RegisteerOne.ValidatePassword"></label>
+                        <input class="form-control" placeholder="和密码相同" asp-for="RegisteerOne.ValidatePassword" type="password">
+                        <span asp-validation-for="RegisteerOne.ValidatePassword" style="color:red"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Register.VerificationCode"></label>
+                        <label asp-for="RegisteerOne.VerificationCode"></label>
                         <br>
                         <span>
-                            <input class="form-control" style="width:80px; display: inline;" type="text" asp-for="Register.VerificationCode">
-                            <span asp-validation-for="Register.VerificationCode" style="color:red"></span>
+                            <input class="form-control" style="width:80px; display: inline;" type="text" asp-for="RegisteerOne.VerificationCode">
+                            <span asp-validation-for="RegisteerOne.VerificationCode" style="color:red"></span>
                             <img style="vertical-align: middle; display: none;">
                             <a name="imageCode">
 
