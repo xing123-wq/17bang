@@ -9,7 +9,7 @@ namespace _17bnag.TagHelpers
     /// <summary>
     /// pager指定tag的名字， Attribute指定tag里可以包含的属性
     /// </summary>
-    [HtmlTargetElement("datetime", Attributes = "pageIndex, path")]
+    [HtmlTargetElement("datetime"/*, Attributes = "pageIndex, path"*/)]
     ///必须继承自TagHelper
     public class PagerTagHelper : TagHelper
     {
@@ -20,14 +20,14 @@ namespace _17bnag.TagHelpers
             output.TagName = "small";   //原生标签名
 
             //分别取出pageIndex和path的值
-            object pageIndex = context.AllAttributes["pageIndex"].Value;
-            //output.Attributes.Remove(context.AllAttributes["pageIndex"]);
+            //object pageIndex = context.AllAttributes["pageIndex"].Value;
+            ////output.Attributes.Remove(context.AllAttributes["pageIndex"]);
 
-            object path = context.AllAttributes["path"].Value;
-            //output.Attributes.RemoveAll("path");
+            //object path = context.AllAttributes["path"].Value;
+            ////output.Attributes.RemoveAll("path");
 
-            //设置a标签里href的值
-            output.Attributes.Add("href", $"{path}/Page-{pageIndex}");
+            ////设置a标签里href的值
+            //output.Attributes.Add("href", $"{path}/Page-{pageIndex}");
 
             base.Process(context, output);
         }
