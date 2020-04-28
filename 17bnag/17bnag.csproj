@@ -169,6 +169,11 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Shared\Components\" />
+    <Folder Include="Pages\ViewComponent\" />
+  </ItemGroup>
+
 
 
 </Project>
