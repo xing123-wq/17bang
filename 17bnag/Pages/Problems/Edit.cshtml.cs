@@ -60,8 +60,7 @@ namespace _17bnag
                     throw;
                 }
             }
-
-            return RedirectToPage("/Problem");
+            return RedirectToPage("/Problem", new { id = 1 });
         }
 
         private bool MovieExists(int id)

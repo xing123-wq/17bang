@@ -52,7 +52,7 @@ namespace _17bnag
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("/Problem");
+            return RedirectToPage("/Problem", new { id = 1 });
         }
     }
 }
