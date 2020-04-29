@@ -9,11 +9,17 @@
     <title>@ViewData["title"]</title>
 }
 <link href="~/css/Register.css" rel="stylesheet" />
+@*<p>
+        small
+        <small>@DateTime.Now</small>
+    </p>
+    <p>
+        datetime
+        <datetime>@DateTime.Now</datetime>
+    </p>*@
 <p>
-    small
-    <small>@DateTime.Now</small>
+    <small><span class="glyphicon glyphicon-calendar"></span>2019年7月8日 14点59分</small>
 </p>
 <p>
-    datetime
-    <datetime>@DateTime.Now</datetime>
+    <datetime asp-showicon="ture" asp-only="date">@DateTime.Now.ToString("yyyy年MM月dd HH时mm分ss秒") </datetime>
 </p>
