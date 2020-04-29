@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using _17bnag.Entitys;
 using System.Numerics;
+using _17bnag.Model.Log;
 
 namespace _17bnag.Data
 {
@@ -53,6 +54,7 @@ namespace _17bnag.Data
               .HasMany<PublishArticle>(g => g.PublishArticles)
                 .WithOne(s => s.Author)
                 .HasForeignKey(s => s.AuthorId);
+        
         }
         public int GetArticle()
         {

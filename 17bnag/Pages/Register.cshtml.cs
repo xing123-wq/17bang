@@ -43,18 +43,9 @@ namespace _17bnag.Pages
                     return Page();
                 }
             }
-            if (RegisteerOne.inviter != user.inviter)
-            {
-                ModelState.AddModelError(Const.REGISTER_inviter, "* 没有这个邀请人");
-                return Page();
-            }
-            if (user.Invitationcode != RegisteerOne.Invitationcode)
-            {
-                ModelState.AddModelError(Const.REGISTER_INVITATIONCODE, "* 邀请码不正确");
-                return Page();
-            }
+
             RegisteerOne.Time = DateTime.Now;
-            RegisteerOne.Invitationcode = StringExtension.GenerateRandomNumber(4);
+            RegisteerOne.OnModel.Invitationcode = StringExtension.GenerateRandomNumber(4);
             _context.Users.Add(RegisteerOne);
             _context.SaveChanges();
             Cookies();
