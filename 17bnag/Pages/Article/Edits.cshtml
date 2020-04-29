@@ -7,5 +7,223 @@
 @section Description{
 
 }
-<h2>Edit:@PageContext.RouteData.Values["id"]</h2>
+<link rel=" stylesheet" href="~/css/Register.css" />
+<script src="~/kindeditor/lang/zh-CN.js"></script>
+<script src="~/kindeditor/kindeditor-all.js"></script>
+<link href="~/kindeditor/themes/default/default.css" rel="stylesheet" />
+<link href="~/kindeditor/plugins/code/prettify.css" rel="stylesheet" />
+<script src="~/kindeditor/plugins/code/prettify.js"></script>
+<script>
+    KindEditor.ready(function (K) { window.editor = K.create('#editor_id'); });
+       KindEditor.ready(function (K) {
+        window.editor = K.create('#MyEidtor', {
+            fileManagerJson: '@Url.Action("KindFileManager", "Editor")',
+            allowFileManager: true,
+            autoHeightMode : true,
 
+        });
+     });
+</script>
+<style>
+    #profile-no-picture #camera {
+        font-size: 48px;
+    }
+
+    #profile-no-picture {
+        height: 200px;
+        width: 100%;
+        padding-top: 50px;
+        text-align: center;
+    }
+
+    .field-validation-error {
+        color: #b94a48;
+    }
+</style>
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-9">
+            <h2 class="page-header">
+                <span class="fa fa-pencil-square-o " aria-hidden="true"></span> 文章发布
+            </h2>
+            <div zyf-old-draft-check="">
+                <div class="yellow-highlight" style="padding:10px 10px 0 10px; margin-bottom:15px;">
+                    <p>你还有未使用的草稿（<a href="/Draft">查看全部</a>）。</p>
+                    <p>点击 <a href="/Article/Edit/37"><span class="fa fa-refresh"></span>这里</a> 使用最近一次生成的草稿。</p>
+                </div>
+            </div>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="Article.Title"></label>
+                    <input class="form-control" placeholder="来一个醒目的标题吧" type="text" asp-for="Article.Title">
+                    <span class="field-validation-valid" asp-validation-for="Article.Title"></span>
+                </div>
+
+                <label asp-for="Article.Body"></label>
+                <textarea asp-for="Article.Body" class="form-control" style="width:100%;height:450px;" id="MyEidtor"></textarea>
+                <span class="field-validation-valid" asp-validation-for="Article.Body"></span>
+
+                <div class="form-group">
+                    <label asp-for="Article.Series"></label>
+                    <a href="/Category/Manage" class="pull-right"><span class="fa fa-cog"></span>  管理</a>
+                    <div class="input-group">
+                        <select class="form-control" data-val="true" data-val-number="字段 SelectedCategoryId 必须是一个数字。" data-val-required="SelectedCategoryId 字段是必需的。" id="SelectedCategoryId" name="SelectedCategoryId" zyf-categories="">
+                            <option value="10">默认分类</option>
+                        </select>
+                        <a class="btn input-group-addon" data-toggle="modal" data-target="#new-category">
+                            <span class="fa fa-plus" data-toggle="tooltip" title="" data-original-title="添加"></span> 新系列
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Article.keywords"></label>
+                    <input class="form-control" placeholder="用空格分割，总长度不超过25个字符" asp-for="Article.keywords">
+                    <span class="field-validation-valid" asp-validation-for="Article.keywords"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Article.Digest"></label>
+                    <textarea class="form-control" placeholder="不填写的话，系统会截取文章前255字作为摘要显示" asp-for="Article.Digest"></textarea>
+                    <span class="field-validation-valid" asp-validation-for="Article.Digest"></span>
+                </div>
+                <div class="form-group">
+                    <a zyf-ad-delete="" class="text-warning pull-right"><span class="fa fa-remove"></span> 删除</a>
+                    <label asp-for="Article.UsedAds"></label>
+                    <select class="form-control" id="AdContent_SelectedHistory" name="AdContent.SelectedHistory" zyf-ad-in-widget-history-select="">
+                        <option value="">----- 使用新的广告 -----</option>
+                        <option value="5">雅芳比女人更了解女人</option>
+                    </select>
+                </div>
+                <ul class="hide" zyf-ad-in-widget-history-url="">
+                    <li id="5">http://task.zyfei.net/</li>
+                </ul>
+                <section style="padding:10px 20px; margin-bottom:20px;" class="yellow-highlight" zyf-ad-content-container="">
+                    <div class="text-right checkbox">
+                        <label>
+                            <input data-val="true" data-val-required="Edit 字段是必需的。" id="AdContent_Edit" name="AdContent.Edit" type="checkbox" value="true" zyf-ad-content-edit=""><input name="AdContent.Edit" type="hidden" value="false"> 修改
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Article.text"></label>
+                        <input class="form-control" placeholder="最多不超过24个字符" asp-for="Article.text">
+                        <span class="field-validation-valid" asp-validation-for="Article.text"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Article.Interlinkage"></label>
+                        <input class="form-control" placeholder="http或https开头的网址" asp-for="Article.Interlinkage">
+                        <span class="field-validation-valid" asp-validation-for="Article.Interlinkage"></span>
+                    </div>
+                </section>
+                <div class="submit">
+                    <input type="submit" class="btn btn-primary loading" value="发布">
+                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="存为草稿">保存</button>
+                    <small class="text-success" zyf-article-draft-remind=""></small>
+                    <input type="hidden" name="draftId" zyf-draft-hide-id="">
+                </div>
+            </form>
+            <div class="modal fade" id="new-category" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form action="/Category/_New" method="post" novalidate="novalidate">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title"><span class="fa fa-plus"></span> 添加新的系列</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>父系列：</label>
+                                    <select class="form-control" data-val="true" data-val-number="字段 SelectedCategoryId 必须是一个数字。" id="SelectedCategoryId" name="SelectedCategoryId" zyf-categories="">
+                                        <option value="">--------------</option>
+                                        <option value="10">默认分类</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>名称：（* 必填）</label>
+                                    <input class="form-control" data-val="true" data-val-length="* 名称的长度不能大于25" data-val-length-max="25" data-val-required="* 名称不能为空" id="Name" name="Name" placeholder="不能为空，25字符以内" type="text" value="" zyf-new-category-name="">
+                                    <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>描述：</label>
+                                    <textarea class="form-control" cols="20" data-val="true" data-val-length="* 描述的长度不能大于255" data-val-length-max="255" id="Description" name="Description" placeholder="255个字符以内，简单描述系列的目的、内容等" rows="2"></textarea>
+                                    <span class="field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" zyf-new-category-submit="" zyf-submit-once="">提交</button>
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
+        <div class="col-md-3" style="margin-top: 40px;">
+            <div zyf-newbie-reminder="" class="widget yellow-highlight">
+                <h4><span class="fa fa-list"></span> 新手任务</h4>
+                <p zyf-newbie-tasks-done="" class="hide text-right">
+                    <span class="fa fa-thumbs-o-up text-success"></span> 全部完成！
+                    <a zyf-newbie-reminder-hide="" href="#" class="text-primary">不再显示</a>
+                </p>
+                <hr>
+                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 填写：<a href="/Contact/New?prepage=%2fArticle%2fNew">联系方式</a></p>
+                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 激活：<a href="/Email/Activate?prepage=%2fArticle%2fNew">Email</a></p>
+                <p><span class="fa fa-square-o fa-fw"></span> 邀请：<a href="/Invite">我的小伙伴</a></p>
+                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 参加：<a href="/Exam/Newbie">新人测试</a></p>
+                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 发布：<a href="/Problem/New">第一个求助</a></p>
+                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 尝试：<a href="/Problem"> 第一次协助</a></p>
+                <p>
+                    <span class="fa fa-check-square-o text-success fa-fw"></span> 获得：若干
+                    <a href="/FAQ/Money" data-toggle="tooltip" class="credit" title="" data-original-title="点击了解">
+                        <span class="iconfont icon-money"></span> 帮帮币
+                    </a>
+                </p>
+            </div>
+            <a href="/Profile/Write?prepage=%2fArticle%2fNew" class="btn pull-right" zyf-profile-edit="">
+                <span class="fa fa-pencil-square-o"></span>
+                <span>修改</span>
+            </a>
+            <div class="img-responsive img-thumbnail" id="profile-no-picture">
+                <span class="fa fa-picture-o" id="camera"></span>
+                <div id="wait">
+                    等待上传中<span class="fa fa-hourglass-half"></span>...
+                </div>
+            </div>
+            <div class="user-show">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label>用户：</label>
+                        <span data-toggle="tooltip" title="" data-original-title="捐赠 9.9">
+                            <a href="/User/7" zyf-show-contact="7" style="color:#DCB962">
+                                DK
+                            </a>
+                        </span>
+                        <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
+                            <span>④</span>
+                        </a>
+                        <a href="/User/ChangeName" class="btn" zyf-username-change="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
+                    </div>
+                    <input type="hidden" value="7" zyf-profile-user-id="">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label>性别：</label>
+                        男
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label>生日：</label>
+                        1991 <span>年</span>
+                    </div>
+                </div>
+                <div>
+                    <label>关注：</label>
+                    <p>
+                        <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">Python</span>
+                        <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 3 次">编程开发语言</span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
