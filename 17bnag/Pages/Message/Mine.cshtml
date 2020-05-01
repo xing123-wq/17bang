@@ -1,0 +1,611 @@
+﻿@page
+@model _17bnag.Pages.Message.MineModel
+@{
+    Layout = "~/Pages/Layout/_DualColumn.cshtml";
+}
+@section Description
+{
+}
+<link href="~/css/Register.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-md-9">
+        <h2 class="page-header">
+
+            <span class="fa fa-bell" aria-hidden="true"></span> 我的消息
+
+        </h2>
+
+        <div>
+            <form action="/Message/Mine" method="post" novalidate="novalidate">
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-xs-12 col-sm-8 col-md-6">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" zyf-select-all=""> 全选
+                        </label>
+                        <button type="submit" value="Read" class="btn btn-primary btn-xs" zyf-named-submit-once="">
+                            <span class="fa fa-check-circle"></span> 已读
+                        </button>
+                        <button type="submit" value="Delete" class="btn btn-default btn-xs" zyf-named-submit-once="">
+                            <span class="fa fa-times-circle"></span> 删除
+                        </button>
+                    </div>
+                    <input type="hidden" name="submit" value="" zyf-trigger="">
+                </div>
+                <div class="row visible-sm visible-md visible-lg">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-1">时间</div>
+                    <div class="col-sm-2">
+                        <a zyf-message-filter="" data-toggle="tooltip" title="" data-original-title="筛选/退订">订阅种类 <span class="fa fa-cog"></span></a>
+                    </div>
+                    <div class="col-sm-8">内容</div>
+                </div>
+                <hr class="thin visible-sm visible-md visible-lg">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_0__Selected" name="Items[0].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[0].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_0__Id" name="Items[0].Id" type="hidden" value="27742">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月29日 14点41分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <a href="/Message/Unsubscribe?kind=Admin" zyf-message-unsubscribe="">
+                            <span class="fa fa-times-circle" data-toggle="tooltip" title="" data-original-title="退订"></span>
+                        </a>
+                        通知
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        很抱歉，<recipient>你</recipient>在2020年04月29日 14点41分左右对文章<a class="text-info" href="http://17bang.ren/Article/568">源栈培训：ASP.NET Core：PageFil...</a>的“赞”未能成功完成。如果有必要的话，你可以重新操作。
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_1__Selected" name="Items[1].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[1].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_1__Id" name="Items[1].Id" type="hidden" value="27728">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月28日 11点04分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <a href="/Message/Unsubscribe?kind=Admin" zyf-message-unsubscribe="">
+                            <span class="fa fa-times-circle" data-toggle="tooltip" title="" data-original-title="退订"></span>
+                        </a>
+                        通知
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        很抱歉，<recipient>你</recipient>在2020年04月28日 11点04分左右对文章<a class="text-info" href="http://17bang.ren/Article/549">RazorPage：ViewData：从Model...</a>的“赞”未能成功完成。如果有必要的话，你可以重新操作。
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_2__Selected" name="Items[2].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[2].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_2__Id" name="Items[2].Id" type="hidden" value="27710">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月25日 20点15分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <a href="/Message/Unsubscribe?kind=Admin" zyf-message-unsubscribe="">
+                            <span class="fa fa-times-circle" data-toggle="tooltip" title="" data-original-title="退订"></span>
+                        </a>
+                        通知
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        很抱歉，<recipient>你</recipient>在2020年04月25日 20点15分左右对文章<a class="text-info" href="http://17bang.ren/Article/546">源栈培训：ASP.NET Core：RazorPa...</a>的“赞”未能成功完成。如果有必要的话，你可以重新操作。
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_3__Selected" name="Items[3].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[3].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_3__Id" name="Items[3].Id" type="hidden" value="27707">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月25日 20点13分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <a href="/Message/Unsubscribe?kind=Admin" zyf-message-unsubscribe="">
+                            <span class="fa fa-times-circle" data-toggle="tooltip" title="" data-original-title="退订"></span>
+                        </a>
+                        通知
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        很抱歉，<recipient>你</recipient>在2020年04月25日 20点13分左右对文章的评论<a class="text-info" href="http://17bang.ren/Article/656">写的好????</a>的“赞”未能成功完成。如果有必要的话，你可以重新操作。
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_4__Selected" name="Items[4].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[4].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_4__Id" name="Items[4].Id" type="hidden" value="27559">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月09日 16点59分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <span class="fa fa-times-circle text-muted" data-toggle="tooltip" title="" data-original-title="已退订"></span>
+                        有新回复
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        文章的评论<a class="text-info" href="http://17bang.ren/Article/534">写得好</a>有<a class="text-info" href="http://17bang.ren/User/4280" zyf-show-contact="4280">阿泰12</a>的新回复：<span class="text-muted">节点</span>
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_5__Selected" name="Items[5].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[5].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_5__Id" name="Items[5].Id" type="hidden" value="27558">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月09日 16点59分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <span class="fa fa-times-circle text-muted" data-toggle="tooltip" title="" data-original-title="已退订"></span>
+                        有新回复
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        文章的评论<a class="text-info" href="http://17bang.ren/Article/534">写得好</a>有<a class="text-info" href="http://17bang.ren/User/4274" zyf-show-contact="4274">qwe123</a>的新回复：<span class="text-muted">你才发现</span>
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_6__Selected" name="Items[6].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[6].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_6__Id" name="Items[6].Id" type="hidden" value="27556">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月09日 16点58分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <a href="/Message/Unsubscribe?kind=Admin" zyf-message-unsubscribe="">
+                            <span class="fa fa-times-circle" data-toggle="tooltip" title="" data-original-title="退订"></span>
+                        </a>
+                        通知
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        很抱歉，<recipient>你</recipient>在2020年04月09日 16点58分左右对文章的评论<a class="text-info" href="http://17bang.ren/Article/534">写得好</a>的“赞”未能成功完成。如果有必要的话，你可以重新操作。
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_7__Selected" name="Items[7].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[7].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_7__Id" name="Items[7].Id" type="hidden" value="27540">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月07日 20点19分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <span class="fa fa-times-circle text-muted" data-toggle="tooltip" title="" data-original-title="已退订"></span>
+                        刷新
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        <recipient>你</recipient>因为登录获得系统随机分配给你的 <span class="fa fa-star text-success"></span><a class="text-info" href="http://17bang.ren/FAQ/Bean">帮帮豆</a> 1 枚，可用于感谢赞赏等。
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_8__Selected" name="Items[8].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[8].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_8__Id" name="Items[8].Id" type="hidden" value="27515">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月05日 21点41分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <span class="fa fa-times-circle text-muted" data-toggle="tooltip" title="" data-original-title="已退订"></span>
+                        刷新
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        <recipient>你</recipient>因为登录获得系统随机分配给你的 <span class="fa fa-star text-success"></span><a class="text-info" href="http://17bang.ren/FAQ/Bean">帮帮豆</a> 3 枚，可用于感谢赞赏等。
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row text-bold">
+                    <div class="col-xs-2 col-sm-1">
+
+                        <input checked="checked" data-val="true" data-val-required="Selected 字段是必需的。" id="Items_9__Selected" name="Items[9].Selected" type="checkbox" value="true" zyf-in-select-all=""><input name="Items[9].Selected" type="hidden" value="false">
+                        <input data-val="true" data-val-number="字段 Id 必须是一个数字。" data-val-required="Id 字段是必需的。" id="Items_9__Id" name="Items[9].Id" type="hidden" value="27502">
+                    </div>
+                    <div class="col-xs-2 col-sm-1" data-toggle="tooltip" title="" data-original-title="2020年04月04日 14点03分">
+                        <small>
+                            <span class="fa fa-calendar"></span>
+                        </small>
+                    </div>
+                    <div class="col-xs-8 col-sm-2">
+                        <span class="fa fa-times-circle text-muted" data-toggle="tooltip" title="" data-original-title="已退订"></span>
+                        刷新
+                    </div>
+                    <div class="col-xs-12 col-sm-8">
+                        <recipient>你</recipient>因为登录获得系统随机分配给你的 <span class="fa fa-star text-success"></span><a class="text-info" href="http://17bang.ren/FAQ/Bean">帮帮豆</a> 4 枚，可用于感谢赞赏等。
+                    </div>
+                </div>
+                <hr class="thin dashed">
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-xs-12 col-sm-8 col-md-6">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" zyf-select-all=""> 全选
+                        </label>
+                        <button type="submit" value="Read" class="btn btn-primary btn-xs" zyf-named-submit-once="">
+                            <span class="fa fa-check-circle"></span> 已读
+                        </button>
+                        <button type="submit" value="Delete" class="btn btn-default btn-xs" zyf-named-submit-once="">
+                            <span class="fa fa-times-circle"></span> 删除
+                        </button>
+                    </div>
+                    <input type="hidden" name="submit" value="" zyf-trigger="">
+                </div>
+            </form>
+
+            <nav>
+                <ul class="pagination">
+                    <li class="active"><a id="1" href="/Message/Mine/Page-1">1</a></li>
+                    <li class=""><a id="2" href="/Message/Mine/Page-2">2</a></li>
+                    <li><a id="2" href="/Message/Mine/Page-2">&gt;&gt;</a></li>
+                </ul>
+            </nav>
+        </div>
+        <form action="/Message/_Filter" method="post">
+            <div zyf-message-filter-modal="" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title"><strong style="font-size: 120%"><span class="fa fa-bullhorn"></span> 消息</strong> 的 <span class="text-primary"><span class="fa fa-filter"></span> 筛选</span> 和 <span class="fa fa-times-circle text-muted"></span> 退订 </h4>
+                        </div>
+                        <div class="modal-body" zyf-message-filter-items="">
+
+                            <table class="table no-head-line">
+                                <tbody>
+                                    <tr>
+                                        <th>账户：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="11" type="checkbox" name="filter" value="11">
+                                                留言
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="12" type="checkbox" name="filter" value="12">
+                                                邀请
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="13" type="checkbox" name="filter" value="13">
+                                                自动关注
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>求助：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="21" type="checkbox" name="filter" value="21">
+                                                有新应答
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="22" type="checkbox" name="filter" value="22">
+                                                邀请帮忙
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="24" type="checkbox" name="filter" value="24">
+                                                协助开始
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="23" type="checkbox" name="filter" value="23">
+                                                自动撤销
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="25" type="checkbox" name="filter" value="25">
+                                                酬谢/评价
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>总结：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="31" type="checkbox" name="filter" value="31">
+                                                有新评论
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="32" type="checkbox" name="filter" value="32">
+                                                被点赞
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="33" type="checkbox" name="filter" value="33">
+                                                被查看
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>督促：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="100" type="checkbox" name="filter" value="100">
+                                                作业
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="110" type="checkbox" name="filter" value="110">
+                                                目标
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>建议：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="41" type="checkbox" name="filter" value="41">
+                                                有新评论
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="42" type="checkbox" name="filter" value="42">
+                                                被点赞
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="43" type="checkbox" name="filter" value="43">
+                                                奖励
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>文章：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="51" type="checkbox" name="filter" value="51">
+                                                有新评论
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="52" type="checkbox" name="filter" value="52">
+                                                被点赞
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="53" type="checkbox" name="filter" value="53">
+                                                有打赏
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>评论：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="61" type="checkbox" name="filter" value="61">
+                                                有新回复
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="62" type="checkbox" name="filter" value="62">
+                                                被点赞
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="63" type="checkbox" name="filter" value="63">
+                                                设为精选
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>帮帮币：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="71" type="checkbox" name="filter" value="71">
+                                                掉落
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="72" type="checkbox" name="filter" value="72">
+                                                被人捡走
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="73" type="checkbox" name="filter" value="73">
+                                                交易
+                                            </label>
+                                        </td>
+
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="74" type="checkbox" name="filter" value="74">
+                                                捐赠
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>帮帮豆：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="81" type="checkbox" name="filter" value="81">
+                                                刷新
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>管理员：</th>
+                                        <td>
+                                            <label class="checkbox-inline">
+                                                <input zyf-filter-item-checked="91" type="checkbox" name="filter" value="91">
+                                                通知
+                                            </label>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <label class="checkbox-inline pull-left" style="padding-left: 100px"><input zyf-filter-select-all="" type="checkbox">全选</label>
+                            <a zyf-message-unsubscribe-reset="" class="btn btn-xs btn-warning pull-left hide" href="/Message/SubscribeAll" title="" data-toggle="tooltip" style="margin-left: 20px;" data-original-title="订阅所有通知">恢复默认</a>
+                            <label class="radio-inline" zyf-message-filter-choice="">
+                                <input type="radio" value="filter" checked="" name="filterOrUnsubscribe"> 筛选
+                            </label>
+                            <label class="radio-inline" zyf-message-unsubscribe-choice="">
+                                <input type="radio" value="unsubscribe" name="filterOrUnsubscribe"> 退订
+                            </label>
+                            <button type="submit" zyf-index-filter-submit="" class="btn btn-primary" style="margin-left:30px;">提交</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </form>
+    </div>
+    <div class="col-md-3" style="margin-top: 40px;">
+        <div zyf-newbie-reminder="" class="widget yellow-highlight">
+            <h4><span class="fa fa-list"></span> 新手任务</h4>
+            <p zyf-newbie-tasks-done="" class="hide text-right">
+                <span class="fa fa-thumbs-o-up text-success"></span> 全部完成！
+                <a zyf-newbie-reminder-hide="" href="#" class="text-primary">不再显示</a>
+            </p>
+            <hr>
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 填写：<a href="/Contact/New?prepage=%2fMessage%2fMine">联系方式</a></p>
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 激活：<a href="/Email/Activate?prepage=%2fMessage%2fMine">Email</a></p>
+            <p><span class="fa fa-square-o fa-fw"></span> 邀请：<a href="/Invite">我的小伙伴</a></p>
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 参加：<a href="/Exam/Newbie">新人测试</a></p>
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 发布：<a href="/Problem/New">第一个求助</a></p>
+            <p><span class="fa fa-square-o fa-fw"></span> 尝试：<a href="/Problem"> 第一次协助</a></p>
+            <p>
+                <span class="fa fa-check-square-o text-success fa-fw"></span> 获得：若干
+                <a href="/FAQ/Money" data-toggle="tooltip" class="credit" title="" data-original-title="点击了解">
+                    <span class="iconfont icon-money"></span> 帮帮币
+                </a>
+            </p>
+        </div>
+        <a href="/Profile/Write?prepage=%2fMessage%2fMine" class="btn pull-right" zyf-profile-edit="">
+            <span class="fa fa-pencil-square-o"></span>
+            <span>修改</span>
+        </a>
+        <div class="img-responsive img-thumbnail" id="profile-no-picture">
+            <span class="fa fa-picture-o" id="camera"></span>
+            <div id="wait">
+                等待上传中<span class="fa fa-hourglass-half"></span>...
+            </div>
+        </div>
+        <div class="user-show">
+            <div class="row">
+                <div class="col-xs-12">
+                    <label>用户：</label>
+                    <span data-toggle="tooltip" title="" data-original-title="">
+                        <a href="/User/4280" zyf-show-contact="4280" style="color:">
+                            阿泰12
+                        </a>
+                    </span>
+                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="中级学徒">
+                        <span>②</span>
+                    </a>
+                    <a href="/User/ChangeName" class="btn" zyf-username-change="4280"><span class="fa fa-pencil-square-o"></span> 修改</a>
+                </div>
+                <input type="hidden" value="4280" zyf-profile-user-id="">
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label>性别：</label>
+                    男
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label>生日：</label>
+                    1957 <span>年</span>
+                    10 <span>月</span>
+                    天秤座
+                </div>
+            </div>
+            <div>
+                <label>关注：</label>
+                <p>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 55 次">顾问咨询</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 68 次">工具软件</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 13 次">CSS</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 32 次">html</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 18 次">SQL</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 55 次">Javascript</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 242 次">编程开发语言</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 96 次">C#</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
