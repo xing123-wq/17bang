@@ -37,7 +37,17 @@
                         作者：
                         <a href="/Article/User-@Model.Articles.AuthorId">@Model.Articles.Author.Name</a>
                     </span>
-                    <a href="/Article/Edits/@Model.Articles.Id" @*class="hide"*@ style="margin-left:14px;" data-author-id="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
+                    @{
+                        int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
+                    }
+                    @if (Model.Articles.AuthorId != userId)
+                    {
+                        <a href="/Article/Edits/@Model.Articles.Id" class="hide" style="margin-left:14px;" data-author-id="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
+                    }
+                    else
+                    {
+                        <a href="/Article/Edits/@Model.Articles.Id" style="margin-left:14px;" data-author-id="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
+                    }
                 </span>
                 <div style="clear:both; word-break:break-all; padding-top:20px;">
                     <p>
