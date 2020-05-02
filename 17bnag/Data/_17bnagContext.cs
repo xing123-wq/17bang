@@ -23,7 +23,7 @@ namespace _17bnag.Data
 
         internal PublishArticle GetSngle(int id)
         {
-            return PublishArticles.SingleOrDefault(a => a.Id == id);
+            return PublishArticles.SingleOrDefault(u => u.Id == id);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -54,7 +54,7 @@ namespace _17bnag.Data
               .HasMany<PublishArticle>(g => g.PublishArticles)
                 .WithOne(s => s.Author)
                 .HasForeignKey(s => s.AuthorId);
-        
+
         }
         public int GetArticle()
         {

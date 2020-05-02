@@ -66,7 +66,7 @@
                                 <li><a href="/Plan?my=s&amp;full=False&amp;due=False&amp;expire=True&amp;Frozen=False"><span class="fa fa-list fa-fw"></span> 我的督促</a></li>
                             </ul>
                         </li>
-                        @if (@ViewData["UserName"] == null)
+                        @if (ViewData["UserName"] == null)
                         {
                             <li class="dropdown">
                                 <a href="/Article" class="dropdown-toggle" data-toggle="dropdown"><span class="iconfont icon-articles"></span> 文章</a>

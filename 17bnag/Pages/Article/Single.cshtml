@@ -15,7 +15,7 @@
         <div class="col-md-8">
             <img src="~/img/源栈上课啦.jpg" class="img-responsive" style="margin-bottom:20px;" />
             <div class="text-primary h2-inline">
-                <span class="iconfont icon-article"></span> @Model.Articles.Title
+                <span class="iconfont icon-article"></span> @Model.Article.Title
             </div>
             <hr>
             <span style="top:60px;" class="visible-xs-inline visible-sm-inline flag">
@@ -28,25 +28,25 @@
                     <small class="text-muted" zyf-datetime="">
                         <span>
                             <span class="iconfont icon-article"></span>
-                            <span>@Model.Articles.PublishTime</span>
+                            <span>@Model.Article.PublishTime</span>
                         </span>
                     </small>
                 </span>
                 <span class="pull-right">
                     <span zyf-article-arthor="">
                         作者：
-                        <a href="/Article/User-@Model.Articles.AuthorId">@Model.Articles.Author.Name</a>
+                        <a href="/Article/User-@Model.Article.AuthorId">@Model.Article.Author.Name</a>
                     </span>
                     @{
                         int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
                     }
-                    @if (Model.Articles.AuthorId != userId)
+                    @if (Model.Article.AuthorId != userId)
                     {
-                        <a href="/Article/Edits/@Model.Articles.Id" class="hide" style="margin-left:14px;" data-author-id="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
+                        <a href="/Article/Edits/@Model.Article.Id" class="hide" style="margin-left:14px;" data-author-id="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
                     }
                     else
                     {
-                        <a href="/Article/Edits/@Model.Articles.Id" style="margin-left:14px;" data-author-id="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
+                        <a href="/Article/Edits/@Model.Article.Id" style="margin-left:14px;" data-author-id="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
                     }
                 </span>
                 <div style="clear:both; word-break:break-all; padding-top:20px;">
@@ -54,7 +54,7 @@
                         测试文章发布-内容
                     </p>
                     <p>
-                        <span>@Model.Articles.Body</span>
+                        <span>@Model.Article.Body</span>
                     </p>
                 </div>
                 <div class="clearfix" style="padding-top:10px;">
@@ -63,7 +63,7 @@
                             <span class="fa fa-tags">
                             </span>  关键字：
                         </label>
-                        <span class="badge">@Model.Articles.keywords</span>
+                        <span class="badge">@Model.Article.keywords</span>
                     </div>
                     <div class="article-appraise appraise-status pull-right">
                         <a class="appraise-status-item text-success" href="/Article/Appraise?id=36&amp;direction=1" zyf-vote="" data-author-id="7">

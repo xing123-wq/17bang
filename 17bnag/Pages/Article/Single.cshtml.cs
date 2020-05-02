@@ -11,7 +11,7 @@ namespace _17bnag.Article
 {
     public class SingleModel : _LayoutModel
     {
-        public Entitys.PublishArticle Articles { get; set; }
+        public Entitys.PublishArticle Article { get; set; }
         public SingleModel(_17bnagContext context) : base(context)
         {
             _context = context;
@@ -19,8 +19,9 @@ namespace _17bnag.Article
         public void OnGet()
         {
             int articleId = Convert.ToInt32(Request.RouteValues["id"]);
-            Articles = _context.GetSngle(articleId);
-            ViewData["title"] = Articles.Title;
+            Article = _context.GetSngle(articleId);
+            Article = _context.PublishArticles.Include(a => a.Author).First();
+            ViewData["title"] = Article.Title;
             base.SetLogOnStatus();
         }
     }
