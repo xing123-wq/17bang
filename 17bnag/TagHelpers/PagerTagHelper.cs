@@ -20,17 +20,26 @@ namespace _17bnag.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "small";   //原生标签名
+            object asp = context.AllAttributes[_showicon].Value;
+            output.Attributes.RemoveAll(_showicon);
+            bool hasasp = bool.Parse(asp.ToString().ToLower());
+            if (hasasp)
+            {
+                output.Content.AppendHtml("<span class='glyphicon glyphicon-calendar'></span>");
+            }
 
             //分别取出pageIndex和path的值
             object asp_only = context.AllAttributes[_only].Value;
-            //output.Attributes.Remove(context.AllAttributes["pageIndex"]);
+            output.Attributes.Remove(context.AllAttributes[_only]);
+            bool hasOnly = asp_only.ToString().ToLower().Contains("date");
+            if (hasOnly)
+            {
+                output.Content.AppendHtml(DateTime.Now.ToString("yyyy年MM月dd HH时mm分ss秒"));
+            }
 
-            object asp = context.AllAttributes[_showicon].Value;
-            //output.Attributes.RemoveAll("path");
-            
+           
             //设置a标签里href的值
-            output.Attributes.Add("class", $"glyphicon glyphicon-calendar");
-
+            output.Attributes.Add("href", $"{asp}/Page-{asp_only}");
             base.Process(context, output);
         }
     }
