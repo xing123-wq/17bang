@@ -16,7 +16,7 @@ namespace _17bnag.Pages
         {
             _context = context;
         }
-        public IList<HelpRelease> Problems { get; set; }
+        public IEnumerable<HelpRelease> Problems { get; set; }
         public int pagesize { get; set; }
         public int pageindex { get; set; }
         public int sum { get; set; }
@@ -36,17 +36,12 @@ namespace _17bnag.Pages
             pageindex = Convert.ToInt32(Request.RouteValues["id"]);
             sum = _context.GetSum();
             Problems = _context.HelpRelease.Include(h => h.Users).ToList();
-            Problems = Get(pageindex, pagesize);
+            Problems = ExtensionMethod.Get(Problems.OrderByDescending(p => p.PublishDateTime), pageindex, pagesize);
             ViewData["title"] = "首页-一起帮";
             base.SetLogOnStatus();
         }
         public void Post()
         {
-        }
-        public IList<HelpRelease> Get(int pageindex, int pagesize)
-        {
-            return Problems.OrderByDescending(p => p.PublishDateTime)
-                .Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();
         }
         //public IList<HelpRelease> GetExclude(ProblemStatus status)
         //{
