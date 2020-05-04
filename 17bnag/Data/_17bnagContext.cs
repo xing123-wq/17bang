@@ -23,7 +23,7 @@ namespace _17bnag.Data
 
         internal PublishArticle GetSngle(int id)
         {
-            return PublishArticles.SingleOrDefault(u => u.Id == id);
+            return PublishArticles.Include(u => u.Author).SingleOrDefault(a => a.Id == id);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
