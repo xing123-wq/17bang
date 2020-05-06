@@ -75,6 +75,37 @@ namespace _17bnag.Migrations
                     b.ToTable("Keywords");
                 });
 
+            modelBuilder.Entity("_17bnag.Entitys.Notitce", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateClosed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("Notitces");
+                });
+
             modelBuilder.Entity("_17bnag.Entitys.PublishArticle", b =>
                 {
                     b.Property<int>("Id")
@@ -197,6 +228,15 @@ namespace _17bnag.Migrations
                     b.HasOne("_17bnag.Entitys.User", "Users")
                         .WithMany("HelpRelease")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("_17bnag.Entitys.Notitce", b =>
+                {
+                    b.HasOne("_17bnag.Entitys.User", "Author")
+                        .WithMany("Notitces")
+                        .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

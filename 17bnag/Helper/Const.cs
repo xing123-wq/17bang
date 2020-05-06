@@ -23,5 +23,7 @@ namespace _17bnag.Helper
         public const string TEMP_MODELSTATE = "TempModelstate";
 
         public const int PAGE_SIZE = 2;
+
+        public const string ALL_INFORM = "inform";
     }
 }

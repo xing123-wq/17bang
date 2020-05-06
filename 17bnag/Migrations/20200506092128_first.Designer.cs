@@ -10,8 +10,8 @@ using _17bnag.Data;
 namespace _17bnag.Migrations
 {
     [DbContext(typeof(_17bnagContext))]
-    [Migration("20200421093505_two")]
-    partial class two
+    [Migration("20200506092128_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,7 +52,12 @@ namespace _17bnag.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("HelpRelease");
                 });
@@ -72,6 +77,37 @@ namespace _17bnag.Migrations
                     b.ToTable("Keywords");
                 });
 
+            modelBuilder.Entity("_17bnag.Entitys.Notitce", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateClosed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("Notitces");
+                });
+
             modelBuilder.Entity("_17bnag.Entitys.PublishArticle", b =>
                 {
                     b.Property<int>("Id")
@@ -79,7 +115,7 @@ namespace _17bnag.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AuthorId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Body")
@@ -132,56 +168,95 @@ namespace _17bnag.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("HelpMony")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(8)")
                         .HasMaxLength(8);
+
+                    b.Property<int?>("OnModelId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OnModelId");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("_17bnag.Entitys.UsersMiddle", b =>
+            modelBuilder.Entity("_17bnag.Model.Log.OnModel", b =>
                 {
-                    b.Property<int>("HelpReleaseId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("Invitationcode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(4)")
+                        .HasMaxLength(4);
 
-                    b.HasKey("HelpReleaseId", "UserId");
+                    b.Property<string>("ValidatePassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("UserId");
+                    b.Property<string>("VerificationCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(4)")
+                        .HasMaxLength(4);
 
-                    b.ToTable("UsersMiddles");
+                    b.Property<string>("inviter")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(8)")
+                        .HasMaxLength(8);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OnModel");
+                });
+
+            modelBuilder.Entity("_17bnag.Entitys.HelpRelease", b =>
+                {
+                    b.HasOne("_17bnag.Entitys.User", "Users")
+                        .WithMany("HelpRelease")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("_17bnag.Entitys.Notitce", b =>
+                {
+                    b.HasOne("_17bnag.Entitys.User", "Author")
+                        .WithMany("Notitces")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("_17bnag.Entitys.PublishArticle", b =>
                 {
                     b.HasOne("_17bnag.Entitys.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
+                        .WithMany("PublishArticles")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("_17bnag.Entitys.UsersMiddle", b =>
+            modelBuilder.Entity("_17bnag.Entitys.User", b =>
                 {
-                    b.HasOne("_17bnag.Entitys.User", "users")
-                        .WithMany("HelpRelease")
-                        .HasForeignKey("HelpReleaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("_17bnag.Entitys.HelpRelease", "HelpRelease")
+                    b.HasOne("_17bnag.Model.Log.OnModel", "OnModel")
                         .WithMany("User")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OnModelId");
                 });
 #pragma warning restore 612, 618
         }

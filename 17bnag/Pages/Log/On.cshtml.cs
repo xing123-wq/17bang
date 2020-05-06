@@ -23,6 +23,7 @@ namespace _17bnag.Log
         public LogOn Log { get; set; }
         public User LogOnOne { get; set; }
         public IList<User> Users { get; set; }
+        public string pth { get; set; }
         public PageResult OnGet()
         {
             base.SetLogOnStatus();
@@ -47,9 +48,10 @@ namespace _17bnag.Log
                 ModelState.AddModelError(Const.LOGON_LOGONPASSWORD, "* 用户名或者密码不正确");
                 return Page();
             }
+            pth = Request.Query["path"];
             LogOnCookies();
             GetUrl();
-            return Page();
+            return RedirectToPage(pth);
         }
         public User GetLog(string name)
         {

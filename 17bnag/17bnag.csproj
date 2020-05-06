@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\ViewComponent\**" />
     <Compile Remove="Repositorys\**" />
+    <Content Remove="Pages\ViewComponent\**" />
     <Content Remove="Repositorys\**" />
+    <EmbeddedResource Remove="Pages\ViewComponent\**" />
     <EmbeddedResource Remove="Repositorys\**" />
+    <None Remove="Pages\ViewComponent\**" />
     <None Remove="Repositorys\**" />
   </ItemGroup>
 
@@ -173,7 +177,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\Shared\Components\" />
-    <Folder Include="Pages\ViewComponent\" />
   </ItemGroup>
 
 

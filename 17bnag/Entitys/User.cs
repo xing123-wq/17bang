@@ -26,5 +26,6 @@ namespace _17bnag.Entitys
         public OnModel OnModel { get; set; }
         public IList<HelpRelease> HelpRelease { get; set; }
         public IList<PublishArticle> PublishArticles { get; set; }
+        public IList<Notitce> Notitces { get; set; }
     }
 }

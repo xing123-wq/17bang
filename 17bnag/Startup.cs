@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using _17bnag.Data;
 using Microsoft.AspNetCore.Mvc;
+using _17bnag.Filters;
 
 namespace _17bnag
 {
@@ -35,7 +36,8 @@ namespace _17bnag
                 opt.Conventions.AddPageRoute("/Article/Edits", "/Article/Edits/{id:int}");
                 opt.Conventions.AddPageRoute("/Article/Category", "/Article/Category/Page-{id:int}");
                 opt.Conventions.AddPageRoute("/Article/User", "/Article/User-{id:int}");
-                opt.Conventions.AddPageRoute("/Article", "/Article/Page-{id:int}");
+                opt.Conventions.AddPageRoute("/Article/index", "/Article/Page-{id:int}");
+                opt.Conventions.AddPageRoute("/Pages/Article/index", "/Article");
                 opt.Conventions.AddPageRoute("/Article/User/Page", "/Article/User-{q:int}/Page-{w:int}");
                 opt.Conventions.AddPageRoute("/Task/Historys", "/Task/Historys/{i:int}/{j:int}/{k:int}");
                 opt.Conventions.AddPageRoute("/Problems/indexs", "/Problems/{id:int}");
@@ -43,6 +45,7 @@ namespace _17bnag
                 opt.Conventions.AddPageRoute("/Problems/Details", "/Problems/Details/{id:int}");
                 opt.Conventions.AddPageRoute("/Problems/Edit", "/Problems/Edit/{id:int}");
                 opt.Conventions.AddPageRoute("/Problem", "/Problem/Page-{id:int}");
+                opt.Conventions.AddPageRoute("/Pages/Notices/index", "/Notices");
             })/*.SetCompatibilityVersion(CompatibilityVersion.Version_3_0)*/;
             services.AddMvc()
             .AddSessionStateTempDataProvider();
@@ -68,7 +71,11 @@ namespace _17bnag
 
             services.AddDbContext<_17bnagContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("_17bnagContext")));
-
+            services.AddMvc()
+               .AddMvcOptions(options =>
+               {
+                   options.Filters.Add(new PageFilter());
+               });
 
         }
 

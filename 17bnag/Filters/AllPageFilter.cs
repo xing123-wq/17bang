@@ -14,9 +14,10 @@ namespace _17bnag.Filter
         public override void OnResultExecuting(ResultExecutingContext context)
         {
             bool hasId = context.HttpContext.Request.Cookies.TryGetValue(Const.USER_ID, out string userId);
+            string pth = context.HttpContext.Request.Path;
             if (!hasId)
             {
-                context.HttpContext.Response.Redirect("/Log/On");
+                context.HttpContext.Response.Redirect($"/Log/On?path={pth}");
             }
         }
 
