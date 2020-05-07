@@ -32,7 +32,7 @@ namespace _17bnag.Pages.Notices
             _context.Notitces.Add(Notitce);
             Notitce.AuthorId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
             _context.SaveChanges();
-            return RedirectToPage("/Pages/Notices/index");
+            return Redirect("/Notices");
         }
     }
 }

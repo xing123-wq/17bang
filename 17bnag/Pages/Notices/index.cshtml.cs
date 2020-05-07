@@ -21,11 +21,11 @@ namespace _17bnag.Pages.Notices
         public IEnumerable<Notitce> Notitces { get; set; }
         public void OnGet()
         {
+            Notitces = _context.Notitces.Include(h => h.Author).ToList();
             base.SetLogOnStatus();
         }
         public void OnPost()
         {
-            Notitces = _context.Notitces.Include(h => h.Author).ToList();
         }
     }
 }
