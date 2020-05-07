@@ -32,6 +32,15 @@
                     </div>
                 </div>
                 <form method="post">
+                    @{
+                        string path = Request.Query["path"];
+                    }
+                    @if (path != null)
+                    {
+                        <div class="well text-warning">
+                            <p><span class="fa fa-exclamation-triangle"></span> 访问页面：<a href="@path">@path</a> 需要 登录用户 权限。 </p>
+                        </div>
+                    }
                     <div class="form-group">
                         <label asp-for="LogOnOne.Name"></label>
                         <input class="form-control" data-val="true" data-val-length-max="20"
