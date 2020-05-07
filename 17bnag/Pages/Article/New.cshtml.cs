@@ -30,7 +30,7 @@ namespace _17bnag
             PublishesOn.PublishTime = DateTime.Now;
             _context.PublishArticles.Add(PublishesOn);
             await _context.SaveChangesAsync();
-            return RedirectToPage("/Article", new { id = 1 });
+            return Redirect("/Article");
         }
     }
 }
