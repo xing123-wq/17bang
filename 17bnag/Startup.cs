@@ -46,6 +46,7 @@ namespace _17bnag
                 opt.Conventions.AddPageRoute("/Problems/Edit", "/Problems/Edit/{id:int}");
                 opt.Conventions.AddPageRoute("/Problem", "/Problem/Page-{id:int}");
                 opt.Conventions.AddPageRoute("/Pages/Notices/index", "/Notices");
+                opt.Conventions.AddPageRoute("/Notices/Edit", "/Notices/Edit/{id:int}");
             })/*.SetCompatibilityVersion(CompatibilityVersion.Version_3_0)*/;
             services.AddMvc()
             .AddSessionStateTempDataProvider();

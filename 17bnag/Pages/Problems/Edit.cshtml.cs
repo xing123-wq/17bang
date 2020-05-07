@@ -22,6 +22,10 @@ namespace _17bnag
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             if (id == null)
             {
                 return NotFound();

@@ -22,8 +22,13 @@ namespace _17bnag.Profiel
             base.SetLogOnStatus();
             ViewData["title"] = "个人资料--一起帮";
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            return Page();
         }
     }
 }

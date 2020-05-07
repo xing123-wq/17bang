@@ -2,6 +2,7 @@
 using _17bnag.Data;
 using _17bnag.Entitys;
 using _17bnag.Layout;
+using Microsoft.AspNetCore.Mvc;
 
 namespace _17bnag.Password
 {
@@ -17,9 +18,13 @@ namespace _17bnag.Password
             base.SetLogOnStatus();
             ViewData["title"] = "忘了-一起帮";
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
-
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            return Page();
         }
     }
 }

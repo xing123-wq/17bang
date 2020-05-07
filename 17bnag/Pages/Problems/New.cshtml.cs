@@ -29,6 +29,10 @@ namespace _17bnag.Problems
         }
         public async Task<IActionResult> OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             //help.Status = Pages.ProblemStatus.Cancelled.GetDescription();
             help.PublishDateTime = DateTime.Now;
             _context.HelpRelease.Add(help);

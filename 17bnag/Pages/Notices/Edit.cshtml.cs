@@ -7,43 +7,46 @@ using _17bnag.Entitys;
 using _17bnag.Layout;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
-namespace _17bnag.Article
+namespace _17bnag.Pages.Notices
 {
     [BindProperties]
-    public class EditsModel : _LayoutModel
+    public class EditModel : _LayoutModel
     {
-        public EditsModel(_17bnagContext context) : base(context)
+        public EditModel(_17bnagContext context) : base(context)
         {
             _context = context;
         }
 
-        public PublishArticle Article { get; set; }
+        public Notitce Notitce { get; set; }
+
         public void OnGet()
         {
             int Id = Convert.ToInt32(Request.RouteValues["id"]);
-            Article = GetPublishArticle(Id);
-            ViewData["title"] = Article.Title + "-修改";
+            int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
+            Notitce = GetNotitce(Id);
+            ViewData["title"] = Notitce.Title + "-修改";
             base.SetLogOnStatus();
         }
+
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            Article.PublishTime = DateTime.Now;
             int Id = Convert.ToInt32(Request.RouteValues["id"]);
             int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
-            Article.AuthorId = userId;
-            _context.PublishArticles.Update(Article);
+            Notitce.Id = Id;
+            Notitce.AuthorId = userId;
+            _context.Notitces.Update(Notitce);
             _context.SaveChanges();
-            return Redirect($"/Article/{Id}");
+            return Redirect("/Notices/index");
         }
-        public PublishArticle GetPublishArticle(int Id)
+
+        public Notitce GetNotitce(int Id)
         {
-            return _context.PublishArticles.Where(a => a.Id == Id).SingleOrDefault();
+            return _context.Notitces.Where(n => n.Id == Id).SingleOrDefault();
         }
     }
 }

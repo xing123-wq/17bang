@@ -7,6 +7,7 @@ using _17bnag.Layout;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using _17bnag.Helper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace _17bnag.Pages
 {
@@ -40,8 +41,13 @@ namespace _17bnag.Pages
             ViewData["title"] = "首页-一起帮";
             base.SetLogOnStatus();
         }
-        public void Post()
+        public IActionResult Post()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            return Page();
         }
         //public IList<HelpRelease> GetExclude(ProblemStatus status)
         //{

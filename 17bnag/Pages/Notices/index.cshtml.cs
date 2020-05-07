@@ -24,8 +24,13 @@ namespace _17bnag.Pages.Notices
             Notitces = _context.Notitces.Include(h => h.Author).ToList();
             base.SetLogOnStatus();
         }
-        public void OnPost()
+        public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            return Page();
         }
     }
 }

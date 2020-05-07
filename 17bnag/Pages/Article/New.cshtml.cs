@@ -26,6 +26,10 @@ namespace _17bnag
         }
         public async Task<IActionResult> OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             PublishesOn.AuthorId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
             PublishesOn.PublishTime = DateTime.Now;
             _context.PublishArticles.Add(PublishesOn);
