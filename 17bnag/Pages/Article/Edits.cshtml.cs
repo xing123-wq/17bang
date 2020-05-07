@@ -20,11 +20,10 @@ namespace _17bnag.Article
         }
 
         public PublishArticle Article { get; set; }
-        public int EditId { get; set; }
         public void OnGet()
         {
-            EditId = Convert.ToInt32(Request.RouteValues["id"]);
-            Article = GetPublishArticle(EditId);
+            int Id = Convert.ToInt32(Request.RouteValues["id"]);
+            Article = GetPublishArticle(Id);
             ViewData["title"] = Article.Title + "-修改";
             base.SetLogOnStatus();
         }
@@ -35,12 +34,13 @@ namespace _17bnag.Article
                 return Page();
             }
             Article.PublishTime = DateTime.Now;
-            EditId = Convert.ToInt32(Request.RouteValues["id"]);
-            Article.Id = EditId;
-            Article.AuthorId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
+            int Id = Convert.ToInt32(Request.RouteValues["id"]);
+            int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
+            Article.Id = Id;
+            Article.AuthorId = userId;
             _context.PublishArticles.Update(Article);
             _context.SaveChanges();
-            return RedirectToPage("/Article", new { id = 1 });
+            return Redirect($"/Article/{Id}");
         }
         public PublishArticle GetPublishArticle(int Id)
         {
