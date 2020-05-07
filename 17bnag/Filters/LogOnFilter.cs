@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _17bnag.Filter
 {
-    public class AllPageFilter : ResultFilterAttribute
+    public class LogOnFilter : ResultFilterAttribute
     {
         public override void OnResultExecuting(ResultExecutingContext context)
         {

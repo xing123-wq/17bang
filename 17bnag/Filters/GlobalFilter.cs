@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace _17bnag.Filters
 {
-    public class PageFilter : PageModel, IPageFilter
+    public class GlobalFilter : IPageFilter
     {
-        public override void OnPageHandlerSelected(PageHandlerSelectedContext context)//1
+        public void OnPageHandlerSelected(PageHandlerSelectedContext context)//1
         {
             bool hasId = context.HttpContext.Request.Cookies.TryGetValue(Const.USER_ID, out string userId);
             if (!hasId)
@@ -20,11 +20,11 @@ namespace _17bnag.Filters
             }
 
         }
-        public override void OnPageHandlerExecuting(PageHandlerExecutingContext context)//2
+        public void OnPageHandlerExecuting(PageHandlerExecutingContext context)//2
         {
 
         }
-        public override void OnPageHandlerExecuted(PageHandlerExecutedContext context)//3
+        public void OnPageHandlerExecuted(PageHandlerExecutedContext context)//3
         {
 
         }

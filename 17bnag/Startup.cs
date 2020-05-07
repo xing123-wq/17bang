@@ -74,7 +74,7 @@ namespace _17bnag
             services.AddMvc()
                .AddMvcOptions(options =>
                {
-                   options.Filters.Add(new PageFilter());
+                   options.Filters.Add(new GlobalFilter());
                });
 
         }

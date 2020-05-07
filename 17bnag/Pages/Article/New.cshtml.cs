@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace _17bnag
 {
     [BindProperties]
-    [AllPageFilter]
+    [LogOnFilter]
     public class NewArticleModel : _LayoutModel
     {
         public PublishArticle PublishesOn { get; set; }

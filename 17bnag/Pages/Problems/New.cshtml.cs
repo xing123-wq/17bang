@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace _17bnag.Problems
 {
-    [AllPageFilter]
+    [LogOnFilter]
     [BindProperties]
     public class NewsModel : _LayoutModel
     {
