@@ -47,10 +47,9 @@ namespace _17bnag.Log
                 ModelState.AddModelError(Const.LOGON_LOGONPASSWORD, "* 用户名或者密码不正确");
                 return Page();
             }
-            string pth = Request.Query["path"];
             LogOnCookies();
             GetUrl();
-            return RedirectToPage(pth);
+            return Page();
         }
         public User GetLog(string name)
         {
@@ -74,18 +73,14 @@ namespace _17bnag.Log
         }
         public void GetUrl()
         {
-            string pagepth = Request.Query["pagepth"];
-            if (pagepth == "/Log/On")
+            string pagepth = Request.Query[Helper.Const.PAGE_PATH];
+            if (pagepth == "/Log/On"|| pagepth == "/Register")
             {
                 Response.Redirect("/Index");
             }
             else
             {
                 Response.Redirect(pagepth);
-            }
-            if (pagepth == "/Register")
-            {
-                Response.Redirect("/Index");
             }
         }
 

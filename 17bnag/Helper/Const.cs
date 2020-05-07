@@ -25,5 +25,6 @@ namespace _17bnag.Helper
         public const int PAGE_SIZE = 2;
 
         public const string ALL_INFORM = "inform";
+        public const string PAGE_PATH = "pagepth";
     }
 }
