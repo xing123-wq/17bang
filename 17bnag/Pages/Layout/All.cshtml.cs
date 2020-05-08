@@ -21,7 +21,10 @@ namespace _17bnag.Layout
         {
 
         }
+        [BindProperty]
         public Notitce notitce { get; set; }
+        [BindProperty]
+        public bool? InFrom { get; set; }
         public virtual void SetLogOnStatus()
         {
             bool hasUserId = Request.Cookies.TryGetValue(Const.USER_ID, out string userId);

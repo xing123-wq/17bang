@@ -31,7 +31,7 @@ namespace _17bnag.Log
         }
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 ViewData["title"] = "登录-一起帮";
                 return Page();
