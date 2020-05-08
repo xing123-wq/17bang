@@ -29,7 +29,7 @@ namespace _17bnag.Pages
         }
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 ViewData["title"] = "注册-一起帮";
                 return Page();

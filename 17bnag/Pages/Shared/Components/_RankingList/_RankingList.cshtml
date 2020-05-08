@@ -1,4 +1,5 @@
-﻿<div zyf-widget-content="" class="clearfix" style="margin-bottom:30px;">
+﻿@model IList< _17bnag.Entitys.User> 
+<div zyf-widget-content="" class="clearfix" style="margin-bottom:30px;">
     <ul class="nav nav-tabs nav-justified nav-tabs-colored" role="tablist">
         <li role="presentation" class="active">
             <a href="#planscan" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">
@@ -125,119 +126,33 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="register">
             <div style="margin-bottom:10px;">
-                <small class="text-muted" zyf-datetime="">
-                    <span>
-                        <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年01月24日 13点49分</span>
-                    </span>
-                </small>
-
-                <div>
-
-
-                    <span data-toggle="tooltip" title="">
-                        <a href="/User/4332" zyf-show-contact="4332">
-                            hello_world123
-                        </a>
-                    </span>
-                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
-                        <span>①</span>
-                    </a>
-                    <span></span>
-                    <span></span>
+                @foreach (var item in Model)
+                {
+                    <div style="margin-bottom:10px;">
+                        <small class="text-muted" zyf-datetime="">
+                            <span>
+                                <span class="fa fa-calendar"></span> <span zyf-can-hide="">@item.Time.ToString("yyyy年dd月ss日")</span>
+                            </span>
+                        </small>
+                        <div>
+                            <span data-toggle="tooltip" title="">
+                                <a href="/User/@item.Id" zyf-show-contact="4328">
+                                    @item.Name
+                                </a>
+                            </span>
+                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
+                                <span>①</span>
+                            </a>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                }
+                <div class="clearfix">
+                    <a href="/User/Index" class="btn pull-right"><span class="fa fa-hand-o-right"></span> 更多</a>
                 </div>
-            </div>
-            <div style="margin-bottom:10px;">
-                <small class="text-muted" zyf-datetime="">
-                    <span>
-                        <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年01月23日 20点48分</span>
-                    </span>
-                </small>
-
-                <div>
-
-
-                    <span data-toggle="tooltip" title="">
-                        <a href="/User/4331" zyf-show-contact="4331">
-                            成果成果成狗
-                        </a>
-                    </span>
-                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
-                        <span>①</span>
-                    </a>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div style="margin-bottom:10px;">
-                <small class="text-muted" zyf-datetime="">
-                    <span>
-                        <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年01月23日 17点08分</span>
-                    </span>
-                </small>
-
-                <div>
-
-
-                    <span data-toggle="tooltip" title="">
-                        <a href="/User/4330" zyf-show-contact="4330">
-                            kingli
-                        </a>
-                    </span>
-                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
-                        <span>①</span>
-                    </a>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div style="margin-bottom:10px;">
-                <small class="text-muted" zyf-datetime="">
-                    <span>
-                        <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年01月18日 21点08分</span>
-                    </span>
-                </small>
-
-                <div>
-
-
-                    <span data-toggle="tooltip" title="">
-                        <a href="/User/4329" zyf-show-contact="4329">
-                            土拨鼠
-                        </a>
-                    </span>
-                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
-                        <span>①</span>
-                    </a>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div style="margin-bottom:10px;">
-                <small class="text-muted" zyf-datetime="">
-                    <span>
-                        <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年01月17日 23点25分</span>
-                    </span>
-                </small>
-
-                <div>
-
-
-                    <span data-toggle="tooltip" title="">
-                        <a href="/User/4328" zyf-show-contact="4328">
-                            wtoto
-                        </a>
-                    </span>
-                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
-                        <span>①</span>
-                    </a>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div class="clearfix">
-                <a href="/User/Index" class="btn pull-right"><span class="fa fa-hand-o-right"></span> 更多</a>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
