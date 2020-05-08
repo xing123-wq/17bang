@@ -24,5 +24,6 @@ namespace _17bnag.Entitys
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "* 过期时间不能为空")]
         public DateTime DateClosed { get; set; }
+        public DateTime PublishTime { get; set; }
     }
 }

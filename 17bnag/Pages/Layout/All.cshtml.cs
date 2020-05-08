@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using _17bnag.Data;
 using _17bnag.Entitys;
 using _17bnag.Helper;
 using _17bnag.Log;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace _17bnag.Layout
@@ -19,11 +21,13 @@ namespace _17bnag.Layout
         {
 
         }
+        public Notitce notitce { get; set; }
         public virtual void SetLogOnStatus()
         {
             bool hasUserId = Request.Cookies.TryGetValue(Const.USER_ID, out string userId);
             bool hasPassword = Request.Cookies.TryGetValue(Const.USER_PASSWORD, out string password);
             User user = Load(Convert.ToInt32(userId));
+            notitce = GetNotice();
             if (hasUserId)
             {
                 if (user != null)
@@ -35,6 +39,12 @@ namespace _17bnag.Layout
                 }
             }
         }
+
+        private Notitce GetNotice()
+        {
+            return _context.Notitces.OrderByDescending(n => n.PublishTime).FirstOrDefault();
+        }
+
         public User Load(int id)
         {
             //模拟的方法

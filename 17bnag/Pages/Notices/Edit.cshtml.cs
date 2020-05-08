@@ -13,12 +13,12 @@ namespace _17bnag.Pages.Notices
     [BindProperties]
     public class EditModel : _LayoutModel
     {
+        public Notitce Notitce { get; set; }
+
         public EditModel(_17bnagContext context) : base(context)
         {
             _context = context;
         }
-
-        public Notitce Notitce { get; set; }
 
         public void OnGet()
         {
@@ -35,13 +35,12 @@ namespace _17bnag.Pages.Notices
             {
                 return Page();
             }
-            int Id = Convert.ToInt32(Request.RouteValues["id"]);
             int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
-            Notitce.Id = Id;
             Notitce.AuthorId = userId;
+            Notitce.PublishTime = DateTime.Now;
             _context.Notitces.Update(Notitce);
             _context.SaveChanges();
-            return Redirect("/Notices/index");
+            return Redirect("/index");
         }
 
         public Notitce GetNotitce(int Id)
