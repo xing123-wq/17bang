@@ -18,7 +18,6 @@ namespace _17bnag.Pages.Shared
         public IViewComponentResult Invoke()
         {
             IList<User> Users = _context.Users.OrderByDescending(u => u.Time).ToList();
-            //_RankingList _RankingListModel = new _RankingList(_context);
             return View("_RankingList", Users);
         }
     }
