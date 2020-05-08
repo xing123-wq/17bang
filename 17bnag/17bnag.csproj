@@ -175,10 +175,6 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Shared\Components\" />
-  </ItemGroup>
-
 
 
 </Project>
