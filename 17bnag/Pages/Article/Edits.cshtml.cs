@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using _17bnag.Data;
 using _17bnag.Entitys;
+using _17bnag.Filters;
 using _17bnag.Layout;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

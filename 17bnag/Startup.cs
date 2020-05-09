@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using _17bnag.Data;
 using Microsoft.AspNetCore.Mvc;
 using _17bnag.Filters;
+using _17bnag.Layout;
 
 namespace _17bnag
 {
@@ -22,7 +23,6 @@ namespace _17bnag
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -76,6 +76,7 @@ namespace _17bnag
                .AddMvcOptions(options =>
                {
                    options.Filters.Add(new GlobalFilter());
+                   options.Filters.Add(new EditsFilter());
                });
 
         }
