@@ -17,7 +17,7 @@ namespace _17bnag.Pages.Shared
         }
         public IViewComponentResult Invoke()
         {
-            IList<PublishArticle> articles = _context.PublishArticles.OrderByDescending(a => a.PublishTime).ToList();
+            IList<PublishArticle> articles = _context.PublishArticles.OrderByDescending(a => a.PublishTime).Take(2).ToList();
             return View("_Article", articles);
         }
     }

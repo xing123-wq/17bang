@@ -30,10 +30,6 @@ namespace _17bnag.Article
         }
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
             Article.PublishTime = DateTime.Now;
             int Id = Convert.ToInt32(Request.RouteValues["id"]);
             int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
