@@ -1,158 +1,76 @@
-﻿@model IList< _17bnag.Entitys.User> 
-<div zyf-widget-content="" class="clearfix" style="margin-bottom:30px;">
-    <ul class="nav nav-tabs nav-justified nav-tabs-colored" role="tablist">
-        <li role="presentation" class="active">
-            <a href="#planscan" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="true">
-                <span class="fa fa-eye"></span> 每日督促
-            </a>
-        </li>
-        <li role="presentation" class="">
-            <a href="#contribute" aria-controls="messages" role="tab" data-toggle="tab" style="color:red;" aria-expanded="false">
-                <span class="fa fa-heart"></span> 排行榜
-            </a>
-        </li>
-        <li role="presentation" class="">
-            <a href="#register" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="false">
-                <span class="fa fa-user-circle-o"></span> 新注册
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="planscan">
-            <table class="table-none-border">
-                <tbody>
-                    <tr>
-                        <td colspan="2" style="font-size:18px"><span class="fa fa-calendar-check-o fa-fw"></span> 2020年01月29日</td>
-                    </tr>
-                    <tr>
-                        <th>共扫描目标：</th>
-                        <td><span class="fa fa-flag-o fa-fw"></span> 1 个</td>
-                    </tr>
-                    <tr>
-                        <th>当天休息：</th>
-                        <td><span class="fa fa-ban fa-fw text-muted"></span> 0 人</td>
-                    </tr>
-                    <tr>
-                        <th>已交作业：</th>
-                        <td><span class="fa fa-check text-success fa-fw"></span> 0 份</td>
-                    </tr>
-                    <tr>
-                        <th>请假：</th>
-                        <td><span class="fa fa-coffee fa-fw"></span>  0 人</td>
-                    </tr>
-                    <tr>
-                        <th>未交作业：</th>
-                        <td><a zyf-task-not-complete=""><span class="fa fa-remove fa-fw"></span> 1 人</a></td>
-                    </tr>
+﻿<div role="tabpanel" class="tab-pane" id="contribute">
+    <table class="table-none-border order-list">
+        <tbody>
 
-                </tbody>
-            </table>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="contribute">
-            <table class="table-none-border order-list">
-                <tbody>
-
-                    <tr zyf-user-most-order="1">
-                        <td style="width: 40px;"><span class="order-tag item-1">1</span></td>
-                        <td>
-                            <span data-toggle="tooltip" title="" data-original-title="捐赠 5">
-                                <a href="/User/1" zyf-show-contact="1" style="color:#DCB962">
-                                    叶飞
-                                </a>
-                            </span>
-                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="大宗师">
-                                <span>⑩</span>
-                            </a>
-                        </td>
-                        <td>30</td>
-                    </tr>
-                    <tr zyf-user-most-order="2">
-                        <td style="width: 40px;"><span class="order-tag item-2">2</span></td>
-                        <td>
+            <tr zyf-user-most-order="1">
+                <td style="width: 40px;"><span class="order-tag item-1">1</span></td>
+                <td>
+                    <span data-toggle="tooltip" title="" data-original-title="捐赠 5">
+                        <a href="/User/1" zyf-show-contact="1" style="color:#DCB962">
+                            叶飞
+                        </a>
+                    </span>
+                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="大宗师">
+                        <span>⑩</span>
+                    </a>
+                </td>
+                <td>30</td>
+            </tr>
+            <tr zyf-user-most-order="2">
+                <td style="width: 40px;"><span class="order-tag item-2">2</span></td>
+                <td>
 
 
-                            <span data-toggle="tooltip" title="" data-original-title="">
-                                <a href="/User/4331" zyf-show-contact="4331">
-                                    成果成果成狗
-                                </a>
-                            </span>
-                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级学徒">
-                                <span>①</span>
-                            </a>
-                        </td>
-                        <td>10</td>
-                    </tr>
-                    <tr zyf-user-most-order="3">
-                        <td style="width: 40px;"><span class="order-tag item-3">3</span></td>
-                        <td>
+                    <span data-toggle="tooltip" title="" data-original-title="">
+                        <a href="/User/4331" zyf-show-contact="4331">
+                            成果成果成狗
+                        </a>
+                    </span>
+                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级学徒">
+                        <span>①</span>
+                    </a>
+                </td>
+                <td>10</td>
+            </tr>
+            <tr zyf-user-most-order="3">
+                <td style="width: 40px;"><span class="order-tag item-3">3</span></td>
+                <td>
 
 
-                            <span data-toggle="tooltip" title="" data-original-title="">
-                                <a href="/User/4332" zyf-show-contact="4332">
-                                    hello_world123
-                                </a>
-                            </span>
-                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级学徒">
-                                <span>①</span>
-                            </a>
-                        </td>
-                        <td>10</td>
-                    </tr>
-                    <tr zyf-user-most-order="4">
-                        <td style="width: 40px;"><span class="order-tag item">4</span></td>
-                        <td>
+                    <span data-toggle="tooltip" title="" data-original-title="">
+                        <a href="/User/4332" zyf-show-contact="4332">
+                            hello_world123
+                        </a>
+                    </span>
+                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级学徒">
+                        <span>①</span>
+                    </a>
+                </td>
+                <td>10</td>
+            </tr>
+            <tr zyf-user-most-order="4">
+                <td style="width: 40px;"><span class="order-tag item">4</span></td>
+                <td>
 
 
-                            <span data-toggle="tooltip" title="" data-original-title="">
-                                <a href="/User/4244" zyf-show-contact="4244">
-                                    skyline
-                                </a>
-                            </span>
-                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="中级学徒">
-                                <span>②</span>
-                            </a>
-                        </td>
-                        <td>5</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <span data-toggle="tooltip" title="" data-original-title="">
+                        <a href="/User/4244" zyf-show-contact="4244">
+                            skyline
+                        </a>
+                    </span>
+                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="中级学徒">
+                        <span>②</span>
+                    </a>
+                </td>
+                <td>5</td>
+            </tr>
+        </tbody>
+    </table>
 
 
-            <div zyf-user-widget-most-contribute="" class="clearfix" style="padding-top:10px;">
-                <a href="/User/MyMost?on=Contribute" class="btn pull-right">
-                    <span class="fa fa-hand-o-right"></span> 我的排名
-                </a>
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane" id="register">
-            <div style="margin-bottom:10px;">
-                @foreach (var item in Model)
-                {
-                    <div style="margin-bottom:10px;">
-                        <small class="text-muted" zyf-datetime="">
-                            <span>
-                                <span class="fa fa-calendar"></span> <span zyf-can-hide="">@item.Time</span>
-                            </span>
-                        </small>
-                        <div>
-                            <span data-toggle="tooltip" title="">
-                                <a href="/User/@item.Id" zyf-show-contact="4328">
-                                    @item.Name
-                                </a>
-                            </span>
-                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
-                                <span>①</span>
-                            </a>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-                }
-                <div class="clearfix">
-                    <a href="/User/Index" class="btn pull-right"><span class="fa fa-hand-o-right"></span> 更多</a>
-                </div>
-            </div>
-        </div>
-
+    <div zyf-user-widget-most-contribute="" class="clearfix" style="padding-top:10px;">
+        <a href="/User/MyMost?on=Contribute" class="btn pull-right">
+            <span class="fa fa-hand-o-right"></span> 我的排名
+        </a>
     </div>
 </div>

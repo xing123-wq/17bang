@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace _17bnag.Pages.Shared
 {
-    public class _RankingList : ViewComponent
+    public class _Presentation: ViewComponent
     {
         private _17bnagContext _context { get; set; }
-        public _RankingList(_17bnagContext context)
+        public _Presentation(_17bnagContext context)
         {
             _context = context;
         }
         public IViewComponentResult Invoke()
         {
-            return View("_RankingList");
+            return View("_Presentation");
         }
     }
 }

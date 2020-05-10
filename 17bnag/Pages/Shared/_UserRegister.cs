@@ -1,4 +1,5 @@
 ﻿using _17bnag.Data;
+using _17bnag.Entitys;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace _17bnag.Pages.Shared
 {
-    public class _RankingList : ViewComponent
+    public class _UserRegister : ViewComponent
     {
         private _17bnagContext _context { get; set; }
-        public _RankingList(_17bnagContext context)
+        public _UserRegister(_17bnagContext context)
         {
             _context = context;
         }
         public IViewComponentResult Invoke()
         {
-            return View("_RankingList");
+            IList<User> Users = _context.Users.OrderByDescending(u => u.Time).ToList();
+            return View("_UserRegister", Users);
         }
     }
 }

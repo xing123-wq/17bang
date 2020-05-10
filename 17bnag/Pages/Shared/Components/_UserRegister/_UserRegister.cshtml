@@ -1,0 +1,31 @@
+﻿@model IList<_17bnag.Entitys.User>
+
+<div role="tabpanel" class="tab-pane" id="register">
+    <div style="margin-bottom:10px;">
+        @foreach (var item in Model)
+        {
+            <div style="margin-bottom:10px;">
+                <small class="text-muted" zyf-datetime="">
+                    <span>
+                        <span class="fa fa-calendar"></span> <span zyf-can-hide="">@item.Time</span>
+                    </span>
+                </small>
+                <div>
+                    <span data-toggle="tooltip" title="">
+                        <a href="/User/@item.Id" zyf-show-contact="4328">
+                            @item.Name
+                        </a>
+                    </span>
+                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
+                        <span>①</span>
+                    </a>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        }
+        <div class="clearfix">
+            <a href="/User/Index" class="btn pull-right"><span class="fa fa-hand-o-right"></span> 更多</a>
+        </div>
+    </div>
+</div>
