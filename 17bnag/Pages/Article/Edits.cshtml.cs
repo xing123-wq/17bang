@@ -24,7 +24,12 @@ namespace _17bnag.Article
         public void OnGet()
         {
             int Id = Convert.ToInt32(Request.RouteValues["id"]);
+            int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
             Article = GetPublishArticle(Id);
+            if (Article.AuthorId != userId)
+            {
+                throw new Exception("当前用户，不是当前文章的作者");
+            }
             ViewData["title"] = Article.Title + "-修改";
             base.SetLogOnStatus();
         }
