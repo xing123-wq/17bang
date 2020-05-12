@@ -27,6 +27,10 @@ namespace _17bnag.Pages.Notices
             int Id = Convert.ToInt32(Request.RouteValues["id"]);
             int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
             Notitce = GetNotitce(Id);
+            if (Notitce.AuthorId != userId)
+            {
+                throw new Exception($"系统通知用户Id：{Notitce.AuthorId},当前用户Id:{userId}");
+            }
             ViewData["title"] = Notitce.Title + "-修改";
             base.SetLogOnStatus();
         }

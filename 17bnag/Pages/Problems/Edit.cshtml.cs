@@ -28,6 +28,13 @@ namespace _17bnag
             {
                 return Page();
             }
+            int Id = Convert.ToInt32(Request.RouteValues["id"]);
+            int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
+            help = GetProblrm(Id);
+            if (help.UserId != userId)
+            {
+                throw new Exception($"系统通知用户Id：{help.UserId},当前用户Id:{userId}");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -42,6 +49,12 @@ namespace _17bnag
             base.SetLogOnStatus();
             return Page();
         }
+
+        private HelpRelease GetProblrm(int id)
+        {
+            return _context.HelpRelease.Where(p => p.Id == id).SingleOrDefault();
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
