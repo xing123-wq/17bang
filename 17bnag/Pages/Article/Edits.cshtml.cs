@@ -28,7 +28,7 @@ namespace _17bnag.Article
             Article = GetPublishArticle(Id);
             if (Article.AuthorId != userId)
             {
-                throw new Exception("当前用户，不是当前文章的作者");
+                throw new Exception($"当前用户Id:{userId}，不是当前文章的作者Id:{Article.AuthorId}");
             }
             ViewData["title"] = Article.Title + "-修改";
             base.SetLogOnStatus();
