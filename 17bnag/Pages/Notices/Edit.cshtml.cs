@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using _17bnag.Data;
 using _17bnag.Entitys;
+using _17bnag.Filter;
 using _17bnag.Layout;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace _17bnag.Pages.Notices
 {
     [BindProperties]
+    [LogOnFilter]
     public class EditModel : _LayoutModel
     {
         public Notitce Notitce { get; set; }

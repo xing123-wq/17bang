@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using _17bnag.Data;
 using _17bnag.Entitys;
+using _17bnag.Filter;
 using _17bnag.Filters;
 using _17bnag.Layout;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace _17bnag.Article
 {
     [BindProperties]
+    [LogOnFilter]
     public class EditsModel : _LayoutModel
     {
         public EditsModel(_17bnagContext context) : base(context)
