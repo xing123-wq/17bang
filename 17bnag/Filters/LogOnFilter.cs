@@ -17,7 +17,7 @@ namespace _17bnag.Filter
             string pth = context.HttpContext.Request.Path;
             if (!hasId)
             {
-                context.HttpContext.Response.Redirect($"/Log/On?{Helper.Const.PAGE_PATH}={pth}");
+                context.HttpContext.Response.Redirect($"/Log/On?path={pth}");
             }
         }
 
