@@ -18,15 +18,8 @@ namespace ConsoleApp3
         //根据用户名和密码检查某用户能够成功登陆：Logon()
         //如果用户成功登陆，将其最后登录时间（LatestLogonTime）改成当前时间
         //批量标记Message为已读
-        private SqlConnection _longConnection { get; }
-        private const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;
-                                    Initial Catalog=17bang;
-                                    Integrated Security=True;
-                                    Connect Timeout=30;
-                                    Encrypt=False;
-                                    TrustServerCertificate=False;
-                                    ApplicationIntent=ReadWrite;
-                                    MultiSubnetFailover=False";
+        private const string connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=17bang;Integrated Security=True;";
+        public string connection { get => connectionString; }
         public SqlConnection LongConnection
         {
             get
@@ -38,7 +31,7 @@ namespace ConsoleApp3
         {
             using (connection)
             {
-                if (connection.State==ConnectionState.Closed)
+                if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();  //需要显式的Open()
                 }
@@ -46,6 +39,7 @@ namespace ConsoleApp3
                 command.Connection = connection;
                 command.CommandText = cmdText;
                 int row = command.ExecuteNonQuery();
+                Console.WriteLine(row);
                 return row;
             }
         }
@@ -61,6 +55,7 @@ namespace ConsoleApp3
                 command.Connection = connection;
                 command.CommandText = cmdText;
                 int row = command.ExecuteNonQuery();
+                Console.WriteLine(row);
                 return row;
             }
         }
@@ -76,6 +71,7 @@ namespace ConsoleApp3
                 command.Connection = connection;
                 command.CommandText = cmdText;
                 object row = command.ExecuteScalar();
+                Console.WriteLine(row);
                 return row;
             }
         }
@@ -91,9 +87,37 @@ namespace ConsoleApp3
                 command.Connection = connection;
                 command.CommandText = cmdText;
                 SqlDataReader row = command.ExecuteReader();
+                if (row.HasRows)    //在ExecuteReader()之后立即获取
+                {
+                    while (row.Read())
+                    {
+                        Console.WriteLine($"{row[0]},{row[1]}");
+                    }
+                }
                 return row;
             }
-
+        }
+        public SqlDataReader ExecuteReader(string cmdText, SqlConnection connection)
+        {
+            using (connection)
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();  //需要显式的Open()
+                }
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                command.CommandText = cmdText;
+                SqlDataReader row = command.ExecuteReader();
+                if (row.HasRows)    //在ExecuteReader()之后立即获取
+                {
+                    while (row.Read())
+                    {
+                        Console.WriteLine($"{row[0]},{row[1]}");
+                    }
+                }
+                return row;
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Xml.Linq;
 using ConsoleApp3;
 using ConsoleApp3.DoubleLinkeds;
+using System.Data.SqlClient;
 
 namespace ConsoleApp3
 {
@@ -11,90 +12,32 @@ namespace ConsoleApp3
     {
         static void Main()
         {
-            //User newbie = new User("");
-            //User not = new User();
-            //Program a = new Program();
-            //HelpMoney b = new HelpMoney();
-            //new User().Reward = -1;
-            ////作者积分
-            //Problem Release = new Problem("1");
-            //Release.Author = new User("阿泰");
-            //Release.Publish();
-            //Content ad = new Problem("1");
-            //Problem p = new Problem();
-            //new ContentService().Publish(p);
-            //new DBMessage().send();
-            //new EmailMessage().send();
-
-            //StudentInformation atai = new StudentInformation();
-            //atai.score = 98;
-            //StudentInformation wx = atai;
-            //Console.WriteLine(wx.score);
-            //atai.score = 100;
-            //Console.WriteLine(wx.score);
-
-            //GetWeeks(2019/1/1);
-            //Student s = new Student();
-            //s.Information();
-
-            //Problem keyword = new Problem();
-            //Console.WriteLine(keyword[1]);
-
-            //LinqWork.Do();
-
-
-            //XML.Do();
-
-            //Repoistory.Do();
-
-            //new Student().Delete();
-
-            //Random random = new Random();
-            //int[] a = new int[10];
-            //for (int i = 0; i < a.Length; i++)
+            DBhelper dBhelper = new DBhelper();
+            string ConnectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=add;Integrated Security=True;";
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            //string saveUser = "INSERT Register VALUES(N'阿泰')";
+            //dBhelper.ExecuteNonQuery(saveUser,connection);
+            string SelectUsers = "SELECT * FROM Register";
+            dBhelper.ExecuteReader(SelectUsers);
+            dBhelper.ExecuteReader(SelectUsers, connection);
+            //SqlCommand getUserByName = new SqlCommand(
+            //       $"SELECT [Name] FROM Register",
+            //       connection);
+            //connection.Open();
+            //SqlCommand command = new SqlCommand();
+            //command.Connection = connection;
+            //command.CommandText = SelectUsers;
+            //SqlDataReader reader = command.ExecuteReader();
+            //if (reader.HasRows)    //在ExecuteReader()之后立即获取
             //{
-            //    a[i] = random.Next(1, 100);
+            //    while (reader.Read())
+            //    {
+            //        Console.WriteLine($"{reader[0]},{reader[1]}");
+            //    }
             //}
-            //getmax(a);
+            ////dBhelper.ExecuteReader(SelectUsers);
+            //connection.Close();
 
-            //stack<int> StackInt = new stack<int>();
-            //stack<string> StackString = new stack<string>();
-
-            //StackInt.Push(3);
-            //StackInt.Push(5);
-            //StackInt.Push(7);
-            //StackInt.Push(9);
-            //StackInt.Print();
-
-            //StackString.Push("This is a stack");
-            //StackString.Push("Hello World!");
-            //StackString.Print();
-
-            ////Console.ReadLine();
-
-            ///委托
-            //Person Waters = new Person { Name = "阿泰", age = 17 };
-            //ProvideWater persons = AssginWay;
-            //persons(Waters);
-            DoubleLinkList node0 = new DoubleLinkList { Item = 0 };
-            DoubleLinkList node1 = new DoubleLinkList { Item = 1 };
-            DoubleLinkList node2 = new DoubleLinkList { Item = 2 };
-            DoubleLinkList node3 = new DoubleLinkList { Item = 3 };
-            DoubleLinkList node4 = new DoubleLinkList { Item = 4 };
-            DoubleLinkList node5 = new DoubleLinkList { Item = 5 };
-            DoubleLinkList node6 = new DoubleLinkList { Item = 6 };
-
-            //node1.InsertAfter(node0);
-            node2.InsertAfter(node1);
-            node3.InsertAfter(node2);
-            node4.InsertAfter(node3);
-            node5.InsertAfter(node4);
-            node6.InsertBefore(node2);
-
-            foreach (var item in node1)
-            {
-                Console.WriteLine(item);
-            }
         }
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
         public static int GetWater(ProvideWater provide)
