@@ -10,14 +10,14 @@ using _17bnag.Data;
 namespace _17bnag.Migrations
 {
     [DbContext(typeof(_17bnagContext))]
-    [Migration("20200506092128_first")]
+    [Migration("20200529121328_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -92,6 +92,9 @@ namespace _17bnag.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateClosed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PublishTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("StartDate")
@@ -202,23 +205,16 @@ namespace _17bnag.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Invitationcode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(4)")
-                        .HasMaxLength(4);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ValidatePassword")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VerificationCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(4)")
-                        .HasMaxLength(4);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("inviter")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(8)")
-                        .HasMaxLength(8);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -255,7 +251,7 @@ namespace _17bnag.Migrations
             modelBuilder.Entity("_17bnag.Entitys.User", b =>
                 {
                     b.HasOne("_17bnag.Model.Log.OnModel", "OnModel")
-                        .WithMany("User")
+                        .WithMany()
                         .HasForeignKey("OnModelId");
                 });
 #pragma warning restore 612, 618

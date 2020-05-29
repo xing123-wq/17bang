@@ -26,10 +26,10 @@ namespace _17bnag.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Invitationcode = table.Column<string>(maxLength: 4, nullable: false),
-                    inviter = table.Column<string>(maxLength: 8, nullable: false),
-                    ValidatePassword = table.Column<string>(nullable: false),
-                    VerificationCode = table.Column<string>(maxLength: 4, nullable: false)
+                    Invitationcode = table.Column<string>(nullable: true),
+                    ValidatePassword = table.Column<string>(nullable: true),
+                    VerificationCode = table.Column<string>(nullable: true),
+                    inviter = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,7 +94,8 @@ namespace _17bnag.Migrations
                     Body = table.Column<string>(nullable: false),
                     Title = table.Column<string>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    DateClosed = table.Column<DateTime>(nullable: false)
+                    DateClosed = table.Column<DateTime>(nullable: false),
+                    PublishTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

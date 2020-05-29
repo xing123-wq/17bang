@@ -177,6 +177,9 @@ namespace _17bnag.Migrations
                         .HasColumnType("nvarchar(8)")
                         .HasMaxLength(8);
 
+                    b.Property<int?>("OnModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)")
@@ -186,6 +189,8 @@ namespace _17bnag.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OnModelId");
 
                     b.ToTable("Users");
                 });
@@ -200,9 +205,6 @@ namespace _17bnag.Migrations
                     b.Property<string>("Invitationcode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ValidatePassword")
                         .HasColumnType("nvarchar(max)");
 
@@ -213,9 +215,6 @@ namespace _17bnag.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("OnModel");
                 });
@@ -247,13 +246,11 @@ namespace _17bnag.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("_17bnag.Model.Log.OnModel", b =>
+            modelBuilder.Entity("_17bnag.Entitys.User", b =>
                 {
-                    b.HasOne("_17bnag.Entitys.User", "User")
-                        .WithOne("OnModel")
-                        .HasForeignKey("_17bnag.Model.Log.OnModel", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("_17bnag.Model.Log.OnModel", "OnModel")
+                        .WithMany()
+                        .HasForeignKey("OnModelId");
                 });
 #pragma warning restore 612, 618
         }
