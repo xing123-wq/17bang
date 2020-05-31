@@ -43,6 +43,24 @@ namespace ConsoleApp3
                 return row;
             }
         }
+        public int ExecuteNonQuery(string cmdText, SqlConnection connection, string data)
+        {
+            using (connection)
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();  //需要显式的Open()
+                }
+                SqlCommand saveUser = new SqlCommand(cmdText, connection);
+                SqlParameter UserName = new SqlParameter("@UserName", data);
+                SqlParameter UserPassword = new SqlParameter("@UserPassword", data);
+                saveUser.Parameters.Add(UserName);
+                saveUser.Parameters.Add(UserPassword);
+                int row = saveUser.ExecuteNonQuery();
+                Console.WriteLine(row);
+                return row;
+            }
+        }
         public int ExecuteNonQuery(string cmdText)
         {
             using (var connection = LongConnection)

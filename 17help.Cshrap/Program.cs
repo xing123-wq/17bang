@@ -17,28 +17,13 @@ namespace ConsoleApp3
             SqlConnection connection = new SqlConnection(ConnectionString);
             //string saveUser = "INSERT Register VALUES(N'阿泰')";
             //dBhelper.ExecuteNonQuery(saveUser,connection);
-            string SelectUsers = "SELECT * FROM Register";
-            dBhelper.ExecuteReader(SelectUsers);
-            dBhelper.ExecuteReader(SelectUsers, connection);
-            //SqlCommand getUserByName = new SqlCommand(
-            //       $"SELECT [Name] FROM Register",
-            //       connection);
-            //connection.Open();
-            //SqlCommand command = new SqlCommand();
-            //command.Connection = connection;
-            //command.CommandText = SelectUsers;
-            //SqlDataReader reader = command.ExecuteReader();
-            //if (reader.HasRows)    //在ExecuteReader()之后立即获取
-            //{
-            //    while (reader.Read())
-            //    {
-            //        Console.WriteLine($"{reader[0]},{reader[1]}");
-            //    }
-            //}
-            ////dBhelper.ExecuteReader(SelectUsers);
-            //connection.Close();
-
+            string name = Console.ReadLine();
+            //string SelectUsers = "SELECT * FROM Register";
+            //string InsertUser = "INSERT Register VALUES(@UserName,@UserPassword)";
+            string saveUser = "INSERT Register VALUES(@UserName,@UserPassword)";
+            dBhelper.ExecuteNonQuery(saveUser,connection,name);
         }
+  
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
         public static int GetWater(ProvideWater provide)
         {
