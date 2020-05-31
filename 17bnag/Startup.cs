@@ -76,7 +76,6 @@ namespace _17bnag
                .AddMvcOptions(options =>
                {
                    options.Filters.Add(new GlobalFilter());
-                   options.Filters.Add(new EditsFilter());
                });
 
         }
