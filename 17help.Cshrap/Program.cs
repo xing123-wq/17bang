@@ -21,7 +21,6 @@ namespace ConsoleApp3
             //string SelectUsers = "SELECT * FROM Register";
             //string InsertUser = "INSERT Register VALUES(@UserName,@UserPassword)";
             string saveUser = "INSERT Register VALUES(@UserName,@UserPassword)";
-            dBhelper.ExecuteNonQuery(saveUser,connection,name);
         }
   
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
