@@ -62,13 +62,6 @@ namespace _17bnag.Data
                 .WithOne(s => s.Author)
                 .HasForeignKey(s => s.AuthorId);
         }
-        public int GetArticle()
-        {
-            return PublishArticles.Count();
-        }
-        public int GetSum()
-        {
-            return HelpRelease.Count();
-        }
+      
     }
 }

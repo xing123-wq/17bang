@@ -11,5 +11,9 @@ namespace _17bnag.Helper
         {
             return soure.Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();
         }
+        public static int GetSum<T>(this IEnumerable<T> parameter)
+        {
+            return parameter.Count();
+        }
     }
 }

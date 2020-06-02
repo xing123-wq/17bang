@@ -35,7 +35,7 @@ namespace _17bnag.Pages
             //}
             pagesize = Const.PAGE_SIZE;
             pageindex = Convert.ToInt32(Request.RouteValues["id"]);
-            sum = _context.GetSum();
+            sum = ExtensionMethod.GetSum(_context.HelpRelease);
             Problems = _context.HelpRelease.Include(h => h.Users).ToList();
             Problems = ExtensionMethod.Get(Problems.OrderByDescending(p => p.PublishDateTime), pageindex, pagesize);
             ViewData["title"] = "首页-一起帮";

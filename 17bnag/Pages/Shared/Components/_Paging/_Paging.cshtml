@@ -1,0 +1,26 @@
+﻿@page
+@using Helper
+@model _17bnag.Pages.Shared.Components.cs._Paging
+@{
+    int currentPageIndex = Convert.ToInt32(Request.RouteValues["id"]);
+    int SumProblems = Model.Sum / Const.PAGE_SIZE;
+}
+<nav>
+    <ul class="pagination">
+        @if (currentPageIndex > 1)
+        {
+            <li><a href="/Problem/Page-@(currentPageIndex-1)">&lt;&lt;</a></li>
+        }
+        @if (currentPageIndex <= SumProblems)
+        {
+            @for (int i = 1; i <= SumProblems + 1; i++)
+            {
+                <li class="active"><a href="/Problem/Page-@i">@(i)</a></li>
+            }
+            @if (currentPageIndex <= SumProblems)
+            {
+                <li><a href="/Problem/Page-@(currentPageIndex + 1)">&gt;&gt;</a></li>
+            }
+        }
+    </ul>
+</nav>
