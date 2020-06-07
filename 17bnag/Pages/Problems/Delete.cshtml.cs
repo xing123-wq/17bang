@@ -25,7 +25,7 @@ namespace _17bnag
             if (id == null)
             {
                 return NotFound();
-            }
+            }   
 
             help = await _context.HelpRelease.FirstOrDefaultAsync(m => m.Id == id);
 

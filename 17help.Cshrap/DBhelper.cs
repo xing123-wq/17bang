@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
+using System.Data.Common;
 
 namespace ConsoleApp3
 {
@@ -18,107 +19,85 @@ namespace ConsoleApp3
         //根据用户名和密码检查某用户能够成功登陆：Logon()
         //如果用户成功登陆，将其最后登录时间（LatestLogonTime）改成当前时间
         //批量标记Message为已读
-        private const string connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=17bang;Integrated Security=True;";
-        public string connection { get => connectionString; }
-        public SqlConnection LongConnection
+        private SqlConnection _connection;
+        public DBhelper(string connection)
         {
-            get
+            _connection = new SqlConnection(connection);
+        }
+        public void HasConnection(SqlConnection connection)
+        {
+            if (connection.State == ConnectionState.Closed)
             {
-                return new SqlConnection(connectionString);
+                connection.Open();  //需要显式的Open()
             }
         }
-        public int ExecuteNonQuery(string cmdText, SqlConnection connection)
-        {
-            using (connection)
-            {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();  //需要显式的Open()
-                }
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandText = cmdText;
-                int row = command.ExecuteNonQuery();
-                Console.WriteLine(row);
-                return row;
-            }
-        }
-     
         public int ExecuteNonQuery(string cmdText)
         {
-            using (var connection = LongConnection)
+            using (_connection)
             {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }//else:do notthing
+                HasConnection(_connection);
                 SqlCommand command = new SqlCommand();
-                command.Connection = connection;
+                command.Connection = _connection;
                 command.CommandText = cmdText;
                 int row = command.ExecuteNonQuery();
-                Console.WriteLine(row);
                 return row;
             }
         }
         public object ExecuteScalar(string cmdText)//得到的结果是个标量
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (_connection)
             {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }//else:do notthing
+                HasConnection(_connection);
                 SqlCommand command = new SqlCommand();
-                command.Connection = connection;
+                command.Connection = _connection;
                 command.CommandText = cmdText;
                 object row = command.ExecuteScalar();
-                Console.WriteLine(row);
                 return row;
             }
         }
         public SqlDataReader ExecuteReader(string cmdText)//通过SqDataReader对象来获得返回的结果
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (_connection)
             {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }//else:do notthing
+                HasConnection(_connection);
                 SqlCommand command = new SqlCommand();
-                command.Connection = connection;
+                command.Connection = _connection;
                 command.CommandText = cmdText;
                 SqlDataReader row = command.ExecuteReader();
-                if (row.HasRows)    //在ExecuteReader()之后立即获取
-                {
-                    while (row.Read())
-                    {
-                        Console.WriteLine($"{row[0]},{row[1]}");
-                    }
-                }
                 return row;
             }
         }
-        public SqlDataReader ExecuteReader(string cmdText, SqlConnection connection)
+        public int Inserte(DbCommand command)
         {
-            using (connection)
+            using (_connection)
             {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();  //需要显式的Open()
-                }
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandText = cmdText;
-                SqlDataReader row = command.ExecuteReader();
-                if (row.HasRows)    //在ExecuteReader()之后立即获取
-                {
-                    while (row.Read())
-                    {
-                        Console.WriteLine($"{row[0]},{row[1]}");
-                    }
-                }
+                HasConnection(_connection);
+                command.Connection = _connection;
+                //command.CommandText = cmdText;
+                int row = command.ExecuteNonQuery();
                 return row;
             }
+        }
+        public int Inserte(string cmdText,params DbParameter[] parameters)
+        {
+            DbCommand command = new SqlCommand(cmdText);
+            return Inserte(command);
+        }
+        public void Delete()//全表
+        {
+
+        }
+        public void Remove()//行数据
+        {
+
+        }
+        public void Update()
+        {
+
+        }
+        public void Select()
+        {
+
         }
     }
 }

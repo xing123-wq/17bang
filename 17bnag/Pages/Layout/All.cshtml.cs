@@ -21,16 +21,11 @@ namespace _17bnag.Layout
         {
 
         }
-        [BindProperty]
-        public Notitce notitce { get; set; }
-        [BindProperty]
-        public bool? InFrom { get; set; }
         public virtual void SetLogOnStatus()
         {
             bool hasUserId = Request.Cookies.TryGetValue(Const.USER_ID, out string userId);
             bool hasPassword = Request.Cookies.TryGetValue(Const.USER_PASSWORD, out string password);
             User user = Load(Convert.ToInt32(userId));
-            notitce = GetNotice();
             if (hasUserId)
             {
                 if (user != null)
@@ -41,11 +36,6 @@ namespace _17bnag.Layout
                     }
                 }
             }
-        }
-
-        private Notitce GetNotice()
-        {
-            return _context.Notitces.OrderByDescending(n => n.PublishTime).FirstOrDefault();
         }
 
         public User Load(int id)

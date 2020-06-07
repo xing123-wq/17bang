@@ -1,0 +1,20 @@
+﻿@page
+@model IList<_17bnag.Entitys.Notitce>
+@foreach (var item in Model)
+{
+    <div class="container" id="notice" style="background-color:aquamarine;z-index: 1;" ;z-index="1">
+        <h3 class="page-header">
+            <span class="fa fa-bullhorn "></span> 系统通知
+        </h3>
+        <div>
+            <p class="h4">
+                <strong class="fa fa-times-circle-o text-info" data-original-title="知道了"></strong> @item.Title
+                <a href="">知道了</a>
+            </p>
+            <p>@item.Body</p>
+        </div>
+        <hr>
+        <a href="/Notices" class="btn btn-primary pull-right">全部通知</a>
+    </div>
+}
+
