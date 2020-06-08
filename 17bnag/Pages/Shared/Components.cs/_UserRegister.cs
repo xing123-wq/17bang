@@ -1,6 +1,7 @@
 ﻿using _17bnag.Data;
 using _17bnag.Entitys;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace _17bnag.Pages.Shared
         }
         public IViewComponentResult Invoke()
         {
-            IList<User> Users = _context.Users.OrderByDescending(u => u.Time).ToList();
+            IList<User> Users = _context.Users.Include(u => u.OnModel).OrderByDescending(o => o.OnModel.Time).ToList();
             return View("_UserRegister", Users);
         }
     }

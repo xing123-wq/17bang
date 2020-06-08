@@ -44,7 +44,7 @@ namespace _17bnag.Pages
                 }
             }
 
-            RegisteerOne.Time = DateTime.Now;
+            RegisteerOne.OnModel.Time = DateTime.Now;
             RegisteerOne.OnModel.Invitationcode = StringExtension.GenerateRandomNumber(4);
             _context.Users.Add(RegisteerOne);
             _context.SaveChanges();

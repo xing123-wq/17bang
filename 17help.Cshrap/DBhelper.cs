@@ -19,10 +19,15 @@ namespace ConsoleApp3
         //根据用户名和密码检查某用户能够成功登陆：Logon()
         //如果用户成功登陆，将其最后登录时间（LatestLogonTime）改成当前时间
         //批量标记Message为已读
+        public SqlConnection LongConnection { get; set; }
         private SqlConnection _connection;
         public DBhelper(string connection)
         {
             _connection = new SqlConnection(connection);
+        }
+        public DBhelper()
+        {
+
         }
         public void HasConnection(SqlConnection connection)
         {
@@ -78,7 +83,7 @@ namespace ConsoleApp3
                 return row;
             }
         }
-        public int Inserte(string cmdText,params DbParameter[] parameters)
+        public int Inserte(string cmdText, params DbParameter[] parameters)
         {
             DbCommand command = new SqlCommand(cmdText);
             return Inserte(command);

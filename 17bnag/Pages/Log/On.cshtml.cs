@@ -20,9 +20,7 @@ namespace _17bnag.Log
         {
             _context = context;
         }
-        public LogOn Log { get; set; }
         public User LogOnOne { get; set; }
-        public IList<User> Users { get; set; }
         public PageResult OnGet()
         {
             base.SetLogOnStatus();
@@ -58,7 +56,7 @@ namespace _17bnag.Log
         public void LogOnCookies()
         {
             CookieOptions options = new CookieOptions();
-            if (Log.RememberMe)
+            if (LogOnOne.RememberMe)
             {
                 options.Expires = DateTime.Now.AddDays(14);
             }
@@ -74,7 +72,7 @@ namespace _17bnag.Log
         public void GetUrl()
         {
             string pagepth = Request.Query[Helper.Const.PAGE_PATH];
-            if (pagepth == "/Log/On"|| pagepth == "/Register")
+            if (pagepth == "/Log/On" || pagepth == "/Register")
             {
                 Response.Redirect("/Index");
             }

@@ -59,16 +59,16 @@
                         <span asp-validation-for="RegisteerOne.Password" style="color:red"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="RegisteerOne.OnModel.ValidatePassword"></label>
-                        <input class="form-control" placeholder="和密码相同" asp-for="RegisteerOne.OnModel.ValidatePassword" type="password">
-                        <span asp-validation-for="RegisteerOne.OnModel.ValidatePassword" style="color:red"></span>
+                        <label asp-for="RegisteerOne.ValidatePassword"></label>
+                        <input class="form-control" placeholder="和密码相同" asp-for="RegisteerOne.ValidatePassword" type="password">
+                        <span asp-validation-for="RegisteerOne.ValidatePassword" style="color:red"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="RegisteerOne.OnModel.VerificationCode"></label>
+                        <label asp-for="RegisteerOne.Verification"></label>
                         <br>
                         <span>
-                            <input class="form-control" style="width:80px; display: inline;" type="text" asp-for="RegisteerOne.OnModel.VerificationCode">
-                            <span asp-validation-for="RegisteerOne.OnModel.VerificationCode" style="color:red"></span>
+                            <input class="form-control" style="width:80px; display: inline;" type="text" asp-for="RegisteerOne.Verification">
+                            <span asp-validation-for="RegisteerOne.Verification" style="color:red"></span>
                             <img style="vertical-align: middle; display: none;">
                             <a name="imageCode">
 

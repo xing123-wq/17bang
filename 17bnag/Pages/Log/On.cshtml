@@ -54,10 +54,10 @@
                         <span asp-validation-for="LogOnOne.Password" style="color:red"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Log.LogOnUserVerification"></label>
+                        <label asp-for="LogOnOne.Verification"></label>
                         <br>
                         <span>
-                            <input asp-for="Log.LogOnUserVerification" class="form-control" style="width:80px; display: inline;" type="text">
+                            <input asp-for="LogOnOne.Verification" class="form-control" style="width:80px; display: inline;" type="text">
                             <img zyf-image-code="" style="vertical-align: middle; display: none;">
                             <a name="imageCode">
 
@@ -67,13 +67,13 @@
                             <span zyf-image-code-reminder="">点击输入框显示</span>
                             <span zyf-image-code-error="" class="field-validation-error"></span>
                             <br>
-                            <span class="field-validation-valid" asp-validation-for="Log.LogOnUserVerification" style="color:red"></span>
+                            <span class="field-validation-valid" asp-validation-for="LogOnOne.Verification" style="color:red"></span>
                         </span>
                     </div>
                     <div class="submit">
                         <button type="submit" class="btn btn-primary loading">提交</button>
                         <label class="checkbox-inline" style="margin-left:16px;">
-                            <input asp-for="Log.RememberMe" />记住我
+                            <input asp-for="LogOnOne.RememberMe" />记住我
                         </label>
                         <span class="pull-right btn">
                             <a href="/Password/Forget">(｡ŏ_ŏ) 忘了</a>
