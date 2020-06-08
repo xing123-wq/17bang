@@ -7,6 +7,7 @@ using _17bnag.Helper;
 using _17bnag.Log;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace _17bnag.Layout
 {
@@ -17,15 +18,13 @@ namespace _17bnag.Layout
         {
             _context = context;
         }
-        public _LayoutModel()
-        {
-
-        }
+        [BindProperty]
+        public User user { get; set; }
         public virtual void SetLogOnStatus()
         {
             bool hasUserId = Request.Cookies.TryGetValue(Const.USER_ID, out string userId);
             bool hasPassword = Request.Cookies.TryGetValue(Const.USER_PASSWORD, out string password);
-            User user = Load(Convert.ToInt32(userId));
+            user = Selecte(Convert.ToInt32(userId));
             if (hasUserId)
             {
                 if (user != null)
@@ -37,10 +36,8 @@ namespace _17bnag.Layout
                 }
             }
         }
-
-        public User Load(int id)
+        public User Selecte(int id)
         {
-            //模拟的方法
             return _context.Users.Where(u => u.Id == id).SingleOrDefault();
         }
     }

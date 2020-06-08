@@ -23,9 +23,13 @@ namespace _17bnag.Entitys
         [Required(ErrorMessage = "* 密码不能为空")]
         [StringLength(20, MinimumLength = 4, ErrorMessage = "* 密码必须在{2} 和{1}之间")]
         public string Password { get; set; }
+        public int OnModelId { get; set; }
         public OnModel OnModel { get; set; }
+        public int HelpReleaseId { get; set; }
         public IList<HelpRelease> HelpRelease { get; set; }
+        public int PublishArticlesId { get; set; }
         public IList<PublishArticle> PublishArticles { get; set; }
+        public int NotitcesId { get; set; }
         public IList<Notitce> Notitces { get; set; }
         [NotMapped]
         public bool RememberMe { get; set; }
