@@ -18,13 +18,11 @@ namespace _17bnag.Layout
         {
             _context = context;
         }
-        [BindProperty]
-        public User user { get; set; }
         public virtual void SetLogOnStatus()
         {
             bool hasUserId = Request.Cookies.TryGetValue(Const.USER_ID, out string userId);
             bool hasPassword = Request.Cookies.TryGetValue(Const.USER_PASSWORD, out string password);
-            user = Selecte(Convert.ToInt32(userId));
+            User user = Selecte(Convert.ToInt32(userId));
             if (hasUserId)
             {
                 if (user != null)

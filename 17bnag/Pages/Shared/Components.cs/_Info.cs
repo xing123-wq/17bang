@@ -19,8 +19,8 @@ namespace _17bnag.Pages.Shared.Components.cs
         }
         public IViewComponentResult Invoke()
         {
-            int id = Convert.ToInt32(Request.Cookies[Const.USER_ID]);
-            User user = _context.Users.Where(u => u.Id == id).Include(u => u.OnModel).SingleOrDefault();
+            string name =ViewData[Const.USER_NAME].ToString();
+            User user = _context.Users.Where(u => u.Name == name).Include(u => u.OnModel).SingleOrDefault();
             return View("_Info", user);
         }
     }
