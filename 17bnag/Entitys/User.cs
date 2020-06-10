@@ -25,11 +25,8 @@ namespace _17bnag.Entitys
         public string Password { get; set; }
         public int OnModelId { get; set; }
         public OnModel OnModel { get; set; }
-        public int HelpReleaseId { get; set; }
         public IList<HelpRelease> HelpRelease { get; set; }
-        public int PublishArticlesId { get; set; }
         public IList<PublishArticle> PublishArticles { get; set; }
-        public int NotitcesId { get; set; }
         public IList<Notitce> Notitces { get; set; }
         [NotMapped]
         public bool RememberMe { get; set; }
