@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using _17bnag.Entitys;
 using System.Numerics;
+using _17bnag.Model.Log;
 
 namespace _17bnag.Data
 {
     public class _17bnagContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<OnModel> onModels { get; set; }
         public DbSet<HelpRelease> HelpRelease { get; set; }
         public DbSet<PublishArticle> PublishArticles { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
@@ -62,6 +64,6 @@ namespace _17bnag.Data
                 .WithOne(s => s.Author)
                 .HasForeignKey(s => s.AuthorId);
         }
-      
+
     }
 }

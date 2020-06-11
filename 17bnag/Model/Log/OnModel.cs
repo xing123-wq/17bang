@@ -19,7 +19,7 @@ namespace _17bnag.Model.Log
         [Required(ErrorMessage = "* 邀请码不能为空")]
         [MaxLength(4, ErrorMessage = "* 邀请码长度最大4位")]
         [RegularExpression("[0-9]*")]
-        public string Invitationcode { get; internal set; }
+        public string Code { get; set; }
         public DateTime Time { get; set; }
         public int HelpMony { get; set; }
 

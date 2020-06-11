@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _17bnag.Data;
 
 namespace _17bnag.Migrations
 {
     [DbContext(typeof(_17bnagContext))]
-    partial class _17bnagContextModelSnapshot : ModelSnapshot
+    [Migration("20200610083839_addtableOnModel")]
+    partial class addtableOnModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,13 +198,13 @@ namespace _17bnag.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Code")
+                    b.Property<int>("HelpMony")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Invitationcode")
                         .IsRequired()
                         .HasColumnType("nvarchar(4)")
                         .HasMaxLength(4);
-
-                    b.Property<int>("HelpMony")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");

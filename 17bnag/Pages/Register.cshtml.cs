@@ -6,6 +6,8 @@ using _17bnag.Data;
 using _17bnag.Entitys;
 using _17bnag.Helper;
 using _17bnag.Layout;
+using _17bnag.Log;
+using _17bnag.Model.Log;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -29,9 +31,28 @@ namespace _17bnag.Pages
         }
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 ViewData["title"] = "注册-一起帮";
+                return Page();
+            }
+            Model.Log.OnModel onModel = GetOnModel(RegisteerOne.OnModel.inviter);
+            if (onModel != null)
+            {
+                if (onModel.inviter != RegisteerOne.OnModel.inviter)
+                {
+                    ModelState.AddModelError(Const.INVITER, "* 邀请人不正确");
+                    return Page();
+                }
+                if (onModel.Code != RegisteerOne.OnModel.Code)
+                {
+                    ModelState.AddModelError(Const.INVITERCODE, "* 邀请码不正确");
+                    return Page();
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(Const.INVITER, "* 邀请人不存在");
                 return Page();
             }
             User user = GetLog(RegisteerOne.Name);
@@ -43,15 +64,19 @@ namespace _17bnag.Pages
                     return Page();
                 }
             }
-
             RegisteerOne.OnModel.Time = DateTime.Now;
-            RegisteerOne.OnModel.HelpMony += 5;
-            RegisteerOne.OnModel.Invitationcode = StringExtension.GenerateRandomNumber(4);
+            Random random = new Random();
+            RegisteerOne.OnModel.HelpMony += random.Next(0, 10);
+            RegisteerOne.OnModel.Code = StringExtension.GenerateRandomNumber(4);
             _context.Users.Add(RegisteerOne);
             _context.SaveChanges();
             Cookies();
             GetUrl();
             return Page();
+        }
+        public Model.Log.OnModel GetOnModel(string inviter)
+        {
+            return _context.onModels.Where(o => o.inviter == inviter).SingleOrDefault();
         }
         public User GetLog(string name)
         {

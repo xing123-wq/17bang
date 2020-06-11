@@ -26,5 +26,8 @@ namespace _17bnag.Helper
 
         public const string ALL_INFORM = "inform";
         public const string PAGE_PATH = "pagepth";
+
+        public const string INVITER = "RegisteerOne.OnModel.inviter";
+        public const string INVITERCODE = "RegisteerOne.OnModel.Code";
     }
 }
