@@ -8,6 +8,7 @@ using _17bnag.Filter;
 using _17bnag.Layout;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace _17bnag
 {
@@ -24,17 +25,29 @@ namespace _17bnag
         {
             base.SetLogOnStatus();
         }
-        public async Task<IActionResult> OnPost()
+        public IActionResult OnPost()
         {
             //if (!ModelState.IsValid)
             //{
             //    return Page();
             //}
+            Publish();
+            _context.PublishArticles.Add(PublishesOn);
+            _context.SaveChanges();
+            return Redirect("/Article");
+        }
+        public void Publish()
+        {
             PublishesOn.AuthorId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
             PublishesOn.PublishTime = DateTime.Now;
-            _context.PublishArticles.Add(PublishesOn);
-            await _context.SaveChangesAsync();
-            return Redirect("/Article");
+            PublishesOn.Author = GetUser(PublishesOn.AuthorId);
+            PublishesOn.Author.OnModel.HelpMony -= 1;
+            PublishesOn.Author.OnModel.HelpPoint += 1;
+            PublishesOn.Author.OnModel.HelpBeans += 1;
+        }
+        public User GetUser(int id)
+        {
+            return _context.Users.Include(o => o.OnModel).Where(u => u.Id == id).SingleOrDefault();
         }
     }
 }

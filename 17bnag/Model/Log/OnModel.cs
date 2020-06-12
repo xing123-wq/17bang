@@ -22,6 +22,7 @@ namespace _17bnag.Model.Log
         public string Code { get; set; }
         public DateTime Time { get; set; }
         public int HelpMony { get; set; }
-
+        public int HelpPoint { get; set; }
+        public int HelpBeans { get; set; }
     }
 }
