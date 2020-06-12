@@ -9,6 +9,6 @@ namespace _17bnag.Entitys
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        //public IList<KeywordMiddle> HelpReleases { get; set; }
+        public IList<ArticleMap> Articles { get; set; }
     }
 }

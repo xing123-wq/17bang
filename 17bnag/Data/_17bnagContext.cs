@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using _17bnag.Entitys;
 using System.Numerics;
 using _17bnag.Model.Log;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace _17bnag.Data
 {
@@ -30,23 +31,18 @@ namespace _17bnag.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<HelpRelease>().ToTable("HelpRelease");
-            //modelBuilder.Entity<Keyword>().ToTable("Keywords");
-            //modelBuilder.Entity<User>().ToTable("Users");
-            //modelBuilder.Entity<KeywordMiddle>()
-            //    .HasKey(bk => new { bk.HelpReleaseId, bk.KeywordId });  //唯一可以（推荐）使用联合主键的情景
+            modelBuilder.Entity<ArticleMap>()
+                .HasKey(ak => new { aId = ak.ArticleId, kId = ak.KeywordId });
 
-            //modelBuilder.Entity<KeywordMiddle>()
-            //    .HasOne(bk => bk.Keyword)
-            //    .WithMany(b => b.HelpReleases)
-            //    .HasForeignKey(b => b.HelpReleaseId)
-            //    ;
+            modelBuilder.Entity<ArticleMap>()
+                .HasOne(ak => ak.Article)
+                .WithMany(a => a.keywords)
+                .HasForeignKey(ak => ak.ArticleId);
 
-            //modelBuilder.Entity<KeywordMiddle>()
-            //    .HasOne(bk => bk.HelpRelease)
-            //    .WithMany(b => b.Keywords)
-            //    .HasForeignKey(b => b.KeywordId)
-            //;
+            modelBuilder.Entity<ArticleMap>()
+               .HasOne(ak => ak.Keyword)
+               .WithMany(a => a.Articles)
+               .HasForeignKey(ak => ak.KeywordId);
 
             modelBuilder.Entity<User>()
               .HasMany<HelpRelease>(g => g.HelpRelease)

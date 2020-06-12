@@ -17,13 +17,9 @@ namespace _17bnag.Entitys
         [StringLength(2312412, MinimumLength = 5, ErrorMessage = "* 正文不能小于{2}和大于{1}字")]
         public string Body { get; set; }
 
-        //[Display(Name = "关键字：（* 必填）")]
-        //[Required(ErrorMessage = "* 关键字不能为空")]
-        //public IList<ArticleMap> keywords { get; set; }
-
         [Display(Name = "关键字：（* 必填）")]
         [Required(ErrorMessage = "* 关键字不能为空")]
-        public string keywords { get; set; }
+        public IList<ArticleMap> keywords { get; set; }
 
         [Display(Name = "标题：（* 必填）")]
         [Required(ErrorMessage = "* 标题不能为空")]
