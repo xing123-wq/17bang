@@ -63,7 +63,10 @@
                             <span class="fa fa-tags">
                             </span>  关键字：
                         </label>
-                        <span class="badge">@Model.Article.keywords</span>
+                        @foreach (var item in Model.Article.keywords)
+                        {
+                            <span class="badge">@item.Keyword.Name</span>
+                        }
                     </div>
                     <div class="article-appraise appraise-status pull-right">
                         <a class="appraise-status-item text-success" href="/Article/Appraise?id=36&amp;direction=1" zyf-vote="" data-author-id="7">

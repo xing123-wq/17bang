@@ -24,7 +24,7 @@ namespace _17bnag.Pages
             Pagesize = Helper.Const.PAGE_SIZE;
             Pageindex = Convert.ToInt32(Request.RouteValues["id"]);
             Sum = ExtensionMethod.GetSum(_context.PublishArticles);
-            articles = _context.PublishArticles.Include(h => h.Author).ToList();
+            articles = _context.PublishArticles.Include(m=>m.keywords).ThenInclude(k=>k.Keyword).Include(h => h.Author).ToList();
             articles = ExtensionMethod.Get(articles.OrderByDescending(a => a.PublishTime), Pageindex, Pagesize);
             base.SetLogOnStatus();
             ViewData["title"] = "精品文章--一起帮";

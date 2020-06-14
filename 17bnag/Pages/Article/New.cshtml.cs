@@ -58,7 +58,7 @@ namespace _17bnag
                     {
                         continue;
                     }
-                    ArticleMap articleMaps = new ArticleMap { Keyword = new Keyword { Id = i, Name = SKeywords[i] } };
+                    ArticleMap articleMaps = new ArticleMap { Keyword = new Keyword { Name = SKeywords[i] } };
                     maps.Add(articleMaps);
                 }
             }

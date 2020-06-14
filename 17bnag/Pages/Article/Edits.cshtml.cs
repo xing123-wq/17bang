@@ -41,6 +41,7 @@ namespace _17bnag.Article
             int Id = Convert.ToInt32(Request.RouteValues["id"]);
             int userId = Convert.ToInt32(Request.Cookies[Helper.Const.USER_ID]);
             Article.AuthorId = userId;
+            Article.keywords = GetString();
             _context.PublishArticles.Update(Article);
             _context.SaveChanges();
             return Redirect($"/Article/{Id}");
@@ -48,6 +49,24 @@ namespace _17bnag.Article
         public PublishArticle GetPublishArticle(int Id)
         {
             return _context.PublishArticles.Where(a => a.Id == Id).SingleOrDefault();
+        }
+        public IList<ArticleMap> GetString()
+        {
+            IList<ArticleMap> maps = new List<ArticleMap>();
+            if (!string.IsNullOrEmpty(Article.Keyword))
+            {
+                IList<string> SKeywords = Article.Keyword.Trim().Split(" ");
+                for (int i = 0; i < SKeywords.Count; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(SKeywords[i]))
+                    {
+                        continue;
+                    }
+                    ArticleMap articleMaps = new ArticleMap { Keyword = new Keyword { Name = SKeywords[i] } };
+                    maps.Add(articleMaps);
+                }
+            }
+            return maps;
         }
     }
 }
