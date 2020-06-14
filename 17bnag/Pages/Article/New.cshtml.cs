@@ -27,10 +27,11 @@ namespace _17bnag
         }
         public IActionResult OnPost()
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            PublishesOn.keywords = GetString();
             Publish();
             _context.PublishArticles.Add(PublishesOn);
             _context.SaveChanges();
@@ -44,6 +45,24 @@ namespace _17bnag
             PublishesOn.Author.OnModel.HelpMony -= 1;
             PublishesOn.Author.OnModel.HelpPoint += 1;
             PublishesOn.Author.OnModel.HelpBeans += 1;
+        }
+        public IList<ArticleMap> GetString()
+        {
+            IList<ArticleMap> maps = new List<ArticleMap>();
+            if (!string.IsNullOrEmpty(PublishesOn.Keyword))
+            {
+                IList<string> SKeywords = PublishesOn.Keyword.Trim().Split(" ");
+                for (int i = 0; i < SKeywords.Count; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(SKeywords[i]))
+                    {
+                        continue;
+                    }
+                    ArticleMap articleMaps = new ArticleMap { Keyword = new Keyword { Id = i, Name = SKeywords[i] } };
+                    maps.Add(articleMaps);
+                }
+            }
+            return maps;
         }
         public User GetUser(int id)
         {

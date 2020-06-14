@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,6 +20,9 @@ namespace _17bnag.Entitys
 
         [Display(Name = "关键字：（* 必填）")]
         [Required(ErrorMessage = "* 关键字不能为空")]
+        [NotMapped]
+        public string Keyword { get; set; }
+
         public IList<ArticleMap> keywords { get; set; }
 
         [Display(Name = "标题：（* 必填）")]

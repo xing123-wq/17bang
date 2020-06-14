@@ -58,11 +58,10 @@
                         </p>
                         <div>
                             <label><span class="fa fa-tags"></span>  关键字：</label>
-                            @*@foreach (var keyword in article.keywords)
-                                {
-                                    <span class="badge">@keyword.Keyword.Name</span>
-                                }*@
-                            <span class="badge">@article.keywords</span>
+                            @foreach (var keyword in article.keywords)
+                            {
+                                <span class="badge">@keyword.Keyword.Name</span>
+                            }
                         </div>
                         <div class="pull-right appraise-status">
                             <a class="appraise-status-item text-info" href="/Article/612#comments">

@@ -21,14 +21,9 @@ namespace _17bnag.Entitys
         [StringLength(21113, MinimumLength = 25, ErrorMessage = "* 正文的长度不能小于{2}，大于{1}")]
         public string Body { get; set; }
 
-        //[Display(Name = "关键字：（* 使用空格分隔）")]
-        //[Required(ErrorMessage = "* 关键字不能为空")]
-        //public IList<KeywordMiddle> Keywords { get; set; }
-
-
         [Display(Name = "关键字：（* 使用空格分隔）")]
         [Required(ErrorMessage = "* 关键字不能为空")]
-        public string Keywords { get; set; }
+        public IList<KeywordMiddle> Keywords { get; set; }
 
         [Display(Name = "定向求助：")]
         public string Resort { get; set; }

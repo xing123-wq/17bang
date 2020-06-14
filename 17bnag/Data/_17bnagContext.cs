@@ -17,7 +17,8 @@ namespace _17bnag.Data
         public DbSet<HelpRelease> HelpRelease { get; set; }
         public DbSet<PublishArticle> PublishArticles { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
-        //public DbSet<KeywordMiddle> KeywordMiddles { get; set; }
+        public DbSet<ArticleMap> ArticleMaps { get; set; }
+        public DbSet<KeywordMiddle> KeywordMiddles { get; set; }
         public DbSet<Notitce> Notitces { get; set; }
         public _17bnagContext(DbContextOptions<_17bnagContext> options)
             : base(options)
@@ -43,6 +44,19 @@ namespace _17bnag.Data
                .HasOne(ak => ak.Keyword)
                .WithMany(a => a.Articles)
                .HasForeignKey(ak => ak.KeywordId);
+
+            modelBuilder.Entity<KeywordMiddle>()
+              .HasKey(pk => new { pId = pk.HelpReleaseId, kId = pk.KeywordId });
+
+            modelBuilder.Entity<KeywordMiddle>()
+                .HasOne(pk => pk.HelpRelease)
+                .WithMany(p => p.Keywords)
+                .HasForeignKey(pk => pk.HelpReleaseId);
+
+            modelBuilder.Entity<KeywordMiddle>()
+               .HasOne(pk => pk.Keyword)
+               .WithMany(p => p.Problems)
+               .HasForeignKey(pk => pk.KeywordId);
 
             modelBuilder.Entity<User>()
               .HasMany<HelpRelease>(g => g.HelpRelease)

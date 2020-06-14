@@ -10,5 +10,7 @@ namespace _17bnag.Entitys
         public int Id { get; set; }
         public string Name { get; set; }
         public IList<ArticleMap> Articles { get; set; }
+        public IList<KeywordMiddle> Problems { get; set; }
+
     }
 }
