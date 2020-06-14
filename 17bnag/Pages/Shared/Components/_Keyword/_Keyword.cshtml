@@ -1,0 +1,33 @@
+﻿@model IList<_17bnag.Entitys.Keyword>
+<div zyf-widget-content="" class="widget clearfix">
+    <div style="font-size:24px;"><span class="fa fa-tags "></span> 关键字</div>
+    <hr>
+    <div zyf-keyword-widget-content="">
+        <div class="user-tags">
+            @foreach (var item in Model)
+            {
+                <a zyf-keyword-widget-id="35" href="/Problem?keyword=35" data-toggle="tooltip" title="" data-original-title="已使用1次">
+                    <span class="badge" style="font-size:13.5px; background-color:rgba(51, 51, 51, 0.5)">
+                        @item.Name
+                    </span>
+                </a>
+            }
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="直接输入关键字查找" zyf-keyword-widget-search-value="">
+                <span class="input-group-addon" zyf-keyword-widget-search-btn=""><span class="fa fa-search"></span></span>
+            </div>
+
+        </div>
+        <div class="col-sm-4">
+            <a href="" class="btn btn-default" zyf-keyword-widget-another="1">
+                <span class="fa fa-random"></span>
+                <span style="margin-left:5px;">换一批</span>
+            </a>
+        </div>
+    </div>
+</div>
