@@ -4,10 +4,8 @@
 }
 @section Description
 {
-    <title>@ViewData["title"]</title>
 }
 <div class="container body-content">
-
     <div class="return-prepage">
         <a href="/"><span class="fa fa-share"></span> 返回</a>
     </div>
@@ -29,61 +27,60 @@
                         </a>
                     </div>
                 </div>
-                <form method="post">
+                @using (Html.BeginForm())
+                {
                     <section style="padding:0 10px 0 10px; margin-bottom:10px;" class="yellow-highlight">
                         <div class="text-right" style="padding-top:10px;">
                             <a href="/FAQ/Account#invite"><span class="fa fa-question-circle"></span> 为什么需要邀请</a>
                         </div>
                         <div class="form-group">
                             <label>邀请人：</label>（* 必填，<a href="/User/Inviters" class="text-info" data-toggle="tooltip" title="" data-original-title="点击由系统推荐">没有邀请人</a>）
-                            <input class="form-control" data-val="true" data-val-length="* 邀请人的长度不能大于20" data-val-length-max="20" data-val-required="* 邀请人不能为空" id="InviterName" name="InviterName" placeholder="他的用户名，模糊查询只能从头开始" type="text" value="" zyf-search-by-username="">
-                            <div zyf-search-username-result=""></div>
-                            <span class="field-validation-valid" data-valmsg-for="InviterName" data-valmsg-replace="true"></span>
-                        </div>
-                        <div class="form-group">
+                            @Html.TextBoxFor(u => u.Invitation, "", new { @class = "form-control", placeholder = "他的用户名，模糊查询只能从头开始" })
+                            @Html.ValidationMessageFor(u => u.Invitation, "", new { @class = "field-validation-valid", style = "color:red" })
                             <label>邀请码：（* 必填）</label>
-                            <input class="form-control" data-val="true" data-val-regex="* 邀请码只能是4位数字" data-val-regex-pattern="[0-9]{4}" data-val-required="* 邀请码不能为空" id="InviteCode" name="InviteCode" placeholder="4位数字" type="text" value="">
-                            <span class="field-validation-valid" data-valmsg-for="InviteCode" data-valmsg-replace="true"></span>
+                            @Html.TextBoxFor(u => u.InvitationCode, "", new { @class = "form-control", placeholder = "4位数字" })
+                            @Html.ValidationMessageFor(u => u.InvitationCode, "", new { @class = "field-validation-valid", style = "color:red" })
                         </div>
                     </section>
                     <div class="form-group">
                         <label>用户名：（* 必填）</label>
-                        <input class="form-control" data-val="true" data-val-length="* 用户名的长度不能大于20" data-val-length-max="20" data-val-remote="* 用户名重复，请重新输入" data-val-remote-additionalfields="*.UserName" data-val-remote-url="/User/_NameIsExist" data-val-required="* 用户名不能为空" id="UserName" name="UserName" placeholder="登录用户名，可修改，不能重复" type="text" value="">
-                        <span class="field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+                        @Html.TextBoxFor(u => u.UserName, "", new { @class = "form-control", placeholder = "登录用户名，可修改，不能重复" })
+                        @Html.ValidationMessageFor(u => u.UserName, "", new { @class = "field-validation-valid", style = "color:red" })
                     </div>
                     <div class="form-group">
                         <label>密码：（* 必填）</label>
-                        <input class="form-control" data-val="true" data-val-length="* 密码的长度不能小于4，大于20" data-val-length-max="20" data-val-length-min="4" data-val-required="* 密码不能为空" id="Password" name="Password" placeholder="不少于4个字符" type="password">
-                        <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                        @Html.TextBoxFor(u => u.Password, "", new { @class = "form-control", placeholder = "不少于4个字符", type = "password" })
+                        @Html.ValidationMessageFor(u => u.Password, "", new { @class = "field-validation-valid", style = "color:red" })
                     </div>
                     <div class="form-group">
                         <label>验证密码：（* 必填）</label>
-                        <input class="form-control" data-val="true" data-val-equalto="* 确认密码和密码不一致" data-val-equalto-other="*.Password" data-val-required="* 确认密码不能为空" id="ConfirmPassword" name="ConfirmPassword" placeholder="和密码相同" type="password">
-                        <span class="field-validation-valid" data-valmsg-for="ConfirmPassword" data-valmsg-replace="true"></span>
+                        @Html.TextBoxFor(u => u.ConfirmPassword, "", new { @class = "form-control", placeholder = "和密码相同", type = "password" })
+                        @Html.ValidationMessageFor(u => u.ConfirmPassword, "", new { @class = "field-validation-valid", style = "color:red" })
                     </div>
                     <div class="form-group">
                         <label>验证码：（* 必填）</label>
                         <br>
                         <span zyf-img-code="">
-                            <input class="form-control" data-val="true" data-val-length="* 验证码的长度只能等于4" data-val-length-max="4" data-val-length-min="4" data-val-required="* 验证码不能为空" id="InputImageCode" name="InputImageCode" style="width:80px; display: inline;" type="text" value="">
+                            @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control", style = "width:80px;", display = "inline;" })
                             <img zyf-image-code="" style="vertical-align: middle; display: none;">
                             <a name="imageCode">
 
-                            </a><a href="#" zyf-refresh-image-code="" style="font-size: 12px; display: none">
+                            </a>
+                            <a href="#" zyf-refresh-image-code="" style="font-size: 12px; display: none">
                                 看不清楚
                             </a>
                             <span zyf-image-code-reminder="">点击输入框显示</span>
                             <span zyf-image-code-error="" class="field-validation-error"></span>
                             <br>
-                            <span class="field-validation-valid" data-valmsg-for="InputImageCode" data-valmsg-replace="true"></span>
+                            @Html.ValidationMessageFor(u => u.SecurityCode, "", new { @class = "field-validation-valid", style = "color:red" })
                         </span>
                     </div>
                     <div class="submit">
-                        <input type="submit" class="btn btn-primary loading" value="提交" zyf-submit-once="">
+                        <input type="submit" class="btn btn-primary loading" value="提交">
                         <input type="reset" class="btn btn-default">
-                        <a href="/LogOn" class="btn pull-right"><span class="fa fa-sign-in"></span> 登录</a>
+                        <a href="/Log/On?Path=@Context.Request.Path" class="btn pull-right"><span class="fa fa-sign-in"></span> 登录</a>
                     </div>
-                </form>
+                }
                 <div zyf-register-invite-share="" class="modal fade" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -137,25 +134,4 @@
             </div>
         </div>
     </div>
-    <a zyf-global-feedback="" href="/Contact/Us" style="bottom: 132px; right: 348px;" class="feedback flag text-center">
-        <span class="fa fa-question-circle-o"></span><br>帮助
-    </a>
-    <a zyf-global-feedback="" href="/Suggest/New" style="bottom: 80px; right: 348px;" class="feedback flag text-center">
-        <span class="fa fa-comments-o"></span><br>反馈
-    </a>
-    <hr>
-    <footer>
-        <div>
-            <a href="/About/Us">关于我们</a> |
-            <a href="/FAQ">常见问题</a> |
-            <a href="/Suggest">意见建议</a> |
-            <a href="/Notice">历史通知</a> |
-            <a href="/Donate" class="text-success">友情捐赠</a> |
-            <a href="/About/Fund" class="text-info">融资2018</a>
-        </div>
-        <div>
-            友情链接：
-        </div>
-        <p class="pull-right"><a href="http://www.miitbeian.gov.cn">渝ICP备18007191号（备案）</a>© 2020 - 首顾科技</p>
-    </footer>
 </div>

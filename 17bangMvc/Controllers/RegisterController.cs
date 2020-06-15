@@ -18,6 +18,7 @@ namespace _17bangMvc.Controllers
         [HttpPost]
         public ActionResult index(IndexModel model)
         {
+            ViewData["title"] = "注册:一起帮";
             return View();
         }
     }
