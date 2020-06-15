@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceInterface
+namespace ViewModel.Register
 {
-    public class IUserService
+    public class IndexModel
     {
+
     }
 }

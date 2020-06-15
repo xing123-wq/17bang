@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using _17bangMvc.Filters;
-using SRV.ViewModel.Models;
-using ViewModel.Models;
+using ViewModel.Register;
 
 namespace _17bangMvc.Controllers
 {
-    [MVCFilter]
     public class LogOnController : Controller
     {
         HttpCookie cookie = new HttpCookie("UserName");
@@ -22,7 +19,7 @@ namespace _17bangMvc.Controllers
         }
         [Route("Log/On")]
         [HttpPost]
-        public ActionResult index(OnModel model)
+        public ActionResult index(IndexModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -39,17 +36,17 @@ namespace _17bangMvc.Controllers
             Request.Cookies.Remove("UserName");
             return RedirectToAction("index");
         }
-        public void Cookie(OnModel model)
+        public void Cookie(IndexModel model)
         {
-            if (model.RememberMe)
-            {
-                cookie.Expires = DateTime.Now.AddDays(14);
-            }
-            else
-            {
-                cookie.Expires = DateTime.Now.AddDays(1);
-            }
-            Response.Cookies.Add(cookie);
+            //if (model.RememberMe)
+            //{
+            //    cookie.Expires = DateTime.Now.AddDays(14);
+            //}
+            //else
+            //{
+            //    cookie.Expires = DateTime.Now.AddDays(1);
+            //}
+            //Response.Cookies.Add(cookie);
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Repositorys
+namespace ViewModel.Problem
 {
-    public class UserRepository
+    public class IndexModel
     {
     }
 }

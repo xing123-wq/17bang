@@ -1,10 +1,8 @@
-﻿using SRV.ViewModel.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ViewModel.Models;
 
 namespace _17bangMvc.Controllers
 {
@@ -16,11 +14,11 @@ namespace _17bangMvc.Controllers
             ViewData["title"] = "一起帮-首页";
             return View();
         }
-        [HttpPost]
-        public ActionResult Index(IndexModel model)
-        {
-            return View();
-        }
+        //[HttpPost]
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
         public ActionResult About()
         {
 

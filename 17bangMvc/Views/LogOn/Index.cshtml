@@ -1,4 +1,4 @@
-﻿@model SRV.ViewModel.Models.OnModel
+﻿@model  ViewModel.LogOn.IndexModel
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
 }
@@ -33,8 +33,8 @@
                 {
                     <div class="form-group">
                         <label>用户名：（* 必填）</label>
-                        @Html.TextBoxFor(u => u.Name, "", new { @class = "form-control", placeholder = "不是昵称，是登录用户名" })
-                        @Html.ValidationMessageFor(u => u.Name, "", new { style = "color:red" })
+                        @Html.TextBoxFor(u => u.UserName, "", new { @class = "form-control", placeholder = "不是昵称，是登录用户名" })
+                        @Html.ValidationMessageFor(u => u.UserName, "", new { style = "color:red" })
                     </div>
                     <div class="form-group">
                         <label>密码：（* 必填）</label>

@@ -1,10 +1,9 @@
-﻿using SRV.ViewModel.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ViewModel.Models;
+using ViewModel.Problem;
 
 namespace _17bangMvc.Controllers
 {
@@ -17,7 +16,7 @@ namespace _17bangMvc.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult index(ProblemModel model)
+        public ActionResult index(NewModel model)
         {
             return View();
         }
