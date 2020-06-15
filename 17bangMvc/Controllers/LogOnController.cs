@@ -9,7 +9,6 @@ namespace _17bangMvc.Controllers
 {
     public class LogOnController : Controller
     {
-        HttpCookie cookie = new HttpCookie("UserName");
         [HttpGet]
         [Route("Log/On")]
         public ActionResult index()
@@ -25,28 +24,13 @@ namespace _17bangMvc.Controllers
             {
                 ViewData["title"] = "用户登录:一起帮";
             }
-            Cookie(model);
             return View(model);
         }
         [HttpGet]
         [Route("Log/Off")]
         public ActionResult Off()
         {
-            Response.AppendCookie(cookie);
-            Request.Cookies.Remove("UserName");
-            return RedirectToAction("index");
-        }
-        public void Cookie(IndexModel model)
-        {
-            //if (model.RememberMe)
-            //{
-            //    cookie.Expires = DateTime.Now.AddDays(14);
-            //}
-            //else
-            //{
-            //    cookie.Expires = DateTime.Now.AddDays(1);
-            //}
-            //Response.Cookies.Add(cookie);
+            return RedirectToAction("");
         }
     }
 }

@@ -37,9 +37,11 @@
                             <label>邀请人：</label>（* 必填，<a href="/User/Inviters" class="text-info" data-toggle="tooltip" title="" data-original-title="点击由系统推荐">没有邀请人</a>）
                             @Html.TextBoxFor(u => u.Invitation, "", new { @class = "form-control", placeholder = "他的用户名，模糊查询只能从头开始" })
                             @Html.ValidationMessageFor(u => u.Invitation, "", new { @class = "field-validation-valid", style = "color:red" })
-                            <label>邀请码：（* 必填）</label>
-                            @Html.TextBoxFor(u => u.InvitationCode, "", new { @class = "form-control", placeholder = "4位数字" })
-                            @Html.ValidationMessageFor(u => u.InvitationCode, "", new { @class = "field-validation-valid", style = "color:red" })
+                            <div>
+                                <label>邀请码：（* 必填）</label>
+                                @Html.TextBoxFor(u => u.InvitationCode, "", new { @class = "form-control", placeholder = "4位数字" })
+                                @Html.ValidationMessageFor(u => u.InvitationCode, "", new { @class = "field-validation-valid", style = "color:red" })
+                            </div>
                         </div>
                     </section>
                     <div class="form-group">
