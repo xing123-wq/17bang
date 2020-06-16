@@ -8,5 +8,7 @@ namespace BLL
 {
     public class Keyword : BaseEntity
     {
+        public string Name { get; set; }
+        public int Counter { get; set; }
     }
 }

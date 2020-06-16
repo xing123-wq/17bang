@@ -10,6 +10,8 @@ namespace BLL
     {
         public string Name { get; set; }
         public string Password { get; set; }
-        public 
+
+        public IList<Problem> Problems { get; set; }
+        public IList<Article> Articles { get; set; }
     }
 }
