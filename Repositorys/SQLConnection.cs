@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Repositorys
 {
-    class Program
+    public class SQLConnection: DbContext
     {
-        static void Main(string[] args)
-        {
-        }
+        
     }
 }
