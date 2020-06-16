@@ -1,0 +1,104 @@
+﻿@model  ViewModel.LogOn.IndexModel
+@{
+    Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
+}
+@section Description
+{
+    <title>@ViewData["title"]</title>
+}
+
+<div class="container body-content">
+    <div class="return-prepage">
+        <a href="/Page-1"><span class="fa fa-share"></span> 返回</a>
+    </div>
+    <div class="dualcolumns-container">
+        <div class="page-header">
+            <h2>
+                <span class="fa fa-sign-in " aria-hidden="true"></span> 用户登录
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-5">
+                <div class="container" style="margin-bottom: 16px;">
+                    <div class="row">
+                        <a class="visible-sm visible-xs pull-right" show-introduction="">
+                            <span class="fa fa-question-circle"></span>
+                            <span style="margin-left:4px;">
+                                说明
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group">
+                        <label>用户名：（* 必填）</label>
+                        @Html.TextBoxFor(u => u.UserName, "", new { @class = "form-control", placeholder = "不是昵称，是登录用户名" })
+                        @Html.ValidationMessageFor(u => u.UserName, "", new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        <label>密码：（* 必填）</label>
+                        @Html.TextBoxFor(u => u.Password, "", new { @class = "form-control", placeholder = "不少于4个字符", type = "password" })
+                        @Html.ValidationMessageFor(u => u.Password, "", new { style = "color:red" })
+                    </div>
+                    <div class="form-group">
+                        <label>验证码：（* 必填）</label>
+                        <br>
+                        <span>
+                            @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(u => u.SecurityCode, "", new { style = "color:red" })
+                            <img style="vertical-align: middle; display: none;">
+                            <a name="imageCode">
+                            </a>
+                            <a href="#" style="font-size: 12px; display: none">
+                                看不清楚
+                            </a>
+                            <span>点击输入框显示</span>
+                            <span class="field-validation-error"></span>
+                            <br>
+                        </span>
+                    </div>
+                    <div class="submit">
+                        <input type="submit" class="btn btn-primary loading" value="提交">
+                        <label class="checkbox-inline" style="margin-left:16px;">
+                            @Html.CheckBoxFor(m => m.RememberMe)记住我
+                        </label>
+                        <span class="pull-right btn">
+                            <a href="/Password/Forget">(｡ŏ_ŏ) 忘了</a>
+                            <a href="/Register" style="margin-left:10px;"><span class="fa fa-registered"></span> 注册</a>
+                        </span>
+                    </div>
+                }
+                <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="introductionLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h4 class="modal-title" id="introductionLabel"></h4>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">知道了</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 visible-lg visible-md">
+                <div page-introduction="">
+                    <h3 class="text-info" style="margin-bottom: 20px;"><span class="fa fa-question-circle "></span> 说明</h3>
+                    <ol class="page-introduction-ol">
+
+                        <li>我们希望通过<a href="/About/Us">一起帮</a>，能<span class="text-primary text-bold">直接解决</span>大家在<span class="text-primary">电脑操作/软件使用/编程学习</span>等方面的<span class="text-primary text-bold">具体问题</span>。</li>
+                        <li>现在互联网远程技术<span class="text-muted">（比如QQ桌面共享）</span>已经非常成熟，当我们再遇到上述问题，如果别人能<span class="text-primary">直接远程给予帮助</span>，岂不是好？</li>
+                        <li>当然，你也可以在你熟悉的领域去<span class="text-primary">帮助别人</span>。由此而形成我们这个“你帮他他帮我我帮你，大家一起帮”的网上互助社区平台。</li>
+                        <li>公平起见，我们还引入了 帮帮<span class="water">点</span>/<span class="credit">币</span>/<span class="bean">豆</span> 三级概念，以记录和衡量社区成员的收获和贡献。</li>
+                        <li>赶快加入我们，赚取帮帮币吧！</li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
