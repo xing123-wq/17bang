@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-   public class ArticleAndKeyword
+   public class ArticleAndKeyword:BaseEntity
     {
     }
 }
