@@ -458,10 +458,10 @@
     <Content Include="Views\Shared\Layout\_DualColumn.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Problem\Index.cshtml" />
-    <Content Include="Views\LogOn\Index.cshtml" />
+    <Content Include="Views\Log\On.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Problem\New.cshtml" />
-    <Content Include="Views\LogOn\Off.cshtml" />
+    <Content Include="Views\Log\Off.cshtml" />
     <Content Include="Views\Shared\_Advertising.cshtml" />
     <Content Include="Views\Shared\_Article.cshtml" />
     <Content Include="Views\Shared\_Keyword.cshtml" />

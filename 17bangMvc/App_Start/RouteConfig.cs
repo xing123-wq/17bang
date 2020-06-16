@@ -17,8 +17,11 @@ namespace _17bangMvc
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                constraints: new { id = @"\d*" }
-            );
+                constraints: new { id = @"\d*" });
+            routes.MapRoute(
+             name: "LogConfig",
+             url: "{controller}/{action}",
+             defaults: new { controller = "Log", action = "On" });
 
         }
     }

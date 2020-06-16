@@ -7,18 +7,18 @@ using ViewModel.Register;
 
 namespace _17bangMvc.Controllers
 {
-    public class LogOnController : Controller
+    public class LogController : Controller
     {
         [HttpGet]
-        [Route("Log/On")]
-        public ActionResult index()
+        //[Route("Log/On")]
+        public ActionResult On()
         {
             ViewData["title"] = "用户登录:一起帮";
             return View();
         }
-        [Route("Log/On")]
+        //[Route("Log/On")]
         [HttpPost]
-        public ActionResult index(IndexModel model)
+        public ActionResult On(IndexModel model)
         {
             if (!ModelState.IsValid)
             {
