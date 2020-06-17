@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProdService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,7 +20,7 @@ namespace _17bangMvc.Controllers
         public ActionResult index(IndexModel model)
         {
             ViewData["title"] = "注册:一起帮";
-            return View();
+            return View(model);
         }
     }
 }
