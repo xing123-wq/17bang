@@ -62,6 +62,10 @@
     <Compile Include="Migrations\202006170209002_addTables.designer.cs">
       <DependentUpon>202006170209002_addTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006170216476_TableRelationalMapping.cs" />
+    <Compile Include="Migrations\202006170216476_TableRelationalMapping.designer.cs">
+      <DependentUpon>202006170216476_TableRelationalMapping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="Program.cs" />
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006170209002_addTables.resx">
       <DependentUpon>202006170209002_addTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006170216476_TableRelationalMapping.resx">
+      <DependentUpon>202006170216476_TableRelationalMapping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
