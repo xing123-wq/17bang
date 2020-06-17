@@ -11,12 +11,12 @@ namespace Repositorys
 {
     public class SQLConnection : DbContext
     {
-        DbSet<User> Users { get; set; }
-        DbSet<Article> Articles { get; set; }
-        DbSet<ArticleAndKeyword> ArticleAndKeywords { get; set; }
-        DbSet<Keyword> Keywords { get; set; }
-        DbSet<ProblemAndKeyword> ProblemAndKeywords { get; set; }
-        DbSet<Problem> Problems { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<ArticleAndKeyword> ArticleAndKeywords { get; set; }
+        public DbSet<Keyword> Keywords { get; set; }
+        public DbSet<ProblemAndKeyword> ProblemAndKeywords { get; set; }
+        public DbSet<Problem> Problems { get; set; }
         public SQLConnection() : base("18bang")
         {
 #if DEBUG
