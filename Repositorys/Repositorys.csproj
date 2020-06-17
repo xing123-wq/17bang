@@ -82,6 +82,10 @@
       <Project>{6173c1fc-92bf-476e-86c4-d4820b120e17}</Project>
       <Name>Entitys</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
+      <Project>{a63a8695-07de-4055-9026-d6e307c4faa8}</Project>
+      <Name>ExtensionMethods</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006161359373_Init.resx">
