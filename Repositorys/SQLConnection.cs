@@ -12,6 +12,11 @@ namespace Repositorys
     public class SQLConnection : DbContext
     {
         DbSet<User> Users { get; set; }
+        DbSet<Article> Articles { get; set; }
+        DbSet<ArticleAndKeyword> ArticleAndKeywords { get; set; }
+        DbSet<Keyword> Keywords { get; set; }
+        DbSet<ProblemAndKeyword> ProblemAndKeywords { get; set; }
+        DbSet<Problem> Problems { get; set; }
         public SQLConnection() : base("18bang")
         {
 #if DEBUG
