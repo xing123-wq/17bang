@@ -25,7 +25,12 @@ namespace ProdService
             {
                 cfg.CreateMap<User, IndexModel>()
                 .ForMember(i => i.UserName, opt => opt.MapFrom(u => u.Name))
-                .ReverseMap();
+                .ForMember(i => i.ConfirmPassword, opt => opt.Ignore())
+                .ForMember(i => i.SecurityCode, opt => opt.Ignore())
+                .ForMember(i => i.Inviter, opt => opt.Ignore())
+                .ForMember(i => i.InviterCode, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(u => u.Inviter, opt => opt.Ignore());
             });
 #if DEBUG   //复习：这是什么？
             autoMapperConfig.AssertConfigurationIsValid();

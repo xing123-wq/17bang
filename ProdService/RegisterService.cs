@@ -25,6 +25,8 @@ namespace ProdService
 
         public int Register(IndexModel model)
         {
+            User user = new User { Id = 2, Name = "at" };
+            mapper.Map<IndexModel, User>(model, user);
             return 1;
         }
     }

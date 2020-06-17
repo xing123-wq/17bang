@@ -37,6 +37,5 @@ namespace Repositorys
         {
             return Connection.Users.Where(u => u.Name == name).SingleOrDefault();
         }
-
     }
 }

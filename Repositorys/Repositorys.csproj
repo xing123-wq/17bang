@@ -66,6 +66,14 @@
     <Compile Include="Migrations\202006170216476_TableRelationalMapping.designer.cs">
       <DependentUpon>202006170216476_TableRelationalMapping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006171116003_addColumn.cs" />
+    <Compile Include="Migrations\202006171116003_addColumn.designer.cs">
+      <DependentUpon>202006171116003_addColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006171251028_UpdateColumnInviterCodeType.cs" />
+    <Compile Include="Migrations\202006171251028_UpdateColumnInviterCodeType.designer.cs">
+      <DependentUpon>202006171251028_UpdateColumnInviterCodeType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="Program.cs" />
@@ -96,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006170216476_TableRelationalMapping.resx">
       <DependentUpon>202006170216476_TableRelationalMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006171116003_addColumn.resx">
+      <DependentUpon>202006171116003_addColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006171251028_UpdateColumnInviterCodeType.resx">
+      <DependentUpon>202006171251028_UpdateColumnInviterCodeType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

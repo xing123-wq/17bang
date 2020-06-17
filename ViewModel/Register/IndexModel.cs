@@ -25,12 +25,12 @@ namespace ViewModel.Register
         [Display(Name = "邀请人(* 必填)")]
         [Required(ErrorMessage = "* 邀请人不能为空")]
         [StringLength(8, MinimumLength = 4, ErrorMessage = "* 用户名长度不能小于{2}也不能大于{1}")]
-        public string Invitation { get; set; }
+        public string Inviter { get; set; }
         [Display(Name = "邀请码:（* 必填）")]
         [Required(ErrorMessage = "* 邀请码不能为空")]
         [MaxLength(4, ErrorMessage = "* 邀请码长度最大4位")]
-        [RegularExpression("[0-9]*")]
-        public int InvitationCode { get; set; }
+        [RegularExpression("[0-9]*", ErrorMessage = "邀请码只能是1-9的数字")]
+        public string InviterCode { get; set; }
         [Display(Name = "验证码:")]
         [Required(ErrorMessage = "* 验证码不能为空")]
         [MaxLength(4, ErrorMessage = "* 验证码长度最大4位")]
