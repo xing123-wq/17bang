@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class _1 : DbMigration
     {
         public override void Up()
         {
@@ -14,8 +14,12 @@
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Password = c.String(),
+                        InviterCode = c.String(),
+                        Inviter_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.Inviter_Id)
+                .Index(t => t.Inviter_Id);
             
             CreateTable(
                 "dbo.Articles",
@@ -35,11 +39,11 @@
                 "dbo.ArticleAndKeywords",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
                         ArticleId = c.Int(nullable: false),
                         KeywordId = c.Int(nullable: false),
+                        Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id)
+                .PrimaryKey(t => new { t.ArticleId, t.KeywordId })
                 .ForeignKey("dbo.Articles", t => t.ArticleId, cascadeDelete: true)
                 .ForeignKey("dbo.Keywords", t => t.KeywordId, cascadeDelete: true)
                 .Index(t => t.ArticleId)
@@ -87,6 +91,7 @@
         
         public override void Down()
         {
+            DropForeignKey("dbo.Users", "Inviter_Id", "dbo.Users");
             DropForeignKey("dbo.ProblemAndKeywords", "ProblemId", "dbo.Problems");
             DropForeignKey("dbo.Problems", "AuthorId", "dbo.Users");
             DropForeignKey("dbo.ProblemAndKeywords", "KeywordId", "dbo.Keywords");
@@ -99,6 +104,7 @@
             DropIndex("dbo.ArticleAndKeywords", new[] { "KeywordId" });
             DropIndex("dbo.ArticleAndKeywords", new[] { "ArticleId" });
             DropIndex("dbo.Articles", new[] { "AuthorId" });
+            DropIndex("dbo.Users", new[] { "Inviter_Id" });
             DropTable("dbo.Problems");
             DropTable("dbo.ProblemAndKeywords");
             DropTable("dbo.Keywords");

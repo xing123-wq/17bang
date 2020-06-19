@@ -1,4 +1,5 @@
-﻿using ProdService;
+﻿using ExtensionMethods;
+using ProdService;
 using ServiceInterface;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,10 @@ namespace _17bangMvc.Controllers
 {
     public class RegisterController : Controller
     {
-        private IRegisterService _Iservice;
+        private IRegisterService _iservice;
         public RegisterController()
         {
-            _Iservice = new RegisterService();
+            _iservice = new RegisterService();
         }
         [HttpGet]
         public ActionResult index()
@@ -30,7 +31,12 @@ namespace _17bangMvc.Controllers
                 ViewData["title"] = "注册:一起帮";
                 return View(model);
             }
-            //_Iservice.Register(model);
+            IndexModel user = _iservice.GetBy(model.UserName);
+            if (user == null)
+            {
+                ModelState.AddModelError(nameof(model.UserName), "* 该用户名已被使用");
+            }
+            _iservice.Register(model);
             return View(model);
         }
     }

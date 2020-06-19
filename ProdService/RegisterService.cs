@@ -3,6 +3,7 @@ using Repositorys;
 using ServiceInterface;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,22 +13,19 @@ namespace ProdService
 {
     public class RegisterService : BaseService, IRegisterService
     {
-        private UserRepositroy _UserRepositroy;
-        public RegisterService()
-        {
-            _UserRepositroy = new UserRepositroy();
-        }
+        private UserRepositroy _userRepositroy { get => new UserRepositroy(context); }
         public IndexModel GetBy(string name)
         {
-            User user = _UserRepositroy.GetByName(name);
-            return null;
+            User user = _userRepositroy.GetByName(name);
+            return mapper.Map<ViewModel.Register.IndexModel>(user);
         }
 
         public int Register(IndexModel model)
         {
-            User user = new User { Id = 2, Name = "at" };
-            mapper.Map<IndexModel, User>(model, user);
-            return 1;
+            User user = mapper.Map<User>(model);
+            _userRepositroy.Add(user);
+            return user.Id;
         }
     }
 }
+ 
