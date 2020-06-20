@@ -10,6 +10,7 @@ namespace BLL
     {
         public string Name { get; set; }
         public string Password { get; set; }
+        public int? InviterId { get; set; }
         public User Inviter { get; set; }
         public string InviterCode { get; set; }
         public IList<Problem> Problems { get; set; }
