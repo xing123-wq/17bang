@@ -32,9 +32,21 @@ namespace _17bangMvc.Controllers
                 return View(model);
             }
             IndexModel user = _iservice.GetBy(model.UserName);
-            if (user == null)
+            IndexModel invier = _iservice.GetBy(model.Inviter);
+            if (invier == null)
+            {
+                ModelState.AddModelError(nameof(model.Inviter), "* 邀请人不存在");
+                return View(model);
+            }
+            if (invier.InviterCode != model.InviterCode)
+            {
+                ModelState.AddModelError(nameof(model.InviterCode), "* 邀请码不正确，请重新输入");
+                return View(model);
+            }
+            if (user != null)
             {
                 ModelState.AddModelError(nameof(model.UserName), "* 该用户名已被使用");
+                return View(model);
             }
             _iservice.Register(model);
             return View(model);

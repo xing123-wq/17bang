@@ -42,7 +42,7 @@ namespace ProdService
                 .ForMember(i => i.ConfirmPassword, opt => opt.Ignore())
                 .ForMember(i => i.SecurityCode, opt => opt.Ignore())
                 .ForMember(i => i.Inviter, opt => opt.Ignore())
-                .ForMember(i => i.InviterCode, opt => opt.Ignore())
+                .ForMember(i => i.InviterCode, opt => opt.MapFrom(u => u.InviterCode))
                 .ReverseMap()
                 .ForMember(u => u.Inviter, opt => opt.Ignore());
             });

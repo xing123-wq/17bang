@@ -68,6 +68,10 @@
       <Project>{6173c1fc-92bf-476e-86c4-d4820b120e17}</Project>
       <Name>Entitys</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
+      <Project>{C1D93A0B-55FF-4097-AC41-06F5B5956F86}</Project>
+      <Name>ExtensionMethods</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Repositorys\Repositorys.csproj">
       <Project>{d5ea1592-9fe9-42bf-8238-23ce401563fe}</Project>
       <Name>Repositorys</Name>

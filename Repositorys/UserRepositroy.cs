@@ -21,7 +21,12 @@ namespace Repositorys
         }
         public User GetByName(string name)
         {
-            return entities.Where(u => u.Name == name).SingleOrDefault();
+            return entities.Where(u => u.Name == name).FirstOrDefault();
+
+        }
+        public User GetByInviter(string inviter)
+        {
+            return entities.FirstOrDefault(u => u.Name == inviter);
         }
     }
 }

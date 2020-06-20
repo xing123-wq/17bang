@@ -1,4 +1,5 @@
 ﻿using BLL;
+using ExtensionMethods;
 using Repositorys;
 using ServiceInterface;
 using System;
@@ -19,13 +20,14 @@ namespace ProdService
             User user = _userRepositroy.GetByName(name);
             return mapper.Map<ViewModel.Register.IndexModel>(user);
         }
-
         public int Register(IndexModel model)
         {
             User user = mapper.Map<User>(model);
+            user.InviterCode = StringExtension.GenerateRandomNumber(4);
+            user.Password = StringExtension.GetMd5Hash(model.Password);
             _userRepositroy.Add(user);
             return user.Id;
         }
+
     }
 }
- 
