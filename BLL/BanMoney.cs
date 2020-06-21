@@ -13,5 +13,11 @@ namespace BLL
 
         public int OwnerId { get; set; }
         public User Owner { get; set; }
+
+        public BanMoney SetBanMoney(User user)
+        {
+            Random random = new Random();
+            return new BanMoney { BanCoin = random.Next(1, 10), Owner = user };
+        }
     }
 }
