@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _17bangMvc.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,6 +27,12 @@ namespace _17bangMvc.Controllers
         [ChildActionOnly]
         public PartialViewResult _RankingList()
         {
+            return PartialView();
+        }
+        [ChildActionOnly]
+        public PartialViewResult _LogOn()
+        {
+            
             return PartialView();
         }
     }

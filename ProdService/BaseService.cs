@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using ViewModel.Register;
 
 namespace ProdService
 {
@@ -37,7 +36,7 @@ namespace ProdService
         {
             autoMapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<User, IndexModel>()
+                cfg.CreateMap<User, ViewModel.Register.IndexModel>()
                 .ForMember(i => i.UserName, opt => opt.MapFrom(u => u.Name))
                 .ForMember(i => i.ConfirmPassword, opt => opt.Ignore())
                 .ForMember(i => i.SecurityCode, opt => opt.Ignore())
@@ -45,6 +44,14 @@ namespace ProdService
                 .ForMember(i => i.InviterCode, opt => opt.MapFrom(u => u.InviterCode))
                 .ReverseMap()
                 .ForMember(u => u.Inviter, opt => opt.Ignore());
+
+                cfg.CreateMap<User, ViewModel.LogOn.IndexModel>()
+                .ForMember(i => i.UserName, opt => opt.MapFrom(u => u.Name))
+                .ForMember(i => i.Password, opt => opt.MapFrom(u => u.Password))
+                .ForMember(i => i.SecurityCode, opt => opt.Ignore())
+                .ForMember(i => i.RememberMe, opt => opt.Ignore())
+                .ReverseMap();
+
             });
 #if DEBUG   //复习：这是什么？
             autoMapperConfig.AssertConfigurationIsValid();

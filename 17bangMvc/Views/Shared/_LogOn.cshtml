@@ -1,0 +1,72 @@
+﻿@using _17bangMvc.Helper
+@if (ViewData["UserName"] == null)
+{
+    <li class="dropdown">
+        <a href="/Article" class="dropdown-toggle" data-toggle="dropdown"><span class="iconfont icon-articles"></span> 文章</a>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="/Article"><span class="fa fa-list fa-fw"></span> 列表</a> </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="text-primary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            <span class="text-muted"><span class="fa fa-user-secret"></span><span> 未登录</span></span>
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="/Log/On?pagepth=@Context.Request.Path"><span class="fa fa-sign-in"></span> 登录</a></li>
+            <li><a href="/Register?pagepth=@Context.Request.Path"><span class="fa fa-registered"></span> 注册</a></li>
+            <li><a href="/Password/Forget"><span class="fa fa-lock"></span> 忘记密码</a></li>
+        </ul>
+    </li>
+}
+else
+{
+    <li class="dropdown">
+        <a href="/Article" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="iconfont icon-articles"></span> 文章</a>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="/Article"><span class="fa fa-list fa-fw"></span> 列表</a> </li>
+            <li><a href="/Article/User-7"><span class="fa fa-home fa-fw"></span> 我的</a></li>
+            <li><a href="/Article/New"><span class="fa fa-pencil fa-fw"></span> 发布</a></li>
+            <li><a href="/Category/Manage"><span class="fa fa-folder-open-o"></span> 系列</a></li>
+            <li><a href="/Article/Publisher"><span class="fa fa-certificate fa-fw"></span> 授权</a></li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a class="text-primary dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+            <span class="text-primary">
+                <span class="fa fa-user-circle-o">
+                </span>
+                <span zyf-current-username="">
+                    @ViewData[Const.USER_NAME]
+                </span>
+            </span>
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            @*<vc:_info></vc:_info>*@
+            <li>
+                <a href="/Log/Off?pagepth=@Context.Request.Path">
+                    <span class="fa fa-sign-out"></span> 退出登录
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-tachometer"></span> 后台<span class="caret"></span></a>
+        <ul class="dropdown-menu dropdown-menu-bottom-fix" role="menu">
+            <li><a href="/Invite"><span class="fa fa-user-plus fa-fw"></span> 邀请注册</a> </li>
+            <li><a href="/Message/Mine"><span class="fa fa-bell fa-fw"></span> 我的消息</a> </li>
+            <li><a href="/Draft"><span class="fa fa-file-o fa-fw"></span> 我的草稿</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">广告推广</li>
+            <li><a href="/AdInContact/Write?prepage=%2fArticle%2f568"><span class="fa fa-link"></span> 联系方式</a></li>
+            <li><a href="/AdInWidget/Write?prepage=%2fArticle%2f568"><span class="fa fa-link"></span> 侧边栏</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">帮帮币</li>
+            <li><a href="/MoneyTrade/Market?prepage=%2fArticle%2f568"><b class="iconfont icon-shopping-cart-buy"></b> 购买</a></li>
+            <li><a href="/MoneyTrade/Sale?prepage=%2fArticle%2f568"><b class="iconfont icon-shopping-cart-sell"></b> 出售</a></li>
+            <li><a href="/MoneyTrade/BuyList"><span class="fa fa-list"></span> 已购买</a></li>
+            <li><a href="/MoneyTrade/SaleList"><span class="fa fa-list"></span> 已出售</a></li>
+        </ul>
+    </li>
+}
