@@ -15,19 +15,20 @@ namespace ProdService
     public class RegisterService : BaseService, IRegisterService
     {
         private UserRepositroy _userRepositroy { get => new UserRepositroy(context); }
+        private User _user;
         public IndexModel GetBy(string name)
         {
-            User user = _userRepositroy.GetByName(name);
-            return mapper.Map<ViewModel.Register.IndexModel>(user);
+             _user = _userRepositroy.GetByName(name);
+            return mapper.Map<ViewModel.Register.IndexModel>(_user);
         }
         public int Register(IndexModel model)
         {
-            User user = mapper.Map<User>(model);
-            user.InviterCode = StringExtension.GetRandomNumber(4);
-            user.Password = StringExtension.GetMd5Hash(model.Password);
-            user.Inviter = _userRepositroy.GetByInviter(model.Inviter);
-            _userRepositroy.Add(user);
-            return user.Id;
+            _user = mapper.Map<User>(model);
+            _user.InviterCode = StringExtension.GetRandomNumber(4);
+            _user.Password = StringExtension.GetMd5Hash(model.Password);
+            _user.Inviter = _userRepositroy.GetByInviter(model.Inviter);
+            _userRepositroy.Add(_user);
+            return _user.Id;
         }
 
     }
