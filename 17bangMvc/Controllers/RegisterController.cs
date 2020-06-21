@@ -13,11 +13,10 @@ namespace _17bangMvc.Controllers
 {
     public class RegisterController : Controller
     {
-        private IRegisterService _iservice;
-        public int UserId { get; set; }
+        private readonly IRegisterService _service;
         public RegisterController()
         {
-            _iservice = new RegisterService();
+            _service = new RegisterService();
         }
         [HttpGet]
         public ActionResult index()
@@ -33,8 +32,8 @@ namespace _17bangMvc.Controllers
                 ViewData["title"] = "注册:一起帮";
                 return View(model);
             }
-            IndexModel user = _iservice.GetBy(model.UserName);
-            IndexModel invier = _iservice.GetBy(model.Inviter);
+            IndexModel user = _service.GetBy(model.UserName);
+            IndexModel invier = _service.GetBy(model.Inviter);
             if (invier == null)
             {
                 ModelState.AddModelError(nameof(model.Inviter), "* 邀请人不存在");
@@ -50,24 +49,9 @@ namespace _17bangMvc.Controllers
                 ModelState.AddModelError(nameof(model.UserName), "* 该用户名已被使用");
                 return View(model);
             }
-            UserId = _iservice.Register(model);
-            Cookies(model);
+            int UserId = _service.Register(model);
+            CookieHelper.LogOn(UserId, model.Password);
             return View(model);
-        }
-        public void Cookies(IndexModel model)
-        {
-            //首先有一个cookie，名字为user
-            HttpCookie cookie = new HttpCookie(Const.USER_NAME);
-
-            //在cookie中添加若干（2个）键值对
-            string Id = UserId.ToString().GetMd5Hash();
-            string password = model.Password.GetMd5Hash();
-            cookie.Values.Add(Const.USER_ID, Id);
-            cookie.Values.Add(Const.USER_PASSWORD, password);
-
-            cookie.Expires = DateTime.Now.AddDays(14);
-            //Request.Cookies.Add(cookie);
-            Response.Cookies.Add(cookie);
         }
     }
 }

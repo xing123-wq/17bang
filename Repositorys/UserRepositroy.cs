@@ -12,7 +12,6 @@ namespace Repositorys
     {
         public UserRepositroy(SQLContext context) : base(context)
         {
-            this.context = context;
         }
 
         public User GetById(int id)

@@ -28,7 +28,7 @@ namespace ExtensionMethods
         }
         static Random random = new Random();
         private static char[] constant = "1234567890".ToArray();
-        public static string GenerateRandomNumber(int length)
+        public static string GetRandomNumber(int length)
         {
             if (length > 4 || 4 < length)
             {

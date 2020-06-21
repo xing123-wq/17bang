@@ -23,9 +23,9 @@ namespace ProdService
         public int Register(IndexModel model)
         {
             User user = mapper.Map<User>(model);
-            user.InviterCode = StringExtension.GenerateRandomNumber(4);
+            user.InviterCode = StringExtension.GetRandomNumber(4);
             user.Password = StringExtension.GetMd5Hash(model.Password);
-            user.InviterId = _userRepositroy.GetByInviter(model.Inviter).Id;
+            user.Inviter = _userRepositroy.GetByInviter(model.Inviter);
             _userRepositroy.Add(user);
             return user.Id;
         }
