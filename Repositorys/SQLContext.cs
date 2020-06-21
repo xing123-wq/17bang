@@ -25,10 +25,13 @@ namespace Repositorys
             modelBuilder.Entity<Keyword>();
             modelBuilder.Entity<Article>();
             modelBuilder.Entity<ArticleAndKeyword>();
+            modelBuilder.Entity<BanMoney>();
 
             modelBuilder.Entity<ArticleAndKeyword>()
                 .HasKey(ak => new { ak.ArticleId, ak.KeywordId });
 
+            modelBuilder.Entity<ProblemAndKeyword>()
+                .HasKey(pk => new { pk.ProblemId, pk.KeywordId });
 
 
             base.OnModelCreating(modelBuilder);

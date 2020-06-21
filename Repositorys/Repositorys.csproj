@@ -70,6 +70,14 @@
     <Compile Include="Migrations\202006201447278_UpdateColumnInviterId.designer.cs">
       <DependentUpon>202006201447278_UpdateColumnInviterId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006211129460_AddTableBanMoney.cs" />
+    <Compile Include="Migrations\202006211129460_AddTableBanMoney.designer.cs">
+      <DependentUpon>202006211129460_AddTableBanMoney.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006211131514_AddPk.cs" />
+    <Compile Include="Migrations\202006211131514_AddPk.designer.cs">
+      <DependentUpon>202006211131514_AddPk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="Program.cs" />
@@ -96,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006201447278_UpdateColumnInviterId.resx">
       <DependentUpon>202006201447278_UpdateColumnInviterId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006211129460_AddTableBanMoney.resx">
+      <DependentUpon>202006211129460_AddTableBanMoney.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006211131514_AddPk.resx">
+      <DependentUpon>202006211131514_AddPk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
