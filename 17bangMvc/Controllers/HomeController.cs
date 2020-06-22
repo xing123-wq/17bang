@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace _17bangMvc.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         [HttpGet]
         public ActionResult Index()

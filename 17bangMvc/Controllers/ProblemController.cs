@@ -7,7 +7,7 @@ using ViewModel.Problem;
 
 namespace _17bangMvc.Controllers
 {
-    public class ProblemController : Controller
+    public class ProblemController : BaseController
     {
         [HttpGet]
         public ActionResult index()

@@ -11,7 +11,7 @@ using ViewModel.LogOn;
 
 namespace _17bangMvc.Controllers
 {
-    public class LogController : Controller
+    public class LogController : BaseController
     {
         private ILogOnService _service;
         public LogController()
@@ -46,7 +46,8 @@ namespace _17bangMvc.Controllers
             }
             int userId = _service.LogOn(model);
             CookieHelper.LogOn(userId, model.Password, model.RememberMe);
-            return View(model);
+            string path = Request.QueryString[Const.PAGE_PATH];
+            return Redirect(path);
         }
         [HttpGet]
         [Route("Log/Off")]
@@ -54,7 +55,8 @@ namespace _17bangMvc.Controllers
         {
             Response.Cookies[Const.USER_ID].Expires = DateTime.Now.AddDays(-1);
             Response.Cookies[Const.USER_PASSWORD].Expires = DateTime.Now.AddDays(-1);
-            return RedirectToAction("/On");
+            string path = Request.QueryString[Const.PAGE_PATH];
+            return Redirect(path);
         }
     }
 }

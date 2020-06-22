@@ -11,7 +11,7 @@ using ViewModel.LogOn;
 
 namespace _17bangMvc.Controllers
 {
-    public class SharedController : Controller
+    public class SharedController : BaseController
     {
         private ILogOnService _service;
         public SharedController()

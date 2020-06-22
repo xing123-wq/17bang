@@ -11,7 +11,7 @@ using ViewModel.Register;
 
 namespace _17bangMvc.Controllers
 {
-    public class RegisterController : Controller
+    public class RegisterController : BaseController
     {
         private readonly IRegisterService _service;
         public RegisterController()

@@ -7,7 +7,7 @@ using ViewModel.Article;
 
 namespace _17bangMvc.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticleController : BaseController
     {
         [HttpGet]
         [Route("Article")]
