@@ -41,13 +41,18 @@ namespace _17bangMvc.Controllers
         [ChildActionOnly]
         public PartialViewResult _LogOn()
         {
-            int userId = Convert.ToInt32(Request.Cookies[Const.USER_ID].Value);
-            string password = Request.Cookies[Const.USER_PASSWORD].Value;
-            IndexModel user = _service.GetBy(userId);
-            if (user.Password == password)
+            HttpCookie IdCookie = Request.Cookies.Get(Const.USER_ID);
+            if (IdCookie != null)
             {
-                ViewData[Const.USER_NAME] = user.UserName;
+                int userId = Convert.ToInt32(IdCookie.Value);
+                string password = Request.Cookies[Const.USER_PASSWORD].Value;
+                IndexModel user = _service.GetBy(userId);
+                if (user.Password == password)
+                {
+                    ViewData[Const.USER_NAME] = user.UserName;
+                }
             }
+
             return PartialView();
         }
     }

@@ -52,7 +52,9 @@ namespace _17bangMvc.Controllers
         [Route("Log/Off")]
         public ActionResult Off()
         {
-            return RedirectToAction("");
+            Response.Cookies[Const.USER_ID].Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies[Const.USER_PASSWORD].Expires = DateTime.Now.AddDays(-1);
+            return RedirectToAction("/On");
         }
     }
 }
