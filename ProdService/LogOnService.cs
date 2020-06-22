@@ -22,7 +22,7 @@ namespace ProdService
         public int LogOn(IndexModel model)
         {
             _user = mapper.Map<User>(model);
-            _userRepositroy.Add(_user);
+            _user = _userRepositroy.GetByName(model.UserName);
             return _user.Id;
         }
     }
