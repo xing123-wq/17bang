@@ -10,6 +10,7 @@ namespace ServiceInterface
 {
     public interface ILogOnService
     {
+        IndexModel GetBy(int id);
         IndexModel GetBy(string name);
         int LogOn(IndexModel model);
     }

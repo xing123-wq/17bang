@@ -12,16 +12,18 @@ namespace _17bangMvc.Helper
         public static void LogOn(int id, string password, bool remember = false)
         {
             //首先有一个cookie，名字为user
-            HttpCookie cookie = new HttpCookie(Const.USER_NAME);
-
+            HttpCookie Password = new HttpCookie(Const.USER_PASSWORD);
+            HttpCookie UserId = new HttpCookie(Const.USER_ID);
             //在cookie中添加若干（2个）键值对
-            cookie.Values.Add(Const.USER_ID, id.ToString());
-            cookie.Values.Add(Const.USER_PASSWORD, password.GetMd5Hash());
+            UserId.Value = id.ToString();
+            Password.Value = password.GetMd5Hash();
             if (remember)
             {
-                cookie.Expires = DateTime.Now.AddDays(14);
+                Password.Expires = DateTime.Now.AddDays(14);
+                UserId.Expires = DateTime.Now.AddDays(14);
             }
-            HttpContext.Current.Response.Cookies.Add(cookie);
+            HttpContext.Current.Response.Cookies.Add(UserId);
+            HttpContext.Current.Response.Cookies.Add(Password);
         }
     }
 }

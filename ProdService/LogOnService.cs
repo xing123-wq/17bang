@@ -19,6 +19,11 @@ namespace ProdService
             _user = _userRepositroy.GetByName(name);
             return mapper.Map<ViewModel.LogOn.IndexModel>(_user);
         }
+        public IndexModel GetBy(int id)
+        {
+            _user = _userRepositroy.GetById(id);
+            return mapper.Map<ViewModel.LogOn.IndexModel>(_user);
+        }
         public int LogOn(IndexModel model)
         {
             _user = mapper.Map<User>(model);

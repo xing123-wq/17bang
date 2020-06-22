@@ -11,7 +11,7 @@ namespace ExtensionMethods
     {
         public static string GetMd5Hash(this string input)
         {
-            return getmd5(getmd5(input));
+            return getmd5(getmd5(input + "17@bang"));
         }
         private static string getmd5(string input)
         {

@@ -42,6 +42,7 @@ namespace _17bangMvc.Controllers
             if (user.Password != model.Password.GetMd5Hash())
             {
                 ModelState.AddModelError(nameof(model.Password), "* 用户名或者密码错误");
+                return View(model);
             }
             int userId = _service.LogOn(model);
             CookieHelper.LogOn(userId, model.Password, model.RememberMe);
