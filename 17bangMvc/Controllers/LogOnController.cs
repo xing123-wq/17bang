@@ -47,7 +47,7 @@ namespace _17bangMvc.Controllers
             int userId = _service.LogOn(model);
             CookieHelper.LogOn(userId, model.Password, model.RememberMe);
             string path = Request.QueryString[Const.PAGE_PATH];
-            return Redirect(path);
+            return GetByPagePath(path);
         }
         [HttpGet]
         [Route("Log/Off")]
@@ -56,7 +56,7 @@ namespace _17bangMvc.Controllers
             Response.Cookies[Const.USER_ID].Expires = DateTime.Now.AddDays(-1);
             Response.Cookies[Const.USER_PASSWORD].Expires = DateTime.Now.AddDays(-1);
             string path = Request.QueryString[Const.PAGE_PATH];
-            return Redirect(path);
+            return GetByPagePath(path);
         }
     }
 }
