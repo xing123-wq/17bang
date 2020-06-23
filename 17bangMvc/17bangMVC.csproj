@@ -586,6 +586,10 @@
     <Content Include="Scripts\jquery-3.5.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DrawingOperations\DrawingOperations.csproj">
+      <Project>{4c70be02-5ab9-4e98-974e-9c27060cab41}</Project>
+      <Name>DrawingOperations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
       <Project>{c1d93a0b-55ff-4097-ac41-06f5b5956f86}</Project>
       <Name>ExtensionMethods</Name>

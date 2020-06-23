@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EO.Internal;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -20,9 +21,9 @@ namespace DrawingOperations
         static Random random = new Random();
         static string[] fonts = { "微软雅黑", "宋体", "黑体", "隶书", "仿宋", "粗体", "篆书", "燕体", "楷书", "草书" };
         static Color[] RandomColor = { Color.Black, Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Brown, Color.Brown, Color.DarkBlue };
-        static int[] Pen = { 44, 20, 30, 40, 33, 44, 22, 32 };
-        static int[] Point = { 43, 25, 35, 45, 41, 39, 29 };
-        static int[] line = { 100, 55, 34, 99, 34 };
+        static int[] Pen = { 1, 3, 4, 5, 7, 8, 9, 10, 11, 12 };
+        static int[] Point = { 1, 3, 4, 5, 7, 8, 9, 10, 11, 12 };
+        static int[] line = { 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 30 };
         private static char[] constant = "1234567890,qwertyuiopasdfghjklzxcvbnm,QWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
         public static int Width = 200;
         public static int Hight = 100;
@@ -31,7 +32,7 @@ namespace DrawingOperations
         static string typeface = fonts[random.Next(fonts.Length)];
         static int MyPen = Pen[random.Next(Pen.Length)];
         static int MyPoint = Point[random.Next(Point.Length)];
-        static Bitmap image;
+        public static Bitmap image;
         static Graphics g;
         public static void Do()
         {
@@ -61,8 +62,8 @@ namespace DrawingOperations
                 Color Color = RandomColor[random.Next(RandomColor.Length)];
                 image.SetPixel(x, y, Color);
             }
-            Console.WriteLine($"point:{Thread.CurrentThread.ManagedThreadId}");
-            Console.Read();
+            //Console.WriteLine($"point:{Thread.CurrentThread.ManagedThreadId}");
+            //Console.Read();
 
         }
         public static void DrawLines()
@@ -77,8 +78,8 @@ namespace DrawingOperations
                 Color Color = RandomColor[random.Next(RandomColor.Length)];
                 g.DrawLine(new Pen(Color), new Point(x1, y1), new Point(x2, y2));
             }
-            Console.WriteLine($"line:{Thread.CurrentThread.ManagedThreadId}");
-            Console.Read();
+            //Console.WriteLine($"line:{Thread.CurrentThread.ManagedThreadId}");
+            //Console.Read();
 
         }
         public static string GenerateRandomNumber(int length)
@@ -93,6 +94,35 @@ namespace DrawingOperations
                 newRandom.Append(constant[random.Next(length)]);
             }
             return newRandom.ToString();
+        }
+
+        public static void Captcha(string Length)
+        {
+            image = new Bitmap(55, 32);
+            Graphics g = Graphics.FromImage(image);
+            g.Clear(Color.AliceBlue);           //添加底色
+            g.DrawString(Length,       //绘制字符串
+                new Font(typeface, 15),                //指定字体
+                new SolidBrush(tempColor),      //绘制时使用的刷子
+                new PointF(5, 5));                    //左上角定位
+            for (int i = 0; i < linerandom; i++)
+            {
+                int x1 = random.Next(image.Width);
+                int x2 = random.Next(image.Width);
+                int y1 = random.Next(image.Height);
+                int y2 = random.Next(image.Height);
+                Color Color = RandomColor[random.Next(RandomColor.Length)];
+                g.DrawLine(new Pen(Color), new Point(x1, y1), new Point(x2, y2));
+            }
+            for (int j = 0; j < linerandom; j++)
+            {
+                int x = random.Next(image.Width);
+                int y = random.Next(image.Height);
+                Color Color = RandomColor[random.Next(RandomColor.Length)];
+                image.SetPixel(x, y, Color);
+            }
+            image.SetPixel(15, 15, Color.BlueViolet);  //绘制一个像素的点
+            //image.Save(@"E:\17bang\\.jpg", ImageFormat.Jpeg);   //保存到文件
         }
         //重构之前的验证码作业：
         //以上作业，需要在控制台输出线程和Task的Id，以演示异步并发的运行。

@@ -47,7 +47,7 @@
                         <span>
                             @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control" })
                             @Html.ValidationMessageFor(u => u.SecurityCode, "", new { style = "color:red" })
-                            <img style="vertical-align: middle; display: none;">
+                            <img src="/Shared/Captcha" />
                             <a name="imageCode">
                             </a>
                             <a href="#" style="font-size: 12px; display: none">
