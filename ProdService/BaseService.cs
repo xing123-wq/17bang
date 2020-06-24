@@ -13,6 +13,11 @@ namespace ProdService
 {
     public class BaseService
     {
+        protected UserRepositroy _userRepositroy;
+        public BaseService()
+        {
+            _userRepositroy = new UserRepositroy(context);
+        }
         protected SQLContext context
         {
             get
@@ -23,6 +28,21 @@ namespace ProdService
                 }
                 return (SQLContext)HttpContext.Current.Items["dbContext"];
             }
+        }
+        public User GetByCurrentUserId()
+        {
+            int userId = Convert.ToInt32(HttpContext.Current.Request.Cookies["UserId"].Value);
+            string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
+            User user = _userRepositroy.GetById(userId);
+            if (user == null)
+            {
+                throw new Exception($"通过Id:{user.Id},没有查询到该Id所对应的用户");
+            }
+            if (password != user.Password)
+            {
+                throw new Exception("该用户密码错误");
+            }
+            return user;
         }
         private static MapperConfiguration autoMapperConfig;
         protected IMapper mapper

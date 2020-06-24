@@ -52,7 +52,7 @@ namespace _17bangMvc.Controllers
             {
                 int userId = Convert.ToInt32(IdCookie.Value);
                 string password = Request.Cookies[Const.USER_PASSWORD].Value;
-                IndexModel user = _service.GetBy(userId);
+                IndexModel user = _service.GetById(userId);
                 if (user.Password == password)
                 {
                     ViewData[Const.USER_NAME] = user.UserName;

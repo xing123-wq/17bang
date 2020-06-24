@@ -14,7 +14,6 @@ namespace ProdService
 {
     public class RegisterService : BaseService, IRegisterService
     {
-        private UserRepositroy _userRepositroy { get => new UserRepositroy(context); }
         private User _user;
         public IndexModel GetBy(string name)
         {

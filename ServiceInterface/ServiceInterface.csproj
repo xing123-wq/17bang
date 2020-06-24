@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Article\IArticleService.cs" />
+    <Compile Include="Article\INewArticleService.cs" />
     <Compile Include="ILogOnService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRegisterService.cs" />

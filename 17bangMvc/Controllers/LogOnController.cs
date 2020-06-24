@@ -33,7 +33,7 @@ namespace _17bangMvc.Controllers
             {
                 ViewData["title"] = "用户登录:一起帮";
             }
-            IndexModel user = _service.GetBy(model.UserName);
+            IndexModel user = _service.GetByName(model.UserName);
             if (user == null)
             {
                 ModelState.AddModelError(nameof(model.UserName), "* 用户不存在");

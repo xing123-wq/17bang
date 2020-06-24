@@ -12,14 +12,13 @@ namespace ProdService
 {
     public class LogOnService : BaseService, ILogOnService
     {
-        private UserRepositroy _userRepositroy { get => new UserRepositroy(context); }
         private User _user;
-        public IndexModel GetBy(string name)
+        public IndexModel GetByName(string name)
         {
             _user = _userRepositroy.GetByName(name);
             return mapper.Map<ViewModel.LogOn.IndexModel>(_user);
         }
-        public IndexModel GetBy(int id)
+        public IndexModel GetById(int id)
         {
             _user = _userRepositroy.GetById(id);
             return mapper.Map<ViewModel.LogOn.IndexModel>(_user);
