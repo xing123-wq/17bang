@@ -10,7 +10,6 @@ namespace _17bangMvc.Controllers
     public class ArticleController : BaseController
     {
         [HttpGet]
-        [Route("Article")]
         public ActionResult index()
         {
             ViewData["title"] = "精品文章-一起帮";
@@ -21,5 +20,19 @@ namespace _17bangMvc.Controllers
         {
             return View();
         }
+
+         [HttpGet]
+        public ActionResult index()
+        {
+            ViewData["title"] = "精品文章-一起帮";
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult New(NewModel model)
+        {
+            return View();
+        }
+
     }
 }
