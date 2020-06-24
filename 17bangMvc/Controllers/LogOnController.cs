@@ -44,6 +44,11 @@ namespace _17bangMvc.Controllers
                 ModelState.AddModelError(nameof(model.Password), "* 用户名或者密码错误");
                 return View(model);
             }
+            if (model.SecurityCode.GetMd5Hash() != Session["Captcha"].ToString())
+            {
+                ModelState.AddModelError(nameof(model.SecurityCode), "* 验证码不正确");
+                return View(model);
+            }
             int userId = _service.LogOn(model);
             CookieHelper.LogOn(userId, model.Password, model.RememberMe);
             string path = Request.QueryString[Const.PAGE_PATH];

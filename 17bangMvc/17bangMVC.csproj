@@ -578,7 +578,7 @@
     <Content Include="Views\Shared\_LogOn.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="APP_Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
