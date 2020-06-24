@@ -36,7 +36,7 @@ namespace ProdService
             User user = _userRepositroy.GetById(userId);
             if (user == null)
             {
-                throw new Exception($"通过Id:{user.Id},没有查询到该Id所对应的用户");
+                throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
             }
             if (password != user.Password)
             {

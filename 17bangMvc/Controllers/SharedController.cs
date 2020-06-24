@@ -50,9 +50,8 @@ namespace _17bangMvc.Controllers
             HttpCookie IdCookie = Request.Cookies.Get(Const.USER_ID);
             if (IdCookie != null)
             {
-                int userId = Convert.ToInt32(IdCookie.Value);
                 string password = Request.Cookies[Const.USER_PASSWORD].Value;
-                IndexModel user = _service.GetById(userId);
+                IndexModel user = _service.GetBy();
                 if (user.Password == password)
                 {
                     ViewData[Const.USER_NAME] = user.UserName;
