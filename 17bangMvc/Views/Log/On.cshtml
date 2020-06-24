@@ -45,9 +45,8 @@
                         <label>验证码：（* 必填）</label>
                         <br>
                         <span>
-                            @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(u => u.SecurityCode, "", new { style = "color:red" })
-                            <img src="/Shared/Captcha" />
+                            @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control", id = "phpernote" })
+                            @Html.ValidationMessageFor(u => u.SecurityCode, "", new { style = "color:red", id = "checkCode" })
                             <a name="imageCode">
                             </a>
                             <a href="#" style="font-size: 12px; display: none">

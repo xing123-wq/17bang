@@ -63,18 +63,14 @@
                         <label>验证码：（* 必填）</label>
                         <br>
                         <span zyf-img-code="">
-                            @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control", style = "width:80px;", display = "inline;" })
-                            <img src="/Shared/Captcha" />
-                            <a name="imageCode">
-
-                            </a>
+                            @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control", style = "width:80px;", display = "inline;", id = "phpernote" })
                             <a href="#" zyf-refresh-image-code="" style="font-size: 12px; display: none">
                                 看不清楚
                             </a>
                             <span zyf-image-code-reminder="">点击输入框显示</span>
                             <span zyf-image-code-error="" class="field-validation-error"></span>
                             <br>
-                            @Html.ValidationMessageFor(u => u.SecurityCode, "", new { @class = "field-validation-valid", style = "color:red" })
+                            @Html.ValidationMessageFor(u => u.SecurityCode, "", new { @class = "field-validation-valid", style = "color:red", id = "checkCode" })
                         </span>
                     </div>
                     <div class="submit">
