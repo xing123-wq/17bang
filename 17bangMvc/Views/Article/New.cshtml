@@ -67,13 +67,13 @@
                     <label>
                         关键字：（* 必填）
                     </label>
-                    <input class="form-control" placeholder="用空格分割，总长度不超过25个字符" asp-for="PublishesOn.Keyword">
-                    <span class="field-validation-valid" asp-validation-for="PublishesOn.Keyword"></span>
+                    @Html.TextBoxFor(n => n.Keyword, "", new { @class = "form-control", placeholder = "用空格分割，总长度不超过25个字符" })
+                    @Html.ValidationMessageFor(n => n.Keyword, "", new { @class = "field-validation-valid" })
                 </div>
                 <div class="form-group">
                     <label>摘要：（* 建议填写）</label>
-                    <textarea class="form-control" placeholder="不填写的话，系统会截取文章前255字作为摘要显示" asp-for="PublishesOn.Digest"></textarea>
-                    <span class="field-validation-valid" asp-validation-for="PublishesOn.Digest"></span>
+                    <textarea class="form-control" placeholder="不填写的话，系统会截取文章前255字作为摘要显示" name="Digest"></textarea>
+                    <span class="field-validation-valid" name="Digest"></span>
                 </div>
                 <div class="form-group">
                     <a zyf-ad-delete="" class="text-warning pull-right"><span class="fa fa-remove"></span> 删除</a>
@@ -93,13 +93,13 @@
                     </div>
                     <div class="form-group">
                         <label>文字内容：（* 必填）</label>
-                        <input class="form-control" placeholder="最多不超过24个字符" asp-for="PublishesOn.text">
-                        <span class="field-validation-valid" asp-validation-for="PublishesOn.text"></span>
+                        @Html.TextBoxFor(n => n.text, "", new { @class = "form-control", placeholder = "最多不超过24个字符" })
+                        @Html.ValidationMessageFor(n => n.text, "", new { @class = "field-validation-valid" })
                     </div>
                     <div class="form-group">
                         <label>链接：（* 必填）</label>
-                        <input class="form-control" placeholder="http或https开头的网址" asp-for="PublishesOn.Interlinkage">
-                        <span class="field-validation-valid" asp-validation-for="PublishesOn.Interlinkage"></span>
+                        @Html.TextBoxFor(n => n.Interlinkage, "", new { @class = "form-control", placeholder = "http或https开头的网址" })
+                        @Html.ValidationMessageFor(n => n.Interlinkage, "", new { @class = "field-validation-valid" })
                     </div>
                 </section>
                 <div class="submit">

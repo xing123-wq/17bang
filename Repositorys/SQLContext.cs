@@ -26,6 +26,8 @@ namespace Repositorys
             modelBuilder.Entity<Article>();
             modelBuilder.Entity<ArticleAndKeyword>();
             modelBuilder.Entity<BanMoney>();
+            modelBuilder.Entity<FatherSeries>();
+            modelBuilder.Entity<Series>();
 
             modelBuilder.Entity<ArticleAndKeyword>()
                 .HasKey(ak => new { ak.ArticleId, ak.KeywordId });

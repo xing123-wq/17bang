@@ -21,8 +21,8 @@ namespace _17bangMvc.Controllers
             return View();
         }
 
-         [HttpGet]
-        public ActionResult index()
+        [HttpGet]
+        public ActionResult New()
         {
             ViewData["title"] = "精品文章-一起帮";
             return View();
@@ -31,7 +31,12 @@ namespace _17bangMvc.Controllers
         [HttpPost]
         public ActionResult New(NewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                ViewData["title"] = "精品文章-一起帮";
+                return View(model);
+            }
+            return View(model);
         }
 
     }
