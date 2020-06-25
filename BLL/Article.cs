@@ -13,6 +13,7 @@ namespace BLL
         public DateTime PublishTime { get; set; }
         public int AuthorId { get; set; }
         public User Author { get; set; }
+        public Advertising Advertising { get; set; }
         public IList<ArticleAndKeyword> Keywords { get; set; }
     }
 }

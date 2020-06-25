@@ -82,6 +82,10 @@
     <Compile Include="Migrations\202006250349453_addseresandfatherseries.designer.cs">
       <DependentUpon>202006250349453_addseresandfatherseries.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006250709169_addadvertisingandConfigurationRelationships.cs" />
+    <Compile Include="Migrations\202006250709169_addadvertisingandConfigurationRelationships.designer.cs">
+      <DependentUpon>202006250709169_addadvertisingandConfigurationRelationships.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="Program.cs" />
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006250349453_addseresandfatherseries.resx">
       <DependentUpon>202006250349453_addseresandfatherseries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006250709169_addadvertisingandConfigurationRelationships.resx">
+      <DependentUpon>202006250709169_addadvertisingandConfigurationRelationships.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
