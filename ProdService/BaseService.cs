@@ -33,7 +33,8 @@ namespace ProdService
         {
             int userId = Convert.ToInt32(HttpContext.Current.Request.Cookies["UserId"].Value);
             string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
-            User user = _userRepositroy.GetById(userId);
+            User user = new User();
+            user = _userRepositroy.GetById(userId);
             if (user == null)
             {
                 throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");

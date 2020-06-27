@@ -14,6 +14,10 @@ namespace _17bangMvc.Controllers
         }
         public ActionResult GetByPagePath(string path)
         {
+            if (string.IsNullOrEmpty(path))
+            {
+                return Redirect("/");
+            }
             if (path == "/Log/On")
             {
                 return Redirect("/");
