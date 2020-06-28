@@ -37,6 +37,9 @@ namespace Repositorys
             entities.Attach(source);
             context.SaveChanges();
         }
-
+        public T Find(int id)
+        {
+            return entities.Find(id);
+        }
     }
 }

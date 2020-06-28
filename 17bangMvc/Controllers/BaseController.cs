@@ -1,4 +1,5 @@
-﻿using _17bangMvc.Helper;
+﻿using _17bangMvc.Filters;
+using _17bangMvc.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 
 namespace _17bangMvc.Controllers
 {
+    [ContextPerRequest]
     public class BaseController : Controller
     {
         public BaseController()

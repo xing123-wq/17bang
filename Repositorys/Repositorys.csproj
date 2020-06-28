@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvertisingRepositroy.cs" />
     <Compile Include="ArticleRepository.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Migrations\202006191013114_1.cs" />
@@ -85,6 +86,10 @@
     <Compile Include="Migrations\202006250709169_addadvertisingandConfigurationRelationships.cs" />
     <Compile Include="Migrations\202006250709169_addadvertisingandConfigurationRelationships.designer.cs">
       <DependentUpon>202006250709169_addadvertisingandConfigurationRelationships.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006280701503_Update.cs" />
+    <Compile Include="Migrations\202006280701503_Update.designer.cs">
+      <DependentUpon>202006280701503_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
@@ -124,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006250709169_addadvertisingandConfigurationRelationships.resx">
       <DependentUpon>202006250709169_addadvertisingandConfigurationRelationships.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006280701503_Update.resx">
+      <DependentUpon>202006280701503_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

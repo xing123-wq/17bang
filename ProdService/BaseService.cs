@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BLL;
 using Repositorys;
+using ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,22 +12,26 @@ using System.Web;
 
 namespace ProdService
 {
-    public class BaseService
+    public class BaseService : IBaseService
     {
         protected UserRepositroy _userRepositroy;
         public BaseService()
         {
             _userRepositroy = new UserRepositroy(context);
         }
+
         protected SQLContext context
         {
             get
             {
-                if (HttpContext.Current.Items["dbContext"] == null)
+                SQLContext context = HttpContext.Current.Items["dbContext"] as SQLContext;
+                if (context == null)
                 {
-                    HttpContext.Current.Items["dbContext"] = new SQLContext();
+                    context = new SQLContext();
+                    context.Database.BeginTransaction();
+                    HttpContext.Current.Items["dbContext"] = context;
                 }
-                return (SQLContext)HttpContext.Current.Items["dbContext"];
+                return context;
             }
         }
         public User GetByCurrentUserId()
@@ -45,6 +50,47 @@ namespace ProdService
             }
             return user;
         }
+
+        public void Commit()
+        {
+            using (SQLContext context = HttpContext.Current.Items["dbContext"] as SQLContext)
+            {
+                if (context != null)
+                {
+                    DbContextTransaction transaction = context.Database.CurrentTransaction;
+                    using (transaction)
+                    {
+                        try
+                        {
+                            context.SaveChanges();
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+        }
+        public void Rollback()
+        {
+            using (SQLContext context = HttpContext.Current.Items["dbContext"] as SQLContext)
+            {
+                DbContextTransaction transaction = context.Database.CurrentTransaction;
+                using (transaction)
+                {
+                    transaction.Rollback();
+                }
+            }
+        }
+
+        public void ClearContext()
+        {
+            HttpContext.Current.Items["dbContext"] = null;
+        }
+
         private static MapperConfiguration autoMapperConfig;
         protected IMapper mapper
         {
@@ -73,6 +119,10 @@ namespace ProdService
                 .ForMember(i => i.RememberMe, opt => opt.Ignore())
                 .ReverseMap();
 
+                cfg.CreateMap<Advertising, ViewModel.Advertising.IndexModel>()
+                .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
+                .ForMember(i => i.Url, opt => opt.MapFrom(u => u.Url))
+                .ReverseMap();
             });
 #if DEBUG   //复习：这是什么？
             autoMapperConfig.AssertConfigurationIsValid();
