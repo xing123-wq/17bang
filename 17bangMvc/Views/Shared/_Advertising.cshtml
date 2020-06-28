@@ -1,4 +1,5 @@
-﻿<script>
+﻿@model IList<ViewModel.Advertising.IndexModel>
+<script>
     //取多个name进行字体闪烁
     function roplcolor() {
         var free = document.getElementsByName('bay');
@@ -13,26 +14,21 @@
     setInterval(roplcolor, 1000);
 </script>
 <div class="widget clearfix">
-    <div class="ad-in-widget order-list">
-        <span class="item-1 order-tag">1</span>
-        <a href="http://17bang.ren/Article/261">学编程，来 “源栈”！飞哥精品小班等着你……</a>
-    </div>
-    <div class="ad-in-widget order-list">
-        <span class="item-2 order-tag">2</span>
-        <a name="bay" data-toggle="modal" href="remote.html" data-target="#myModal" rel="noopener noreferrer">免费广告位，抢到就是赚到！</a>
-    </div>
-    <div class="ad-in-widget order-list">
-        <span class="item-3 order-tag">3</span>
-        <a name="bay" data-toggle="modal" href="remote.html" data-target="#myModal" rel="noopener noreferrer">免费广告位，抢到就是赚到！</a>
-    </div>
-    <div class="ad-in-widget order-list">
-        <span class="item order-tag">4</span>
-        <a name="bay" data-toggle="modal" href="remote.html" data-target="#myModal" rel="noopener noreferrer">免费广告位，抢到就是赚到！</a>
-    </div>
-    <div class="ad-in-widget order-list">
-        <span class="item order-tag">5</span>
-        <a name="bay" data-toggle="modal" href="remote.html" data-target="#myModal" rel="noopener noreferrer">免费广告位，抢到就是赚到！</a>
-    </div>
+
+    @{
+        int sum = 7;
+
+    }
+    @for (int i = 1; i < sum - Model.Count(); i++)
+    {
+        foreach (var item in Model)
+        {
+            <div class="ad-in-widget order-list">
+                <span class="item-1 order-tag">@i</span>
+                <a href="@item.Url" name="bay">@item.Title</a>
+            </div>
+        }
+    }
     <div class="ad-in-widget order-list">
         <span class="item order-tag">6</span> 本站主机由<a href="http://www.west.cn/index.asp?ReferenceID=563969">西部数码</a>提供
     </div>
@@ -45,56 +41,4 @@
 </div>
 <div class="modal fade" tabindex="-1" role="dialog">
 </div><!-- /.modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-        <form action="/AdInWidget/_Free?position=2" method="post" novalidate="novalidate">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title"><span class="fa fa-buysellads"></span> 申请免费广告位</h4>
-                </div>
-                <div class="modal-body">
-                    <input data-val="true" data-val-number="字段 Position 必须是一个数字。" data-val-required="Position 字段是必需的。" id="Position" name="Position" type="hidden" value="2">
-                    <div class="form-group">
-                        <a zyf-ad-delete="" class="text-warning pull-right"><span class="fa fa-remove"></span> 删除</a>
-                        <label>之前用过的广告：</label>
-                        <select class="form-control" data-val="true" data-val-number="字段 SelectedHistory 必须是一个数字。" id="Content_SelectedHistory" name="Content.SelectedHistory" zyf-ad-in-widget-history-select="">
-                            <option>----- 使用新的广告 -----</option>
-                        </select>
-                    </div>
-                    <ul class="hide" zyf-ad-in-widget-history-url="">
-                    </ul>
-                    <section style="padding:10px 20px; margin-bottom:20px;" class="yellow-highlight" zyf-ad-content-container="">
-                        <div class="text-right checkbox">
-                            <label>
-                                <input data-val="true" data-val-required="Edit 字段是必需的。" id="Content_Edit" name="Content.Edit" type="checkbox" value="true" onclick="disable()"><input name="Content.Edit" type="hidden" value="false"> 修改
-                                <script>
-                                    function disable() {
-
-                                        document.getElementById("user.name").disabled = "";
-                                        document.getElementById("user.number").disabled = "";
-
-                                    }</script>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>文字内容：（* 必填）</label>
-                            <input class="form-control" data-val="true" data-val-length="* 文本的长度不能大于30" data-val-length-max="30" data-val-required="* 文本不能为空" id="user.name" name="Content.Text" placeholder="最多不超过24个字符" type="text">
-                            <span class="field-validation-valid" data-valmsg-for="Content.Text" data-valmsg-replace="true"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>链接：（* 必填）</label>
-                            <input class="form-control" data-val="true" data-val-regex="* URL格式错误" data-val-regex-pattern="http(s)?://.*" data-val-required="* 链接不能为空" id="user.number" name="Content.Url" placeholder="http或https开头的网址" type="text">
-                            <span class="field-validation-valid" data-valmsg-for="Content.Url" data-valmsg-replace="true"></span>
-                        </div>
-                    </section>
-                    <input type="hidden" zyf-adinwidget-free-parenturl="" name="parentUrl" value="http://17bang.ren/Problem?excludeCanceled=true&amp;excludeRewarded=true">
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary loading" value="提交" zyf-submit-once="">
-                    <input type="reset" class="btn btn-default" value="重填">
-                </div>
-            </div><!-- /.modal-content -->
-        </form>
-    </div>
-</div>
+@Html.Action("_Ad", "Shared")

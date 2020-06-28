@@ -11,7 +11,7 @@ namespace Repositorys
     {
         public AdvertisingRepositroy(SQLContext context) : base(context)
         {
-        } 
+        }
         public Advertising GetById(int id)
         {
             return entities.Where(a => a.Id == id).FirstOrDefault();
@@ -19,6 +19,10 @@ namespace Repositorys
         public Advertising GetByTitle(string title)
         {
             return entities.Where(a => a.Title == title).FirstOrDefault();
+        }
+        public IList<Advertising> GetAdvertisings(int sum)
+        {
+            return entities.OrderByDescending(a => a.Id).Take(sum).ToList();
         }
     }
 }

@@ -579,6 +579,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_LogOn.cshtml" />
     <Content Include="Views\Article\New.cshtml" />
+    <Content Include="Views\Shared\_Ad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

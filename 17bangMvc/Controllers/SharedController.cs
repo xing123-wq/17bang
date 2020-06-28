@@ -11,8 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ViewModel.LogOn;
-using WebGrease.Extensions;
+using ViewModel.Advertising;
 
 namespace _17bangMvc.Controllers
 {
@@ -24,9 +23,31 @@ namespace _17bangMvc.Controllers
         {
             _service = new LogOnService();
         }
+
         [ChildActionOnly]
+        [HttpGet]
         public PartialViewResult _Advertising()
         {
+            AdvertisingService service = new AdvertisingService();
+            IList<ViewModel.Advertising.IndexModel> models = service.GetByad(5);
+            return PartialView(models);
+        }
+        [ChildActionOnly]
+        public PartialViewResult _Ad()
+        {
+            return PartialView();
+        }
+
+        [ChildActionOnly]
+        [HttpPost]
+        public PartialViewResult _Ad(ViewModel.Advertising.IndexModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView(model);
+            }
+            AdvertisingService service = new AdvertisingService();
+            service.Sava(model);
             return PartialView();
         }
         [ChildActionOnly]
@@ -51,7 +72,7 @@ namespace _17bangMvc.Controllers
             if (IdCookie != null)
             {
                 string password = Request.Cookies[Const.USER_PASSWORD].Value;
-                IndexModel user = _service.GetBy();
+                ViewModel.LogOn.IndexModel user = _service.GetBy();
                 if (user.Password == password)
                 {
                     ViewData[Const.USER_NAME] = user.UserName;

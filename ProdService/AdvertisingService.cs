@@ -17,6 +17,13 @@ namespace ProdService
         {
             _repositroy = new AdvertisingRepositroy(context);
         }
+
+        public IList<IndexModel> GetByad(int sum)
+        {
+            IList<Advertising> advertisings = _repositroy.GetAdvertisings(sum);
+            return mapper.Map<IList<IndexModel>>(advertisings);
+        }
+
         public IndexModel GetByTitle(string title)
         {
             Advertising advertising = _repositroy.GetByTitle(title);

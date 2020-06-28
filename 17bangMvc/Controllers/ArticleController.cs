@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProdService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,11 @@ namespace _17bangMvc.Controllers
 {
     public class ArticleController : BaseController
     {
+        private ArticleService _service;
+        public ArticleController()
+        {
+            _service = new ArticleService();
+        }
         [HttpGet]
         public ActionResult index()
         {
@@ -18,7 +24,7 @@ namespace _17bangMvc.Controllers
         [HttpPost]
         public ActionResult index(IndexModel model)
         {
-            return View();
+            return View(model);
         }
 
         [HttpGet]
