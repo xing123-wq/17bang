@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdvertisingService.cs" />
-    <Compile Include="ArticleService.cs" />
+    <Compile Include="Articles\ArticleService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="LogOnService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,9 +88,7 @@
       <Name>ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

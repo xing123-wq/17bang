@@ -151,6 +151,7 @@
     <Compile Include="Controllers\LogOnController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SeriesController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Filters\ContextPerRequest.cs" />
     <Compile Include="Filters\NeedLogOnFilter.cs" />
@@ -580,6 +581,7 @@
     <Content Include="Views\Shared\_LogOn.cshtml" />
     <Content Include="Views\Article\New.cshtml" />
     <Content Include="Views\Shared\_Ad.cshtml" />
+    <Content Include="Views\Shared\_Series.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

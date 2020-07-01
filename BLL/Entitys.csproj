@@ -50,7 +50,6 @@
     <Compile Include="ArticleAndKeyword.cs" />
     <Compile Include="BanMoney.cs" />
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="FatherSeries.cs" />
     <Compile Include="Keyword.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="ProblemAndKeyword.cs" />

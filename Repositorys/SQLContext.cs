@@ -26,7 +26,6 @@ namespace Repositorys
             modelBuilder.Entity<Article>();
             modelBuilder.Entity<ArticleAndKeyword>();
             modelBuilder.Entity<BanMoney>();
-            modelBuilder.Entity<FatherSeries>();
             modelBuilder.Entity<Series>();
             modelBuilder.Entity<Advertising>();
 

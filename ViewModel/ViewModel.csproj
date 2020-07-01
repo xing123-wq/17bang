@@ -66,6 +66,7 @@
     <Compile Include="Advertising\IndexModel.cs" />
     <Compile Include="Article\IndexModel.cs" />
     <Compile Include="Article\NewModel.cs" />
+    <Compile Include="Article\SeriesModel.cs" />
     <Compile Include="Home\IndexModel.cs" />
     <Compile Include="LogOn\IndexModel.cs" />
     <Compile Include="Problem\IndexModel.cs" />

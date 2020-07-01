@@ -1,4 +1,5 @@
 ﻿using ProdService;
+using ProdService.Articles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace _17bangMvc.Controllers
         public ActionResult New()
         {
             ViewData["title"] = "精品文章-一起帮";
+
             return View();
         }
 
@@ -42,6 +44,7 @@ namespace _17bangMvc.Controllers
                 ViewData["title"] = "精品文章-一起帮";
                 return View(model);
             }
+            _service.Save(model);
             return View(model);
         }
 

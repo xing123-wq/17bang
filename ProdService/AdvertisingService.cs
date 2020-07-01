@@ -18,7 +18,7 @@ namespace ProdService
             _repositroy = new AdvertisingRepositroy(context);
         }
 
-        public IList<IndexModel> GetByad(int sum)
+        public IList<IndexModel> GetByads(int sum)
         {
             IList<Advertising> advertisings = _repositroy.GetAdvertisings(sum);
             return mapper.Map<IList<IndexModel>>(advertisings);
@@ -33,7 +33,7 @@ namespace ProdService
         public int Sava(IndexModel model)
         {
             Advertising advertising = mapper.Map<Advertising>(model);
-            advertising.User = GetByCurrentUserId();
+            advertising.User = GetByCurrentUser();
             advertising.PublishTime = DateTime.Now;
             advertising.Expires = DateTime.Now.AddDays(1);
             _repositroy.Add(advertising);

@@ -1,0 +1,33 @@
+﻿@model ViewModel.Article.SeriesModel
+@{
+    Layout = null;
+}
+<div class="modal-content">
+    @using (Html.BeginForm())
+    {
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title"><span class="fa fa-plus"></span> 添加新的系列</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>父系列：</label>
+                @Html.DropDownListFor(s => s.Series, Model.Serieses, "默认分类", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label>名称：（* 必填）</label>
+                @Html.TextBoxFor(s => s.Title, new { @class = "form-control", placeholder = "不能为空，25字符以内" })
+                @Html.ValidationMessageFor(s => s.Title, "", new { @class = "field-validation-valid" })
+            </div>
+            <div class="form-group">
+                <label>描述：</label>
+                <textarea class="form-control" id="Body" name="Body" placeholder="255个字符以内，简单描述系列的目的、内容等"></textarea>
+                @Html.ValidationMessageFor(s => s.Body, "", new { @class = "field-validation-valid" })
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">提交</button>
+        </div>
+    }
+</div><!-- /.modal-content -->

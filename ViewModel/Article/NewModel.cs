@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,11 +17,11 @@ namespace ViewModel.Article
 
         [Required(ErrorMessage = "* 关键字不能为空")]
         public string Keyword { get; set; }
-        
+
         [Required(ErrorMessage = "* 标题不能为空")]
         [StringLength(10, MinimumLength = 4, ErrorMessage = "* 标题不能小于{2}和大于{1}字")]
         public string Title { get; set; }
-        
+
         [DataType(DataType.Date)]
         public DateTime PublishTime { get; set; }
 
@@ -28,9 +29,10 @@ namespace ViewModel.Article
         [StringLength(115, ErrorMessage = "* 摘要的长度不能大于155")]
         public string Digest { get; set; }
 
+        [Required(ErrorMessage = "* 系列不能为空")]
         public string Series { get; set; }
 
-        public IList<SelectListItem> UsedAds { get; set; }
+        public IEnumerable<SelectListItem> Serieses { get; set; }
 
         [Required(ErrorMessage = "* 链接不能为空")]
         [Url(ErrorMessage = " * URL格式错误")]
@@ -38,5 +40,9 @@ namespace ViewModel.Article
 
         [Required(ErrorMessage = "* 文本不能为空")]
         public string text { get; set; }
+
+        [Required(ErrorMessage = "* 广告不能为空")]
+        public string AD { get; set; }
+        public IEnumerable<SelectListItem> ADs { get; set; }
     }
 }

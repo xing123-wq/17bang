@@ -12,5 +12,13 @@ namespace Repositorys
         public ArticleRepository(SQLContext context) : base(context)
         {
         }
+        public IList<Article> GetArticles(int sum)
+        {
+            return entities.OrderByDescending(a => a.PublishTime).Take(sum).ToList();
+        }
+        public Article GetArticle(int id)
+        {
+            return entities.Where(a => a.Id == id).SingleOrDefault();
+        }
     }
 }

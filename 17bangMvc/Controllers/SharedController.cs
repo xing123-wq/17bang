@@ -29,7 +29,7 @@ namespace _17bangMvc.Controllers
         public PartialViewResult _Advertising()
         {
             AdvertisingService service = new AdvertisingService();
-            IList<ViewModel.Advertising.IndexModel> models = service.GetByad(5);
+            IList<ViewModel.Advertising.IndexModel> models = service.GetByads(5);
             return PartialView(models);
         }
         [ChildActionOnly]
@@ -85,8 +85,8 @@ namespace _17bangMvc.Controllers
         public ActionResult Captcha()
         {
             string length = StringExtension.GetRandomNumber(4);
-            HttpContext.Session["Captcha"] = new SharedController();
-            Session["Captcha"] = length.GetMd5Hash();
+            HttpContext.Session[Const.CAPTCHA] = new SharedController();
+            Session[Const.CAPTCHA] = length.GetMd5Hash();
             Verification.Captcha(length);
             MemoryStream stream = new MemoryStream();
             Verification.image.Save(stream, ImageFormat.Jpeg);

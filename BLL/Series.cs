@@ -10,7 +10,8 @@ namespace BLL
     {
         public string Title { get; set; }
         public string Describe { get; set; }
-        public FatherSeries FatherSeries { get; set; }
+        public Series FatherSeries { get; set; }
         public User Author { get; set; }
+        IList<Article> Articles { get; set; }
     }
 }

@@ -11,6 +11,6 @@ namespace ServiceInterface
     {
         IndexModel GetByTitle(string title);
         int Sava(IndexModel model);
-        IList<IndexModel> GetByad(int sum);
+        IList<IndexModel> GetByads(int sum);
     }
 }

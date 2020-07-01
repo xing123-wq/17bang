@@ -20,7 +20,7 @@ namespace ProdService
         }
         public IndexModel GetBy()
         {
-            _user = GetByCurrentUserId();
+            _user = GetByCurrentUser();
             return mapper.Map<ViewModel.LogOn.IndexModel>(_user);
         }
         public int LogOn(IndexModel model)

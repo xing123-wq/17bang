@@ -33,12 +33,6 @@
             <h2 class="page-header">
                 <span class="fa fa-pencil-square-o " aria-hidden="true"></span> 文章发布
             </h2>
-            <div zyf-old-draft-check="">
-                <div class="yellow-highlight" style="padding:10px 10px 0 10px; margin-bottom:15px;">
-                    <p>你还有未使用的草稿（<a href="/Draft">查看全部</a>）。</p>
-                    <p>点击 <a href="/Article/Edit/37"><span class="fa fa-refresh"></span>这里</a> 使用最近一次生成的草稿。</p>
-                </div>
-            </div>
             @using (Html.BeginForm())
             {
                 <div class="form-group">
@@ -49,15 +43,13 @@
                 <div class="form-group">
                     <label>内容(*必填)</label>
                     <textarea name="Body" class="form-control" style="width:100%;height:450px;" id="MyEidtor"></textarea>
-                    <span class="field-validation-valid" data-valmsg-for="Body"></span>
+                    @Html.ValidationMessageFor(n => n.Body, "", new { @class = "field-validation-valid" })
                 </div>
                 <div class="form-group">
                     <label>添加到系列：</label>
                     <a href="/Category/Manage" class="pull-right"><span class="fa fa-cog"></span>  管理</a>
                     <div class="input-group">
-                        <select class="form-control" data-val="true" data-val-number="字段 SelectedCategoryId 必须是一个数字。" data-val-required="SelectedCategoryId 字段是必需的。" id="SelectedCategoryId" name="SelectedCategoryId" zyf-categories="">
-                            <option value="10">默认分类</option>
-                        </select>
+                        @Html.DropDownListFor(n => n.Series, Model.Serieses, "默认分类", new { @class = "form-control" })
                         <a class="btn input-group-addon" data-toggle="modal" data-target="#new-category">
                             <span class="fa fa-plus" data-toggle="tooltip" title="" data-original-title="添加"></span> 新系列
                         </a>
@@ -78,9 +70,7 @@
                 <div class="form-group">
                     <a zyf-ad-delete="" class="text-warning pull-right"><span class="fa fa-remove"></span> 删除</a>
                     <label>之前用过的广告：</label>
-                    <select class="form-control" id="AdContent_SelectedHistory" name="AdContent.SelectedHistory" zyf-ad-in-widget-history-select="">
-                        <option value="">----- 使用新的广告 -----</option>
-                    </select>
+                    @Html.DropDownListFor(n => n.AD, Model.ADs, "默认分类", new { @class = "form-control" })
                 </div>
                 <ul class="hide" zyf-ad-in-widget-history-url="">
                     <li id="5">http://task.zyfei.net/</li>
@@ -111,37 +101,7 @@
             }
             <div class="modal fade" id="new-category" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <form action="/Category/_New" method="post" novalidate="novalidate">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                <h4 class="modal-title"><span class="fa fa-plus"></span> 添加新的系列</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>父系列：</label>
-                                    <select class="form-control" data-val="true" data-val-number="字段 SelectedCategoryId 必须是一个数字。" id="SelectedCategoryId" name="SelectedCategoryId" zyf-categories="">
-                                        <option value="">--------------</option>
-                                        <option value="10">默认分类</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>名称：（* 必填）</label>
-                                    <input class="form-control" data-val="true" data-val-length="* 名称的长度不能大于25" data-val-length-max="25" data-val-required="* 名称不能为空" id="Name" name="Name" placeholder="不能为空，25字符以内" type="text" value="" zyf-new-category-name="">
-                                    <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label>描述：</label>
-                                    <textarea class="form-control" cols="20" data-val="true" data-val-length="* 描述的长度不能大于255" data-val-length-max="255" id="Description" name="Description" placeholder="255个字符以内，简单描述系列的目的、内容等" rows="2"></textarea>
-                                    <span class="field-validation-valid" data-valmsg-for="Description" data-valmsg-replace="true"></span>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" zyf-new-category-submit="" zyf-submit-once="">提交</button>
-                            </div>
-                        </form>
-                    </div><!-- /.modal-content -->
+                    @Html.Action("_Series", "Series")
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
         </div>

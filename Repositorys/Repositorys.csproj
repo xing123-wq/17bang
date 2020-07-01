@@ -59,37 +59,9 @@
     <Compile Include="AdvertisingRepositroy.cs" />
     <Compile Include="ArticleRepository.cs" />
     <Compile Include="BaseRepository.cs" />
-    <Compile Include="Migrations\202006191013114_1.cs" />
-    <Compile Include="Migrations\202006191013114_1.designer.cs">
-      <DependentUpon>202006191013114_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006201436308_AddColumnInviterId.cs" />
-    <Compile Include="Migrations\202006201436308_AddColumnInviterId.designer.cs">
-      <DependentUpon>202006201436308_AddColumnInviterId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006201447278_UpdateColumnInviterId.cs" />
-    <Compile Include="Migrations\202006201447278_UpdateColumnInviterId.designer.cs">
-      <DependentUpon>202006201447278_UpdateColumnInviterId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006211129460_AddTableBanMoney.cs" />
-    <Compile Include="Migrations\202006211129460_AddTableBanMoney.designer.cs">
-      <DependentUpon>202006211129460_AddTableBanMoney.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006211131514_AddPk.cs" />
-    <Compile Include="Migrations\202006211131514_AddPk.designer.cs">
-      <DependentUpon>202006211131514_AddPk.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006250349453_addseresandfatherseries.cs" />
-    <Compile Include="Migrations\202006250349453_addseresandfatherseries.designer.cs">
-      <DependentUpon>202006250349453_addseresandfatherseries.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006250709169_addadvertisingandConfigurationRelationships.cs" />
-    <Compile Include="Migrations\202006250709169_addadvertisingandConfigurationRelationships.designer.cs">
-      <DependentUpon>202006250709169_addadvertisingandConfigurationRelationships.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006280701503_Update.cs" />
-    <Compile Include="Migrations\202006280701503_Update.designer.cs">
-      <DependentUpon>202006280701503_Update.cs</DependentUpon>
+    <Compile Include="Migrations\202007011225281_addDetaBese.cs" />
+    <Compile Include="Migrations\202007011225281_addDetaBese.designer.cs">
+      <DependentUpon>202007011225281_addDetaBese.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
@@ -109,29 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006191013114_1.resx">
-      <DependentUpon>202006191013114_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006201436308_AddColumnInviterId.resx">
-      <DependentUpon>202006201436308_AddColumnInviterId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006201447278_UpdateColumnInviterId.resx">
-      <DependentUpon>202006201447278_UpdateColumnInviterId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006211129460_AddTableBanMoney.resx">
-      <DependentUpon>202006211129460_AddTableBanMoney.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006211131514_AddPk.resx">
-      <DependentUpon>202006211131514_AddPk.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006250349453_addseresandfatherseries.resx">
-      <DependentUpon>202006250349453_addseresandfatherseries.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006250709169_addadvertisingandConfigurationRelationships.resx">
-      <DependentUpon>202006250709169_addadvertisingandConfigurationRelationships.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006280701503_Update.resx">
-      <DependentUpon>202006280701503_Update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007011225281_addDetaBese.resx">
+      <DependentUpon>202007011225281_addDetaBese.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

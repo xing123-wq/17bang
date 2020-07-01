@@ -34,7 +34,7 @@ namespace ProdService
                 return context;
             }
         }
-        public User GetByCurrentUserId()
+        public User GetByCurrentUser()
         {
             int userId = Convert.ToInt32(HttpContext.Current.Request.Cookies["UserId"].Value);
             string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
@@ -103,7 +103,7 @@ namespace ProdService
         {
             autoMapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<User, ViewModel.Register.IndexModel>()
+                cfg.CreateMap<User, ViewModel.Register.IndexModel>(MemberList.None)
                 .ForMember(i => i.UserName, opt => opt.MapFrom(u => u.Name))
                 .ForMember(i => i.ConfirmPassword, opt => opt.Ignore())
                 .ForMember(i => i.SecurityCode, opt => opt.Ignore())
@@ -112,17 +112,31 @@ namespace ProdService
                 .ReverseMap()
                 .ForMember(u => u.Inviter, opt => opt.Ignore());
 
-                cfg.CreateMap<User, ViewModel.LogOn.IndexModel>()
+                cfg.CreateMap<User, ViewModel.LogOn.IndexModel>(MemberList.None)
                 .ForMember(i => i.UserName, opt => opt.MapFrom(u => u.Name))
                 .ForMember(i => i.Password, opt => opt.MapFrom(u => u.Password))
                 .ForMember(i => i.SecurityCode, opt => opt.Ignore())
                 .ForMember(i => i.RememberMe, opt => opt.Ignore())
                 .ReverseMap();
 
-                cfg.CreateMap<Advertising, ViewModel.Advertising.IndexModel>()
+                cfg.CreateMap<Advertising, ViewModel.Advertising.IndexModel>(MemberList.None)
                 .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
                 .ForMember(i => i.Url, opt => opt.MapFrom(u => u.Url))
                 .ReverseMap();
+
+                cfg.CreateMap<Article, ViewModel.Article.IndexModel>(MemberList.None)
+                .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
+                .ForMember(i => i.Body, opt => opt.MapFrom(a => a.Content))
+                .ReverseMap()
+                .ForMember(a => a.Author, opt => opt.Ignore());
+
+                cfg.CreateMap<Article, ViewModel.Article.NewModel>(MemberList.None)
+                .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
+                .ForMember(i => i.Body, opt => opt.MapFrom(a => a.Content))
+                .ForMember(i => i.Keyword, opt => opt.MapFrom(a => a.Keywords.Select(k => k.Keyword)))
+                .ForMember(i => i.Series, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(a => a.Series, opt => opt.Ignore());
             });
 #if DEBUG   //复习：这是什么？
             autoMapperConfig.AssertConfigurationIsValid();

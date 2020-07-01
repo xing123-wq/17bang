@@ -9,6 +9,8 @@ namespace ServiceInterface
 {
     public interface IArticleService
     {
+        IList<IndexModel> GetBy(int sum);
+        int Save(NewModel model);
 
     }
 }
