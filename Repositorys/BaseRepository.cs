@@ -27,6 +27,11 @@ namespace Repositorys
             entities.Add(source);
             context.SaveChanges();
         }
+        public void AddRange(IEnumerable<T> source)
+        {
+            entities.AddRange(source);
+            context.SaveChanges();
+        }
         public void Remove(T source)
         {
             entities.Remove(source);
