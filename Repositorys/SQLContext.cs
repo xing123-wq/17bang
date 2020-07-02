@@ -14,7 +14,7 @@ namespace Repositorys
         public SQLContext() : base("18bang")
         {
 #if DEBUG
-            Database.Log = S => File.AppendAllText("E:\\EF.log", S);
+            //Database.Log = S => File.AppendAllText("E:\\EF.log", S);
 #endif
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

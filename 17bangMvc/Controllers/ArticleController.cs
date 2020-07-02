@@ -32,7 +32,9 @@ namespace _17bangMvc.Controllers
         public ActionResult New()
         {
             ViewData["title"] = "精品文章-一起帮";
-
+            SeriesModel model = new SeriesModel();
+            SeriesService Service = new SeriesService();
+            model.Serieses = Service.GetSelectListItems(Service.Get());
             return View();
         }
 
