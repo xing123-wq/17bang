@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace ViewModel.Article
         [Required(ErrorMessage = "* 描述不能为空")]
         [MaxLength(255, ErrorMessage = "* 描述的长度不能大于255")]
         public string Body { get; set; }
-        public string Series { get; set; }
+        public Series Series { get; set; }
         public IEnumerable<SelectListItem> Serieses { get; set; }
     }
 }

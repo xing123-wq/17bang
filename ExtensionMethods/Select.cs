@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ExtensionMethods
 {
-    public class Class1
+    public class Select<T>
     {
     }
 }

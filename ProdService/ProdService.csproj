@@ -76,7 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdvertisingService.cs" />
+    <Compile Include="AdService.cs" />
     <Compile Include="Articles\ArticleService.cs" />
     <Compile Include="Articles\SeriesService.cs" />
     <Compile Include="BaseService.cs" />

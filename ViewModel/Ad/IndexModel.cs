@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ViewModel.Advertising
+namespace ViewModel.Ad
 {
     public class IndexModel
     {

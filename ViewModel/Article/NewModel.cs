@@ -42,7 +42,7 @@ namespace ViewModel.Article
         public string text { get; set; }
 
         [Required(ErrorMessage = "* 广告不能为空")]
-        public string AD { get; set; }
+        public Advertising AD { get; set; }
         public IEnumerable<SelectListItem> ADs { get; set; }
     }
 }

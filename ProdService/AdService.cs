@@ -6,14 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ViewModel.Advertising;
+using System.Web.Mvc;
+using ViewModel.Ad;
 
 namespace ProdService
 {
-    public class AdvertisingService : BaseService, IAdvertisingService
+    public class AdService : BaseService, IAdvertisingService
     {
         private AdvertisingRepositroy _repositroy;
-        public AdvertisingService()
+        public AdService()
         {
             _repositroy = new AdvertisingRepositroy(context);
         }
@@ -38,6 +39,20 @@ namespace ProdService
             advertising.Expires = DateTime.Now.AddDays(1);
             _repositroy.Add(advertising);
             return advertising.Id;
+        }
+        public IEnumerable<SelectListItem> GetSelectListItems(IList<IndexModel> source)
+        {
+            var selectList = new List<SelectListItem>();
+            foreach (var item in source)
+            {
+                selectList.Add(new SelectListItem { Value = item.Title, Text = item.Title });
+            }
+            return selectList;
+        }
+        public IList<IndexModel> Get()
+        {
+            IList<Advertising> series = _repositroy.GetAdvertisings(5);
+            return mapper.Map<IList<IndexModel>>(series);
         }
     }
 }

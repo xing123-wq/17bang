@@ -119,7 +119,7 @@ namespace ProdService
                 .ForMember(i => i.RememberMe, opt => opt.Ignore())
                 .ReverseMap();
 
-                cfg.CreateMap<Advertising, ViewModel.Advertising.IndexModel>(MemberList.None)
+                cfg.CreateMap<Advertising, ViewModel.Ad.IndexModel>(MemberList.None)
                 .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
                 .ForMember(i => i.Url, opt => opt.MapFrom(u => u.Url))
                 .ReverseMap();

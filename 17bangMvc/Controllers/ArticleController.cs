@@ -35,6 +35,8 @@ namespace _17bangMvc.Controllers
             NewModel model = new NewModel();
             SeriesService Service = new SeriesService();
             model.Serieses = Service.GetSelectListItems(Service.Get());
+            AdService advertising = new AdService();
+            model.ADs = advertising.GetSelectListItems(advertising.Get());
             return View(model);
         }
 

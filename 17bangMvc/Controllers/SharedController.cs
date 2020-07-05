@@ -11,7 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ViewModel.Advertising;
+using ViewModel.Ad;
 
 namespace _17bangMvc.Controllers
 {
@@ -28,8 +28,8 @@ namespace _17bangMvc.Controllers
         [HttpGet]
         public PartialViewResult _Advertising()
         {
-            AdvertisingService service = new AdvertisingService();
-            IList<ViewModel.Advertising.IndexModel> models = service.GetByads(5);
+            AdService service = new AdService();
+            IList<ViewModel.Ad.IndexModel> models = service.GetByads(5);
             return PartialView(models);
         }
         [ChildActionOnly]
@@ -40,13 +40,13 @@ namespace _17bangMvc.Controllers
 
         [ChildActionOnly]
         [HttpPost]
-        public PartialViewResult _Ad(ViewModel.Advertising.IndexModel model)
+        public PartialViewResult _Ad(ViewModel.Ad.IndexModel model)
         {
             if (!ModelState.IsValid)
             {
                 return PartialView(model);
             }
-            AdvertisingService service = new AdvertisingService();
+            AdService service = new AdService();
             service.Sava(model);
             return PartialView();
         }
