@@ -22,7 +22,7 @@ namespace ProdService.Articles
         public IList<SeriesModel> Get()
         {
             User user = GetByCurrentUser();
-            IList<Series> series = repository.GetSeries(user);
+            IList<Series> series = repository.GetSeries(user.Id);
             return mapper.Map<IList<SeriesModel>>(series);
         }
 

@@ -137,6 +137,11 @@ namespace ProdService
                 .ForMember(i => i.Series, opt => opt.Ignore())
                 .ReverseMap()
                 .ForMember(a => a.Series, opt => opt.Ignore());
+
+                cfg.CreateMap<Series, ViewModel.Article.SeriesModel>(MemberList.None)
+                .ForMember(i => i.Title, opt => opt.MapFrom(s => s.Title))
+                .ForMember(i => i.Body, opt => opt.MapFrom(s => s.Describe))
+                .ReverseMap();
             });
 #if DEBUG   //复习：这是什么？
             autoMapperConfig.AssertConfigurationIsValid();

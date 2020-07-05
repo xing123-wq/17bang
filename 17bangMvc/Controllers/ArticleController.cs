@@ -32,10 +32,10 @@ namespace _17bangMvc.Controllers
         public ActionResult New()
         {
             ViewData["title"] = "精品文章-一起帮";
-            SeriesModel model = new SeriesModel();
+            NewModel model = new NewModel();
             SeriesService Service = new SeriesService();
             model.Serieses = Service.GetSelectListItems(Service.Get());
-            return View();
+            return View(model);
         }
 
         [HttpPost]

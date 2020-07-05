@@ -12,9 +12,9 @@ namespace Repositorys
         public SeriesRepository(SQLContext context) : base(context)
         {
         }
-        public IList<Series> GetSeries(User user)
+        public IList<Series> GetSeries(int userId)
         {
-            return entities.Where(s => s.Author == user).ToList();
+            return entities.Where(s => s.AuthorId == userId).ToList();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace ViewModel.Article
         public string Digest { get; set; }
 
         [Required(ErrorMessage = "* 系列不能为空")]
-        public string Series { get; set; }
+        public Series Series { get; set; }
 
         public IEnumerable<SelectListItem> Serieses { get; set; }
 
