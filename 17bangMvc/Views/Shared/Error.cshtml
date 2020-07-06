@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+<body style="">
+    <div class="container body-content">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <a href="/" data-toggle="tooltip" title="返回首页">
+                    <img src="/Images/logo.png" alt="一起帮Logo" class="pull-left">
+                </a>
+                <p class="navbar-text pull-left">
+                    <span style="font-size:18px; font-weight:600;">一 起 帮</span>
+                    <span class="visible-md-inline visible-lg-inline"> · "一对一"远程互助平台</span>
+                </p>
+                <a href="/Message/Mine" class="navbar-text pull-left" style="font-size:18px; margin-left:10px;">
+                    <span class="fa fa-bell  pull-left hide" zyf-bell=""></span>
+                </a>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/Problem/New"><span class="fa fa-question-circle"></span> 我要求助</a> </li>
+                        <li><a href="/Problem?excludeCanceled=true&amp;excludeRewarded=true"><span class="fa fa-heart"></span> 我来帮忙</a></li>
+                        <li><a href="/Article"><span class="iconfont icon-articles"></span> 精品文章</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="iconfont icon-mobile"></span>APP下载<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/install-Android.apk"><span class="fa fa-android"></span> Android</a></li>
+                                <li><a href="/install-iOS.ipa"><span class="fa fa-apple"></span> iOS<small>（越狱）</small> </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="page-header text-warning"><span class="fa fa-exclamation-triangle  "></span> 页面没有找到</h2>
+
+
+        <div class="error-content">
+            <img src="/Images/sorry.png" class="pull-right">
+            <p>
+                <span class="text-warning lead">(⊙o⊙)</span>
+                唉呀！你要访问的页面（<span class="text-primary">/wpz</span>）没有找到呢……
+            </p>
+            <p>我们已经记录了这个情况，如有必要，会联系你了解具体情况。</p>
+            <p>
+                你也可以观察上述网址是否正确。URL错误的原因通常有：
+            </p><ul>
+                <li>
+                    当网址和其他文字混合出现时，苹果电脑或者iphone不能正确的识别空格换行等，然后错误的截取了网址。比如，本应是：<a>/Problem/203</a> 大佬们，会识别为为：<a>/Problem/203 大佬们</a>
+                </li>
+                <li>
+                    浏览器或网络服务商自动添加了一些无法识别的URL参数，如：<a>/Problem<b>?wd=&amp;eqid=8786bcd000013e32000000035a36e413</b></a>
+                </li>
+            </ul>
+            <p></p>
+            <p>
+                也欢迎你 <a href="/Contact/Us"><span class="fa fa-envelope"></span> 直接联系我们</a>，或者通过 <a href="/Suggest/New"><span class="fa fa-flag"></span> 提交反馈建议</a>，向我们报告这个错误。或者：
+            </p>
+            <p>
+                到我们“一起帮”的 <a href="/" class="lead"><span class="fa fa-home"></span> 首页</a> 看看。
+            </p>
+        </div>
+
+
+
+        <hr>
+        <footer>
+            <a href="/About/Us">关于我们</a> |
+            <a href="/FAQ">常见问题</a> |
+            <a href="/Suggest">意见建议</a> |
+            <a href="/Notice">历史通知</a> |
+            <a href="/Donate" class="text-success">友情捐赠</a>
+            <p class="pull-right">© 2020 - 首顾科技</p>
+        </footer>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" zyf-global-modal="" id="contact">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <span zyf-global-modal-footer-placeholder=""></span>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <div id="qb-sougou-search" style="display: none; opacity: 0;"><p>搜索</p><p class="last-btn">复制</p><iframe src=""></iframe></div>
+</body>
