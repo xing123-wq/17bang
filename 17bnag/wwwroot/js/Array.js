@@ -17,18 +17,19 @@
 //和算不算负数
 //最小值包不包括负数
 //最小值的范围
-function SeekOdd() {
+function SeekOdd(number) {
     var odds = [];
-    for (var i = 1; i < 100; i++) {
+    for (var i = 1; i < number; i++) {
         if (Isodd(i)) {
-            odds[i] = i;
+            odds.push(i);
         }
     }
     return odds;
 }
+
 function Min() {
-    var min = 0;
     for (var i = 0; i < arguments.length; i++) {
+        var min = arguments[i];
         if (min > arguments[i]) {
             min = arguments[i];
         }
@@ -40,38 +41,30 @@ function Min() {
 //负数算不算素数
 //有小数点算不算素数
 function SeekPrime() {
-    var PrimeArr = [1, 2, 3];
-    for (var i = 4; i <= 1000; i++) {
+    var PrimeArr = [];
+    for (var i = 1; i <= 1000; i++) {
         var IsPrime = true;
-        for (var j = 2; j <= i / 2; j++) {
+        for (var j = 1; j <= i / 2; j++) {
             if (i % j === 0) {
                 IsPrime = false;
             }
         }
         if (IsPrime) {
-            PrimeArr[i] = i;
+            PrimeArr.push(i);
         }
     }
     return PrimeArr;
 }
 
 function Isodd(numbers) {
-    var whether = true;
-    if (numbers % 2 === 0) {
-        whether = false;
+    if (numbers % 2 == 0) {
+        return false;
     }
-    return whether;
+    return true;
 }
 
 //去除一个数组中重复的值（提示：仔细思考需求）
-function daleteEcho() {
-    for (var i = 0; i < arguments.length; i++) {
-        if (arguments.indexOf(arguments[i]) === arguments[i]) {//inddexof取下标
-            arguments.push(arguments[i])//把arr[i];数组推向hash=[];
-        }
-    }
-    console.log(arguments)
-}
+
 
 //完成冒泡排序（必做，参考）
 function BubbleSort() {
