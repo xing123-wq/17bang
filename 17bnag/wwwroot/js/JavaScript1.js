@@ -8,7 +8,7 @@ function findNumber(min, max) {
              只用了不到8次就猜到，弹出：666！
              用了8 - 10次猜到，弹出：猜到了。
              用了10次都还没猜对，弹出：^ (*￣(oo) ￣) ^`)
-    bing(random(min, max));//调用函数
+    bing(random(min, max) + '');//调用函数
 
 }
 function random(min, max) {
