@@ -57,7 +57,7 @@ function SeekPrime() {
 }
 
 function Isodd(numbers) {
-    if (numbers % 2 == 0) {
+    if (numbers % 2 === 0) {
         return false;
     }
     return true;

@@ -15,7 +15,7 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 function bing(binggo) {
-    for (var i = 1; i < 10; i++) {
+    for (var i = 1; i < 100; i++) {
         var word = prompt("输入你的猜测");
         if (!isNaN(word) && word > 0 && word.indexOf(".") === -1) {
             if (word === binggo) {
