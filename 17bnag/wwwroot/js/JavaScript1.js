@@ -23,19 +23,18 @@ function bing(binggo) {
                     alert("碉堡了!");
                 } else if (i < 8) {
                     alert("666!");
+                } else if (i >= 10) {
+                    alert("^ (*￣(oo) ￣) ^`");
                 } else {
                     alert("猜到了!");
                 }
                 break;
-            } else if (i >= 9) {
-                alert("^ (*￣(oo) ￣) ^`");
-                break;
-            }
-            if (word > binggo) {
-                alert("大了");
-            } else {
-                alert("小了");
-            }
+            } else
+                if (word > binggo) {
+                    alert("大了");
+                } else {
+                    alert("小了");
+                }
         } else {
             alert("请输入正整数");
         }
