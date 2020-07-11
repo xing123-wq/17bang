@@ -4,27 +4,37 @@
     ViewData["Title"] = "Privacy Policy";
     Layout = null;
 }
+<form>
+    <label>用户名：</label>
+    <input />
+    <label>密码：</label>
+    <input type="password" />
+    <input type="submit" value="提交" />
+</form>
 <label class="checkbox-inline">
-    <input type="checkbox" id="checkall" @*onclick="setAllNo()"*@> 全选
+    <input type="checkbox" id="checkall" onclick="setAllNo()"> 全选
 </label>
 @for (int i = 0; i < 10; i++)
 {
     <input type="checkbox" name="pitchon">
 }
 <script>
-    setInterval(setAllNo, 1000);
+    //setInterval(setAllNo, 1000);
     function setAllNo() {
         var checkall = document.getElementById("checkall").checked;
         var pitchons = document.getElementsByName("pitchon");
-        if (!checkall) {
-            for (var i = 0; i < pitchons.length; i++) {
-                pitchons[i].checked = false;
-
-            }
-        } else {
-            for (var i = 0; i < pitchons.length; i++) {
+        for (var i = 0; i < pitchons.length; i++) {
+            if (checkall) {
                 pitchons[i].checked = true;
+            }
+            else {
+                pitchons[i].checked = false;
             }
         }
     }
 </script>
+
+@*参考注册页面：
+    提交时，如果用户名重复（已有用户名用数组保存），阻止form提交，提示“用户名重复”。
+    重新输入用户名，一旦输入用户名部分没有重复，“用户名重复”的提示消失
+    当用户名或密码等有值时，关闭页面前弹出确认框*@
