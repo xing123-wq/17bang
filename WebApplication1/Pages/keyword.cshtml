@@ -1,0 +1,40 @@
+﻿@page
+@model WebApplication1.Pages.keywordModel
+@{
+    Layout = null;
+}
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@*参考发布求助，实现其关键字功能：*@
+@*没有选择一级关键字，不能选择二级关键字
+选择一级关键字后，二级关键字只能是一级关键字下的子集
+一级关键字和二级关键字被选中后，会显示在下拉列表上方
+自定义关键字输入完成后（按空格键），输入的关键字显示在下拉列表上方
+后输入的关键字显示在前面*@
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default ">--- 1级 ---</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" zyf-keyword-dropdownlist="1">
+            <li><a data-keyword-id="163">编程开发语言</a></li>
+            <li><a data-keyword-id="162">工具软件</a></li>
+            <li><a data-keyword-id="164">顾问咨询</a></li>
+            <li><a data-keyword-id="161">操作系统</a></li>
+
+        </ul>
+    </div>
+    <div class="input-group-btn input-group-btn-middle" zyf-keyword-dropdownlist-2="">
+        <button type="button" class="btn btn-default ">--- 2级 ---</button>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu" zyf-keyword-dropdownlist="2"></ul>
+    </div>
+    <input type="text" class="form-control" placeholder="自定义关键字，使用空格分隔" zyf-keyword-input="">
+</div>
