@@ -38,7 +38,7 @@
         <span id="tishi"></span>
     </div>
     <div class="submit">
-        <input type="button" class="btn btn-primary loading" value="提交">
+        <input type="submit" class="btn btn-primary loading" id="submit" value="提交">
         <input type="reset" class="btn btn-default">
         <a href="About US" class="btn pull-right"><span class="glyphicon glyphicon-log-in"></span> 登录</a>
     </div>
@@ -68,7 +68,12 @@
     }
 
     window.onbeforeunload = function (e) {
-        return '';
+        var all = this.document.getElementsByClassName('form-control');
+        for (var i = 0; i < all.length; i++) {
+            if (isNull(all[i].value)) {
+                return '';
+            }//else do noting
+        }
     };
 
     function isNull(parameter) {
@@ -93,7 +98,16 @@
             }
         }//else do nothing
     }
+    var submitBtn = document.getElementById("submit");
 
+    submitBtn.onclick = function (event) {
+        if (checkRepeat()) {
+            alert("preventDefault!");
+            return false;
+        } else {
+            return true;
+        }
+    };
     function checkRepeat() {
         var existingUser = ['阿泰', 'fg', 'yz'];
         var usernName = document.getElementById('UserName').value;
@@ -101,9 +115,10 @@
             for (var i = 0; i < existingUser.length; i++) {
                 if (usernName == existingUser[i]) {
                     document.getElementById('userName').innerHTML = "<font color='red'>已有当前用户，请重新输入</font>";
-                    break;
+                    return true;
                 } else {
                     document.getElementById('userName').innerHTML = "";
+                    return false;
                 }
             }
         }//else do nothing
