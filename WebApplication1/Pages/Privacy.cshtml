@@ -102,7 +102,9 @@
                 if (usernName == existingUser[i]) {
                     document.getElementById('userName').innerHTML = "<font color='red'>已有当前用户，请重新输入</font>";
                     break;
-                }//else do nothing
+                } else {
+                    document.getElementById('userName').innerHTML = "";
+                }
             }
         }//else do nothing
     }
