@@ -1008,7 +1008,13 @@
 
                     <hr>
                     <script>
-                     
+                        $(document).ready(function () {
+                            $('[zyf-change-iframe]').click(function () {
+                                $('[zyf-iframe]').attr('src', '/iframe2');
+                                //$($(frames[0].document).find('p').text('源栈飞哥欢迎您'))
+                            })
+
+                        })
                     </script>
                     <div class="row">
                         <div class="col-sm-8">
