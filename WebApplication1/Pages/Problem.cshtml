@@ -912,117 +912,20 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
-
-
             </div>
             <div class="col-md-4 visible-md visible-lg">
                 <div class="widget clearfix">
                     <div style="font-size:24px;"><span class="glyphicon glyphicon-tags"></span> 关键字</div>
                     <hr>
                     <iframe zyf-iframe src="/iframe1" id="keywords">
-                        <div>
-                            <div class="user-tags">
-                                <a href="#" data-toggle="tooltip" title="已使用239次">
-                                    1<span class="badge" style="font-size:21px; background-color:rgba(51, 51, 51, 0.96875)">
-                                        编程开发语言
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=169" data-toggle="tooltip" title="" data-original-title="已使用95次">
-                                    <span class="badge" style="font-size:20.5px; background-color:rgba(51, 51, 51, 0.9375)">
-                                        C#
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=170" data-toggle="tooltip" title="" data-original-title="已使用70次">
-                                    <span class="badge" style="font-size:20px; background-color:rgba(51, 51, 51, 0.90625)">
-                                        JAVA
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=162" data-toggle="tooltip" title="" data-original-title="已使用68次">
-                                    <span class="badge" style="font-size:19.5px; background-color:rgba(51, 51, 51, 0.875)">
-                                        工具软件
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=171" data-toggle="tooltip" title="" data-original-title="已使用55次">
-                                    <span class="badge" style="font-size:19px; background-color:rgba(51, 51, 51, 0.84375)">
-                                        Javascript
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=164" data-toggle="tooltip" title="" data-original-title="已使用54次">
-                                    <span class="badge" style="font-size:18.5px; background-color:rgba(51, 51, 51, 0.8125)">
-                                        顾问咨询
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=199" data-toggle="tooltip" title="" data-original-title="已使用32次">
-                                    <span class="badge" style="font-size:18px; background-color:rgba(51, 51, 51, 0.78125)">
-                                        html
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=182" data-toggle="tooltip" title="" data-original-title="已使用25次">
-                                    <span class="badge" style="font-size:17.5px; background-color:rgba(51, 51, 51, 0.75)">
-                                        VisualStudio
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=161" data-toggle="tooltip" title="" data-original-title="已使用24次">
-                                    <span class="badge" style="font-size:17px; background-color:rgba(51, 51, 51, 0.71875)">
-                                        操作系统
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=174" data-toggle="tooltip" title="" data-original-title="已使用18次">
-                                    <span class="badge" style="font-size:16.5px; background-color:rgba(51, 51, 51, 0.6875)">
-                                        SQL
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=184" data-toggle="tooltip" title="" data-original-title="已使用18次">
-                                    <span class="badge" style="font-size:16px; background-color:rgba(51, 51, 51, 0.65625)">
-                                        职场
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=188" data-toggle="tooltip" title="" data-original-title="已使用18次">
-                                    <span class="badge" style="font-size:15.5px; background-color:rgba(51, 51, 51, 0.625)">
-                                        法律
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=173" data-toggle="tooltip" title="" data-original-title="已使用18次">
-                                    <span class="badge" style="font-size:15px; background-color:rgba(51, 51, 51, 0.59375)">
-                                        Python
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=89" data-toggle="tooltip" title="" data-original-title="已使用14次">
-                                    <span class="badge" style="font-size:14.5px; background-color:rgba(51, 51, 51, 0.5625)">
-                                        .net
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=200" data-toggle="tooltip" title="" data-original-title="已使用13次">
-                                    <span class="badge" style="font-size:14px; background-color:rgba(51, 51, 51, 0.53125)">
-                                        CSS
-                                    </span>
-                                </a>
-                                <a href="/Problem?keyword=167" data-toggle="tooltip" title="" data-original-title="已使用12次">
-                                    <span class="badge" style="font-size:13.5px; background-color:rgba(51, 51, 51, 0.5)">
-                                        Linux
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
                     </iframe>
-
                     <hr>
-                    <script>
-                        $(document).ready(function () {
-                            $('[zyf-change-iframe]').click(function () {
-                                $('[zyf-iframe]').attr('src', '/iframe2');
-                                //$($(frames[0].document).find('p').text('源栈飞哥欢迎您'))
-                            })
-
-                        })
-                    </script>
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="直接输入关键字查找">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
                             </div>
-
                         </div>
                         <div class="col-sm-4">
                             <button zyf-change-iframe type="button">
@@ -1031,6 +934,7 @@
                         </div>
                     </div>
                 </div>
+                <script src="~/js/site.js"></script>
                 <div class="clearfix" style="margin-bottom:30px;">
                     <ul class="nav nav-tabs nav-justified nav-tabs-colored" role="tablist">
                         <li role="presentation">

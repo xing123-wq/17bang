@@ -1,4 +1,3 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your Javascript code.
+﻿document.querySelector('[zyf-change-iframe]').onclick = function (e) {
+    document.querySelector('[zyf-iframe]').src = "/iframe2";
+}
