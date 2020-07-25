@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace ViewModel.Article
+namespace ViewModel.Articles
 {
     public class SeriesModel
     {

@@ -29,6 +29,5 @@ namespace ProdService
             _userRepositroy.Add(_user);
             return _user.Id;
         }
-
     }
 }

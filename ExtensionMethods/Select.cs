@@ -7,7 +7,11 @@ using System.Web.Mvc;
 
 namespace ExtensionMethods
 {
-    public class Select<T>
+    public static class Select
     {
+        public static int GetSum<T>(this IEnumerable<T> parameter)
+        {
+            return parameter.Count();
+        }
     }
 }

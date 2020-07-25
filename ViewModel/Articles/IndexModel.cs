@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ViewModel.Article
+namespace ViewModel.Articles
 {
     public class IndexModel
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
-
         public string Keyword { get; set; }
-        public string Author { get; set; }
-        public string Abstract { get; set; }
+        public DateTime PublishTime { get; set; }
+        public User Author { get; set; }
     }
 }

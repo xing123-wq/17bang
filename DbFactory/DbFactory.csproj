@@ -53,14 +53,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleFactory.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\Entitys.csproj">
+      <Project>{6173C1FC-92BF-476E-86C4-D4820B120E17}</Project>
+      <Name>Entitys</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
+      <Project>{C1D93A0B-55FF-4097-AC41-06F5B5956F86}</Project>
+      <Name>ExtensionMethods</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Repositorys\Repositorys.csproj">
       <Project>{D5EA1592-9FE9-42BF-8238-23CE401563FE}</Project>
       <Name>Repositorys</Name>

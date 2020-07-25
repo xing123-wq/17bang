@@ -16,6 +16,10 @@ namespace DbFactory
             database.Log = Console.Write;
             database.Delete();
             database.Create();
+            #region envision
+            RegisterFactory.Create();
+            ArticleFactory.Create();
+            #endregion
         }
     }
 }

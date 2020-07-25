@@ -1,11 +1,12 @@
-﻿using ProdService;
+﻿using ExtensionMethods;
+using ProdService;
 using ProdService.Articles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ViewModel.Article;
+using ViewModel.Articles;
 
 namespace _17bangMvc.Controllers
 {
@@ -17,16 +18,17 @@ namespace _17bangMvc.Controllers
             _service = new ArticleService();
         }
         [HttpGet]
-        public ActionResult index()
+        public ActionResult index(IList<IndexModel> model)
         {
             ViewData["title"] = "精品文章-一起帮";
-            return View();
-        }
-        [HttpPost]
-        public ActionResult index(IndexModel model)
-        {
+            model = _service.GetBy(3);
             return View(model);
         }
+        //[HttpPost]
+        //public ActionResult index(IList<IndexModel> model)
+        //{
+        //    return View(model);
+        //}
 
         [HttpGet]
         public ActionResult New()

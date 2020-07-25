@@ -64,9 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ad\IndexModel.cs" />
-    <Compile Include="Article\IndexModel.cs" />
-    <Compile Include="Article\NewModel.cs" />
-    <Compile Include="Article\SeriesModel.cs" />
+    <Compile Include="Articles\IndexModel.cs" />
+    <Compile Include="Articles\NewModel.cs" />
+    <Compile Include="Articles\SeriesModel.cs" />
     <Compile Include="Home\IndexModel.cs" />
     <Compile Include="LogOn\IndexModel.cs" />
     <Compile Include="Problem\IndexModel.cs" />
