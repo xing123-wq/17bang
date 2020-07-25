@@ -13,9 +13,9 @@ namespace DbFactory
         static void Main(string[] args)
         {
             Database database = new SQLContext().Database;
+            database.Log = Console.Write;
             database.Delete();
             database.Create();
-            new RegisterFactory().Create();
         }
     }
 }
