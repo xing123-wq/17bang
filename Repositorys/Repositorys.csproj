@@ -59,15 +59,6 @@
     <Compile Include="AdvertisingRepositroy.cs" />
     <Compile Include="ArticleRepository.cs" />
     <Compile Include="BaseRepository.cs" />
-    <Compile Include="Migrations\202007011225281_addDetaBese.cs" />
-    <Compile Include="Migrations\202007011225281_addDetaBese.designer.cs">
-      <DependentUpon>202007011225281_addDetaBese.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007021541374_addcoulmnauthorid.cs" />
-    <Compile Include="Migrations\202007021541374_addcoulmnauthorid.designer.cs">
-      <DependentUpon>202007021541374_addcoulmnauthorid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SeriesRepository.cs" />
@@ -84,14 +75,6 @@
       <Project>{6173c1fc-92bf-476e-86c4-d4820b120e17}</Project>
       <Name>Entitys</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007011225281_addDetaBese.resx">
-      <DependentUpon>202007011225281_addDetaBese.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007021541374_addcoulmnauthorid.resx">
-      <DependentUpon>202007021541374_addcoulmnauthorid.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -36,19 +36,24 @@ namespace ProdService
         }
         public User GetByCurrentUser()
         {
-            int userId = Convert.ToInt32(HttpContext.Current.Request.Cookies["UserId"].Value);
-            string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
-            User user = new User();
-            user = _userRepositroy.GetById(userId);
-            if (user == null)
+            HttpCookie cookie = HttpContext.Current.Request.Cookies["UserId"];
+            if (cookie != null)
             {
-                throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
+                int userId = Convert.ToInt32(cookie.Value);
+                string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
+                User user = new User();
+                user = _userRepositroy.GetById(userId);
+                if (user == null)
+                {
+                    throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
+                }
+                if (password != user.Password)
+                {
+                    throw new Exception("该用户密码错误");
+                }
+                return user;
             }
-            if (password != user.Password)
-            {
-                throw new Exception("该用户密码错误");
-            }
-            return user;
+            return null;
         }
 
         public void Commit()
@@ -129,9 +134,9 @@ namespace ProdService
                 .ForMember(i => i.Body, opt => opt.MapFrom(a => a.Content))
                 .ForMember(i => i.Id, opt => opt.MapFrom(a => a.Id))
                 .ForMember(i => i.PublishTime, opt => opt.MapFrom(a => a.PublishTime))
-                .ForMember(i => i.Keyword, opt => opt.Ignore())
+                .ForMember(i => i.Author, opt => opt.MapFrom(a => a.Author))
+                .ForMember(i => i.Keywords, opt => opt.MapFrom(a => a.Keywords))
                 .ReverseMap()
-                .ForMember(a => a.Author, opt => opt.Ignore())
                 .ForMember(a => a.Keywords, opt => opt.Ignore())
                 .ForMember(a => a.Series, opt => opt.Ignore())
                 .ForMember(a => a.Advertising, opt => opt.Ignore());

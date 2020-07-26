@@ -22,7 +22,7 @@ namespace DbFactory
                 PublishTime = Global.Time.AddDays(1),
                 Advertising = null,
                 Series = null,
-                Keywords = null
+                Keywords = ArticleAndKeywordFactory.sqls
             };
             JAVA = new Article
             {
@@ -32,7 +32,7 @@ namespace DbFactory
                 PublishTime = Global.Time.AddDays(-1),
                 Advertising = null,
                 Series = null,
-                Keywords = null
+                Keywords = ArticleAndKeywordFactory.javas
             }; UI = new Article
             {
                 Title = "什么是UI?",
@@ -41,7 +41,7 @@ namespace DbFactory
                 PublishTime = Global.Time.AddDays(2),
                 Advertising = null,
                 Series = null,
-                Keywords = null
+                Keywords = ArticleAndKeywordFactory.uis
             };
         }
         internal static void Create()

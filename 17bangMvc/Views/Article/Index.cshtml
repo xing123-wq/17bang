@@ -54,13 +54,13 @@
                             @article.Body
                             <a href="/Article/@article.Id" data-toggle="tooltip" title="" data-original-title="全文">……</a>
                         </p>
-                        @*<div>
-                                <label><span class="fa fa-tags"></span>  关键字：</label>
-                                @foreach (var keyword in article.keywords)
-                                {
-                                    <span class="badge">@keyword.Keyword.Name</span>
-                                }
-                            </div>*@
+                        <div>
+                            <label><span class="fa fa-tags"></span>  关键字：</label>
+                            @foreach (var item in article.Keywords)
+                            {
+                                <span class="badge">@item.Keyword.Name</span>
+                            }
+                        </div>
                         <div class="pull-right appraise-status">
                             <a class="appraise-status-item text-info" href="/Article/612#comments">
                                 <span class="fa fa-comments-o"></span>
@@ -91,7 +91,7 @@
     <nav>
         @{
             int currentPageIndex = Convert.ToInt32(ViewContext.RouteData.Values["id"]);
-            int SumProblems = ExtensionMethods.Select.GetSum(Model)/ Const.PAGE_SIZE;
+            int SumProblems = ExtensionMethods.Select.GetSum(Model) / Const.PAGE_SIZE;
         }
         <ul class="pagination">
             @if (currentPageIndex > 1)

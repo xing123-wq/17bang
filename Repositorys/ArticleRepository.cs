@@ -1,6 +1,7 @@
 ﻿using BLL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace Repositorys
         }
         public IList<Article> GetArticles(int sum)
         {
-            return entities.OrderByDescending(a => a.PublishTime).Take(sum).ToList();
+            return entities.Include(a => a.Keywords.Select(k => k.Keyword)).Include(u => u.Author).ToList();
         }
         public Article GetArticle(int id)
         {

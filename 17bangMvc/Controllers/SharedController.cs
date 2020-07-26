@@ -73,9 +73,12 @@ namespace _17bangMvc.Controllers
             {
                 string password = Request.Cookies[Const.USER_PASSWORD].Value;
                 ViewModel.LogOn.IndexModel user = _service.GetBy();
-                if (user.Password == password)
+                if (user!=null)
                 {
-                    ViewData[Const.USER_NAME] = user.UserName;
+                    if (user.Password == password)
+                    {
+                        ViewData[Const.USER_NAME] = user.UserName;
+                    }
                 }
             }
 
