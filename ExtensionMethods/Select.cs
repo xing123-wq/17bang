@@ -13,5 +13,9 @@ namespace ExtensionMethods
         {
             return parameter.Count();
         }
+        public static IEnumerable<T> Get<T>(this IEnumerable<T> soure, int pageindex, int pagesize)
+        {
+            return soure.Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ExtensionMethods;
+﻿using _17bangMvc.Helper;
+using ExtensionMethods;
 using ProdService;
 using ProdService.Articles;
 using System;
@@ -13,15 +14,18 @@ namespace _17bangMvc.Controllers
     public class ArticleController : BaseController
     {
         private ArticleService _service;
+        public int pageindex { get; set; }
         public ArticleController()
         {
             _service = new ArticleService();
         }
         [HttpGet]
-        public ActionResult index(IList<IndexModel> model)
+        public ActionResult index(/*int Id,*/IEnumerable<IndexModel> model)
         {
             ViewData["title"] = "精品文章-一起帮";
             model = _service.GetBy(3);
+            pageindex = Convert.ToInt32(RouteData.Values["Id"]);//有了Id可以省略
+            model = Select.Get(model.OrderByDescending(a => a.PublishTime), pageindex, Const.PAGE_SIZE);
             return View(model);
         }
         //[HttpPost]
