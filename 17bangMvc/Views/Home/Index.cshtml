@@ -12,6 +12,7 @@
     <style type="text/css">
         #ad-chats {
             position: fixed;
+            right: 270px;
         }
 
         #chat-container {
@@ -37,309 +38,39 @@
             padding-right: 20px;
         }
     </style>
-    <link href="~/css/Register.css" rel="stylesheet" />
 </head>
 <div class="container">
     <div class="row">
         <div class="col-md-7" id="chat-container">
             <div zyf-chat-scroll-container="" class="chats">
                 <div id="history-more" class="text-center">
-                    <a zyf-chat-history-more="" href="">更多历史 <span class="fa fa-angle-double-up"></span></a>
+                    <a zyf-chat-history-more href="">更多历史 <span class="fa fa-angle-double-up"></span></a>
                 </div>
-                <div zyf-chats-items-container="">
-                    <input zyf-chat-items-begin="" type="hidden">
-                    <div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="6" class="btn btn-default btn-sm left">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="6" class="chat-item">
-                            <div class="small text-muted">
-                                <span>2020/1/31 19:56:00</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="">
-                                    <a href="/User/6" zyf-show-contact="6" style="color:">
-                                        yezi
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position: relative; top: -1px;" data-original-title="初级教师">
-                                    <span>④</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="6">
-                            </div>
-                            <div>
-                                <span zyf-chat-item-content=""> 另外发布了一个新功能：短信通知</span>
-                            </div>
-                        </div>
-                    </div><div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="7" class="btn btn-default btn-sm left">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="7" class="chat-item">
-                            <div class="small text-muted">
-                                <span>2020/1/31 19:56:00</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="捐赠 80">
-                                    <a href="/User/3" zyf-show-contact="3" style="color:#DCB962">
-                                        Alan
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                                    <span>④</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="3">
-                            </div>
-                            <div>
-                                <span zyf-chat-item-content=""> 我有一个建议：添加一个QQ/微信登录吧</span>
-                            </div>
-                        </div>
-                    </div><div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="8" class="btn btn-default btn-sm left">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="8" class="chat-item">
-                            <div class="small text-muted">
-                                <span>2020/1/31 19:56:00</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="">
-                                    <a href="/User/6" zyf-show-contact="6" style="color:">
-                                        yezi
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                                    <span>④</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="6">
-                            </div>
-                            <div>
-                                <span class="bg-info">
-                                    <span class="fa fa-at"></span>
-
-                                    <span data-toggle="tooltip" title="" data-original-title="捐赠 80">
-                                        <a href="/User/3" zyf-show-contact="3" style="color:#DCB962">
-                                            Alan
-                                        </a>
-                                    </span>
-                                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                                        <span>④</span>
-                                    </a>
-                                </span><br>
-                                <span class="text-muted bg-info"><span class="fa fa-quote-left"></span> 我有一个建议：添加一个QQ/微信登录吧...</span><br>
-                                <span zyf-chat-item-content=""> OK</span>
-                            </div>
-                        </div>
-                    </div><div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="9" class="btn btn-default btn-sm" style="display: none;">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="9" class="chat-item text-right">
-                            <div class="small text-muted">
-                                <span>2020/1/31 19:56:00</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="捐赠 9.9">
-                                    <a href="/User/7" zyf-show-contact="7" style="color:#DCB962">
-                                        DK
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                                    <span>④</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="7">
-                            </div>
-                            <div>
-                                <span class="bg-info">
-                                    <span class="fa fa-at"></span>
-
-                                    <span data-toggle="tooltip" title="" data-original-title="捐赠 80">
-                                        <a href="/User/3" zyf-show-contact="3" style="color:#DCB962">
-                                            Alan
-                                        </a>
-                                    </span>
-                                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                                        <span>④</span>
-                                    </a>
-                                </span><br>
-                                <span class="text-muted bg-info"><span class="fa fa-quote-left"></span> 我有一个建议：添加一个QQ/微信登录吧...</span><br>
-                                <span zyf-chat-item-content=""> 为什么呢？</span>
-                            </div>
-                        </div>
-                    </div><div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="10" class="btn btn-default btn-sm left">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="10" class="chat-item">
-                            <div class="small text-muted">
-                                <span>2020/1/31 19:56:00</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="">
-                                    <a href="/User/12" zyf-show-contact="12" style="color:">
-                                        Jz.Fan
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="高级学徒">
-                                    <span>③</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="12">
-                            </div>
-                            <div>
-                                <span class="bg-info">
-                                    <span class="fa fa-at"></span>
-
-                                    <span data-toggle="tooltip" title="" data-original-title="">
-                                        <a href="/User/6" zyf-show-contact="6" style="color:">
-                                            yezi
-                                        </a>
-                                    </span>
-                                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                                        <span>④</span>
-                                    </a>
-                                </span><br>
-                                <span class="text-muted bg-info"><span class="fa fa-quote-left"></span> 看到了，昨天就修复了...</span><br>
-                                <span zyf-chat-item-content=""> 这个怎么做呢？</span>
-                            </div>
-                        </div>
-                    </div><div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="11" class="btn btn-default btn-sm" style="display: none;">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="11" class="chat-item text-right">
-                            <div class="small text-muted">
-                                <span>2020/1/31 19:56:00</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="捐赠 9.9">
-                                    <a href="/User/7" zyf-show-contact="7" style="color:#DCB962">
-                                        DK
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                                    <span>④</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="7">
-                            </div>
-                            <div>
-                                <span zyf-chat-item-content=""> 不错不错</span>
-                            </div>
-                        </div>
-                    </div><div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="12" class="btn btn-default btn-sm left">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="12" class="chat-item">
-                            <div class="small text-muted">
-                                <span>2020/1/31 19:56:00</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="">
-                                    <a href="/User/4" zyf-show-contact="4" style="color:">
-                                        花酱
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="高级学徒">
-                                    <span>③</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="4">
-                            </div>
-                            <div>
-                                <span class="bg-info">
-                                    <span class="fa fa-at"></span>
-
-                                    <span data-toggle="tooltip" title="" data-original-title="">
-                                        <a href="/User/6" zyf-show-contact="6" style="color:">
-                                            yezi
-                                        </a>
-                                    </span>
-                                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                                        <span>④</span>
-                                    </a>
-                                </span><br>
-                                <span class="text-muted bg-info"><span class="fa fa-quote-left"></span> 学C#真的有前途！...</span><br>
-                                <span zyf-chat-item-content=""> good luck!</span>
-                            </div>
-                        </div>
-                    </div><div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="13" class="btn btn-default btn-sm left">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="13" class="chat-item">
-                            <div class="small text-muted">
-                                <span>2020/1/31 19:56:00</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="">
-                                    <a href="/User/10" zyf-show-contact="10" style="color:">
-                                        弹指一挥间
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="中级学徒">
-                                    <span>②</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="10">
-                            </div>
-                            <div>
-                                <span zyf-chat-item-content=""> 祝飞哥的一起帮越办越好！</span>
-                            </div>
-                        </div>
-                    </div><div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="14" class="btn btn-default btn-sm left">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="14" class="chat-item">
-                            <div class="small text-muted">
-                                <span>2020/2/1 14:39:30</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="">
-                                    <a href="/User/12" zyf-show-contact="12" style="color:">
-                                        Jz.Fan
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="高级学徒">
-                                    <span>③</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="12">
-                            </div>
-                            <div>
-                                <span zyf-chat-item-content=""> 源栈欢迎您</span>
-                            </div>
-                        </div>
-                    </div><div zyf-chat-items-container="" class="clearfix chat-items-container">
-                        <a zyf-chat-reply-btn="" data-id="15" class="btn btn-default btn-sm left">
-                            <span></span><br>
-                            <span>回复</span>
-                        </a>
-                        <div zyf-chat-item="" data-id="15" class="chat-item">
-                            <div class="small text-muted">
-                                <span>2020/2/1 14:40:10</span>
-
-
-                                <span data-toggle="tooltip" title="" data-original-title="捐赠 80">
-                                    <a href="/User/3" zyf-show-contact="3" style="color:#DCB962">
-                                        Alan
-                                    </a>
-                                </span>
-                                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                                    <span>④</span>
-                                </a>                <input zyf-chat-item-author-id="" type="hidden" value="3">
-                            </div>
-                            <div>
-                                <span zyf-chat-item-content=""> 飞哥你好</span>
-                            </div>
-                        </div>
-                    </div>
+                <div zyf-chats-items-container>
+                    <input zyf-chat-items-be gin="" type="hidden">
+                    @**@
                 </div>
             </div>
             <section class="small" zyf-chat-reply-reminder=""></section>
             <form id="message-sender">
                 <input zyf-reply-chat-id="" type="hidden" name="reply" value="">
                 <div zyf-message-sender-logon="" class="input-group">
-                    <input zyf-chat-send-content="" type="text" class="form-control" placeholder="我来说两句" aria-describedby="basic-addon2">
-                    <span zyf-chat-send="" class="input-group-addon">发送</span>
+                    <input zyf-chat-send-content type="text" class="form-control" placeholder="我来说两句" aria-describedby="basic-addon2">
+                    <span zyf-chat-send class="input-group-addon">发送</span>
                 </div>
+                <script>
+                    $().ready(function () {
+                        $('[zyf-chat-send]').click(function () {
+                            var content = $('[zyf-chat-send-content]').val();
+                            $.ajax({
+                                url:'/ChatRoom/index',
+                                success: function (data) {
+                                    $('[ zyf-chats-items-container]').append(data);
+                                }
+                            })
+                        })
+                    })
+                </script>
                 <div zyf-message-sender-anonymous="" class="input-group hidden">
                     <input readonly="" zyf-chat-send-content="" type="text" class="form-control" placeholder="注册/登录后来两句吧" aria-describedby="basic-addon2">
                     <span class="input-group-addon"><a href="/Register?prepage=/">注册</a> </span>
@@ -410,3 +141,4 @@
             </script>
         </div>
     </div>
+</div>

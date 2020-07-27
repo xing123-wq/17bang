@@ -147,6 +147,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ChatRoomController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogOnController.cs" />
@@ -584,6 +585,7 @@
     <Content Include="Views\Shared\_Ad.cshtml" />
     <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\ChatRoom\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

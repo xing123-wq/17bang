@@ -18,6 +18,7 @@ namespace _17bangMvc
                 url: "{controller}/Page-{Id}",
                 defaults: new { controller = "Article", action = "Index", Id = UrlParameter.Optional },
                 constraints: new { Id = @"^[0-9]*[1-9][0-9]*$" });
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
             routes.MapRoute(
