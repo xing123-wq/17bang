@@ -15,9 +15,9 @@ namespace _17bangMvc.Controllers
             return PartialView();
         }
         [HttpPost]
-        public PartialViewResult Index(ChatRoomModel model)
+        public PartialViewResult Index(FormCollection data, ChatItemModel model)
         {
-
+            model.Content = data["content"].ToString();
             return PartialView(model);
         }
     }

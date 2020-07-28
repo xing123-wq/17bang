@@ -48,7 +48,6 @@
                 </div>
                 <div zyf-chats-items-container>
                     <input zyf-chat-items-be gin="" type="hidden">
-                    @**@
                 </div>
             </div>
             <section class="small" zyf-chat-reply-reminder=""></section>
@@ -63,7 +62,10 @@
                         $('[zyf-chat-send]').click(function () {
                             var content = $('[zyf-chat-send-content]').val();
                             $.ajax({
-                                url:'/ChatRoom/index',
+                                method: 'POST',
+                                dataType: 'JSON',
+                                data: { content },
+                                url: '/ChatRoom/index',
                                 success: function (data) {
                                     $('[ zyf-chats-items-container]').append(data);
                                 }
