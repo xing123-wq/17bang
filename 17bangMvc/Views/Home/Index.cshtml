@@ -63,11 +63,13 @@
                             var content = $('[zyf-chat-send-content]').val();
                             $.ajax({
                                 method: 'POST',
-                                dataType: 'JSON',
                                 data: { content },
                                 url: '/ChatRoom/index',
                                 success: function (data) {
                                     $('[ zyf-chats-items-container]').append(data);
+                                },
+                                error: function () {
+                                    alert('加载失败！');
                                 }
                             })
                         })

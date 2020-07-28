@@ -13,7 +13,7 @@ namespace ViewModel.Chat
         public DateTime PublishTime { get; set; }
         public string Content { get; set; }
         public int ChatAuthorId { get; set; }
-        public User Author { get; set; }
+        public string AuthorName { get; set; }
         public int? ChatWithId { get; set; }
         public ChatItemModel Reply { get; set; }
     }

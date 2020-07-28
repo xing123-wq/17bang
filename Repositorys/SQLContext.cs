@@ -28,6 +28,7 @@ namespace Repositorys
             modelBuilder.Entity<BanMoney>();
             modelBuilder.Entity<Series>();
             modelBuilder.Entity<Advertising>();
+            modelBuilder.Entity<Chat>();
 
             modelBuilder.Entity<ArticleAndKeyword>()
                 .HasKey(ak => new { ak.ArticleId, ak.KeywordId });

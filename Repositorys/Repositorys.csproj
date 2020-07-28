@@ -59,6 +59,7 @@
     <Compile Include="AdvertisingRepositroy.cs" />
     <Compile Include="ArticleRepository.cs" />
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="ChatRoomRepository.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SeriesRepository.cs" />

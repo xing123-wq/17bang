@@ -153,6 +153,16 @@ namespace ProdService
                 .ForMember(i => i.Title, opt => opt.MapFrom(s => s.Title))
                 .ForMember(i => i.Body, opt => opt.MapFrom(s => s.Describe))
                 .ReverseMap();
+
+                cfg.CreateMap<Chat, ViewModel.Chat.ChatItemModel>(MemberList.None)
+                .ForMember(v => v.AuthorName, opt => opt.Ignore())
+                .ForMember(v => v.ChatAuthorId, opt => opt.MapFrom(c => c.ChatAuthorId))
+                .ForMember(v => v.ChatWithId, opt => opt.MapFrom(c => c.ChatWithId))
+                .ForMember(v => v.Content, opt => opt.MapFrom(c => c.Content))
+                .ForMember(v => v.Id, opt => opt.MapFrom(c => c.Id))
+                .ForMember(v => v.PublishTime, opt => opt.MapFrom(c => c.PublishTime))
+                .ForMember(v => v.Reply, opt => opt.MapFrom(c => c.Reply))
+                .ReverseMap();
             });
 #if DEBUG   //复习：这是什么？
             autoMapperConfig.AssertConfigurationIsValid();
