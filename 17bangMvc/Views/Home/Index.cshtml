@@ -51,30 +51,52 @@
                     @Html.Action("index", "ChatRoom")
                 </div>
             </div>
-            <section class="small" zyf-chat-reply-reminder=""></section>
+            <section class="small" zyf-chat-reply-reminder></section>
             <form id="message-sender">
-                <input zyf-reply-chat-id="" type="hidden" name="reply" value="">
-                <div zyf-message-sender-logon="" class="input-group">
+                <input zyf-reply-chat-id type="hidden" name="reply" value="">
+                <div zyf-message-sender-logon class="input-group">
                     <input zyf-chat-send-content type="text" class="form-control" placeholder="我来说两句" aria-describedby="basic-addon2">
                     <span zyf-chat-send class="input-group-addon">发送</span>
                 </div>
                 <script>
-                    $().ready(function () {
+                    $(document).ready(function () {
                         $('[zyf-chat-send]').click(function () {
                             var content = $('[zyf-chat-send-content]').val();
-                            $.ajax({
-                                method: 'POST',
-                                data: { content },
-                                url: '/ChatRoom/MessageAssembly',
-                                success: function (data) {
-                                    $('[ zyf-chats-items-container]').append(data);
-                                },
-                                error: function () {
-                                    alert('加载失败！');
-                                }
-                            })
+                            if (content != "") {
+                                $.ajax({
+                                    method: 'POST',
+                                    data: { content },
+                                    url: '/ChatRoom/MessageAssembly',
+                                    success: function (data) {
+                                        $('[ zyf-chats-items-container]').append(data);
+                                    },
+                                    error: function () {
+                                        alert('加载失败！');
+                                    }
+                                })
+                            } else {
+                                alert("发送内容不能为空");
+                            }
                         })
+                        function reply() {
+                            var replys = $('[zyf-chat-reply-btn]');
+                            for (var i = 1; i < replys.length; i++) {
+                                replys[i].click(function () {
+                                    var id = $('[zyf-chat-reply-btn]').attr('id');
+                                    $.ajax({
+                                        method: 'Get',
+                                        url: '/ChatRoom/Reply',
+                                        data: { id },
+                                        success: function (data) {
+                                            $('[zyf-chat-reply-reminder ]').append(data);
+                                        },
+                                    })
+                                })
+                            }
+                        }
+                        setInterval(reply, 1000);
                     })
+
                 </script>
                 <div zyf-message-sender-anonymous="" class="input-group hidden">
                     <input readonly="" zyf-chat-send-content="" type="text" class="form-control" placeholder="注册/登录后来两句吧" aria-describedby="basic-addon2">

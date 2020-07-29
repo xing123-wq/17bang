@@ -5,11 +5,11 @@
 @foreach (var item in Model)
 {
     <div zyf-chat-items-container="" class="clearfix chat-items-container">
-        <a zyf-chat-reply-btn="" data-id="6" class="btn btn-default btn-sm left">
+        <a zyf-chat-reply-btn id="@item.Id" class="btn btn-default btn-sm left">
             <span></span><br>
             <span>回复 @item.Reply</span>
         </a>
-        <div zyf-chat-item="" data-id="6" class="chat-item">
+        <div zyf-chat-item="" class="chat-item">
             <div class="small text-muted">
                 <span>@item.PublishTime</span>
                 <span data-toggle="tooltip" title="" data-original-title="">

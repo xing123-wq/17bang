@@ -35,9 +35,14 @@ namespace _17bangMvc.Controllers
         [HttpPost]
         public ActionResult MessageAssembly(ChatItemModel model)
         {
-            int id = service.Save(model);
-            return Redirect($"/ChatRoom/index");
+            service.Save(model);
+            return View();
         }
-
+        [HttpGet]
+        public ActionResult Reply(ChatItemModel model)
+        {
+            model = service.GetMessage(model.Id);
+            return View(model);
+        }
     }
 }
