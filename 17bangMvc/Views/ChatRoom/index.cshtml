@@ -1,4 +1,7 @@
-﻿@model ViewModel.Chat.ChatRoomModel
+﻿@{
+    Layout = null;
+}
+@model IList<ViewModel.Chat.ChatItemModel>
 @foreach (var item in Model)
 {
     <div zyf-chat-items-container="" class="clearfix chat-items-container">
@@ -16,7 +19,8 @@
                 </span>
                 <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position: relative; top: -1px;" data-original-title="初级教师">
                     <span>④</span>
-                </a>                <input zyf-chat-item-author-id="" type="hidden" value="6">
+                </a>
+                <input zyf-chat-item-author-id="" type="hidden" value="6">
             </div>
             <div>
                 <span zyf-chat-item-content="">@item.Content</span>

@@ -48,6 +48,7 @@
                 </div>
                 <div zyf-chats-items-container>
                     <input zyf-chat-items-be gin="" type="hidden">
+                    @Html.Action("index", "ChatRoom")
                 </div>
             </div>
             <section class="small" zyf-chat-reply-reminder=""></section>
@@ -64,7 +65,7 @@
                             $.ajax({
                                 method: 'POST',
                                 data: { content },
-                                url: '/ChatRoom/index',
+                                url: '/ChatRoom/MessageAssembly',
                                 success: function (data) {
                                     $('[ zyf-chats-items-container]').append(data);
                                 },

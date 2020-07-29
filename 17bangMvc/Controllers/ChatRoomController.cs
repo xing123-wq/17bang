@@ -8,7 +8,7 @@ using ViewModel.Chat;
 
 namespace _17bangMvc.Controllers
 {
-    public class ChatRoomController : Controller
+    public class ChatRoomController : BaseController
     {
         private ChatRoomService service;
         public ChatRoomController()
@@ -16,17 +16,28 @@ namespace _17bangMvc.Controllers
             service = new ChatRoomService();
         }
         [HttpGet]
-        public PartialViewResult Index()
+        public ActionResult Index()
         {
-            ChatRoomModel model = new ChatRoomModel();
-            model.ChatRooms = service.GetMessages();
-            return PartialView(model);
+            IList<ChatItemModel> model = new List<ChatItemModel>();
+            model = service.GetMessages();
+            return View(model);
         }
         [HttpPost]
-        public PartialViewResult Index(ChatItemModel model)
+        public ActionResult Index(ChatItemModel model)
         {
-            service.Save(model);
-            return PartialView(model);
+            return View();
         }
+        [HttpGet]
+        public ActionResult MessageAssembly()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult MessageAssembly(ChatItemModel model)
+        {
+            int id = service.Save(model);
+            return Redirect($"/ChatRoom/index");
+        }
+
     }
 }
