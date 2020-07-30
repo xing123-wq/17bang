@@ -13,6 +13,7 @@
         #ad-chats {
             position: fixed;
             right: 270px;
+            padding-right: 200px;
         }
 
         #chat-container {
@@ -42,7 +43,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-7" id="chat-container">
-            <div zyf-chat-scroll-container="" class="chats">
+            <div zyf-chat-scroll-container="" class="chats" style="padding-top: 80px;">
                 <div id="history-more" class="text-center">
                     <a zyf-chat-history-more href="">更多历史 <span class="fa fa-angle-double-up"></span></a>
                 </div>
@@ -51,10 +52,10 @@
                     @Html.Action("index", "ChatRoom")
                 </div>
             </div>
-            <section class="small" zyf-chat-reply-reminder></section>
             <form id="message-sender">
                 <input zyf-reply-chat-id type="hidden" name="reply" value="">
                 <div zyf-message-sender-logon class="input-group">
+                    <span class="small" zyf-chat-reply-reminder hidden></span>
                     <input zyf-chat-send-content type="text" class="form-control" placeholder="我来说两句" aria-describedby="basic-addon2">
                     <span zyf-chat-send class="input-group-addon">发送</span>
                 </div>
@@ -78,23 +79,15 @@
                                 alert("发送内容不能为空");
                             }
                         })
-                        function reply() {
-                            var replys = $('[zyf-chat-reply-btn]');
-                            for (var i = 1; i < replys.length; i++) {
-                                replys[i].click(function () {
-                                    var id = $('[zyf-chat-reply-btn]').attr('id');
-                                    $.ajax({
-                                        method: 'Get',
-                                        url: '/ChatRoom/Reply',
-                                        data: { id },
-                                        success: function (data) {
-                                            $('[zyf-chat-reply-reminder ]').append(data);
-                                        },
-                                    })
-                                })
-                            }
-                        }
-                        setInterval(reply, 1000);
+
+                        $('[zyf-chat-reply-btn]').on('click', function () {
+                            var id = $(this).attr('id');
+                            var content = $(this).parent().find('[zyf-chat-item-content]').text()
+                            $('[zyf-chat-reply-reminder]').removeAttr('hidden')
+                            $('[zyf-chat-reply-reminder]').text(content);
+                            $('[zyf-chat-reply-reminder]').attr('id', id);
+                        })
+
                     })
 
                 </script>
