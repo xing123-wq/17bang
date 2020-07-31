@@ -54,15 +54,15 @@
             </div>
             <form id="message-sender">
                 <input zyf-reply-chat-id type="hidden" name="reply" value="">
+                <span class="small" zyf-chat-reply-reminder hidden></span>
                 <div zyf-message-sender-logon class="input-group">
-                    <span class="small" zyf-chat-reply-reminder hidden></span>
                     <input zyf-chat-send-content type="text" class="form-control" placeholder="我来说两句" aria-describedby="basic-addon2">
                     <span zyf-chat-send class="input-group-addon">发送</span>
                 </div>
                 <script>
                     $(document).ready(function () {
+                        var content = $('[zyf-chat-send-content]').val();
                         $('[zyf-chat-send]').click(function () {
-                            var content = $('[zyf-chat-send-content]').val();
                             if (content != "") {
                                 $.ajax({
                                     method: 'POST',
@@ -82,10 +82,19 @@
 
                         $('[zyf-chat-reply-btn]').on('click', function () {
                             var id = $(this).attr('id');
-                            var content = $(this).parent().find('[zyf-chat-item-content]').text()
+                            var contents = $(this).parent().find('[zyf-chat-item-content]').text()
                             $('[zyf-chat-reply-reminder]').removeAttr('hidden')
-                            $('[zyf-chat-reply-reminder]').text(content);
+                            $('[zyf-chat-reply-reminder]').text(contents);
                             $('[zyf-chat-reply-reminder]').attr('id', id);
+                            $('[zyf-chat-send]').click(function () {
+                                if (content != "") {
+                                    $.ajax({
+                                        method: 'POST',
+                                        data: { 'id': id, 'content': contents },
+                                        url: '/ChatRoom/MessageAssembly'
+                                    })
+                                }
+                            })
                         })
 
                     })

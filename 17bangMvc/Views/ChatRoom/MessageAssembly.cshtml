@@ -2,25 +2,54 @@
     Layout = null;
 }
 @model ViewModel.Chat.ChatItemModel
-<div zyf-chat-items-container="" class="clearfix chat-items-container">
-    <a zyf-chat-reply-btn id="@Model.Id" class="btn btn-default btn-sm left">
-        <span>回复 @Model.Reply</span>
-    </a>
-    <div zyf-chat-item="" data-id="6" class="chat-item">
-        <div class="small text-muted">
-            <span>@Model.PublishTime</span>
-            <span data-toggle="tooltip" title="" data-original-title="">
-                <a href="/User/@Model.ChatAuthorId" zyf-show-contact="6">
-                    @Model.AuthorName
+@if (Model.Reply != null)
+{
+    <div zyf-chat-items-container="" class="clearfix chat-items-container">
+        <a zyf-chat-reply-btn id="@Model.Id" class="btn btn-default btn-sm left">
+            <span>回复 @Model.Reply</span>
+        </a>
+        <div zyf-chat-item="" data-id="6" class="chat-item">
+            <div class="small text-muted">
+                <span>@Model.PublishTime</span>
+                <span data-toggle="tooltip" title="" data-original-title="">
+                    <a href="/User/@Model.ChatAuthorId" zyf-show-contact="6">
+                        @Model.AuthorName
+                    </a>
+                </span>
+                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position: relative; top: -1px;" data-original-title="初级教师">
+                    <span>④</span>
                 </a>
-            </span>
-            <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position: relative; top: -1px;" data-original-title="初级教师">
-                <span>④</span>
-            </a>
-            <input zyf-chat-item-author-id="" type="hidden" value="6">
-        </div>
-        <div>
-            <span zyf-chat-item-content="">@Model.Content</span>
+                <input zyf-chat-item-author-id="" type="hidden" value="6">
+            </div>
+            <div>
+                <span zyf-chat-item-content="">@Model.Content</span>
+            </div>
         </div>
     </div>
-</div>
+
+}
+else
+{
+    <div zyf-chat-items-container class="clearfix chat-items-container">
+        <a zyf-chat-reply-btn id="@Model.Id" class="btn btn-default btn-sm left">
+            <span>回复 @Model.Reply</span>
+        </a>
+        <div zyf-chat-item="" data-id="6" class="chat-item">
+            <div class="small text-muted">
+                <span>@Model.PublishTime</span>
+                <span data-toggle="tooltip" title="" data-original-title="">
+                    <a href="/User/@Model.ChatAuthorId" zyf-show-contact="6">
+                        @Model.AuthorName
+                    </a>
+                </span>
+                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position: relative; top: -1px;" data-original-title="初级教师">
+                    <span>④</span>
+                </a>
+                <input zyf-chat-item-author-id="" type="hidden" value="6">
+            </div>
+            <div>
+                <span zyf-chat-item-content="">@Model.Content</span>
+            </div>
+        </div>
+    </div>
+}
