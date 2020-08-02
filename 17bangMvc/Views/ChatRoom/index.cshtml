@@ -4,27 +4,62 @@
 @model IList<ViewModel.Chat.ChatItemModel>
 @foreach (var item in Model)
 {
-    <div zyf-chat-items-container class="clearfix chat-items-container">
-        <a zyf-chat-reply-btn id="@item.Id" class="btn btn-default btn-sm left">
-            <span></span><br>
-            <span>回复 @item.Reply</span>
-        </a>
-        <div zyf-chat-item class="chat-item">
+
+    if (item.Reply != null)
+    {
+        <div zyf-chat-item="" data-id="24" class="chat-item text-right">
             <div class="small text-muted">
                 <span>@item.PublishTime</span>
-                <span data-toggle="tooltip" title="" data-original-title="">
-                    <a href="/User/@item.ChatAuthorId" zyf-show-contact="6">
+                <span data-toggle="tooltip" title="" data-original-title="捐赠 9.9">
+                    <a href="/User/@item.ChatAuthorId" zyf-show-contact="7" style="color:#DCB962">
                         @item.AuthorName
                     </a>
                 </span>
-                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position: relative; top: -1px;" data-original-title="初级教师">
+                <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
                     <span>④</span>
                 </a>
-                <input zyf-chat-item-author-id="" type="hidden" value="6">
+                <input zyf-chat-item-author-id="" type="hidden" value="7">
             </div>
             <div>
+                <span class="bg-info">
+                    <span class="fa fa-at"></span>
+                    <span data-toggle="tooltip" title="" data-original-title="">
+                        <a href="/User/@item.Reply.ChatAuthorId" zyf-show-contact="6" style="color:deepskyblue">
+                            @item.Reply.AuthorName
+                        </a>
+                    </span>
+                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
+                        <span>④</span>
+                    </a>
+                </span><br>
+                <span class="text-muted bg-info"><span class="fa fa-quote-left"></span>@item.Reply.Content</span><br>
                 <span zyf-chat-item-content>@item.Content</span>
             </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div zyf-chat-items-container class="clearfix chat-items-container">
+            <a zyf-chat-reply-btn id="@item.Id" class="btn btn-default btn-sm left">
+                <span>回复</span>
+            </a>
+            <div zyf-chat-item="" data-id="6" class="chat-item">
+                <div class="small text-muted">
+                    <span>@item.PublishTime</span>
+                    <span data-toggle="tooltip" title="" data-original-title="">
+                        <a href="/User/@item.ChatAuthorId" zyf-show-contact="6">
+                            @item.AuthorName
+                        </a>
+                    </span>
+                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position: relative; top: -1px;" data-original-title="初级教师">
+                        <span>④</span>
+                    </a>
+                    <input zyf-chat-item-author-id="" type="hidden" value="6">
+                </div>
+                <div>
+                    <span zyf-chat-item-content="">@item.Content</span>
+                </div>
+            </div>
+        </div>
+    }
 }

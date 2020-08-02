@@ -61,9 +61,9 @@
                 </div>
                 <script>
                     $(document).ready(function () {
-                        var content = $('[zyf-chat-send-content]').val();
                         $('[zyf-chat-send]').click(function () {
-                            if (content != "") {
+                            var content = $('[zyf-chat-send-content]').val();
+                            if (content) {
                                 $.ajax({
                                     method: 'POST',
                                     data: { content },
@@ -85,12 +85,13 @@
                             var contents = $(this).parent().find('[zyf-chat-item-content]').text()
                             $('[zyf-chat-reply-reminder]').removeAttr('hidden')
                             $('[zyf-chat-reply-reminder]').text(contents);
-                            $('[zyf-chat-reply-reminder]').attr('id', id);
+                            var Reply = { "Reply.Id": id, "Reply.Content": contents };
                             $('[zyf-chat-send]').click(function () {
-                                if (content != "") {
+                                var content = $('[zyf-chat-send-content]').val();
+                                if (content) {
                                     $.ajax({
                                         method: 'POST',
-                                        data: { 'id': id, 'content': contents },
+                                        data: { Reply },
                                         url: '/ChatRoom/MessageAssembly'
                                     })
                                 }

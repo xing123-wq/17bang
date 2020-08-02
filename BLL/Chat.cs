@@ -11,7 +11,6 @@ namespace BLL
         public DateTime PublishTime { get; set; }
         public string Content { get; set; }
         public User Author { get; set; }
-        public int? ChatWithId { get; set; }
         public Chat Reply { get; set; }
     }
 }

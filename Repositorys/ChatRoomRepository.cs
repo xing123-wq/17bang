@@ -17,12 +17,12 @@ namespace Repositorys
 
         public IList<Chat> GetMessages()
         {
-            return entities.Include(c => c.Author).ToList();
+            return entities.Include(c => c.Author).Include(c => c.Reply).ToList();
         }
 
         public Chat GetMessage(int id)
         {
-            return entities.Where(c => c.Id == id).FirstOrDefault();
+            return entities.Where(c => c.Reply.Id == id).SingleOrDefault();
         }
     }
 }

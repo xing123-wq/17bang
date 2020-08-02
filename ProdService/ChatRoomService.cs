@@ -27,6 +27,7 @@ namespace ProdService
             IList<Chat> chats = repository.GetMessages();
             return mapper.Map<IList<ChatItemModel>>(chats);
         }
+
         public ChatItemModel GetMessage(int id)
         {
             Chat chat = repository.GetMessage(id);
@@ -38,7 +39,6 @@ namespace ProdService
             Chat chat = mapper.Map<Chat>(model);
             chat.PublishTime = DateTime.Now;
             chat.Author = GetByCurrentUser();
-            //chat.Reply=model.Reply;
             repository.Add(chat);
             return chat.Id;
         }

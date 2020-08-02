@@ -14,7 +14,6 @@ namespace ViewModel.Chat
         public string Content { get; set; }
         public int ChatAuthorId { get; set; }
         public string AuthorName { get; set; }
-        public int? ChatWithId { get; set; }
         public ChatItemModel Reply { get; set; }
     }
 }
