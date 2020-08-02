@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+<div>
+    <span class="bg-info">
+        <span class="fa fa-at"></span>
+        <span data-toggle="tooltip" title="" data-original-title>
+            <a href="/User/@Model.Reply.ChatAuthorId" zyf-show-contact="@Model.Reply.ChatAuthorId" style="color:cornflowerblue">
+                @Model.Reply.AuthorName
+            </a>
+        </span>
+        <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
+            <span>④</span>
+        </a>
+    </span><br>
+    <span class="text-muted bg-info"><span class="fa fa-quote-left"></span> @Model.Reply.Content</span><br>
+    @Html.Partial()
+</div>

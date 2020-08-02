@@ -23,17 +23,17 @@ namespace _17bangMvc.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult MessageAssembly(ChatItemModel model)
+        public PartialViewResult _ReplyMessage(ChatItemModel model)
         {
-            int ChatId = service.Save(model);
-            return Redirect($"/ChatRoom/MessageAssembly?{ChatId}");
+            service.Save(model);
+            return PartialView(model);
         }
         [HttpGet]
-        public ActionResult MessageAssembly(int id)
+        public PartialViewResult _ReplyMessage(int id)
         {
             ChatItemModel model = new ChatItemModel();
             model = service.GetMessage(id);
-            return View(model);
+            return PartialView(model);
         }
     }
 }

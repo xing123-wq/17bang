@@ -586,7 +586,9 @@
     <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\ChatRoom\index.cshtml" />
-    <Content Include="Views\ChatRoom\MessageAssembly.cshtml" />
+    <Content Include="Views\ChatRoom\_ReplyMessage.cshtml" />
+    <Content Include="Views\ChatRoom\_Reply.cshtml" />
+    <None Include="Views\ChatRoom\_Author.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

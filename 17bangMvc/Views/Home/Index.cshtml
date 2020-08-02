@@ -85,17 +85,11 @@
                             var contents = $(this).parent().find('[zyf-chat-item-content]').text()
                             $('[zyf-chat-reply-reminder]').removeAttr('hidden')
                             $('[zyf-chat-reply-reminder]').text(contents);
-                            var Reply = { "Reply.Id": id, "Reply.Content": contents };
-                            $('[zyf-chat-send]').click(function () {
-                                var content = $('[zyf-chat-send-content]').val();
-                                if (content) {
-                                    $.ajax({
-                                        method: 'POST',
-                                        data: { Reply },
-                                        url: '/ChatRoom/MessageAssembly'
-                                    })
-                                }
-                            })
+                            //$.ajax({
+                            //    method: 'POST',
+                            //    data: { "Reply.Id": id, "Reply.Content": contents },
+                            //    url: '/ChatRoom/_ReplyMessage'
+                            //})
                         })
 
                     })
