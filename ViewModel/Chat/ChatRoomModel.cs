@@ -8,6 +8,7 @@ namespace ViewModel.Chat
 {
     public class ChatRoomModel
     {
+        public int? CurrentUserId { get; set; }
         public IList<ChatItemModel> ChatRooms { get; set; }
     }
 }

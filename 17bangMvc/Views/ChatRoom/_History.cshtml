@@ -1,0 +1,17 @@
+﻿<div zyf-chat-items-container class="clearfix chat-items-container">
+    <div class="small text-muted">
+        <span>@Model.PublishTime</span>
+        <span data-toggle="tooltip" title="" data-original-title="">
+            <a href="/User/@Model.ChatAuthorId" zyf-show-contact="6">
+                @Model.AuthorName
+            </a>
+        </span>
+        <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position: relative; top: -1px;" data-original-title="初级教师">
+            <span>④</span>
+        </a>
+        <input zyf-chat-item-author-id="" type="hidden" value="6">
+    </div>
+    <div>
+        <span zyf-chat-item-content>@Model.Content</span>
+    </div>
+</div>

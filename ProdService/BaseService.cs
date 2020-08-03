@@ -55,7 +55,30 @@ namespace ProdService
             }
             return null;
         }
-
+        public int? CurrentUserId
+        {
+            get
+            {
+                HttpCookie cookie = HttpContext.Current.Request.Cookies["UserId"];
+                if (cookie != null)
+                {
+                    int userId = Convert.ToInt32(cookie.Value);
+                    string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
+                    User user = new User();
+                    user = _userRepositroy.GetById(userId);
+                    if (user == null)
+                    {
+                        throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
+                    }
+                    if (password != user.Password)
+                    {
+                        throw new Exception("该用户密码错误");
+                    }
+                    return userId;
+                }
+                return null;
+            }
+        }
         public void Commit()
         {
             using (SQLContext context = HttpContext.Current.Items["dbContext"] as SQLContext)

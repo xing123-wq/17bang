@@ -8,5 +8,6 @@ namespace ViewModel.Home
 {
     public class IndexModel
     {
+        public int? CurrentUserId { get; set; }
     }
 }

@@ -55,10 +55,17 @@
             <form id="message-sender">
                 <input zyf-reply-chat-id type="hidden" name="reply" value="">
                 <span class="small" zyf-chat-reply-reminder hidden></span>
-                <div zyf-message-sender-logon class="input-group">
-                    <input zyf-chat-send-content type="text" class="form-control" placeholder="我来说两句" aria-describedby="basic-addon2">
-                    <span zyf-chat-send class="input-group-addon">发送</span>
-                </div>
+                @if (Model.CurrentUserId != null)
+                {
+                    <div zyf-message-sender-logon class="input-group">
+                        <input zyf-chat-send-content type="text" class="form-control" placeholder="我来说两句" aria-describedby="basic-addon2">
+                        <span zyf-chat-send class="input-group-addon">发送</span>
+                    </div>
+                }
+                else
+                {
+                    @Html.Partial("_AnonymousUser")
+                }
                 <script>
                     $(document).ready(function () {
                         $('[zyf-chat-send]').click(function () {
@@ -91,16 +98,10 @@
                             //    url: '/ChatRoom/_ReplyMessage'
                             //})
                         })
-
                     })
 
                 </script>
-                <div zyf-message-sender-anonymous="" class="input-group hidden">
-                    <input readonly="" zyf-chat-send-content="" type="text" class="form-control" placeholder="注册/登录后来两句吧" aria-describedby="basic-addon2">
-                    <span class="input-group-addon"><a href="/Register?prepage=/">注册</a> </span>
-                    <span class="input-group-addon"><a href="/Log/On?prepage=/">登录</a> </span>
-                </div>
-                <p zyf-new-chats-reminder="" class="hidden"><span class="fa fa-info-circle text-info"></span> 有新消息，<a zyf-new-chats-known="">知道了</a></p>
+
             </form>
         </div>
         <div style="padding-top:70px">

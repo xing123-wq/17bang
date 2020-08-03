@@ -1,16 +1,22 @@
 ﻿@{
     Layout = null;
 }
-@model IList<ViewModel.Chat.ChatItemModel>
-@foreach (var item in Model)
+@model ViewModel.Chat.ChatRoomModel
+@foreach (var item in Model.ChatRooms)
 {
-    <div zyf-chat-items-container class="clearfix chat-items-container">
+    if (item.ChatAuthorId == Model.CurrentUserId)
+    {
+        @Html.Partial("_MyMessage", item)
+    }
+    else
+    {
         @Html.Partial("_Reply", item)
         <div zyf-chat-item data-id="6" class="chat-item">
-            @Html.Partial("_AuthorAndContent", item)
-            <div>
-                <span zyf-chat-item-content>@item.Content</span>
-            </div>
+            @Html.Partial("_History", item)
         </div>
-    </div>
+    }
+    if (item.Reply != null)
+    {
+        @Html.Partial("_ReplyMessage", item)
+    }
 }

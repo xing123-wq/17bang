@@ -16,10 +16,10 @@ namespace _17bangMvc.Controllers
             service = new ChatRoomService();
         }
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(ChatRoomModel model)
         {
-            IList<ChatItemModel> model = new List<ChatItemModel>();
-            model = service.GetMessages();
+            model.CurrentUserId = service.CurrentUserId;
+            model.ChatRooms = service.GetMessages();
             return View(model);
         }
         [HttpPost]
