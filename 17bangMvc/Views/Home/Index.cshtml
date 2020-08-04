@@ -53,11 +53,10 @@
                 </div>
             </div>
             <form id="message-sender">
-                <input zyf-reply-chat-id type="hidden" name="reply" value="">
-                <span class="small" zyf-chat-reply-reminder hidden></span>
                 @if (Model.CurrentUserId != null)
                 {
                     <div zyf-message-sender-logon class="input-group">
+                        <span class="small" zyf-chat-reply-reminder hidden></span>
                         <input zyf-chat-send-content type="text" class="form-control" placeholder="我来说两句" aria-describedby="basic-addon2">
                         <span zyf-chat-send class="input-group-addon">发送</span>
                     </div>
@@ -73,30 +72,25 @@
                             if (content) {
                                 $.ajax({
                                     method: 'POST',
-                                    data: { content },
-                                    url: '/ChatRoom/MessageAssembly',
+                                    data: { 'Content': content, 'Reply.Id': id },
+                                    url: '/ChatRoom/index',
                                     success: function (data) {
                                         $('[ zyf-chats-items-container]').append(data);
                                     },
                                     error: function () {
-                                        alert('加载失败！');
+                                        return false;
                                     }
                                 })
                             } else {
-                                alert("发送内容不能为空");
+                                alert('* 内容不能为空')
+                                return false;
                             }
                         })
-
                         $('[zyf-chat-reply-btn]').on('click', function () {
                             var id = $(this).attr('id');
                             var contents = $(this).parent().find('[zyf-chat-item-content]').text()
                             $('[zyf-chat-reply-reminder]').removeAttr('hidden')
                             $('[zyf-chat-reply-reminder]').text(contents);
-                            //$.ajax({
-                            //    method: 'POST',
-                            //    data: { "Reply.Id": id, "Reply.Content": contents },
-                            //    url: '/ChatRoom/_ReplyMessage'
-                            //})
                         })
                     })
 

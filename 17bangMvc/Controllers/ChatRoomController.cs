@@ -23,17 +23,14 @@ namespace _17bangMvc.Controllers
             return View(model);
         }
         [HttpPost]
-        public PartialViewResult _ReplyMessage(ChatItemModel model)
+        public ActionResult Index(ChatItemModel model)
         {
-            service.Save(model);
-            return PartialView(model);
-        }
-        [HttpGet]
-        public PartialViewResult _ReplyMessage(int id)
-        {
-            ChatItemModel model = new ChatItemModel();
-            model = service.GetMessage(id);
-            return PartialView(model);
+            if (model.Reply != null)
+            {
+                model.Reply = service.GetMessage(model.Reply.Id);
+            }
+            int id = service.Save(model);
+            return Redirect($"/ChatRoom/index?id={id}");
         }
     }
 }
