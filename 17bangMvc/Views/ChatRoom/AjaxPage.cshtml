@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+@model ViewModel.Chat.ChatRoomModel
+@foreach (var item in Model.ChatRooms)
+{
+    if (item.ChatAuthorId == Model.CurrentUserId)
+    {
+        <div zyf-chat-items-container class="clearfix chat-items-container text-right">
+            @Html.Partial("_MyMessage", item)
+            @if (item.Reply != null)
+            {
+                @Html.Partial("_ReplyMessage", item)
+            }
+        </div>
+    }
+    else
+    {
+        <div zyf-chat-item data-id="6" class="chat-item">
+            @Html.Partial("_Reply", item)
+            @Html.Partial("_History", item)
+            @if (item.Reply != null)
+            {
+                @Html.Partial("_ReplyMessage", item)
+            }
+        </div>
+    }
+}

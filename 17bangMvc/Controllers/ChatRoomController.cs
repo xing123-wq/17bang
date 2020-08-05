@@ -16,21 +16,23 @@ namespace _17bangMvc.Controllers
             service = new ChatRoomService();
         }
         [HttpGet]
-        public ActionResult Index(ChatRoomModel model)
+        public ActionResult Index(int? id)
         {
-            model.CurrentUserId = service.CurrentUserId;
-            model.ChatRooms = service.GetMessages();
-            return View(model);
+            return View(service.GetMessage(id.Value));
         }
         [HttpPost]
         public ActionResult Index(ChatItemModel model)
         {
-            if (model.Reply != null)
-            {
-                model.Reply = service.GetMessage(model.Reply.Id);
-            }
             int id = service.Save(model);
             return Redirect($"/ChatRoom/index?id={id}");
+        }
+        [HttpGet]
+        public ActionResult AjaxPage()
+        {
+            ChatRoomModel model = new ChatRoomModel();
+            model.CurrentUserId = service.CurrentUserId;
+            model.ChatRooms = service.GetMessages();
+            return View(model);
         }
     }
 }

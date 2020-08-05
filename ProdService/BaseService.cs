@@ -178,11 +178,11 @@ namespace ProdService
                 .ReverseMap();
 
                 cfg.CreateMap<Chat, ViewModel.Chat.ChatItemModel>(MemberList.None)
-                .ForMember(v => v.ChatAuthorId, opt => opt.MapFrom(c => c.Author.Id))
+                .ForMember(v => v.ChatAuthorId, opt => opt.MapFrom(c => c.AuthorId))
                 .ForMember(v => v.Content, opt => opt.MapFrom(c => c.Content))
                 .ForMember(v => v.Id, opt => opt.MapFrom(c => c.Id))
                 .ForMember(v => v.PublishTime, opt => opt.MapFrom(c => c.PublishTime))
-                .ForMember(v => v.Reply, opt => opt.MapFrom(c => c.Reply))
+                .ForMember(v => v.ReplyId, opt => opt.MapFrom(c => c.ReplyId))
                 .ReverseMap();
             });
 #if DEBUG   //复习：这是什么？

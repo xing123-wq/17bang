@@ -22,7 +22,7 @@ namespace Repositorys
 
         public Chat GetMessage(int id)
         {
-            return entities.Where(c => c.Id == id).Include(a => a.Author).SingleOrDefault();
+            return entities.Where(c => c.Id == id).Include(a => a.Author).Include(c => c.Reply).SingleOrDefault();
         }
     }
 }

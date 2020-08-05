@@ -590,6 +590,7 @@
     <Content Include="Views\ChatRoom\_Reply.cshtml" />
     <Content Include="Views\ChatRoom\_MyMessage.cshtml" />
     <Content Include="Views\Shared\_AnonymousUser.cshtml" />
+    <Content Include="Views\ChatRoom\AjaxPage.cshtml" />
     <None Include="Views\ChatRoom\_History.cshtml" />
   </ItemGroup>
   <ItemGroup>
