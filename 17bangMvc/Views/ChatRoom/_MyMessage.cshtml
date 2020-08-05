@@ -6,11 +6,12 @@
             @Model.AuthorName
         </a>
     </span>
+    <input zyf-chat-author-id type="hidden" id="@Model.ChatAuthorId">
     <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position: relative; top: -1px;" data-original-title="初级教师">
         <span>④</span>
     </a>
-    <input zyf-chat-item-author-id="" type="hidden" value="6">
 </div>
 <div>
+    <input zyf-chat-item-id type="hidden" value="@Model.Id">
     <span zyf-chat-item-content>@Model.Content</span>
 </div>

@@ -75,9 +75,6 @@
                                 url: '/ChatRoom/index',
                                 success: function (data) {
                                     $('[ zyf-chats-items-container]').append(data);
-                                },
-                                error: function () {
-                                    return false;
                                 }
                             })
                         } else {
@@ -88,10 +85,30 @@
                     $('[zyf-chat-reply-btn]').on('click', function () {
                         var id = $(this).attr('id');
                         var contents = $(this).parent().find('[zyf-chat-item-content]').text();
-                        $('[zyf-chat-reply-reminder]').removeAttr('hidden');
-                        $('[zyf-chat-reply-reminder]').attr('id', id);
-                        $('[zyf-chat-reply-reminder]').text(contents);
+                        $('[zyf-chat-reply-reminder]').removeAttr('hidden').attr('id', id).text(contents);
                     })
+                    setTimeout(function () {
+                        var id = $('[zyf-chat-item-id]').last().val();
+                        $.ajax({
+                            url: '/ChatRoom/index?id=' + id,
+                            method: 'GET',
+                            success: function (data) {
+                                $('[ zyf-chats-items-container]').append(data);
+                            }
+                        })
+                    }, 1000);
+                    setInterval(function () {
+                        var id = $.cookie('UserId');
+                        var changeclass = $('[zyf-chat-items-container]');
+                        for (var i = 0; i < $('[zyf-chat-author-id ]').length; i++) {
+                            var userId = $($('[zyf-chat-author-id ]')[i]).attr('id');
+                            if (userId == id) {
+                                changeclass.attr('class', 'clearfix chat-items-container text-right');
+                            } else {
+                                changeclass.removeAttr('class');
+                            }
+                        }
+                    }, 10000);
                 })
 
             </script>

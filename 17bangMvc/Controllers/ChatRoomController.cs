@@ -16,7 +16,7 @@ namespace _17bangMvc.Controllers
             service = new ChatRoomService();
         }
         [HttpGet]
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id = 0)
         {
             return View(service.GetMessage(id.Value));
         }
