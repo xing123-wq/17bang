@@ -65,6 +65,8 @@
             }
             <script>
                 $(document).ready(function () {
+                    var timeOut = 2000,
+                        refreshHanderId = 0;
                     $('[zyf-chat-send]').click(function () {
                         var content = $('[zyf-chat-send-content]').val();
                         if (content) {
@@ -78,6 +80,8 @@
                                 },
                                 complete: function () {
                                     $('[zyf-chat-send-content]').val('');
+                                    clearTimeout(refreshHanderId);
+                                    refreshChat(timeOut);
                                 }
                             })
                         } else {
@@ -89,17 +93,29 @@
                         var id = $(this).attr('id');
                         var contents = $(this).parent().find('[zyf-chat-item-content]').text();
                         $('[zyf-chat-reply-reminder]').removeAttr('hidden').attr('id', id).text(contents);
+                        clearTimeout(refreshHanderId);
+                        refreshChat(timeOut);
                     })
-                    setInterval(function () {
-                        var id = $('[zyf-chat-item-id]').last().val();
-                        $.ajax({
-                            url: '/ChatRoom/AjaxPage?id=' + id,
-                            method: 'GET',
-                            success: function (data) {
-                                $('[ zyf-chats-items-container]').append(data);
+
+                    function refreshChat(timeOut) {
+                        refreshHanderId = setTimeout(function () {
+                            var id = $('[zyf-chat-item-id]').last().val();
+                            $.ajax({
+                                url: '/ChatRoom/AjaxPage?id=' + id,
+                                method: 'GET',
+                                success: function (data) {
+                                    $('[ zyf-chats-items-container]').append(data);
+                                }
+                            })
+                            timeOut += 1000;
+                            if (timeOut <= 60000) {
+                                refreshChat(timeOut);
+                            } else {
+                                alert("longtime you was doing nothing ,now system will break connect. if you wanna connect again ,please refresh current page");
+                                clearTimeout(refreshHanderId);
                             }
-                        })
-                    }, 100);
+                        }, timeOut);
+                    }
 
                     //setInterval(function () {
                     //    var id = $.cookie('UserId');
