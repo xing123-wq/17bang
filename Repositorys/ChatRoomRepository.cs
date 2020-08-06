@@ -15,9 +15,10 @@ namespace Repositorys
         {
         }
 
-        public IList<Chat> GetMessages()
+        public IList<Chat> GetMessages(int id)
         {
-            return entities.Include(c => c.Author)
+            return entities.Where(c => c.Id > id)
+                           .Include(c => c.Author)
                            .Include(c => c.Reply)
                            .Include(r => r.Reply.Author)
                            .ToList();

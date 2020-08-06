@@ -75,6 +75,9 @@
                                 url: '/ChatRoom/index',
                                 success: function (data) {
                                     $('[ zyf-chats-items-container]').append(data);
+                                },
+                                complete: function () {
+                                    $('[zyf-chat-send-content]').val('');
                                 }
                             })
                         } else {
@@ -87,28 +90,30 @@
                         var contents = $(this).parent().find('[zyf-chat-item-content]').text();
                         $('[zyf-chat-reply-reminder]').removeAttr('hidden').attr('id', id).text(contents);
                     })
-                    setTimeout(function () {
+                    setInterval(function () {
                         var id = $('[zyf-chat-item-id]').last().val();
                         $.ajax({
-                            url: '/ChatRoom/index?id=' + id,
+                            url: '/ChatRoom/AjaxPage?id=' + id,
                             method: 'GET',
                             success: function (data) {
                                 $('[ zyf-chats-items-container]').append(data);
                             }
                         })
-                    }, 1000);
-                    setInterval(function () {
-                        var id = $.cookie('UserId');
-                        var changeclass = $('[zyf-chat-items-container]');
-                        for (var i = 0; i < $('[zyf-chat-author-id ]').length; i++) {
-                            var userId = $($('[zyf-chat-author-id ]')[i]).attr('id');
-                            if (userId == id) {
-                                changeclass.attr('class', 'clearfix chat-items-container text-right');
-                            } else {
-                                changeclass.removeAttr('class');
-                            }
-                        }
-                    }, 10000);
+                    }, 100);
+
+                    //setInterval(function () {
+                    //    var id = $.cookie('UserId');
+                    //    var changeclass = $('[zyf-chat-item]');
+                    //    for (var i = 0; i < $('[zyf-chat-author-id ]').length; i++) {
+                    //        var userId = $($('[zyf-chat-author-id ]')[i]).attr('id');
+
+                    //        if (userId == id) {
+                    //            changeclass.attr('class', 'clearfix chat-items-container text-right');
+                    //        } else {
+                    //            changeclass.removeAttr('class');
+                    //        }
+                    //    }
+                    //}, 100);
                 })
 
             </script>

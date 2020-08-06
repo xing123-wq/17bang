@@ -16,7 +16,7 @@ namespace _17bangMvc.Controllers
             service = new ChatRoomService();
         }
         [HttpGet]
-        public ActionResult Index(int? id = 0)
+        public ActionResult Index(int? id)
         {
             return View(service.GetMessage(id.Value));
         }
@@ -27,11 +27,11 @@ namespace _17bangMvc.Controllers
             return Redirect($"/ChatRoom/index?id={id}");
         }
         [HttpGet]
-        public ActionResult AjaxPage()
+        public ActionResult AjaxPage(int? id = 0)
         {
             ChatRoomModel model = new ChatRoomModel();
             model.CurrentUserId = service.CurrentUserId;
-            model.ChatRooms = service.GetMessages();
+            model.ChatRooms = service.GetMessages(id.Value);
             return View(model);
         }
     }

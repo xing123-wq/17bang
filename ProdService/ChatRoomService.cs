@@ -22,9 +22,9 @@ namespace ProdService
             return user.Name;
         }
 
-        public IList<ChatItemModel> GetMessages()
+        public IList<ChatItemModel> GetMessages(int id)
         {
-            IList<Chat> chats = repository.GetMessages();
+            IList<Chat> chats = repository.GetMessages(id);
             return mapper.Map<IList<ChatItemModel>>(chats);
         }
 
