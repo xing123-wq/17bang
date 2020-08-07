@@ -69,13 +69,16 @@
                     $dom.find('[zyf-chat-reply-btn]').addClass('invisible');
                 }
                 $(document).ready(function () {
-                    var userId = $.cookie('UserId');
-                    var right = $('[zyf-chat-items-container]')
-                    $('[zyf-chat-author-id]').each(function () {
-                        if ($(this).attr('id') == userId) {
-                            moveRight(right);
-                        }
-                    });
+                    setInterval(function () {
+                        $('[zyf-chat-author-id]').each(function () {
+                            var userId = $.cookie('UserId');
+                            var right = $('[zyf-chat-items-container]');
+                            if ($(this).attr('id') == userId) {
+                                moveRight(right);
+                            }
+                        });
+                    }, 100);
+
                     var timeOut = 2000,
                         refreshHanderId = 0;
                     $('[zyf-chat-send]').click(function () {
