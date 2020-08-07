@@ -6,7 +6,7 @@
 {
     if (item.ChatAuthorId == Model.CurrentUserId)
     {
-        <div zyf-chat-items-container class="clearfix chat-items-container text-right" style="padding-top: 40px;">
+        <div zyf-chat-items-container class="clearfix chat-items-container " style="padding-top: 40px;">
             @Html.Partial("_MyMessage", item)
             @if (item.Reply != null)
             {

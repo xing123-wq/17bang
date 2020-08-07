@@ -64,7 +64,18 @@
                 @Html.Partial("_AnonymousUser")
             }
             <script>
+                function moveRight($dom) {
+                    $dom.addClass('text-right');
+                    $dom.find('[zyf-chat-reply-btn]').addClass('invisible');
+                }
                 $(document).ready(function () {
+                    var userId = $.cookie('UserId');
+                    var right = $('[zyf-chat-items-container]')
+                    $('[zyf-chat-author-id]').each(function () {
+                        if ($(this).attr('id') == userId) {
+                            moveRight(right);
+                        }
+                    });
                     var timeOut = 2000,
                         refreshHanderId = 0;
                     $('[zyf-chat-send]').click(function () {
@@ -80,6 +91,7 @@
                                 },
                                 complete: function () {
                                     $('[zyf-chat-send-content]').val('');
+                                    $('[zyf-chat-reply-reminder]').text('');
                                     clearTimeout(refreshHanderId);
                                     refreshChat(timeOut);
                                 }
@@ -107,7 +119,7 @@
                                     $('[ zyf-chats-items-container]').append(data);
                                 }
                             })
-                            timeOut += 1000;
+                            timeOut += 100;
                             if (timeOut <= 60000) {
                                 refreshChat(timeOut);
                             } else {
@@ -116,20 +128,6 @@
                             }
                         }, timeOut);
                     }
-
-                    //setInterval(function () {
-                    //    var id = $.cookie('UserId');
-                    //    var changeclass = $('[zyf-chat-item]');
-                    //    for (var i = 0; i < $('[zyf-chat-author-id ]').length; i++) {
-                    //        var userId = $($('[zyf-chat-author-id ]')[i]).attr('id');
-
-                    //        if (userId == id) {
-                    //            changeclass.attr('class', 'clearfix chat-items-container text-right');
-                    //        } else {
-                    //            changeclass.removeAttr('class');
-                    //        }
-                    //    }
-                    //}, 100);
                 })
 
             </script>
