@@ -63,138 +63,96 @@
             {
                 @Html.Partial("_AnonymousUser")
             }
-            <script>
-                function moveRight($dom) {
-                    $dom.addClass('text-right');
-                    $dom.find('[zyf-chat-reply-btn]').addClass('invisible');
-                }
-                $(document).ready(function () {
-                    setInterval(function () {
-                        $('[zyf-chat-author-id]').each(function () {
-                            var userId = $.cookie('UserId');
-                            var right = $('[zyf-chat-items-container]');
-                            if ($(this).attr('id') == userId) {
-                                moveRight(right);
-                            }
-                        });
-                    }, 100);
-
-                    var timeOut = 2000,
-                        refreshHanderId = 0;
-                    $('[zyf-chat-send]').click(function () {
-                        var content = $('[zyf-chat-send-content]').val();
-                        if (content) {
-                            var id = $('[zyf-chat-reply-reminder]').attr('id');
-                            $.ajax({
-                                method: 'POST',
-                                data: { 'Content': content, 'ReplyId': id },
-                                url: '/ChatRoom/index',
-                                success: function (data) {
-                                    $('[ zyf-chats-items-container]').append(data);
-                                },
-                                complete: function () {
-                                    $('[zyf-chat-send-content]').val('');
-                                    $('[zyf-chat-reply-reminder]').text('');
-                                    clearTimeout(refreshHanderId);
-                                    refreshChat(timeOut);
-                                }
-                            })
-                        } else {
-                            alert('* 内容不能为空')
-                            return false;
+        </div>
+        <div zyf-ad-chats id="ad-chats">
+            <h3>“源栈”Web开发培训班 <br> <span style="color:red"><span class="fa fa-fire"></span> 火热</span> 招生中：</h3>
+            <p>线上：全程直播，<b>免费</b>收看</p>
+            <p>线下：<b>灵活</b>学制，拎包入住</p>
+            <p>有意向的同学，可以加QQ群：326801052</p>
+            <img class="img-responsive center-block" src="~/img/qq-group.png" title="QQ学习群：326801052" />
+        </div>
+        <script>
+            function moveRight($dom) {
+                $dom.addClass('text-right');
+                $dom.find('[zyf-chat-reply-btn]').addClass('invisible');
+            }
+            $(document).ready(function () {
+                setInterval(function () {
+                    $('[zyf-chat-author-id]').each(function () {
+                        var userId = $.cookie('UserId');
+                        var right = $('[zyf-chat-items-container]');
+                        if ($(this).attr('id') == userId) {
+                            moveRight(right);
                         }
-                    })
-                    $('[zyf-chat-reply-btn]').on('click', function () {
-                        var id = $(this).attr('id');
-                        var contents = $(this).parent().find('[zyf-chat-item-content]').text();
-                        $('[zyf-chat-reply-reminder]').removeAttr('hidden').attr('id', id).text(contents);
-                        clearTimeout(refreshHanderId);
-                        refreshChat(timeOut);
-                    })
+                    });
+                }, 100);
 
-                    function refreshChat(timeOut) {
-                        refreshHanderId = setTimeout(function () {
-                            var id = $('[zyf-chat-item-id]').last().val();
-                            $.ajax({
-                                url: '/ChatRoom/AjaxPage?id=' + id,
-                                method: 'GET',
-                                success: function (data) {
-                                    $('[ zyf-chats-items-container]').append(data);
-                                }
-                            })
-                            timeOut += 100;
-                            if (timeOut <= 60000) {
-                                refreshChat(timeOut);
-                            } else {
-                                alert("longtime you was doing nothing ,now system will break connect. if you wanna connect again ,please refresh current page");
+                var timeOut = 2000,
+                    refreshHanderId = 0;
+                $('[zyf-chat-send]').click(function () {
+                    var content = $('[zyf-chat-send-content]').val();
+                    if (content) {
+                        var id = $('[zyf-chat-reply-reminder]').attr('id');
+                        $.ajax({
+                            method: 'POST',
+                            data: { 'Content': content, 'ReplyId': id },
+                            url: '/ChatRoom/index',
+                            success: function (data) {
+                                $('[ zyf-chats-items-container]').append(data);
+                            },
+                            complete: function () {
+                                $('[zyf-chat-send-content]').val('');
+                                $('[zyf-chat-reply-reminder]').text('');
                                 clearTimeout(refreshHanderId);
+                                refreshChat(timeOut);
                             }
-                        }, timeOut);
+                        })
+                    } else {
+                        alert('* 内容不能为空')
+                        return false;
                     }
                 })
+                $('[zyf-chat-reply-btn]').on('click', function () {
+                    var id = $(this).attr('id');
+                    var contents = $(this).parent().find('[zyf-chat-item-content]').text();
+                    $('[zyf-chat-reply-reminder]').removeAttr('hidden').attr('id', id).text(contents);
+                    clearTimeout(refreshHanderId);
+                    refreshChat(timeOut);
+                })
 
-            </script>
-        </div>
-        <div style="padding-top:70px">
-            <div class="container body-content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div id="ad-chats" ywq-scroll style="top:120px;z-index:-1">
-                                <h3>
-                                    “源栈”Web开发培训班
-                                    <br />
-                                    <span style="color:red">
-                                        <span class="glyphicon glyphicon-fire"></span>
-                                        火热
-                                    </span>
-                                    招生中
-                                </h3>
-                                <p>
-                                    线上：全程直播，
-                                    <b>免费</b>
-                                    收看
-                                </p>
-                                <p>
-                                    线下：
-                                    <b>灵活</b>
-                                    学制，拎包入住
-                                </p>
-                                <p>有意向的同学，可以加QQ群：326801052</p>
-                                <img class="img-responsive center-block" src="~/img/qq-group.png" title="QQ学习群：326801052" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">Modal title</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>One fine body&hellip;</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-            </div>
-            <script>
-                document.getElementsByTagName("body")[0].onscroll = function () {
-                    var bodyScrollTop = document.getElementsByTagName("body")[0].scrollTop;
-                    console.log("滚动条下拉距离：" + bodyScrollTop);
-                    if (bodyScrollTop > 370) {
-                        document.getElementById("ad-chats").style.top = 120 - (bodyScrollTop - 370)
-                    } else {
-                        document.getElementById("ad-chats").style.top = 120
-                    }
+                function refreshChat(timeOut) {
+                    refreshHanderId = setTimeout(function () {
+                        var id = $('[zyf-chat-item-id]').last().val();
+                        $.ajax({
+                            url: '/ChatRoom/AjaxPage?id=' + id,
+                            method: 'GET',
+                            success: function (data) {
+                                $('[ zyf-chats-items-container]').append(data);
+                            }
+                        })
+                        timeOut += 100;
+                        if (timeOut <= 60000) {
+                            refreshChat(timeOut);
+                        } else {
+                            alert("longtime you was doing nothing ,now system will break connect. if you wanna connect again ,please refresh current page");
+                            clearTimeout(refreshHanderId);
+                        }
+                    }, timeOut);
                 }
-            </script>
-        </div>
+
+                $('[zyf-ad-chats]').css('top', 120);
+                $(document).scroll(function () {
+                    var top = $(document).scrollTop();
+                    if (top < 300) {
+                        top = 120;
+                    }
+                    else {
+                        top = 300 - top;
+                    }
+                    $('[zyf-ad-chats]').css('top', top);
+                })
+            })
+
+        </script>
     </div>
 </div>
