@@ -8,30 +8,25 @@ using ViewModel.Chat;
 
 namespace _17bangMvc.Controllers
 {
-    public class ChatRoomController : BaseController
+    public class ChatController : BaseController
     {
         private ChatRoomService service;
-        public ChatRoomController()
+        public ChatController()
         {
             service = new ChatRoomService();
         }
-        [HttpGet]
-        public ActionResult Index(int id)
-        {
-            return View(service.GetMessage(id));
-        }
         [HttpPost]
-        public ActionResult Index(ChatItemModel model)
+        public ActionResult Room(ChatItemModel model)
         {
             int id = service.Save(model);
-            return Redirect($"/ChatRoom/index?id={id}");
+            return Redirect($"/Chat/Room?id={id}");
         }
         [HttpGet]
-        public ActionResult AjaxPage(int? id = 0)
+        public ActionResult Room(int id = 0)
         {
             ChatRoomModel model = new ChatRoomModel();
             model.CurrentUserId = service.CurrentUserId;
-            model.ChatRooms = service.GetMessages(id.Value);
+            model.ChatRooms = service.GetMessages(id);
             return View(model);
         }
     }
