@@ -4,11 +4,14 @@
 }
 $(document).ready(function () {
 
-    $('[zyf-chat-author-id]').each(function () {
-        if ($(this).attr('id') === $.cookie('UserId')) {
-            moveRight($(this).parent('div'));
-        }
-    });
+    setInterval(function () {
+        $('[zyf-chat-author-id]').each(function () {
+            if ($(this).attr('id') === $.cookie('UserId')) {
+                moveRight($(this).parent('div'));
+            }
+        });
+    }, 100);
+
 
 
     var timeOut = 2000,
