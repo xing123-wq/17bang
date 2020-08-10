@@ -19,10 +19,9 @@ namespace ProdService.Articles
             repository = new SeriesRepository(context);
         }
 
-        public IList<SeriesModel> Get()
+        public IList<SeriesModel> Get(int userId)
         {
-            User user = GetByCurrentUser();
-            IList<Series> series = repository.GetSeries(user.Id);
+            IList<Series> series = repository.GetSeries(userId);
             return mapper.Map<IList<SeriesModel>>(series);
         }
 

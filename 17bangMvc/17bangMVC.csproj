@@ -150,6 +150,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -624,10 +625,11 @@
     <Content Include="Views\Shared\_LogOn.cshtml" />
     <Content Include="Views\Article\New.cshtml" />
     <Content Include="Views\Shared\_Ad.cshtml" />
-    <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_AnonymousUser.cshtml" />
     <Content Include="Views\Chat\Room.cshtml" />
+    <Content Include="Views\Shared\_Series.cshtml" />
+    <Content Include="Views\Category\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

@@ -11,6 +11,6 @@ namespace ServiceInterface.Article
     public interface ISeriesService
     {
         int Save(SeriesModel model);
-        IList<SeriesModel> Get();
+        IList<SeriesModel> Get(int userId);
     }
 }

@@ -40,7 +40,7 @@ namespace _17bangMvc.Controllers
             ViewData["title"] = "精品文章-一起帮";
             NewModel model = new NewModel();
             SeriesService Service = new SeriesService();
-            model.Serieses = Service.GetSelectListItems(Service.Get());
+            model.Serieses = Service.GetSelectListItems(Service.Get(_service.CurrentUserId.Value));
             AdService advertising = new AdService();
             model.ADs = advertising.GetSelectListItems(advertising.Get());
             return View(model);

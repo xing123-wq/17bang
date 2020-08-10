@@ -11,8 +11,8 @@ namespace BLL
         public string Title { get; set; }
         public string Describe { get; set; }
         public Series FatherSeries { get; set; }
-        public int AuthorId { get; set; }
         public User Author { get; set; }
-        IList<Article> Articles { get; set; }
+        public int AuthorId { get; set; }
+        public IList<Article> Articles { get; set; }
     }
 }

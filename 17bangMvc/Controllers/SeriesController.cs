@@ -19,7 +19,7 @@ namespace _17bangMvc.Controllers
         public ActionResult _Series()
         {
             SeriesModel model = new SeriesModel();
-            model.Serieses = Series.GetSelectListItems(Series.Get());
+            model.Serieses = Series.GetSelectListItems(Series.Get(Series.CurrentUserId.Value));
             return View(model);
         }
         [HttpPost]
@@ -32,5 +32,6 @@ namespace _17bangMvc.Controllers
             Series.Save(model);
             return View(model);
         }
+        
     }
 }

@@ -11,7 +11,6 @@ namespace DbFactory
     class ArticleFactory
     {
         public static Article SQL, JAVA, UI;
-        static IList<Article> articles;
         static ArticleFactory()
         {
             SQL = new Article
@@ -21,7 +20,7 @@ namespace DbFactory
                 Author = RegisterFactory.at,
                 PublishTime = Global.Time.AddDays(1),
                 Advertising = null,
-                Series = null,
+                Series = SeriesFactory.series1,
                 Keywords = ArticleAndKeywordFactory.sqls
             };
             JAVA = new Article
@@ -31,7 +30,7 @@ namespace DbFactory
                 Author = RegisterFactory.wpz,
                 PublishTime = Global.Time.AddDays(-1),
                 Advertising = null,
-                Series = null,
+                Series = SeriesFactory.series2,
                 Keywords = ArticleAndKeywordFactory.javas
             }; UI = new Article
             {
@@ -40,14 +39,13 @@ namespace DbFactory
                 Author = RegisterFactory.lzb,
                 PublishTime = Global.Time.AddDays(2),
                 Advertising = null,
-                Series = null,
+                Series = SeriesFactory.series3,
                 Keywords = ArticleAndKeywordFactory.uis
             };
         }
         internal static void Create()
         {
-            articles = new List<Article> { SQL, JAVA, UI };
-            new ArticleRepository(Global.context).AddRange(articles);
+            new ArticleRepository(Global.context).AddRange(new List<Article> { SQL, JAVA, UI });
         }
     }
 }
