@@ -1,0 +1,22 @@
+﻿@model ViewModel.Category.SeriesModel
+@{
+    Layout = null;
+}
+<form class="" method="post" zyf-category-edit-form="" novalidate="novalidate" action="/Category/_NewInManage">
+    <div class="form-group">
+        <label>父系列：</label>
+        @Html.DropDownListFor(s => s.Series, Model.SelectLists, "默认分类", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>标题：</label>
+        @Html.TextBoxFor(s => s.Title, new { @class = "form-control", placeholder = "不能为空，25字符以内" })
+        @Html.ValidationMessageFor(s => s.Title, "", new { @class = "field-validation-valid" })
+    </div>
+    <div class="form-group">
+        <label>描述：</label>
+        @Html.TextBoxFor(s => s.Body, new { @class = "form-control", placeholder = "255个字符以内，简单描述系列的目的、内容等" })
+        @Html.ValidationMessageFor(s => s.Body, "", new { @class = "field-validation-valid" })
+    </div>
+    <button type="submit" class="btn btn-primary zyf-submit-once">提交</button>
+    <button zyf-category-edit-cancel="" type="button" class="btn btn-default">放弃</button>
+</form>

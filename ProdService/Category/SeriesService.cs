@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using ViewModel.Articles;
+using ViewModel.Category;
 
 namespace ProdService.Articles
 {

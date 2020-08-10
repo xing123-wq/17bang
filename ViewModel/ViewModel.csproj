@@ -66,7 +66,7 @@
     <Compile Include="Ad\IndexModel.cs" />
     <Compile Include="Articles\IndexModel.cs" />
     <Compile Include="Articles\NewModel.cs" />
-    <Compile Include="Articles\SeriesModel.cs" />
+    <Compile Include="Category\SeriesModel.cs" />
     <Compile Include="Chat\ChatItemModel.cs" />
     <Compile Include="Chat\ChatRoomModel.cs" />
     <Compile Include="Home\IndexModel.cs" />

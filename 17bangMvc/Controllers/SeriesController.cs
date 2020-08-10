@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ViewModel.Articles;
+using ViewModel.Category;
 
 namespace _17bangMvc.Controllers
 {
@@ -19,7 +19,7 @@ namespace _17bangMvc.Controllers
         public ActionResult _Series()
         {
             SeriesModel model = new SeriesModel();
-            model.Serieses = Series.GetSelectListItems(Series.Get(Series.CurrentUserId.Value));
+            model.SelectLists = Series.GetSelectListItems(Series.Get(Series.CurrentUserId.Value));
             return View(model);
         }
         [HttpPost]

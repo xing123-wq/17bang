@@ -1,4 +1,4 @@
-﻿
+﻿@model ViewModel.Category.SeriesModel
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
 }
@@ -6,4 +6,134 @@
 {
     <title>@ViewData["title"]</title>
 }
+<div class="row" style="padding-top: 20px;">
+    <div class="col-md-9">
+        <h2 class="page-header">
+            <span class="fa fa-list" aria-hidden="true"></span> 文章系列管理
+            <a class="small pull-right" zyf-category-add=""><span class="fa fa-plus"></span> 添加</a>
+        </h2>
+        <div zyf-category-manage-item="" data-parent="0" style="margin-bottom:10px;">
+            <span class="pull-right">
+                <a zyf-category-edit="" data-self-id="10" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
+            </span>
+            <h4 zyf-category-edit-name="">
+                <a class="text-muted" href="/Article/Category-10"><span class="fa fa-folder"></span> 默认分类</a>
+            </h4>
+            <p zyf-category-edit-description="">
+                系统自动生成的默认分类
+            </p>
+        </div>
+        @foreach (var item in Model.Seriess)
+        {
+            <div class="" style="padding-left:48px;">
+                <div zyf-category-manage-item="" data-parent="10" style="margin-bottom:10px;">
+                    <span class="pull-right">
+                        <a zyf-category-delete="" data-self-id="12" class="text-warning"><span class="fa fa-trash"></span>删除</a>
+                        <a zyf-category-edit="" data-self-id="12" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
+                    </span>
 
+                    <h4 zyf-category-edit-name="">
+                        <a class="" href="/Article/Category-@item.Id"><span class="fa fa-folder"></span> @item.Title</a>
+                    </h4>
+                    <p zyf-category-edit-description="">
+                        @item.Describe
+                    </p>
+                </div>
+            </div>
+            <div class="" style="padding-left:48px;">
+                <div zyf-category-manage-item="" data-parent="13" style="margin-bottom:10px;">
+                    <span class="pull-right">
+                        <a zyf-category-delete="" data-self-id="12" class="text-warning"><span class="fa fa-trash"></span>删除</a>
+                        <a zyf-category-edit="" data-self-id="12" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
+                    </span>
+
+                    <h4 zyf-category-edit-name="">
+                        <a class="" href="/Article/Category-@item.ChildSeries.Id"><span class="fa fa-folder"></span> @item.ChildSeries.Title</a>
+                    </h4>
+                    <p zyf-category-edit-description="">
+                        @item.ChildSeries.Describe
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-3" style="margin-top: 40px;">
+        <div zyf-newbie-reminder="" class="widget yellow-highlight">
+            <h4><span class="fa fa-list"></span> 新手任务</h4>
+            <p zyf-newbie-tasks-done="" class="text-right">
+                <span class="fa fa-thumbs-o-up text-success"></span> 全部完成！
+                <a zyf-newbie-reminder-hide="" href="#" class="text-primary">不再显示</a>
+            </p>
+            <hr>
+
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 填写：<a href="/Contact/New?prepage=%2fCategory%2fManage">联系方式</a></p>
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 激活：<a href="/Email/Activate?prepage=%2fCategory%2fManage">Email</a></p>
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 邀请：<a href="/Invite">我的小伙伴</a></p>
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 参加：<a href="/Exam/Newbie">新人测试</a></p>
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 发布：<a href="/Problem/New">第一个求助</a></p>
+            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 尝试：<a href="/Problem"> 第一次协助</a></p>
+            <p>
+                <span class="fa fa-check-square-o text-success fa-fw"></span> 获得：若干
+                <a href="/FAQ/Money" data-toggle="tooltip" class="credit" title="" data-original-title="点击了解">
+                    <span class="iconfont icon-money"></span> 帮帮币
+                </a>
+            </p>
+        </div>
+
+
+        <a href="/Profile/Write?prepage=%2fCategory%2fManage" class="btn pull-right" zyf-profile-edit="">
+            <span class="fa fa-pencil-square-o"></span>
+            <span>修改</span>
+        </a>
+        <div class="img-responsive img-thumbnail" id="profile-no-picture">
+            <span class="fa fa-picture-o" id="camera"></span>
+            <div id="wait">
+                等待上传中<span class="fa fa-hourglass-half"></span>...
+            </div>
+        </div>
+        <div class="user-show">
+            <div class="row">
+                <div class="col-xs-12">
+                    <label>用户：</label>
+
+
+                    <span data-toggle="tooltip" title="" data-original-title="捐赠 9.9">
+                        <a href="/User/7" zyf-show-contact="7" style="color:#DCB962">
+                            DK
+                        </a>
+                    </span>
+                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
+                        <span>④</span>
+                    </a>
+                    <a href="/User/ChangeName" class="btn" zyf-username-change="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
+                </div>
+                <input type="hidden" value="7" zyf-profile-user-id="">
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label>性别：</label>
+                    男
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <label>生日：</label>
+                    1991 <span>年</span>
+                </div>
+            </div>
+            <div>
+                <label>关注：</label>
+                <p>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">DF</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 3 次">工具软件</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">Excel</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">单位</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">C#</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 5 次">编程开发语言</span>
+                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">Python</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>

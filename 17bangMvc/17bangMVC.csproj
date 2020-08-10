@@ -630,6 +630,7 @@
     <Content Include="Views\Chat\Room.cshtml" />
     <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Category\Manage.cshtml" />
+    <Content Include="Views\Category\_NewInManage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

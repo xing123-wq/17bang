@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace ViewModel.Articles
+namespace ViewModel.Category
 {
     public class SeriesModel
     {
@@ -19,6 +19,7 @@ namespace ViewModel.Articles
         [MaxLength(255, ErrorMessage = "* 描述的长度不能大于255")]
         public string Body { get; set; }
         public Series Series { get; set; }
-        public IEnumerable<SelectListItem> Serieses { get; set; }
+        public IList<Series> Seriess { get; set; }
+        public IEnumerable<SelectListItem> SelectLists { get; set; }
     }
 }

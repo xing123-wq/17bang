@@ -78,7 +78,7 @@
   <ItemGroup>
     <Compile Include="AdService.cs" />
     <Compile Include="Articles\ArticleService.cs" />
-    <Compile Include="Articles\SeriesService.cs" />
+    <Compile Include="Category\SeriesService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="ChatRoomService.cs" />
     <Compile Include="LogOnService.cs" />

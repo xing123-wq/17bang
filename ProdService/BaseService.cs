@@ -172,7 +172,7 @@ namespace ProdService
                 .ReverseMap()
                 .ForMember(a => a.Series, opt => opt.Ignore());
 
-                cfg.CreateMap<Series, ViewModel.Articles.SeriesModel>(MemberList.None)
+                cfg.CreateMap<Series, ViewModel.Category.SeriesModel>(MemberList.None)
                 .ForMember(i => i.Title, opt => opt.MapFrom(s => s.Title))
                 .ForMember(i => i.Body, opt => opt.MapFrom(s => s.Describe))
                 .ReverseMap();
