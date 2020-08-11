@@ -1,6 +1,7 @@
 ﻿using BLL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace Repositorys
         }
         public IList<Series> GetSeries(int userId)
         {
-            return entities.Where(s => s.AuthorId == userId).ToList();
+            return entities.Where(s => s.Author.Id == userId).Include(s => s.SeriesLevel).ToList();
         }
     }
 }

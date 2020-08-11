@@ -2,10 +2,10 @@
 @{
     Layout = null;
 }
-<form class="" method="post" zyf-category-edit-form="" novalidate="novalidate" action="/Category/_NewInManage">
+<form class="hidden" method="post" zyf-category-edit-form>
     <div class="form-group">
         <label>父系列：</label>
-        @Html.DropDownListFor(s => s.Series, Model.SelectLists, "默认分类", new { @class = "form-control" })
+        @Html.DropDownListFor(s => s.SeriesLevel, Model.SelectLists, "默认分类", new { @class = "form-control" })
     </div>
     <div class="form-group">
         <label>标题：</label>

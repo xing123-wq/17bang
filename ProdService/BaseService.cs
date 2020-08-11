@@ -175,6 +175,7 @@ namespace ProdService
                 cfg.CreateMap<Series, ViewModel.Category.SeriesModel>(MemberList.None)
                 .ForMember(i => i.Title, opt => opt.MapFrom(s => s.Title))
                 .ForMember(i => i.Body, opt => opt.MapFrom(s => s.Describe))
+                .ForMember(i => i.SeriesLevel, opt => opt.MapFrom(s => s.SeriesLevel))
                 .ReverseMap();
 
                 cfg.CreateMap<Chat, ViewModel.Chat.ChatItemModel>(MemberList.None)

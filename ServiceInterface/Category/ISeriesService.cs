@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModel.Category;
 
-namespace ServiceInterface.Article
+namespace ServiceInterface.Category
 {
     public interface ISeriesService
     {

@@ -2,6 +2,7 @@
 using ExtensionMethods;
 using ProdService;
 using ProdService.Articles;
+using ProdService.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;

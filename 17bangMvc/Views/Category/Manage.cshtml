@@ -1,4 +1,4 @@
-﻿@model ViewModel.Category.SeriesModel
+﻿@model IList<ViewModel.Category.SeriesModel>
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
 }
@@ -10,8 +10,9 @@
     <div class="col-md-9">
         <h2 class="page-header">
             <span class="fa fa-list" aria-hidden="true"></span> 文章系列管理
-            <a class="small pull-right" zyf-category-add=""><span class="fa fa-plus"></span> 添加</a>
+            <a class="small pull-right" zyf-category-add><span class="fa fa-plus"></span> 添加</a>
         </h2>
+        @Html.Action("_NewInManage", "Category")
         <div zyf-category-manage-item="" data-parent="0" style="margin-bottom:10px;">
             <span class="pull-right">
                 <a zyf-category-edit="" data-self-id="10" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
@@ -23,37 +24,20 @@
                 系统自动生成的默认分类
             </p>
         </div>
-        @foreach (var item in Model.Seriess)
+        @foreach (var item in Model)
         {
-            <div class="" style="padding-left:48px;">
-                <div zyf-category-manage-item="" data-parent="10" style="margin-bottom:10px;">
-                    <span class="pull-right">
-                        <a zyf-category-delete="" data-self-id="12" class="text-warning"><span class="fa fa-trash"></span>删除</a>
-                        <a zyf-category-edit="" data-self-id="12" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
-                    </span>
-
-                    <h4 zyf-category-edit-name="">
-                        <a class="" href="/Article/Category-@item.Id"><span class="fa fa-folder"></span> @item.Title</a>
-                    </h4>
-                    <p zyf-category-edit-description="">
-                        @item.Describe
-                    </p>
-                </div>
-            </div>
-            <div class="" style="padding-left:48px;">
-                <div zyf-category-manage-item="" data-parent="13" style="margin-bottom:10px;">
-                    <span class="pull-right">
-                        <a zyf-category-delete="" data-self-id="12" class="text-warning"><span class="fa fa-trash"></span>删除</a>
-                        <a zyf-category-edit="" data-self-id="12" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
-                    </span>
-
-                    <h4 zyf-category-edit-name="">
-                        <a class="" href="/Article/Category-@item.ChildSeries.Id"><span class="fa fa-folder"></span> @item.ChildSeries.Title</a>
-                    </h4>
-                    <p zyf-category-edit-description="">
-                        @item.ChildSeries.Describe
-                    </p>
-                </div>
+            <div zyf-category-manage-item="" data-parent="13">
+                <span class="pull-right">
+                    <a zyf-category-delete="" data-self-id="12" class="text-warning"><span class="fa fa-trash"></span>删除</a>
+                    <a zyf-category-edit="" data-self-id="12" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
+                </span>
+                <h4 zyf-category-edit-name="">
+                    <a class="" href="/Article/Category-@item.Id"><span class="fa fa-folder"></span>@item.Title</a>
+                </h4>
+                <p zyf-category-edit-description="">
+                    @item.Body
+                </p>
+                @Html.Action("_NewInManage", "Category")
             </div>
         }
     </div>
@@ -136,4 +120,18 @@
 
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('[zyf-category-add]').click(function (event) {
+                event.preventDefault();
+                var $editForm = $('[zyf-category-edit-form]');
+                $editForm.attr('action', '/Category/_NewInManage');
+                $editForm.removeClass('hidden');
+            });
+            $('[zyf-category-edit-cancel]').click(function () {
+                $(this).parents('form').addClass('hidden');
+            });
+
+        });
+    </script>
 </div>

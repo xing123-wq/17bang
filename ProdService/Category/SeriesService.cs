@@ -1,6 +1,6 @@
 ﻿using BLL;
 using Repositorys;
-using ServiceInterface.Article;
+using ServiceInterface.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using ViewModel.Category;
 
-namespace ProdService.Articles
+namespace ProdService.Category
 {
     public class SeriesService : BaseService, ISeriesService
     {

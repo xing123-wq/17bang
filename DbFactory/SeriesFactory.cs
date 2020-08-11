@@ -16,7 +16,7 @@ namespace DbFactory
             {
                 Author = RegisterFactory.at,
                 Describe = "发生的回访电话",
-                ChildSeries = null,
+                SeriesLevel = null,
                 Title = "别的办法",
                 Articles = new List<Article> { ArticleFactory.JAVA }
             };
@@ -24,14 +24,14 @@ namespace DbFactory
             {
                 Author = RegisterFactory.at,
                 Describe = "讲课费的 发v",
-                ChildSeries = series1,
+                SeriesLevel = series1,
                 Title = "丰富方法v发发发 ",
                 Articles = new List<Article> { ArticleFactory.SQL }
             }; series3 = new Series
             {
                 Author = RegisterFactory.at,
                 Describe = "v大师傅士大夫士大夫撒旦",
-                ChildSeries = null,
+                SeriesLevel = null,
                 Title = "发射点发射点发射点发射点",
                 Articles = new List<Article> { ArticleFactory.UI }
             };
