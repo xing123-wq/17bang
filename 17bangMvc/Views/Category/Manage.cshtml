@@ -37,7 +37,7 @@
                 <p zyf-category-edit-description="">
                     @item.Body
                 </p>
-                @Html.Action("_NewInManage", "Category")
+                @*@Html.Action("_NewInManage", "Category")*@
             </div>
         }
     </div>
@@ -131,7 +131,16 @@
             $('[zyf-category-edit-cancel]').click(function () {
                 $(this).parents('form').addClass('hidden');
             });
-
+            $('select').change(function () {
+                var SeriesLevelId = $(this).val();
+                $('[zyf-series-submit]').click(function () {
+                    $.ajax({
+                        url: '/Category/_NewInManage',
+                        method: 'POST',
+                        data: { 'SeriesLevelId': SeriesLevelId }
+                    });
+                });
+            });
         });
     </script>
 </div>

@@ -13,6 +13,7 @@ namespace BLL
         public string Describe { get; set; }
         public Series SeriesLevel { get; set; }
         public User Author { get; set; }
+        public DateTime PublishTime { get; set; }
         public IList<Article> Articles { get; set; }
     }
 }

@@ -22,12 +22,19 @@ namespace _17bangMvc.Controllers
             models = service.Get(service.CurrentUserId.Value);
             return View(models);
         }
+        [ChildActionOnly]
         [HttpGet]
         public ActionResult _NewInManage()
         {
             SeriesModel model = new SeriesModel();
             model.SelectLists = service.GetSelectListItems(service.Get(service.CurrentUserId.Value));
             return View(model);
+        }
+        [HttpPost]
+        public ActionResult _NewInManage(SeriesModel model)
+        {
+            int id = service.Save(model);
+            return Redirect($"/Category/Manage?id={id}");
         }
 
     }

@@ -29,6 +29,7 @@ namespace ProdService.Category
         {
             Series series = mapper.Map<Series>(model);
             series.Author = GetByCurrentUser();
+            series.PublishTime = DateTime.Now;
             repository.Add(series);
             return series.Id;
         }
@@ -37,7 +38,7 @@ namespace ProdService.Category
             var selectList = new List<SelectListItem>();
             foreach (var item in source)
             {
-                selectList.Add(new SelectListItem { Value = item.Title, Text = item.Title });
+                selectList.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.Title });
             }
             return selectList;
         }

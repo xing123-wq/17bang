@@ -19,6 +19,7 @@ namespace ViewModel.Category
         [Required(ErrorMessage = "* 描述不能为空")]
         [MaxLength(255, ErrorMessage = "* 描述的长度不能大于255")]
         public string Body { get; set; }
+        public int? SeriesLevelId { get; set; }
         public SeriesModel SeriesLevel { get; set; }
         public IList<Article> Articles { get; set; }
         public IEnumerable<SelectListItem> SelectLists { get; set; }
