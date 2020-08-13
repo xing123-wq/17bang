@@ -1,4 +1,4 @@
-﻿@model IList<ViewModel.Category.SeriesModel>
+﻿@model ViewModel.Category.SeriesModel
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
 }
@@ -24,7 +24,7 @@
                 系统自动生成的默认分类
             </p>
         </div>
-        @foreach (var item in Model)
+        @foreach (var item in Model.SeriesModels)
         {
             <div zyf-category-manage-item="" data-parent="13">
                 <span class="pull-right">
@@ -122,23 +122,19 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('[zyf-category-add]').click(function (event) {
-                event.preventDefault();
+            $('[zyf-category-add]').click(function () {
                 var $editForm = $('[zyf-category-edit-form]');
-                $editForm.attr('action', '/Category/_NewInManage');
                 $editForm.removeClass('hidden');
             });
             $('[zyf-category-edit-cancel]').click(function () {
                 $(this).parents('form').addClass('hidden');
             });
-            $('select').change(function () {
-                var SeriesLevelId = $(this).val();
-                $('[zyf-series-submit]').click(function () {
-                    $.ajax({
-                        url: '/Category/_NewInManage',
-                        method: 'POST',
-                        data: { 'SeriesLevelId': SeriesLevelId }
-                    });
+            $('[zyf-series-submit]').click(function () {
+                var SeriesLevelId = $('[zyf-series-list]').val();
+                $.ajax({
+                    url: '/Category/_NewInManage',
+                    method: 'POST',
+                    data: { 'SeriesLevelId': SeriesLevelId }
                 });
             });
         });

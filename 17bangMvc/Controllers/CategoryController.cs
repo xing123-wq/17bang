@@ -18,23 +18,27 @@ namespace _17bangMvc.Controllers
         [HttpGet]
         public ActionResult Manage()
         {
-            IList<SeriesModel> models = new List<SeriesModel>();
-            models = service.Get(service.CurrentUserId.Value);
+            SeriesModel models = new SeriesModel();
+            models.SeriesModels = service.Get(service.CurrentUserId.Value);
             return View(models);
         }
-        [ChildActionOnly]
         [HttpGet]
         public ActionResult _NewInManage()
         {
             SeriesModel model = new SeriesModel();
-            model.SelectLists = service.GetSelectListItems(service.Get(service.CurrentUserId.Value));
+            ViewData["SelectLists"] = service.GetSelectListItems(service.Get(service.CurrentUserId.Value));
             return View(model);
         }
         [HttpPost]
         public ActionResult _NewInManage(SeriesModel model)
         {
-            int id = service.Save(model);
-            return Redirect($"/Category/Manage?id={id}");
+            if (!ModelState.IsValid)
+            {
+                ViewData["SelectLists"] = service.GetSelectListItems(service.Get(service.CurrentUserId.Value));
+                return View("Manage", model);
+            }
+            service.Save(model);
+            return Redirect("/Category/Manage");
         }
 
     }

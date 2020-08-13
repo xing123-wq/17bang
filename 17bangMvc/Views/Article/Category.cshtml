@@ -1,0 +1,520 @@
+﻿@model ViewModel.Category.SeriesModel
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
+}
+<div style="margin-top:55px" class="row">
+    <div class="col-md-8">
+        <div>
+            <span class="lead"><span class="fa fa-map-signs"></span>文章路径：</span>
+            <a href="/Article">全部</a> /
+            <a href="/Article/User-7">DK</a> /
+            <a href="/Article/Category-10"> 默认分类 </a><span> /</span>
+            <div style="padding-top: 15px" class="text-muted">
+                <p style="border-left:5px solid; padding-left:10px;">系统自动生成的默认分类</p>
+            </div>
+        </div>
+        <hr>
+        <span style="top:60px;" class="visible-xs-inline visible-sm-inline flag">
+            <a zyf-show-widget="">
+                <span class="fa fa-window-restore"></span> 更多
+            </a>
+        </span>
+        <script>
+            $(document).ready(function () {
+                $("#category-list-transfer").css("left", function () {
+                    return getFlagPosition(this);
+                });
+                var authorId = 7;
+                if (isCurrent(authorId)) {
+                    $("[zyf-article-reorder-hide]").removeClass('hide');
+                }
+            })
+        </script>
+    </div>
+    <div class="col-md-4 visible-md visible-lg">
+        <div zyf-widget-content="" class="widget clearfix">
+            <div style="margin-bottom:10px; padding-left: 40px;">
+                <h4>
+                    <span class="fa fa-folder text-primary"></span>
+                    <a href="/Article/Category-10">默认分类</a>
+                </h4>
+                <p>
+                    系统自动生成的默认分类
+                </p>
+            </div>
+            <div style="margin-bottom:10px; padding-left: 40px;">
+                <h4>
+                    <span class="fa fa-folder text-primary"></span>
+                    <a href="/Article/Category-13">rwef</a>
+                </h4>
+                <p>
+                    rwrwer
+                </p>
+            </div>
+            <div style="margin-bottom:10px; padding-left: 40px;">
+                <h4>
+                    <span class="fa fa-folder text-primary"></span>
+                    <a href="/Article/Category-22">vvvvvvvv</a>
+                </h4>
+                <p>
+                    分分分分分
+                </p>
+            </div>
+            <div style="margin-bottom:10px; padding-left: 40px;">
+                <h4>
+                    <span class="fa fa-folder text-primary"></span>
+                    <a href="/Article/Category-23">帆帆帆帆帆帆帆帆帆帆</a>
+                </h4>
+                <p>
+                    帆帆帆帆帆帆帆帆帆帆
+                </p>
+            </div>
+            <a href="/Article" class="btn pull-right"><span class="fa fa-hand-o-right"></span> 全部</a>
+        </div>
+
+        <div zyf-widget-content="" class="widget clearfix">
+            <div style="font-size:24px;"><span class="fa fa-tags "></span> 关键字</div>
+            <hr>
+            <div zyf-keyword-widget-content="">
+                <div class="user-tags">
+                    <a zyf-keyword-widget-id="30" href="/Problem?keyword=30" data-toggle="tooltip" title="" data-original-title="已使用9次">
+                        <span class="badge" style="font-size:21px; background-color:rgba(51, 51, 51, 0.96875)">
+                            安装
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="31" href="/Problem?keyword=31" data-toggle="tooltip" title="" data-original-title="已使用8次">
+                        <span class="badge" style="font-size:20.5px; background-color:rgba(51, 51, 51, 0.9375)">
+                            ASP.NET
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="33" href="/Problem?keyword=33" data-toggle="tooltip" title="" data-original-title="已使用6次">
+                        <span class="badge" style="font-size:20px; background-color:rgba(51, 51, 51, 0.90625)">
+                            mysql
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="3" href="/Problem?keyword=3" data-toggle="tooltip" title="" data-original-title="已使用5次">
+                        <span class="badge" style="font-size:19.5px; background-color:rgba(51, 51, 51, 0.875)">
+                            编程开发语言
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="5" href="/Problem?keyword=5" data-toggle="tooltip" title="" data-original-title="已使用3次">
+                        <span class="badge" style="font-size:19px; background-color:rgba(51, 51, 51, 0.84375)">
+                            Windows
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="2" href="/Problem?keyword=2" data-toggle="tooltip" title="" data-original-title="已使用3次">
+                        <span class="badge" style="font-size:18.5px; background-color:rgba(51, 51, 51, 0.8125)">
+                            工具软件
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="8" href="/Problem?keyword=8" data-toggle="tooltip" title="" data-original-title="已使用2次">
+                        <span class="badge" style="font-size:18px; background-color:rgba(51, 51, 51, 0.78125)">
+                            Android
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="32" href="/Problem?keyword=32" data-toggle="tooltip" title="" data-original-title="已使用2次">
+                        <span class="badge" style="font-size:17.5px; background-color:rgba(51, 51, 51, 0.75)">
+                            WebGrease
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="40" href="/Problem?keyword=40" data-toggle="tooltip" title="" data-original-title="已使用1次">
+                        <span class="badge" style="font-size:17px; background-color:rgba(51, 51, 51, 0.71875)">
+                            j
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="38" href="/Problem?keyword=38" data-toggle="tooltip" title="" data-original-title="已使用1次">
+                        <span class="badge" style="font-size:16.5px; background-color:rgba(51, 51, 51, 0.6875)">
+                            ytj
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="13" href="/Problem?keyword=13" data-toggle="tooltip" title="" data-original-title="已使用1次">
+                        <span class="badge" style="font-size:16px; background-color:rgba(51, 51, 51, 0.65625)">
+                            Python
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="36" href="/Problem?keyword=36" data-toggle="tooltip" title="" data-original-title="已使用1次">
+                        <span class="badge" style="font-size:15.5px; background-color:rgba(51, 51, 51, 0.625)">
+                            单位
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="10" href="/Problem?keyword=10" data-toggle="tooltip" title="" data-original-title="已使用1次">
+                        <span class="badge" style="font-size:15px; background-color:rgba(51, 51, 51, 0.59375)">
+                            JAVA
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="9" href="/Problem?keyword=9" data-toggle="tooltip" title="" data-original-title="已使用1次">
+                        <span class="badge" style="font-size:14.5px; background-color:rgba(51, 51, 51, 0.5625)">
+                            C#
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="37" href="/Problem?keyword=37" data-toggle="tooltip" title="" data-original-title="已使用1次">
+                        <span class="badge" style="font-size:14px; background-color:rgba(51, 51, 51, 0.53125)">
+                            DF
+                        </span>
+                    </a>
+                    <a zyf-keyword-widget-id="35" href="/Problem?keyword=35" data-toggle="tooltip" title="" data-original-title="已使用1次">
+                        <span class="badge" style="font-size:13.5px; background-color:rgba(51, 51, 51, 0.5)">
+                            阿里云
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="直接输入关键字查找" zyf-keyword-widget-search-value="">
+                        <span class="input-group-addon" zyf-keyword-widget-search-btn=""><span class="fa fa-search"></span></span>
+                    </div>
+
+                </div>
+                <div class="col-sm-4">
+                    <a href="" class="btn btn-default" zyf-keyword-widget-another="1">
+                        <span class="fa fa-random"></span>
+                        <span style="margin-left:5px;">换一批</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div zyf-widget-content="" class="clearfix" style="margin-bottom:30px;">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-justified nav-tabs-colored" role="tablist">
+                <li role="presentation">
+                    <a href="#planscan" aria-controls="profile" role="tab" data-toggle="tab">
+                        <span class="fa fa-eye"></span> 每日督促
+                    </a>
+                </li>
+                <li role="presentation" class="active">
+                    <a href="#contribute" aria-controls="messages" role="tab" data-toggle="tab" style="color:red;">
+                        <span class="fa fa-heart"></span> 排行榜
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#register" aria-controls="home" role="tab" data-toggle="tab">
+                        <span class="fa fa-user-circle-o"></span> 新注册
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane" id="planscan">
+                    <table class="table-none-border">
+                        <tbody>
+                            <tr>
+                                <td colspan="2" style="font-size:18px"><span class="fa fa-calendar-check-o fa-fw"></span> 2020年08月12日</td>
+                            </tr>
+                            <tr>
+                                <th>共扫描目标：</th>
+                                <td><span class="fa fa-flag-o fa-fw"></span> 2 个</td>
+                            </tr>
+                            <tr>
+                                <th>当天休息：</th>
+                                <td><span class="fa fa-ban fa-fw text-muted"></span> 0 人</td>
+                            </tr>
+                            <tr>
+                                <th>已交作业：</th>
+                                <td><span class="fa fa-check text-success fa-fw"></span> 0 份</td>
+                            </tr>
+                            <tr>
+                                <th>请假：</th>
+                                <td><span class="fa fa-coffee fa-fw"></span>  0 人</td>
+                            </tr>
+                            <tr>
+                                <th>未交作业：</th>
+                                <td><a zyf-task-not-complete=""><span class="fa fa-remove fa-fw"></span> 2 人</a></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane active" id="contribute">
+                    <table class="table-none-border order-list">
+                        <tbody>
+
+                            <tr zyf-user-most-order="1">
+                                <td style="width: 40px;"><span class="order-tag item-1">1</span></td>
+                                <td>
+
+
+                                    <span data-toggle="tooltip" title="" data-original-title="">
+                                        <a href="/User/6" zyf-show-contact="6" style="color:">
+                                            yezi
+                                        </a>
+                                    </span>
+                                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
+                                        <span>④</span>
+                                    </a>
+                                </td>
+                                <td>140</td>
+                            </tr>
+                            <tr zyf-user-most-order="2">
+                                <td style="width: 40px;"><span class="order-tag item-2">2</span></td>
+                                <td>
+
+
+                                    <span data-toggle="tooltip" title="" data-original-title="捐赠 9.9">
+                                        <a href="/User/7" zyf-show-contact="7" style="color:#DCB962">
+                                            DK
+                                        </a>
+                                    </span>
+                                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
+                                        <span>④</span>
+                                    </a>
+                                </td>
+                                <td>60</td>
+                            </tr>
+                            <tr zyf-user-most-order="3">
+                                <td style="width: 40px;"><span class="order-tag item-3">3</span></td>
+                                <td>
+
+
+                                    <span data-toggle="tooltip" title="" data-original-title="">
+                                        <a href="/User/10" zyf-show-contact="10" style="color:">
+                                            弹指一挥间
+                                        </a>
+                                    </span>
+                                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="中级学徒">
+                                        <span>②</span>
+                                    </a>
+                                </td>
+                                <td>30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div zyf-user-widget-most-contribute="" class="clearfix" style="padding-top:10px;">
+                        <a href="/User/MyMost?on=Contribute" class="btn pull-right">
+                            <span class="fa fa-hand-o-right"></span> 我的排名
+                        </a>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="register">
+                    <div style="margin-bottom:10px;">
+                        <small class="text-muted" zyf-datetime="">
+                            <span>
+                                <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年05月08日 08点43分</span>
+                            </span>
+                        </small>
+
+                        <div>
+
+
+                            <span data-toggle="tooltip" title="">
+                                <a href="/User/16" zyf-show-contact="16" style="color:">
+                                    阿泰12
+                                </a>
+                            </span>
+                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
+                                <span>①</span>
+                            </a>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <small class="text-muted" zyf-datetime="">
+                            <span>
+                                <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年01月31日 19点55分</span>
+                            </span>
+                        </small>
+
+                        <div>
+
+
+                            <span data-toggle="tooltip" title="">
+                                <a href="/User/14" zyf-show-contact="14" style="color:">
+                                    TPlanFrozen
+                                </a>
+                            </span>
+                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
+                                <span>①</span>
+                            </a>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <small class="text-muted" zyf-datetime="">
+                            <span>
+                                <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年01月31日 19点55分</span>
+                            </span>
+                        </small>
+
+                        <div>
+
+
+                            <span data-toggle="tooltip" title="">
+                                <a href="/User/15" zyf-show-contact="15" style="color:">
+                                    币宝宝
+                                </a>
+                            </span>
+                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
+                                <span>①</span>
+                            </a>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <small class="text-muted" zyf-datetime="">
+                            <span>
+                                <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年01月31日 00点00分</span>
+                            </span>
+                        </small>
+
+                        <div>
+
+
+                            <span data-toggle="tooltip" title="">
+                                <a href="/User/10" zyf-show-contact="10" style="color:">
+                                    弹指一挥间
+                                </a>
+                            </span>
+                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="中级学徒" class="text-muted" style="position:relative; top:-1px;">
+                                <span>②</span>
+                            </a>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <small class="text-muted" zyf-datetime="">
+                            <span>
+                                <span class="fa fa-calendar"></span> <span zyf-can-hide=""> 2020年01月30日 23点59分</span>
+                            </span>
+                        </small>
+
+                        <div>
+
+
+                            <span data-toggle="tooltip" title="">
+                                <a href="/User/11" zyf-show-contact="11" style="color:">
+                                    萤火
+                                </a>
+                            </span>
+                            <a href="/FAQ/Credit#" data-toggle="tooltip" title="初级学徒" class="text-muted" style="position:relative; top:-1px;">
+                                <span>①</span>
+                            </a>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <a href="/User/Index" class="btn pull-right"><span class="fa fa-hand-o-right"></span> 更多</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    url: "/PlanScan/_DailyResult",
+                    success: function (data) {
+                        var $data = $(data);
+                        //显示未交作业的详情
+                        $data.find("[zyf-task-not-complete]").click(function () {
+                            if (!isAdmin()) {
+                                showRemind(getWarningIcon() + ' 涉及个人隐私，只有管理员才有权查看。')
+                                return false;
+                            } else {
+                                $.ajax({
+                                    url: "/PlanScan/_GetAllNotComplete",
+                                    success: function (data) {
+                                        var title = '<span class="iconfont icon-money-bag"></span> 昨日全部未交作业';
+                                        showModal(title, data);
+                                    },
+                                    error: JqueryAjaxError
+                                })
+                            }
+                        })
+                        $("#planscan").html($data);
+                    },
+                    error: JqueryAjaxError
+                })
+                $.ajax({
+                    url: "/User/_WidgetRegister",
+                    success: function (data) {
+                        $("#register").html(data);
+                    },
+                    error: JqueryAjaxError
+                })
+            })
+        </script>
+
+        <div zyf-widget-content="" class="widget clearfix">
+            <div class="ad-in-widget order-list">
+                <span class="item-1 order-tag">1</span>
+                <a href="http://17bang.ren">源栈欢迎您</a>
+            </div>
+            <div class="ad-in-widget order-list">
+                <span class="item-2 order-tag">2</span>
+                <a href="/AdInWidget/_Free?position=2" zyf-adinwidget-free="" class="">免费广告位，抢到就是赚到！</a>
+            </div>
+            <div class="ad-in-widget order-list">
+                <span class="item-3 order-tag">3</span>
+                <a href="/AdInWidget/_Free?position=3" zyf-adinwidget-free="" class="">免费广告位，抢到就是赚到！</a>
+            </div>
+            <div class="ad-in-widget order-list">
+                <span class="item order-tag">4</span>
+                <a href="/AdInWidget/_Free?position=4" zyf-adinwidget-free="" class="">免费广告位，抢到就是赚到！</a>
+            </div>
+            <div class="ad-in-widget order-list">
+                <span class="item order-tag">5</span>
+                <a href="/AdInWidget/_Free?position=5" zyf-adinwidget-free="" class="">免费广告位，抢到就是赚到！</a>
+            </div>
+            <div class="ad-in-widget order-list">
+                <span class="item order-tag">6</span> 本站主机由<a href="http://www.west.cn/index.asp?ReferenceID=563969">西部数码</a>提供
+            </div>
+            <a href="/AdInWidget/Write" class="pull-right text-muted">
+                <small zyf-ad-in-widget-remind="">
+                    <span class="fa fa-buysellads"></span> 广告
+                    <span zyf-ad-in-widget-remind-suffix="" class="hide">，你也可以发布哟！</span>
+                </small>
+            </a>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" zyf-adinwidget-free-modal="">
+        </div><!-- /.modal -->
+        <script>
+            $(document).ready(function () {
+                var $freeAdInWidget = $("[zyf-adInWidget-free]"),
+                    warningClassName = "text-warning";
+
+                setInterval(function () {
+                    if ($freeAdInWidget.hasClass(warningClassName)) {
+                        $freeAdInWidget.removeClass(warningClassName);
+                    } else {
+                        $freeAdInWidget.addClass(warningClassName);
+                    }
+                }, 500)
+
+                $("[zyf-adInWidget-free]").click(function (event) {
+                    event.preventDefault();
+                    if (isVisitor()) {
+                        showRemind(getWarningIcon() + " 访客不能申请该免费广告位。" + needLogonRemind());
+                        return false;
+                    }
+                    var $this = $(this),
+                        $modal = $("[zyf-adInWidget-free-modal]");
+                    $.ajax({
+                        url: $this.attr("href"),
+                        success: function (data) {
+                            $modal.modal("show");
+                            var $data = $(data);
+                            $data.find("[zyf-adInWidget-free-parentUrl]").val(location.href);
+                            $data.find("[zyf-ad-content-edit]").change(modifeAdContent);
+                            $data.find("[zyf-ad-in-widget-history-select]").change(showAdContent);
+                            $.validator.unobtrusive.parse($data.find("form"));
+                            $modal.html($data);
+                        }
+                    })
+                })
+            })
+        </script>
+    </div>
+</div>
