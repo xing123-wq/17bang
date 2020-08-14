@@ -12,7 +12,24 @@
             <span class="fa fa-list" aria-hidden="true"></span> 文章系列管理
             <a class="small pull-right" zyf-category-add><span class="fa fa-plus"></span> 添加</a>
         </h2>
-        @Html.Action("_NewInManage", "Category")
+        <form class="hidden" method="post" zyf-category-edit-form="">
+            <div class="form-group">
+                <label>父系列：</label>
+                @Html.DropDownListFor(s => s.SeriesLevel, ViewData["SelectLists"] as List<SelectListItem>, "默认分类", new { @class = "form-control", zyf_series_list = "" })
+            </div>
+            <div class="form-group">
+                <label>标题：</label>
+                @Html.TextBoxFor(s => s.Title, new { @class = "form-control", placeholder = "不能为空，25字符以内", zyf_category_new_name = "" })
+                @Html.ValidationMessageFor(s => s.Title, "", new { style = "color:red" })
+            </div>
+            <div class="form-group">
+                <label>描述：</label>
+                @Html.TextBoxFor(s => s.Body, new { @class = "form-control", placeholder = "255个字符以内，简单描述系列的目的、内容等", zyf_category_new_body = "" })
+                @Html.ValidationMessageFor(s => s.Body, "", new { style = "color:red" })
+            </div>
+            <button zyf-series-submit type="submit" class="btn btn-primary">提交</button>
+            <button zyf-category-edit-cancel="" type="button" class="btn btn-default">放弃</button>
+        </form>
         <div zyf-category-manage-item="" data-parent="0" style="margin-bottom:10px;">
             <span class="pull-right">
                 <a zyf-category-edit="" data-self-id="10" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
@@ -130,11 +147,13 @@
                 $(this).parents('form').addClass('hidden');
             });
             $('[zyf-series-submit]').click(function () {
-                var SeriesLevelId = $('[zyf-series-list]').val();
+                var SeriesLevelId = $('[zyf-series-list]').val(),
+                    Title = $('[zyf-category-new-name]').val(),
+                    Body = $('[zyf-category-new-body]').val();
                 $.ajax({
-                    url: '/Category/_NewInManage',
+                    url: '/Category/Manage',
                     method: 'POST',
-                    data: { 'SeriesLevelId': SeriesLevelId }
+                    data: { 'SeriesLevelId': SeriesLevelId, 'Title': Title, 'Body': Body }
                 });
             });
         });
