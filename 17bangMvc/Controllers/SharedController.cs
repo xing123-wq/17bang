@@ -33,14 +33,17 @@ namespace _17bangMvc.Controllers
             return PartialView(models);
         }
         [ChildActionOnly]
-        public PartialViewResult _Ad()
+        public ActionResult _Ad(IndexModel model)
         {
-            return PartialView();
+            AdService service = new AdService();
+            model.ADS = service.GetUserId(service.CurrentUserId.Value);
+            ViewData["SelectADList"] = service.GetSelectListItems(model.ADS);
+            return View(model);
         }
 
         [ChildActionOnly]
         [HttpPost]
-        public PartialViewResult _Ad(ViewModel.Ad.IndexModel model)
+        public PartialViewResult _Advertising(ViewModel.Ad.IndexModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -73,7 +76,7 @@ namespace _17bangMvc.Controllers
             {
                 string password = Request.Cookies[Const.USER_PASSWORD].Value;
                 ViewModel.LogOn.IndexModel user = _service.GetBy();
-                if (user!=null)
+                if (user != null)
                 {
                     if (user.Password == password)
                     {

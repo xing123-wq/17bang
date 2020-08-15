@@ -16,5 +16,7 @@ namespace ViewModel.Ad
         [Required(ErrorMessage = "* 链接不能为空")]
         [Url(ErrorMessage = "* URL格式错误")]
         public string Url { get; set; }
+        public IList<IndexModel> ADS { get; set; }
+        public IndexModel AD { get; set; }
     }
 }

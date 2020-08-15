@@ -1,4 +1,7 @@
-﻿@model ViewModel.Advertising.IndexModel
+﻿@model ViewModel.Ad.IndexModel
+@{
+    Layout = null;
+}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         @using (Html.BeginForm())
@@ -13,9 +16,7 @@
                     <div class="form-group">
                         <a zyf-ad-delete="" class="text-warning pull-right"><span class="fa fa-remove"></span> 删除</a>
                         <label>之前用过的广告：</label>
-                        <select class="form-control" data-val="true" data-val-number="字段 SelectedHistory 必须是一个数字。" id="Content_SelectedHistory" name="Content.SelectedHistory" zyf-ad-in-widget-history-select="">
-                            <option>----- 使用新的广告 -----</option>
-                        </select>
+                        @Html.DropDownListFor(a => a.AD, ViewData["SelectADList"] as IList<SelectListItem>, new { @class = "", zyf_Ad_listItem = "" })
                     </div>
                     <ul class="hide" zyf-ad-in-widget-history-url="">
                     </ul>

@@ -12,7 +12,8 @@ namespace BLL
         public string Url { get; set; }
         public DateTime PublishTime { get; set; }
         public DateTime Expires { get; set; }
-        public User User { get; set; }
+        public int AuthorId { get; set; }
+        public User Author { get; set; }
         public IList<Article> Articles { get; set; }
     }
 }

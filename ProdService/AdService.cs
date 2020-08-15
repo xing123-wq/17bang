@@ -34,7 +34,7 @@ namespace ProdService
         public int Sava(IndexModel model)
         {
             Advertising advertising = mapper.Map<Advertising>(model);
-            advertising.User = GetByCurrentUser();
+            advertising.Author = GetByCurrentUser();
             advertising.PublishTime = DateTime.Now;
             advertising.Expires = DateTime.Now.AddDays(1);
             _repositroy.Add(advertising);
@@ -51,8 +51,13 @@ namespace ProdService
         }
         public IList<IndexModel> Get()
         {
-            IList<Advertising> series = _repositroy.GetAdvertisings(5);
-            return mapper.Map<IList<IndexModel>>(series);
+            IList<Advertising> ad = _repositroy.GetAdvertisings(5);
+            return mapper.Map<IList<IndexModel>>(ad);
+        }
+        public IList<IndexModel> GetUserId(int userId)
+        {
+            IList<Advertising> ad = _repositroy.GetByUserId(userId);
+            return mapper.Map<IList<IndexModel>>(ad);
         }
     }
 }

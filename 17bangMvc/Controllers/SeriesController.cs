@@ -15,11 +15,12 @@ namespace _17bangMvc.Controllers
         {
             Series = new SeriesService();
         }
+        [ChildActionOnly]
         [HttpGet]
         public ActionResult _Series()
         {
             SeriesModel model = new SeriesModel();
-            model.SelectLists = Series.GetSelectListItems(Series.Get(Series.CurrentUserId.Value));
+            ViewData["SelectList"] = Series.GetSelectListItems(Series.Get(Series.CurrentUserId.Value));
             return View(model);
         }
         [HttpPost]
@@ -27,6 +28,7 @@ namespace _17bangMvc.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewData["SelectList"] = Series.GetSelectListItems(Series.Get(Series.CurrentUserId.Value));
                 return View(model);
             }
             Series.Save(model);
