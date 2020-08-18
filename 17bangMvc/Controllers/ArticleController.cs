@@ -56,6 +56,10 @@ namespace _17bangMvc.Controllers
         {
             if (!ModelState.IsValid)
             {
+                SeriesService Service = new SeriesService();
+                ViewData["SelectList"] = Service.GetSelectListItems(Service.Get(_service.CurrentUserId.Value));
+                AdService advertising = new AdService();
+                ViewData["ADs"] = advertising.GetSelectListItems(advertising.Get());
                 ViewData["title"] = "精品文章-一起帮";
                 return View(model);
             }

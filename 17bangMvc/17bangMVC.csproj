@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdInWidgetController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -624,7 +625,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_LogOn.cshtml" />
     <Content Include="Views\Article\New.cshtml" />
-    <Content Include="Views\Shared\_Ad.cshtml" />
+    <Content Include="Views\AdInWidget\_Ad.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_AnonymousUser.cshtml" />
     <Content Include="Views\Chat\Room.cshtml" />

@@ -4,7 +4,7 @@
 }
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("_Ad", "AdInWidget", FormMethod.Post))
         {
             <div class="modal-content">
                 <div class="modal-header">
@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <a zyf-ad-delete="" class="text-warning pull-right"><span class="fa fa-remove"></span> 删除</a>
                         <label>之前用过的广告：</label>
-                        @Html.DropDownListFor(a => a.AD, ViewData["SelectADList"] as IList<SelectListItem>, new { @class = "", zyf_Ad_listItem = "" })
+                        @Html.DropDownListFor(a => a.AD, ViewData["SelectADList"] as IList<SelectListItem>, "——使用之前的广告——", new { @class = "form-control", zyf_ad_in_widget_history_select = "" })
                     </div>
                     <ul class="hide" zyf-ad-in-widget-history-url="">
                     </ul>
@@ -35,12 +35,12 @@
                         </div>
                         <div class="form-group">
                             <label>文字内容：（* 必填）</label>
-                            @Html.TextBoxFor(a => a.Title, "", new { @class = "form-control" })
+                            @Html.TextBoxFor(a => a.Title, new { @class = "form-control", placeholder = "最多不超过24个字符" })
                             @Html.ValidationMessageFor(a => a.Title, "", new { @class = "field-validation-valid" })
                         </div>
                         <div class="form-group">
                             <label>链接：（* 必填）</label>
-                            @Html.TextBoxFor(a => a.Url, "", new { @class = "form-control" })
+                            @Html.TextBoxFor(a => a.Url, new { @class = "form-control", placeholder = "http或https开头的网址" })
                             @Html.ValidationMessageFor(a => a.Url, "", new { @class = "field-validation-valid" })
                         </div>
                     </section>

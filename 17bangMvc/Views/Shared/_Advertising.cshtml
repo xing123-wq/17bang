@@ -1,5 +1,4 @@
-﻿@model IList<ViewModel.Advertising.IndexModel>
-<script>
+﻿<script>
     //取多个name进行字体闪烁
     function roplcolor() {
         var free = document.getElementsByName('bay');
@@ -14,20 +13,12 @@
     setInterval(roplcolor, 1000);
 </script>
 <div class="widget clearfix">
-
-    @{
-        int sum = 7;
-
-    }
-    @for (int i = 1; i < sum - Model.Count(); i++)
+    @for (int i = 1; i < 6; i++)
     {
-        foreach (var item in Model)
-        {
-            <div class="ad-in-widget order-list">
-                <span class="item-1 order-tag">@i</span>
-                <a href="@item.Url" name="bay">@item.Title</a>
-            </div>
-        }
+        <div class="ad-in-widget order-list">
+            <span class="item-1 order-tag">@i</span>
+            <a name="bay" data-toggle="modal" href="remote.html" data-target="#myModal" rel="noopener noreferrer">免费广告位，抢到就是赚到！</a>
+        </div>
     }
     <div class="ad-in-widget order-list">
         <span class="item order-tag">6</span> 本站主机由<a href="http://www.west.cn/index.asp?ReferenceID=563969">西部数码</a>提供
@@ -41,4 +32,4 @@
 </div>
 <div class="modal fade" tabindex="-1" role="dialog">
 </div><!-- /.modal -->
-@Html.Action("_Ad", "Shared")
+@Html.Action("_AD", "AdInWidget")

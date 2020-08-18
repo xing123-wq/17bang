@@ -5,13 +5,12 @@ using Microsoft.Ajax.Utilities;
 using ProdService;
 using ServiceInterface;
 using System;
-using System.Collections.Generic;
+using System.Collections.Generic;   
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ViewModel.Ad;
 
 namespace _17bangMvc.Controllers
 {
@@ -24,35 +23,6 @@ namespace _17bangMvc.Controllers
             _service = new LogOnService();
         }
 
-        [ChildActionOnly]
-        [HttpGet]
-        public PartialViewResult _Advertising()
-        {
-            AdService service = new AdService();
-            IList<ViewModel.Ad.IndexModel> models = service.GetByads(5);
-            return PartialView(models);
-        }
-        [ChildActionOnly]
-        public ActionResult _Ad(IndexModel model)
-        {
-            AdService service = new AdService();
-            model.ADS = service.GetUserId(service.CurrentUserId.Value);
-            ViewData["SelectADList"] = service.GetSelectListItems(model.ADS);
-            return View(model);
-        }
-
-        [ChildActionOnly]
-        [HttpPost]
-        public PartialViewResult _Advertising(ViewModel.Ad.IndexModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return PartialView(model);
-            }
-            AdService service = new AdService();
-            service.Sava(model);
-            return PartialView();
-        }
         [ChildActionOnly]
         public PartialViewResult _Article()
         {
