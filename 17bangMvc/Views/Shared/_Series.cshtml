@@ -12,7 +12,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label>父系列：</label>
-                @Html.DropDownListFor(s => s.SeriesLevel, ViewData["SelectList"] as IList<SelectListItem>, "默认分类", new { @class = "form-control", zyf_series_list = "" })
+                @Html.DropDownListFor(s => s.SeriesLevel, ViewData["SelectList"] as IEnumerable<SelectListItem>, "默认分类", new { @class = "form-control", zyf_series_list = "" })
             </div>
             <div class="form-group">
                 <label>名称：（* 必填）</label>

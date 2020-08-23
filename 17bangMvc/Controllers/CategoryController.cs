@@ -1,4 +1,5 @@
-﻿using ProdService.Category;
+﻿using _17bangMvc.Filters;
+using ProdService.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace _17bangMvc.Controllers
             service = new SeriesService();
         }
         [HttpGet]
+        [NeedLogOnFilter]
         public ActionResult Manage()
         {
             SeriesModel model = new SeriesModel();
@@ -34,7 +36,7 @@ namespace _17bangMvc.Controllers
                 return View(model);
             }
             service.Save(model);
-            return Redirect("/Category/Manage ");
+            return View(model);
         }
 
     }

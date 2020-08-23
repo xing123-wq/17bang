@@ -49,7 +49,7 @@
                     <label>添加到系列：</label>
                     <a href="/Category/Manage" class="pull-right"><span class="fa fa-cog"></span>管理</a>
                     <div class="input-group">
-                        @Html.DropDownListFor(n => n.Series, ViewData["SelectList"] as IList<SelectListItem>, "默认分类", new { @class = "form-control", zyf_article_series = "" })
+                        @Html.DropDownListFor(n => n.Series, ViewData["SelectList"] as IEnumerable<SelectListItem>, "默认分类", new { @class = "form-control", zyf_article_series = "" })
                         <a class="btn input-group-addon" data-toggle="modal" data-target="#new-category">
                             <span class="fa fa-plus" data-toggle="tooltip" title="" data-original-title="添加"></span> 新系列
                         </a>

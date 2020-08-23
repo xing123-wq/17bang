@@ -26,18 +26,9 @@ namespace _17bangMvc.Controllers
             ViewData["title"] = "精品文章-一起帮";
             model = _service.GetBy(3);
             pageindex = Convert.ToInt32(RouteData.Values["Id"]);//有了Id可以省略
-            SeriesService Service = new SeriesService();
-            ViewData["SelectList"] = Service.GetSelectListItems(Service.Get(_service.CurrentUserId.Value));
-            AdService advertising = new AdService();
-            ViewData["ADs"] = advertising.GetSelectListItems(advertising.Get());
             model = Select.Get(model.OrderByDescending(a => a.PublishTime), pageindex, Const.PAGE_SIZE);
             return View(model);
         }
-        //[HttpPost]
-        //public ActionResult index(IList<IndexModel> model)
-        //{
-        //    return View(model);
-        //}
 
         [HttpGet]
         public ActionResult New()
@@ -64,7 +55,7 @@ namespace _17bangMvc.Controllers
                 return View(model);
             }
             _service.Save(model);
-            return View(model);
+            return Redirect("/Article");
         }
 
     }

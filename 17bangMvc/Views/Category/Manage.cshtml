@@ -15,7 +15,7 @@
         <form class="hidden" method="post" zyf-category-edit-form="">
             <div class="form-group">
                 <label>父系列：</label>
-                @Html.DropDownListFor(s => s.SeriesLevel, ViewData["SelectLists"] as List<SelectListItem>, "默认分类", new { @class = "form-control", zyf_series_list = "" })
+                @Html.DropDownListFor(s => s.SeriesLevel, ViewData["SelectLists"] as IEnumerable<SelectListItem>, "默认分类", new { @class = "form-control", zyf_series_list = "" })
             </div>
             <div class="form-group">
                 <label>标题：</label>
@@ -150,12 +150,24 @@
                 var SeriesLevelId = $('[zyf-series-list]').val(),
                     Title = $('[zyf-category-new-name]').val(),
                     Body = $('[zyf-category-new-body]').val();
+                event.preventDefault();
                 $.ajax({
                     url: '/Category/Manage',
                     method: 'POST',
-                    data: { 'SeriesLevelId': SeriesLevelId, 'Title': Title, 'Body': Body }
+                    data: { 'SeriesLevelId': SeriesLevelId, 'Title': Title, 'Body': Body },
+                    complete: function () {
+                        refresh(1);
+                    }
                 });
             });
+            function refresh(timeOut) {
+                setTimeout(function () {
+                    $.ajax({
+                        url: '/Category/Manage',
+                        method: 'GET',
+                    });
+                }, timeOut);
+            }
         });
     </script>
 </div>
