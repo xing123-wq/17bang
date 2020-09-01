@@ -17,7 +17,6 @@ namespace _17bangMvc.Controllers
             service = new SeriesService();
         }
         [HttpGet]
-        [NeedLogOnFilter]
         public ActionResult Manage()
         {
             SeriesModel model = new SeriesModel();

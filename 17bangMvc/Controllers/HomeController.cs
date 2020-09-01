@@ -1,4 +1,4 @@
-﻿using ProdService;
+﻿using ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +10,10 @@ namespace _17bangMvc.Controllers
 {
     public class HomeController : BaseController
     {
-        private BaseService service;
-        public HomeController()
+        private IBaseService service;
+        public HomeController(IBaseService service)
         {
-            service = new BaseService();
+            this.service = service;
         }
         [HttpGet]
         public ActionResult Index(IndexModel model)

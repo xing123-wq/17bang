@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repositorys;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace ServiceInterface
         void Commit();
         void Rollback();
         void ClearContext();
+        int? CurrentUserId { get; }
     }
 }

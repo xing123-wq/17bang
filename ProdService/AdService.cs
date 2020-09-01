@@ -54,7 +54,7 @@ namespace ProdService
             IList<Advertising> ad = _repositroy.GetAdvertisings(5);
             return mapper.Map<IList<IndexModel>>(ad);
         }
-        public IList<IndexModel> GetUserId(int userId)
+        public IList<IndexModel> GetUserId(int? userId)
         {
             IList<Advertising> ad = _repositroy.GetByUserId(userId);
             return mapper.Map<IList<IndexModel>>(ad);

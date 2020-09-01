@@ -24,7 +24,7 @@ namespace Repositorys
         {
             return entities.OrderByDescending(a => a.Id).Take(sum).ToList();
         }
-        public IList<Advertising> GetByUserId(int userId)
+        public IList<Advertising> GetByUserId(int? userId)
         {
             return entities.Where(a => a.AuthorId == userId).ToList();
         }

@@ -24,8 +24,10 @@ namespace _17bangMvc.Controllers
         {
             IndexModel model = new IndexModel();
             AdService service = new AdService();
-            model.ADS = service.GetUserId(service.CurrentUserId.Value);
+
+            model.ADS = service.GetUserId(service.CurrentUserId);
             ViewData["SelectADList"] = service.GetSelectListItems(model.ADS);
+
             return View(model);
         }
         [HttpPost]
