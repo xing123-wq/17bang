@@ -13,10 +13,10 @@ namespace _17bangMvc.Controllers
 {
     public class RegisterController : BaseController
     {
-        private readonly IRegisterService _service;
-        public RegisterController()
+        private IRegisterService _service;
+        public RegisterController(IRegisterService _service)
         {
-            _service = new RegisterService();
+            this._service = _service;
         }
         [HttpGet]
         public ActionResult index()

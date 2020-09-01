@@ -7,7 +7,7 @@ using ViewModel.Articles;
 
 namespace ServiceInterface
 {
-    public interface IArticleService
+    public interface IArticleService : IBaseService
     {
         IList<IndexModel> GetBy(int sum);
         int Save(NewModel model);

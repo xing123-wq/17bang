@@ -5,7 +5,7 @@ using Microsoft.Ajax.Utilities;
 using ProdService;
 using ServiceInterface;
 using System;
-using System.Collections.Generic;   
+using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -18,9 +18,13 @@ namespace _17bangMvc.Controllers
     public class SharedController : BaseController
     {
         private ILogOnService _service;
+        public SharedController(ILogOnService _service)
+        {
+            this._service = _service;
+        }
         public SharedController()
         {
-            _service = new LogOnService();
+
         }
 
         [ChildActionOnly]

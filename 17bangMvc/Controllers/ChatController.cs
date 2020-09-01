@@ -1,4 +1,5 @@
 ﻿using ProdService;
+using ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace _17bangMvc.Controllers
 {
     public class ChatController : BaseController
     {
-        private ChatRoomService service;
-        public ChatController()
+        private IChatRoomService service;
+        public ChatController(IChatRoomService service)
         {
-            service = new ChatRoomService();
+            this.service = service;
         }
         [HttpPost]
         public ActionResult Room(ChatItemModel model)

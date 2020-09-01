@@ -14,9 +14,9 @@ namespace _17bangMvc.Controllers
     public class LogController : BaseController
     {
         private ILogOnService _service;
-        public LogController()
+        public LogController(ILogOnService service)
         {
-            _service = new LogOnService();
+            this._service = service;
         }
         [HttpGet]
         //[Route("Log/On")]

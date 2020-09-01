@@ -1,5 +1,6 @@
 ﻿using _17bangMvc.Filters;
 using ProdService.Category;
+using ServiceInterface.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace _17bangMvc.Controllers
 {
     public class CategoryController : BaseController
     {
-        private SeriesService service;
-        public CategoryController()
+        private ISeriesService service;
+        public CategoryController(ISeriesService service)
         {
-            service = new SeriesService();
+            this.service = service;
         }
         [HttpGet]
         public ActionResult Manage()

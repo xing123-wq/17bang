@@ -1,4 +1,5 @@
 ﻿using ProdService.Category;
+using ServiceInterface.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace _17bangMvc.Controllers
 {
     public class SeriesController : BaseController
     {
-        private SeriesService Series;
-        public SeriesController()
+        private ISeriesService Series;
+        public SeriesController(ISeriesService Series)
         {
-            Series = new SeriesService();
+            this.Series = Series;
         }
         [ChildActionOnly]
         [HttpGet]

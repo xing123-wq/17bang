@@ -3,6 +3,7 @@ using ExtensionMethods;
 using ProdService;
 using ProdService.Articles;
 using ProdService.Category;
+using ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,11 @@ namespace _17bangMvc.Controllers
 {
     public class ArticleController : BaseController
     {
-        private ArticleService _service;
+        private IArticleService _service;
         public int pageindex { get; set; }
-        public ArticleController()
+        public ArticleController(IArticleService service)
         {
-            _service = new ArticleService();
+            this._service = service;
         }
         [HttpGet]
         public ActionResult index(/*int Id,*/IEnumerable<IndexModel> model)
