@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Repositorys;
+using ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using ViewModel.Chat;
 
 namespace ProdService
 {
-    public class ChatRoomService : BaseService
+    public class ChatRoomService : BaseService, IChatRoomService
     {
         private ChatRoomRepository repository;
         public ChatRoomService()
