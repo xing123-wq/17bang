@@ -29,7 +29,7 @@ namespace _17bangMvc
 
             //配置：指示使用何种interface实例呢？
             //2.1 可以一个类一个类的注册
-            //builder.RegisterType<MockUserService>().As<IUserService>();
+            //builder.RegisterType<ProdService.BaseService>().As<ServiceInterface.IBaseService>();
 
             //2.2 也可以整个程序集的注册
             builder.RegisterAssemblyTypes(typeof(ProdService.BaseService).Assembly)

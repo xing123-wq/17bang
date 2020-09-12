@@ -30,10 +30,10 @@ namespace _17bangMvc.Controllers
             if (!ModelState.IsValid)
             {
                 ViewData["SelectList"] = Series.GetSelectListItems(Series.Get(Series.CurrentUserId.Value));
-                return View(model);
+                throw new Exception("用户输入不服规定");
             }
             Series.Save(model);
-            return View(model);
+            return Redirect("/Article/New");
         }
 
     }

@@ -6,7 +6,7 @@
 {
     <title>@ViewData["title"]</title>
 }
-<script src="~/kindeditor/lang/zh-CN.js"></script>
+@*<script src="~/kindeditor/lang/zh-CN.js"></script>*@
 <script src="~/kindeditor/kindeditor-all.js"></script>
 <link href="~/kindeditor/themes/default/default.css" rel="stylesheet" />
 <link href="~/kindeditor/plugins/code/prettify.css" rel="stylesheet" />
@@ -16,17 +16,6 @@
         color: #b94a48;
     }
 </style>
-<script>
-    KindEditor.ready(function (K) { window.editor = K.create('#editor_id'); });
-       KindEditor.ready(function (K) {
-        window.editor = K.create('#MyEidtor', {
-            fileManagerJson: '@Url.Action("KindFileManager", "Editor")',
-            allowFileManager: true,
-            autoHeightMode : true,
-
-        });
-     });
-</script>
 <div class="container body-content">
     <div class="row">
         <div class="col-md-9">
@@ -49,7 +38,7 @@
                     <label>添加到系列：</label>
                     <a href="/Category/Manage" class="pull-right"><span class="fa fa-cog"></span>管理</a>
                     <div class="input-group">
-                        @Html.DropDownListFor(n => n.Series, ViewData["SelectList"] as IEnumerable<SelectListItem>, "默认分类", new { @class = "form-control", zyf_article_series = "" })
+                        @Html.DropDownListFor(n => n.SeriesId, ViewData["SelectList"] as IEnumerable<SelectListItem>, "默认分类", new { @class = "form-control", zyf_article_series = "" })
                         <a class="btn input-group-addon" data-toggle="modal" data-target="#new-category">
                             <span class="fa fa-plus" data-toggle="tooltip" title="" data-original-title="添加"></span> 新系列
                         </a>
@@ -70,7 +59,7 @@
                 <div class="form-group">
                     <a zyf-ad-delete="" class="text-warning pull-right"><span class="fa fa-remove"></span> 删除</a>
                     <label>之前用过的广告：</label>
-                    @Html.DropDownListFor(n => n.AD, ViewData["ADs"] as IList<SelectListItem>, "使用之前的广告", new { @class = "form-control", zyf_article_Ad = "" })
+                    @Html.DropDownListFor(n => n.ADId, ViewData["ADs"] as IList<SelectListItem>, "使用之前的广告", new { @class = "form-control", zyf_article_Ad = "" })
                 </div>
                 <ul class="hide" zyf-ad-in-widget-history-url="">
                     <li id="5">http://task.zyfei.net/</li>
@@ -176,3 +165,16 @@
         </div>
     </div>
 </div>
+<script>
+
+    $(document).ready(function () {
+        $('[zyf-new-category-submit]').on('click', function (event) {
+            event.preventDefault();
+            var $this = $(this),
+                $form = $this.parents("form");
+            if (!$form.valid()) {
+                return false;
+            }
+        })
+    })
+</script>

@@ -167,16 +167,15 @@ namespace ProdService
                 cfg.CreateMap<Article, ViewModel.Articles.NewModel>(MemberList.None)
                 .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
                 .ForMember(i => i.Body, opt => opt.MapFrom(a => a.Content))
-                .ForMember(i => i.Keyword, opt => opt.MapFrom(a => a.Keywords.Select(k => k.Keyword)))
-                .ForMember(i => i.Series, opt => opt.Ignore())
+                .ForMember(i => i.Keyword, opt => opt.Ignore())
+                .ForMember(i => i.SeriesId, opt => opt.Ignore())
                 .ReverseMap()
                 .ForMember(a => a.Series, opt => opt.Ignore());
 
                 cfg.CreateMap<Series, ViewModel.Category.SeriesModel>(MemberList.None)
-                .ForMember(i => i.Title, opt => opt.MapFrom(s => s.Title))
-                .ForMember(i => i.Body, opt => opt.MapFrom(s => s.Describe))
-                .ForMember(i => i.SeriesLevel, opt => opt.MapFrom(s => s.SeriesLevel))
-                .ForMember(i => i.SeriesLevelId, opt => opt.MapFrom(s => s.SeriesLevelId))
+                .ForMember(i => i.SeriesTitle, opt => opt.MapFrom(s => s.Title))
+                .ForMember(i => i.SeriesBody, opt => opt.MapFrom(s => s.Describe))
+                .ForMember(i => i.LevelId, opt => opt.MapFrom(s => s.LevelId))
                 .ReverseMap();
 
                 cfg.CreateMap<Chat, ViewModel.Chat.ChatItemModel>(MemberList.None)

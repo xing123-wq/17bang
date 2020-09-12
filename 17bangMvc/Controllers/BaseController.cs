@@ -1,5 +1,6 @@
 ﻿using _17bangMvc.Filters;
 using _17bangMvc.Helper;
+using ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace _17bangMvc.Controllers
     {
         public BaseController()
         {
+
         }
         public ActionResult GetByPagePath(string path)
         {

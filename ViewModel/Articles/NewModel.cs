@@ -12,6 +12,7 @@ namespace ViewModel.Articles
     public class NewModel
     {
         [Required(ErrorMessage = "* 正文不能为空")]
+        [AllowHtml]
         [StringLength(2312412, MinimumLength = 5, ErrorMessage = "* 正文不能小于{2}和大于{1}字")]
         public string Body { get; set; }
 
@@ -29,10 +30,7 @@ namespace ViewModel.Articles
         [StringLength(115, ErrorMessage = "* 摘要的长度不能大于155")]
         public string Digest { get; set; }
 
-        [Required(ErrorMessage = "* 系列不能为空")]
-        public Series Series { get; set; }
-
-        public IEnumerable<SelectListItem> Serieses { get; set; }
+        public int? SeriesId { get; set; }
 
         [Required(ErrorMessage = "* 链接不能为空")]
         [Url(ErrorMessage = " * URL格式错误")]
@@ -40,9 +38,7 @@ namespace ViewModel.Articles
 
         [Required(ErrorMessage = "* 文本不能为空")]
         public string text { get; set; }
+        public int? ADId { get; set; }
 
-        [Required(ErrorMessage = "* 广告不能为空")]
-        public Advertising AD { get; set; }
-        public IEnumerable<SelectListItem> ADs { get; set; }
     }
 }

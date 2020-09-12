@@ -16,7 +16,7 @@ namespace DbFactory
             {
                 Author = RegisterFactory.at,
                 Describe = "发生的回访电话",
-                SeriesLevel = null,
+                LevelId = null,
                 Title = "别的办法",
                 PublishTime = Global.Time.AddDays(-1),
                 Articles = new List<Article> { ArticleFactory.JAVA }
@@ -25,7 +25,7 @@ namespace DbFactory
             {
                 Author = RegisterFactory.at,
                 Describe = "讲课费的 发v",
-                SeriesLevel = series1,
+                LevelId = series1.Id,
                 Title = "丰富方法v发发发 ",
                 Articles = new List<Article> { ArticleFactory.SQL },
                 PublishTime = Global.Time.AddDays(-1)
@@ -34,7 +34,7 @@ namespace DbFactory
             {
                 Author = RegisterFactory.at,
                 Describe = "v大师傅士大夫士大夫撒旦",
-                SeriesLevel = null,
+                LevelId = null,
                 Title = "发射点发射点发射点发射点",
                 PublishTime = Global.Time.AddDays(-1),
                 Articles = new List<Article> { ArticleFactory.UI },

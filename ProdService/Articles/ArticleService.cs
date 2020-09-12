@@ -27,6 +27,7 @@ namespace ProdService.Articles
         {
             Article article = mapper.Map<Article>(model);
             article.Author = GetByCurrentUser();
+            article.Keywords = repository.GetString(model.Keyword);
             article.PublishTime = DateTime.Now;
             repository.Add(article);
             return article.Id;

@@ -170,28 +170,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
-    <Content Include="bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
-    <Content Include="bootstrap-3.3.7-dist\css\bootstrap.css" />
-    <Content Include="bootstrap-3.3.7-dist\css\bootstrap.min.css" />
-    <Content Include="bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="bootstrap-3.3.7-dist\js\bootstrap.js" />
-    <Content Include="bootstrap-3.3.7-dist\js\bootstrap.min.js" />
-    <Content Include="bootstrap-3.3.7-dist\js\npm.js" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-grid.css" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-grid.min.css" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-reboot.css" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-reboot.min.css" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap.css" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap.min.css" />
-    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.bundle.js" />
-    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.bundle.min.js" />
-    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.js" />
-    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.min.js" />
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="DevTrends.MvcDonutCaching.README.txt" />
@@ -427,8 +405,6 @@
     <Content Include="kindeditor\themes\qq\editor.gif" />
     <Content Include="kindeditor\themes\qq\qq.css" />
     <Content Include="kindeditor\themes\simple\simple.css" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chat\Ajax.js" />
@@ -475,45 +451,14 @@
     <Content Include="kindeditor\jsp\demo.jsp" />
     <Content Include="kindeditor\jsp\file_manager_json.jsp" />
     <Content Include="kindeditor\jsp\upload_json.jsp" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-grid.css.map" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-grid.min.css.map" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-reboot.css.map" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap-reboot.min.css.map" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap.css.map" />
-    <Content Include="bootstrap-4.5.0-dist\css\bootstrap.min.css.map" />
-    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.bundle.js.map" />
-    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.bundle.min.js.map" />
-    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.js.map" />
-    <Content Include="bootstrap-4.5.0-dist\js\bootstrap.min.js.map" />
-    <Content Include="bootstrap-3.3.7-dist\css\bootstrap-theme.css.map" />
-    <Content Include="bootstrap-3.3.7-dist\css\bootstrap-theme.min.css.map" />
-    <Content Include="bootstrap-3.3.7-dist\css\bootstrap.css.map" />
-    <Content Include="bootstrap-3.3.7-dist\css\bootstrap.min.css.map" />
-    <Content Include="bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
-    <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\JavaScript1.js" />
-    <Content Include="Scripts\jquery-3.5.1.js" />
-    <Content Include="Scripts\jquery-3.5.1.min.js" />
-    <Content Include="Scripts\jquery-3.5.1.slim.js" />
-    <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -640,8 +585,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.5.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DrawingOperations\DrawingOperations.csproj">

@@ -15,7 +15,7 @@ namespace Repositorys
         }
         public IList<Series> GetSeries(int userId)
         {
-            return entities.Where(s => s.Author.Id == userId).Include(s => s.SeriesLevel).ToList();
+            return entities.Where(s => s.Author.Id == userId).ToList();
         }
     }
 }

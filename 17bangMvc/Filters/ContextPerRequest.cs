@@ -10,7 +10,7 @@ namespace _17bangMvc.Filters
 {
     public class ContextPerRequest : ActionFilterAttribute
     {
-        private IBaseService _Service { get; set; }
+        private IBaseService _Service;
         public ContextPerRequest()
         {
             _Service = new BaseService();
