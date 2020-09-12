@@ -11,21 +11,21 @@ using ViewModel.LogOn;
 
 namespace _17bangMvc.Controllers
 {
-    public class LogController : BaseController
+    public class LogOnController : BaseController
     {
         private ILogOnService _service;
-        public LogController(ILogOnService service)
+        public LogOnController(ILogOnService service)
         {
             this._service = service;
         }
+
         [HttpGet]
-        //[Route("Log/On")]
         public ActionResult On()
         {
             ViewData["title"] = "用户登录:一起帮";
             return View();
         }
-        //[Route("Log/On")]
+
         [HttpPost]
         public ActionResult On(IndexModel model)
         {
@@ -54,6 +54,7 @@ namespace _17bangMvc.Controllers
             string path = Request.QueryString[Const.PAGE_PATH];
             return GetByPagePath(path);
         }
+
         [HttpGet]
         [Route("Log/Off")]
         public ActionResult Off()
@@ -62,6 +63,24 @@ namespace _17bangMvc.Controllers
             Response.Cookies[Const.USER_PASSWORD].Expires = DateTime.Now.AddDays(-1);
             string path = Request.QueryString[Const.PAGE_PATH];
             return GetByPagePath(path);
+        }
+
+        public PartialViewResult _LogOn()
+        {
+            HttpCookie IdCookie = Request.Cookies.Get(Const.USER_ID);
+            if (IdCookie != null)
+            {
+                string password = Request.Cookies[Const.USER_PASSWORD].Value;
+                ViewModel.LogOn.IndexModel user = _service.GetBy();
+                if (user != null)
+                {
+                    if (user.Password == password)
+                    {
+                        ViewData[Const.USER_NAME] = user.UserName;
+                    }
+                }
+            }
+            return PartialView();
         }
     }
 }

@@ -26,41 +26,7 @@ namespace _17bangMvc.Controllers
         {
 
         }
-
-        [ChildActionOnly]
-        public PartialViewResult _Article()
-        {
-            return PartialView();
-        }
-        [ChildActionOnly]
-        public PartialViewResult _Keyword()
-        {
-            return PartialView();
-        }
-        [ChildActionOnly]
-        public PartialViewResult _RankingList()
-        {
-            return PartialView();
-        }
-        [ChildActionOnly]
-        public PartialViewResult _LogOn()
-        {
-            HttpCookie IdCookie = Request.Cookies.Get(Const.USER_ID);
-            if (IdCookie != null)
-            {
-                string password = Request.Cookies[Const.USER_PASSWORD].Value;
-                ViewModel.LogOn.IndexModel user = _service.GetBy();
-                if (user != null)
-                {
-                    if (user.Password == password)
-                    {
-                        ViewData[Const.USER_NAME] = user.UserName;
-                    }
-                }
-            }
-
-            return PartialView();
-        }
+       
 
         public ActionResult Captcha()
         {

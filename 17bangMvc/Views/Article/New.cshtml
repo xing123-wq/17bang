@@ -6,14 +6,31 @@
 {
     <title>@ViewData["title"]</title>
 }
-@*<script src="~/kindeditor/lang/zh-CN.js"></script>*@
 <script src="~/kindeditor/kindeditor-all.js"></script>
+<script src="~/kindeditor/lang/zh-CN.js"></script>
 <link href="~/kindeditor/themes/default/default.css" rel="stylesheet" />
 <link href="~/kindeditor/plugins/code/prettify.css" rel="stylesheet" />
 <script src="~/kindeditor/plugins/code/prettify.js"></script>
+<script>
+        KindEditor.ready(function (K) { window.editor = K.create('#editor_id'); });
+    KindEditor.ready(function (K) {
+        window.editor = K.create('#MyEidtor', {
+            fileManagerJson: '@Url.Action("KindFileManager", "Editor")',
+            allowFileManager: true,
+            autoHeightMode : true,
+        });
+    });
+
+</script>
 <style>
     .field-validation-error {
         color: #b94a48;
+    }
+
+    .yellow-highlight {
+        background-color: lightyellow;
+        border: 2px dashed #eee;
+        border-radius: 4px 5px;
     }
 </style>
 <div class="container body-content">
@@ -27,12 +44,12 @@
                 <div class="form-group">
                     <label>标题(*必填)</label>
                     @Html.TextBoxFor(n => n.Title, "", new { @class = "form-control", placeholder = "来一个醒目的标题吧" })
-                    @Html.ValidationMessageFor(n => n.Title, "", new { @class = "field-validation-valid" })
+                    @Html.ValidationMessageFor(n => n.Title)
                 </div>
                 <div class="form-group">
                     <label>内容(*必填)</label>
-                    <textarea name="Body" class="form-control" style="width:100%;height:450px;" id="MyEidtor"></textarea>
-                    @Html.ValidationMessageFor(n => n.Body, "", new { @class = "field-validation-valid" })
+                    @Html.TextAreaFor(m => m.Body, new { @class = "form-control", rows = "30", style = "width:100%;height:450px;", id = "MyEidtor", placeholder = "请直接粘贴原生HTML代码", zyf_kindeditor = "" })
+                    @Html.ValidationMessageFor(n => n.Body)
                 </div>
                 <div class="form-group">
                     <label>添加到系列：</label>
@@ -49,7 +66,7 @@
                         关键字：（* 必填）
                     </label>
                     @Html.TextBoxFor(n => n.Keyword, "", new { @class = "form-control", placeholder = "用空格分割，总长度不超过25个字符" })
-                    @Html.ValidationMessageFor(n => n.Keyword, "", new { @class = "field-validation-valid" })
+                    @Html.ValidationMessageFor(n => n.Keyword)
                 </div>
                 <div class="form-group">
                     <label>摘要：（* 建议填写）</label>
@@ -73,12 +90,12 @@
                     <div class="form-group">
                         <label>文字内容：（* 必填）</label>
                         @Html.TextBoxFor(n => n.text, "", new { @class = "form-control", placeholder = "最多不超过24个字符" })
-                        @Html.ValidationMessageFor(n => n.text, "", new { @class = "field-validation-valid" })
+                        @Html.ValidationMessageFor(n => n.text)
                     </div>
                     <div class="form-group">
                         <label>链接：（* 必填）</label>
                         @Html.TextBoxFor(n => n.Interlinkage, "", new { @class = "form-control", placeholder = "http或https开头的网址" })
-                        @Html.ValidationMessageFor(n => n.Interlinkage, "", new { @class = "field-validation-valid" })
+                        @Html.ValidationMessageFor(n => n.Interlinkage)
                     </div>
                 </section>
                 <div class="submit">

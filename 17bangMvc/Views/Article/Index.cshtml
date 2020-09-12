@@ -1,6 +1,5 @@
 ﻿@model  IEnumerable<ViewModel.Articles.IndexModel>
 @using ProdService
-@using _17bangMvc.Helper
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
 }
@@ -88,27 +87,5 @@
             @Html.Partial("_Advertising")
         </div><!-- /.modal -->
     </div>
-    <nav>
-        @{
-            int currentPageIndex = Convert.ToInt32(ViewContext.RouteData.Values["id"]);
-            int SumProblems = ExtensionMethods.Select.GetSum(Model) / Const.PAGE_SIZE;
-        }
-        <ul class="pagination">
-            @if (currentPageIndex > 1)
-            {
-                <li><a href="/Article/Page-@(currentPageIndex-1)">&lt;&lt;</a></li>
-            }
-            @if (currentPageIndex <= SumProblems)
-            {
-                for (int i = 1; i <= SumProblems + 1; i++)
-                {
-                    <li class="active"><a href="/Article/Page-@i">@(i)</a></li>
-                }
-                if (currentPageIndex <= SumProblems)
-                {
-                    <li><a href="/Article/Page-@(currentPageIndex+1)">&gt;&gt;</a></li>
-                }
-            }
-        </ul>
-    </nav>
+  @Html.Partial("_Pager",Model)
 </div>

@@ -578,6 +578,7 @@
     <Content Include="Views\Article\Category.cshtml" />
     <Content Include="Views\Article\User\Index.cshtml" />
     <Content Include="Views\Shared\_Series.cshtml" />
+    <Content Include="Views\Shared\_Pager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

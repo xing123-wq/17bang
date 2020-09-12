@@ -47,6 +47,7 @@ namespace _17bangMvc.Controllers
         [HttpPost]
         public ActionResult New(NewModel model)
         {
+            ModelState.Remove("Digest");
             if (!ModelState.IsValid)
             {
                 ViewData["SelectList"] = _series.GetSelectListItems(_series.Get(_service.CurrentUserId.Value));
@@ -56,7 +57,7 @@ namespace _17bangMvc.Controllers
             }
             if (string.IsNullOrEmpty(model.Digest))
             {
-                model.Digest = model.Body.Substring(115);
+                model.Digest = model.Body.Substring(15);
             }
             _service.Save(model);
             return Redirect("/Article");
