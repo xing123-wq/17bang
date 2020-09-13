@@ -81,5 +81,15 @@ namespace _17bangMvc.Controllers
         }
         #endregion
 
+        #region Url:/Article/{Id}; Requset: Get;
+        [HttpGet]
+        public ActionResult Single(int Id)
+        {
+            IndexModel model = new IndexModel();
+            model = _service.GetSingle(Id);
+            ViewData["title"] = model.Title + ".一起帮";
+            return View(model);
+        }
+        #endregion
     }
 }

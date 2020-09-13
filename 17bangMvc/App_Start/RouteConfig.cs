@@ -30,6 +30,14 @@ namespace _17bangMvc
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
             routes.MapRoute(
+                name: "ArticleSingle",
+                url: "{controller}/{Id}",
+                defaults: new { controller = "Article", action = "Single", Id = UrlParameter.Optional },
+                constraints: new { Id = @"^[0-9]*[1-9][0-9]*$" });
+
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapMvcAttributeRoutes();
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

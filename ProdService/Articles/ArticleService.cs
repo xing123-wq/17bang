@@ -20,6 +20,7 @@ namespace ProdService.Articles
         {
             repository = new ArticleRepository(context);
         }
+
         public IList<ViewModel.Articles.IndexModel> GetBy(int sum)
         {
             IList<Article> articles = repository.GetArticles(sum);
@@ -48,6 +49,12 @@ namespace ProdService.Articles
             article.PublishTime = DateTime.Now;
             repository.Add(article);
             return article.Id;
+        }
+
+        public IndexModel GetSingle(int id)
+        {
+            Article article = repository.GetArticle(id);
+            return mapper.Map<IndexModel>(article);
         }
     }
 }

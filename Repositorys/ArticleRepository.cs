@@ -13,6 +13,7 @@ namespace Repositorys
         public ArticleRepository(SQLContext context) : base(context)
         {
         }
+
         public IList<Article> GetArticles(int sum)
         {
             return entities.Include(a => a.Keywords.Select(k => k.Keyword))
@@ -20,10 +21,15 @@ namespace Repositorys
                 .OrderByDescending(a => a.PublishTime)
                 .ToList();
         }
+
         public Article GetArticle(int id)
         {
-            return entities.Where(a => a.Id == id).SingleOrDefault();
+            return entities.Where(a => a.Id == id)
+                .Include(a => a.Author)
+                .Include(a => a.Keywords.Select(k => k.Keyword))
+                .SingleOrDefault();
         }
+
         public IList<ArticleAndKeyword> GetString(string keyword)
         {
             IList<ArticleAndKeyword> maps = new List<ArticleAndKeyword>();

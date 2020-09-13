@@ -188,6 +188,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\logo-big.ico" />
     <Content Include="img\qq-group.png" />
+    <Content Include="img\源栈上课啦.jpg" />
     <Content Include="kindeditor\asp.net\demo.aspx" />
     <Content Include="kindeditor\asp.net\README.txt" />
     <Content Include="kindeditor\asp\demo.asp" />
@@ -578,6 +579,7 @@
     <Content Include="Views\Article\User.cshtml" />
     <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
+    <Content Include="Views\Article\Single.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

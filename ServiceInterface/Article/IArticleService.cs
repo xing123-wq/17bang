@@ -14,5 +14,6 @@ namespace ServiceInterface
         IList<ViewModel.Articles.IndexModel> GetBy(int sum);
         int Save(NewModel model);
         ViewModel.Articles.User.IndexModel GetCurrentArticle(Pager pager, int Id);
+        IndexModel GetSingle(int id);
     }
 }
