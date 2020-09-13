@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace ViewModel.Articles
 {
-    public class IndexModel
+    public class IndexModel : BaseModel
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
         public IList<ArticleAndKeyword> Keywords { get; set; }
         public DateTime PublishTime { get; set; }
-        public User Author { get; set; }
+        public Users Author { get; set; }
     }
 }

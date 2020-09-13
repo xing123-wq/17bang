@@ -12,7 +12,7 @@ namespace BLL
         public string Content { get; set; }
         public DateTime PublishTime { get; set; }
         public int AuthorId { get; set; }
-        public User Author { get; set; }
+        public Users Author { get; set; }
         public IList<ProblemAndKeyword> Keywords { get; set; }
     }
 }

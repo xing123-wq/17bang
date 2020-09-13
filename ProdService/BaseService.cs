@@ -34,14 +34,14 @@ namespace ProdService
                 return context;
             }
         }
-        public User GetByCurrentUser()
+        public Users GetByCurrentUser()
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies["UserId"];
             if (cookie != null)
             {
                 int userId = Convert.ToInt32(cookie.Value);
                 string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
-                User user = new User();
+                Users user = new Users();
                 user = _userRepositroy.GetById(userId);
                 if (user == null)
                 {
@@ -64,7 +64,7 @@ namespace ProdService
                 {
                     int userId = Convert.ToInt32(cookie.Value);
                     string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
-                    User user = new User();
+                    Users user = new Users();
                     user = _userRepositroy.GetById(userId);
                     if (user == null)
                     {
@@ -131,7 +131,7 @@ namespace ProdService
         {
             autoMapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<User, ViewModel.Register.IndexModel>(MemberList.None)
+                cfg.CreateMap<Users, ViewModel.Register.IndexModel>(MemberList.None)
                 .ForMember(i => i.UserName, opt => opt.MapFrom(u => u.Name))
                 .ForMember(i => i.ConfirmPassword, opt => opt.Ignore())
                 .ForMember(i => i.SecurityCode, opt => opt.Ignore())
@@ -140,7 +140,7 @@ namespace ProdService
                 .ReverseMap()
                 .ForMember(u => u.Inviter, opt => opt.Ignore());
 
-                cfg.CreateMap<User, ViewModel.LogOn.IndexModel>(MemberList.None)
+                cfg.CreateMap<Users, ViewModel.LogOn.IndexModel>(MemberList.None)
                 .ForMember(i => i.UserName, opt => opt.MapFrom(u => u.Name))
                 .ForMember(i => i.Password, opt => opt.MapFrom(u => u.Password))
                 .ForMember(i => i.SecurityCode, opt => opt.Ignore())

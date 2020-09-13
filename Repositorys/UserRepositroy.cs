@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace Repositorys
 {
-    public class UserRepositroy : BaseRepository<User>
+    public class UserRepositroy : BaseRepository<Users>
     {
         public UserRepositroy(SQLContext context) : base(context)
         {
         }
 
-        public User GetById(int id)
+        public Users GetById(int id)
         {
             return entities.Where(u => u.Id == id).SingleOrDefault();
         }
-        public User GetByName(string name)
+        public Users GetByName(string name)
         {
             return entities.Where(u => u.Name == name).FirstOrDefault();
 
         }
-        public User GetByInviter(string inviter)
+        public Users GetByInviter(string inviter)
         {
             return entities.FirstOrDefault(u => u.Name == inviter);
         }

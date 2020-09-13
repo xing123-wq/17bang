@@ -1,5 +1,6 @@
 ﻿using _17bangMvc.Helper;
 using ExtensionMethods;
+using Global;
 using ProdService;
 using ServiceInterface;
 using System;

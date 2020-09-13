@@ -14,7 +14,7 @@ namespace ProdService
 {
     public class RegisterService : BaseService, IRegisterService
     {
-        private User _user;
+        private Users _user;
         public IndexModel GetBy(string name)
         {
              _user = _userRepositroy.GetByName(name);
@@ -22,7 +22,7 @@ namespace ProdService
         }
         public int Register(IndexModel model)
         {
-            _user = mapper.Map<User>(model);
+            _user = mapper.Map<Users>(model);
             _user.InviterCode = StringExtension.GetRandomNumber(4);
             _user.Password = StringExtension.GetMd5Hash(model.Password);
             _user.Inviter = _userRepositroy.GetByInviter(model.Inviter);

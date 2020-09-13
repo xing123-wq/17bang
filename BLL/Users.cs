@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class User : BaseEntity
+    public class Users : BaseEntity
     {
         public string Name { get; set; }
         public string Password { get; set; }
         public int? InviterId { get; set; }
-        public User Inviter { get; set; }
+        public Users Inviter { get; set; }
         public string InviterCode { get; set; }
         public int WalletId { get; set; }
         public IList<Advertising> Advertisings { get; set; }

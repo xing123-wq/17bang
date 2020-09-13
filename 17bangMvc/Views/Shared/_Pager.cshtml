@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<object>
 @using ProdService
-@using _17bangMvc.Helper
+@using Global
+@{
+    Layout = null;
+}
 <nav>
     @{
         int currentPageIndex = Convert.ToInt32(ViewContext.RouteData.Values["id"]);

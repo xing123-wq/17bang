@@ -12,7 +12,7 @@ namespace ProdService
 {
     public class LogOnService : BaseService, ILogOnService
     {
-        private User _user;
+        private Users _user;
         public IndexModel GetByName(string name)
         {
             _user = _userRepositroy.GetByName(name);
@@ -25,7 +25,7 @@ namespace ProdService
         }
         public int LogOn(IndexModel model)
         {
-            _user = mapper.Map<User>(model);
+            _user = mapper.Map<Users>(model);
             _user = _userRepositroy.GetByName(model.UserName);
             return _user.Id;
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using Global;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +11,8 @@ namespace ServiceInterface
 {
     public interface IArticleService : IBaseService
     {
-        IList<IndexModel> GetBy(int sum);
+        IList<ViewModel.Articles.IndexModel> GetBy(int sum);
         int Save(NewModel model);
-
+        ViewModel.Articles.User.IndexModel GetCurrentArticle(Pager pager, int Id);
     }
 }

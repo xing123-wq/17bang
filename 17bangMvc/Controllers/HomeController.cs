@@ -10,11 +10,15 @@ namespace _17bangMvc.Controllers
 {
     public class HomeController : BaseController
     {
+        #region Constructor 
         private IBaseService service;
         public HomeController(IBaseService service)
         {
             this.service = service;
         }
+        #endregion
+
+        #region Url:Index; Requset:Get;
         [HttpGet]
         public ActionResult Index(IndexModel model)
         {
@@ -22,21 +26,6 @@ namespace _17bangMvc.Controllers
             model.CurrentUserId = service.CurrentUserId;
             return View(model);
         }
-        //[HttpPost]
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-        public ActionResult About()
-        {
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-
-            return View();
-        }
+        #endregion
     }
 }

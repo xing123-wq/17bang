@@ -15,7 +15,10 @@ namespace Repositorys
         }
         public IList<Article> GetArticles(int sum)
         {
-            return entities.Include(a => a.Keywords.Select(k => k.Keyword)).Include(u => u.Author).OrderByDescending(a => a.PublishTime).ToList();
+            return entities.Include(a => a.Keywords.Select(k => k.Keyword))
+                .Include(u => u.Author)
+                .OrderByDescending(a => a.PublishTime)
+                .ToList();
         }
         public Article GetArticle(int id)
         {
@@ -38,6 +41,15 @@ namespace Repositorys
                 }
             }
             return maps;
+        }
+
+        public IList<Article> GetByUserId(int id)
+        {
+            return entities.Include(a => a.Keywords.Select(k => k.Keyword))
+                .Include(u => u.Author)
+                .OrderByDescending(a => a.PublishTime)
+                .Where(a => a.Author.Id == id)
+                .ToList();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ProdService
         }
         public string GetAuthorName()
         {
-            User user = GetByCurrentUser();
+            Users user = GetByCurrentUser();
             return user.Name;
         }
 

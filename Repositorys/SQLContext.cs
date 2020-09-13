@@ -19,7 +19,7 @@ namespace Repositorys
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>();
+            modelBuilder.Entity<Users>();
             modelBuilder.Entity<Problem>();
             modelBuilder.Entity<ProblemAndKeyword>();
             modelBuilder.Entity<Keyword>();

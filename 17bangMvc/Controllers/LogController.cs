@@ -1,5 +1,6 @@
 ﻿using _17bangMvc.Helper;
 using ExtensionMethods;
+using Global;
 using ProdService;
 using ServiceInterface;
 using System;
@@ -11,14 +12,17 @@ using ViewModel.LogOn;
 
 namespace _17bangMvc.Controllers
 {
-    public class LogOnController : BaseController
+    public class LogController : BaseController
     {
+        #region Constructor
         private ILogOnService _service;
-        public LogOnController(ILogOnService service)
+        public LogController(ILogOnService service)
         {
             this._service = service;
         }
+        #endregion
 
+        #region Url:/Log/On; Requset:Get,Post
         [HttpGet]
         public ActionResult On()
         {
@@ -54,7 +58,9 @@ namespace _17bangMvc.Controllers
             string path = Request.QueryString[Const.PAGE_PATH];
             return GetByPagePath(path);
         }
+        #endregion
 
+        #region Url:/Log/Off; Requset:Get;
         [HttpGet]
         [Route("Log/Off")]
         public ActionResult Off()
@@ -64,7 +70,9 @@ namespace _17bangMvc.Controllers
             string path = Request.QueryString[Const.PAGE_PATH];
             return GetByPagePath(path);
         }
+        #endregion
 
+        #region PartialView:_LogOn;
         public PartialViewResult _LogOn()
         {
             HttpCookie IdCookie = Request.Cookies.Get(Const.USER_ID);
@@ -82,5 +90,6 @@ namespace _17bangMvc.Controllers
             }
             return PartialView();
         }
+        #endregion
     }
 }

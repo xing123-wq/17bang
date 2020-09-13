@@ -9,9 +9,8 @@ using System.Web.Mvc;
 
 namespace ViewModel.Category
 {
-    public class SeriesModel
+    public class SeriesModel : BaseModel
     {
-        public int Id { get; set; }
         [Required(ErrorMessage = "* 名称不能为空")]
         [MaxLength(25, ErrorMessage = "* 名称的长度不能大于25")]
         public string SeriesTitle { get; set; }

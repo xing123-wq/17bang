@@ -1,5 +1,5 @@
-﻿using _17bangMvc.Helper;
-using ExtensionMethods;
+﻿using ExtensionMethods;
+using Global;
 using ProdService;
 using ProdService.Articles;
 using ProdService.Category;
@@ -16,25 +16,31 @@ namespace _17bangMvc.Controllers
 {
     public class ArticleController : BaseController
     {
+        #region Constructor 
         private IArticleService _service;
         private ISeriesService _series;
         private IAdvertisingService _ad;
-        public int pageindex { get; set; }
         public ArticleController(IArticleService service, ISeriesService series, IAdvertisingService ad)
         {
             this._service = service;
             this._series = series;
             this._ad = ad;
         }
+        #endregion
+
+        #region Url:/Article;Requset:Get;
         [HttpGet]
         public ActionResult index(IEnumerable<IndexModel> model)
         {
             ViewData["title"] = "精品文章-一起帮";
-            pageindex = Convert.ToInt32(RouteData.Values["Id"]);//有了Id可以省略
-            model = Select.Get(_service.GetBy(3), pageindex, Const.PAGE_SIZE);
+            Pager pager = new Pager();
+            pager.PageIndex = Convert.ToInt32(RouteData.Values["Id"]);
+            model = Select.Get(_service.GetBy(3), pager.PageIndex, Const.PAGE_SIZE);
             return View(model);
         }
+        #endregion
 
+        #region Url:/Article/New; Requset:Get,Post;
         [HttpGet]
         public ActionResult New()
         {
@@ -62,6 +68,18 @@ namespace _17bangMvc.Controllers
             _service.Save(model);
             return Redirect("/Article");
         }
+        #endregion
+
+        #region Url:/Aticle/User-{Id}; Requset:Get,Post;
+        [HttpGet]
+        public new ActionResult User(int Id)
+        {
+            ViewData["title"] = "精品文章.一起帮";
+            Pager pager = new Pager();
+            pager.PageIndex = Convert.ToInt32(RouteData.Values["Id"]);
+            return View("User", _service.GetCurrentArticle(pager, Id));
+        }
+        #endregion
 
     }
 }

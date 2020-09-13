@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel.Ad
 {
-    public class IndexModel
+    public class IndexModel : BaseModel
     {
         [Required(ErrorMessage = "* 文本不能为空")]
         [MaxLength(30, ErrorMessage = "* 文本的长度不能大于30")]

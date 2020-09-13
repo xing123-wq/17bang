@@ -155,7 +155,7 @@
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LogOnController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SeriesController.cs" />
@@ -165,7 +165,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\Const.cs" />
     <Compile Include="Helper\CookieHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -576,7 +575,7 @@
     <Content Include="Views\Chat\Room.cshtml" />
     <Content Include="Views\Category\Manage.cshtml" />
     <Content Include="Views\Article\Category.cshtml" />
-    <Content Include="Views\Article\User\Index.cshtml" />
+    <Content Include="Views\Article\User.cshtml" />
     <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
   </ItemGroup>
@@ -595,6 +594,10 @@
     <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
       <Project>{c1d93a0b-55ff-4097-ac41-06f5b5956f86}</Project>
       <Name>ExtensionMethods</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Global\Global.csproj">
+      <Project>{EA5D9B11-26EA-4A8D-8637-E9C28E12AC34}</Project>
+      <Name>Global</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProdService\ProdService.csproj">
       <Project>{13ea5bb3-4a54-4668-916a-8cfcecba94e9}</Project>

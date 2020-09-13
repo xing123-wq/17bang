@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace ViewModel.Chat
 {
-    public class ChatItemModel
+    public class ChatItemModel : BaseModel
     {
-        public int Id { get; set; }
         public DateTime PublishTime { get; set; }
         public string Content { get; set; }
         public int ChatAuthorId { get; set; }

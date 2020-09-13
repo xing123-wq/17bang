@@ -1,6 +1,7 @@
 ﻿using _17bangMvc.Helper;
 using DrawingOperations;
 using ExtensionMethods;
+using Global;
 using Microsoft.Ajax.Utilities;
 using ProdService;
 using ServiceInterface;
@@ -17,17 +18,14 @@ namespace _17bangMvc.Controllers
     [Serializable]
     public class SharedController : BaseController
     {
-        private ILogOnService _service;
-        public SharedController(ILogOnService _service)
-        {
-            this._service = _service;
-        }
+        #region Constructor
         public SharedController()
         {
 
         }
-       
+        #endregion
 
+        #region Captcha
         public ActionResult Captcha()
         {
             string length = StringExtension.GetRandomNumber(4);
@@ -38,5 +36,6 @@ namespace _17bangMvc.Controllers
             Verification.image.Save(stream, ImageFormat.Jpeg);
             return File(stream.ToArray(), "image/png");
         }
+        #endregion
     }
 }

@@ -12,9 +12,9 @@ namespace BLL
         public DateTime SpendingTime { get; set; }
 
         public int OwnerId { get; set; }
-        public User Owner { get; set; }
+        public Users Owner { get; set; }
 
-        public BanMoney SetBanMoney(User user)
+        public BanMoney SetBanMoney(Users user)
         {
             Random random = new Random();
             return new BanMoney { BanCoin = random.Next(1, 10), Owner = user };

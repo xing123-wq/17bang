@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace _17bangMvc.Helper
+namespace Global
 {
     public class Const
     {

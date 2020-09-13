@@ -11,26 +11,26 @@ namespace DbFactory
 {
     public class RegisterFactory
     {
-        public static User at, wpz, lzb;
-        static IEnumerable<User> users;
+        public static Users at, wpz, lzb;
+        static IEnumerable<Users> users;
         const string password = "1234";
         static RegisterFactory()
         {
-            at = new User
+            at = new Users
             {
                 Name = "阿泰12",
                 Password = password.GetMd5Hash(),
                 Inviter = at,
                 InviterCode = StringExtension.GetRandomNumber(4),
             };
-            wpz = new User
+            wpz = new Users
             {
                 Name = "王胖子",
                 Password = password.GetMd5Hash(),
                 Inviter = at,
                 InviterCode = StringExtension.GetRandomNumber(4)
             };
-            lzb = new User
+            lzb = new Users
             {
                 Name = "小李头哦",
                 Password = password.GetMd5Hash(),
@@ -40,7 +40,7 @@ namespace DbFactory
         }
         public static void Create()
         {
-            users = new List<User>
+            users = new List<Users>
             {
                 at,wpz,lzb
 

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ViewModel.Keyword
 {
-    public class IndexModel
+    public class IndexModel : BaseModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public int Usd { get; set; }
     }

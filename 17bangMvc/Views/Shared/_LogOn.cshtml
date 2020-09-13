@@ -1,4 +1,8 @@
-﻿@using _17bangMvc.Helper
+﻿@using Global
+@using ProdService
+@{
+    BaseService service = new BaseService();
+}
 @if (ViewData[Const.USER_NAME] == null)
 {
     <li class="dropdown">
@@ -25,7 +29,7 @@ else
         <a href="/Article" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="iconfont icon-articles"></span> 文章</a>
         <ul class="dropdown-menu" role="menu">
             <li><a href="/Article"><span class="fa fa-list fa-fw"></span> 列表</a> </li>
-            <li><a href="/Article/User-7"><span class="fa fa-home fa-fw"></span> 我的</a></li>
+            <li><a href="/Article/User-@service.CurrentUserId"><span class="fa fa-home fa-fw"></span> 我的</a></li>
             <li><a href="/Article/New"><span class="fa fa-pencil fa-fw"></span> 发布</a></li>
             <li><a href="/Category/Manage"><span class="fa fa-folder-open-o"></span> 系列</a></li>
             <li><a href="/Article/Publisher"><span class="fa fa-certificate fa-fw"></span> 授权</a></li>

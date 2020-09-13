@@ -1,4 +1,5 @@
-﻿using Repositorys;
+﻿using BLL;
+using Repositorys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace ServiceInterface
         void Rollback();
         void ClearContext();
         int? CurrentUserId { get; }
+        Users GetByCurrentUser();
     }
 }
