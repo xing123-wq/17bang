@@ -36,6 +36,7 @@ namespace _17bangMvc.Controllers
             if (!ModelState.IsValid)
             {
                 ViewData["title"] = "用户登录:一起帮";
+                return View(model);
             }
             IndexModel user = _service.GetByName(model.UserName);
             if (user == null)

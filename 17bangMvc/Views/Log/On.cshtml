@@ -55,14 +55,14 @@
                         <br>
                         <span>
                             @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control", id = "phpernote" })
-                            @Html.ValidationMessageFor(u => u.SecurityCode, "", new { style = "color:red", id = "checkCode" })
+                            @Html.ValidationMessageFor(u => u.SecurityCode, "", new { style = "color:red" })
                             <a name="imageCode">
                             </a>
                             <a href="#" style="font-size: 12px; display: none">
                                 看不清楚
                             </a>
                             <span>点击输入框显示</span>
-                            <span class="field-validation-error"></span>
+                            <span class="field-validation-error" id="checkCode"></span>
                             <br>
                         </span>
                     </div>

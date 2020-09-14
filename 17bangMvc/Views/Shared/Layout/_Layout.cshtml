@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -9,7 +8,6 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <link href="~/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
-    <script src="~/Scripts/JavaScript1.js"></script>
     <link href="~/Content/Site.css" rel="stylesheet" />
     <title>@ViewData["title"]</title>
 </head>
@@ -101,6 +99,11 @@
             <p class="pull-right"><a href="http://www.miitbeian.gov.cn">渝ICP备18007191号（备案）</a>© 2020 - 首顾科技</p>
         </footer>
     </div>
+    <script>
+        $('#phpernote').focus(function () {
+            $('#checkCode').html('<img src="/Shared/Captcha" />');
+        });
+    </script>
 </body>
 </html>
 
