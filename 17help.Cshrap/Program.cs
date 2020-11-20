@@ -12,6 +12,7 @@ namespace ConsoleApp3
     {
         static void Main()
         {
+            #region ADO.NET
             DBhelper dBhelper = new DBhelper();
             string ConnectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=add;Integrated Security=True;";
             SqlConnection connection = new SqlConnection(ConnectionString);
@@ -21,8 +22,10 @@ namespace ConsoleApp3
             //string SelectUsers = "SELECT * FROM Register";
             //string InsertUser = "INSERT Register VALUES(@UserName,@UserPassword)";
             //string saveUser = "INSERT Register VALUES(@UserName,@UserPassword)";
+            #endregion
+
         }
-  
+
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
         public static int GetWater(ProvideWater provide)
         {
