@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ConsoleApp3
 {
-    public class Student : Entity<int>
+    public class Student : Entity<int>, IMyCompare<Student>
     {
         public string Name { get; set; }
         public int Age { get; set; }
@@ -16,6 +17,10 @@ namespace ConsoleApp3
             {
                 _dBhelper = new DBhelper();
             }
+        }
+        public Student(int age)
+        {
+            this.Age = age;
         }
         public static void SaveSome(params Student[] students)
         {
@@ -70,6 +75,15 @@ namespace ConsoleApp3
             Console.WriteLine(Student[2]);
             Console.WriteLine(Student[3]);
             Console.WriteLine(Student[4]);
+        }
+
+        public int CompareTo([AllowNull] Student other)
+        {
+            if (other == null)
+            {
+                return -1;
+            }
+            return this.Age.CompareTo(other.Age);
         }
     }
     //internal struct StudentInformation

@@ -18,14 +18,28 @@ namespace ConsoleApp3
             SqlConnection connection = new SqlConnection(ConnectionString);
             //string saveUser = "INSERT Register VALUES(N'阿泰')";
             //dBhelper.ExecuteNonQuery(saveUser,connection);
-            string name = Console.ReadLine();
+            //string name = Console.ReadLine();
             //string SelectUsers = "SELECT * FROM Register";
             //string InsertUser = "INSERT Register VALUES(@UserName,@UserPassword)";
             //string saveUser = "INSERT Register VALUES(@UserName,@UserPassword)";
             #endregion
 
+            #region binarySeek
+            Student student = new Student(12);
+            Student student1 = new Student(19);
+            Student student2 = new Student(15);
+            Student student3 = new Student(10);
+
+            IList<Student> students = new List<Student>
+            {
+                student,student1,student2,student3
+            };
+
+            DataStucture<Student>.binarySeek(students, student);
+            #endregion
         }
 
+        #region 委托方法
         //声明一个方法GetWater()，该方法接受ProvideWater作为参数，并能将ProvideWater的返回值输出
         public static int GetWater(ProvideWater provide)
         {
@@ -60,6 +74,9 @@ namespace ConsoleApp3
             Console.WriteLine(GetWater(provideWater4));
             return person.age;
         }
+        #endregion
+
+        #region 找最大数
         public static int Getmax(params int[] array)
         {
             int temp = 0;
@@ -91,6 +108,9 @@ namespace ConsoleApp3
             Console.WriteLine("\n最大值：" + temp + "!");
             return temp;
         }
+        #endregion
+
+        #region 时间方法
         //源栈的学费是按周计费的，所以请实现这两个功能：
         //函数GetDate()，能计算一个日期若干（日 / 周 / 月）后的日期
         //给定任意一个年份，就能按周排列显示每周的起始日期，如下图所示：                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
@@ -117,6 +137,6 @@ namespace ConsoleApp3
             }
             return date;
         }
-
+        #endregion
     }
 }
