@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using ConsoleApp3;
 using ConsoleApp3.DoubleLinkeds;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace ConsoleApp3
 {
@@ -29,13 +30,14 @@ namespace ConsoleApp3
             Student student1 = new Student(19);
             Student student2 = new Student(15);
             Student student3 = new Student(10);
+            Student student4 = new Student(30);
 
             IList<Student> students = new List<Student>
             {
-                student,student1,student2,student3
+                student,student1,student3,student2,student4
             };
-
-            DataStucture<Student>.binarySeek(students, student);
+            
+            DataStucture<Student>.BinaryWhile(students, student4);
             #endregion
         }
 

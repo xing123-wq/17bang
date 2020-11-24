@@ -22,6 +22,7 @@ namespace ConsoleApp3
         {
             this.Age = age;
         }
+  
         public static void SaveSome(params Student[] students)
         {
             DBhelper dBhelper = new DBhelper();
@@ -79,11 +80,9 @@ namespace ConsoleApp3
 
         public int CompareTo([AllowNull] Student other)
         {
-            if (other == null)
-            {
-                return -1;
-            }
-            return this.Age.CompareTo(other.Age);
+            if (this.Age < other.Age) return -1;
+            if (this.Age > other.Age) return 1;
+            return 0;
         }
     }
     //internal struct StudentInformation
