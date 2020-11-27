@@ -32,12 +32,21 @@ namespace ConsoleApp3
             Student student3 = new Student(10);
             Student student4 = new Student(30);
 
-            IList<Student> students = new List<Student>
+            List<Student> students = new List<Student>
             {
                 student,student1,student3,student2,student4
             };
-            
-            DataStucture<Student>.BinaryWhile(students, student4);
+
+            students.Sort();
+
+            foreach (var item in students)
+            {
+                Console.WriteLine(item.Age);
+            }
+
+            int a = students.BinarySearch(student2);
+            Console.WriteLine(a);
+            //DataStucture<Student>.BinaryWhile(students, student4);
             #endregion
         }
 

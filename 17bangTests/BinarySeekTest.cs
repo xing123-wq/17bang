@@ -9,7 +9,7 @@ namespace _17bangTests
     class BinarySeekTest
     {
         Student student, student1, student2, student3, student4;
-        IList<Student> Students;
+        List<Student> Students;
         int a;
         [SetUp]
         public void SetUp()
@@ -19,20 +19,18 @@ namespace _17bangTests
             student2 = new Student(15);
             student3 = new Student(10);
             student4 = new Student();
-
             Students = new List<Student>
             {
-                student,student1,student2,student3
+                student,student1,student2,student3,student4
             };
-
         }
 
         [Test]
         public void SeekStudent()
         {
-            a = DataStucture<Student>.BinaryWhile(Students, student);
 
-            Assert.AreEqual(a, 0);
+            a = DataStucture<Student>.BinaryWhile(Students, student);
+            Assert.AreEqual(a, 2);
         }
 
         [Test]
@@ -40,7 +38,7 @@ namespace _17bangTests
         {
             a = DataStucture<Student>.BinaryWhile(Students, student1);
 
-            Assert.AreEqual(a, 1);
+            Assert.AreEqual(a, 4);
 
         }
 
@@ -49,8 +47,22 @@ namespace _17bangTests
         {
             a = DataStucture<Student>.BinaryWhile(Students, student2);
 
-            Assert.AreEqual(a, 2);
+            Assert.AreEqual(a, 3);
 
+        }
+
+        [Test]
+        public void SeekStudent3()
+        {
+            a = DataStucture<Student>.BinaryWhile(Students, student3);
+            Assert.AreEqual(a, 1);
+        }
+
+        [Test]
+        public void SeekStudent4()
+        {
+            a = DataStucture<Student>.BinaryWhile(Students, student4);
+            Assert.AreEqual(a, 0);
         }
 
     }
