@@ -30,7 +30,7 @@ namespace ConsoleApp3
             Student student1 = new Student(19);
             Student student2 = new Student(15);
             Student student3 = new Student(10);
-            Student student4 = new Student(30);
+            Student student4 = new Student();
 
             List<Student> students = new List<Student>
             {
@@ -44,7 +44,7 @@ namespace ConsoleApp3
                 Console.WriteLine(item.Age);
             }
 
-            int a = students.BinarySearch(student2);
+            int a = students.BinarySearch(student4);
             Console.WriteLine(a);
             //DataStucture<Student>.BinaryWhile(students, student4);
             #endregion

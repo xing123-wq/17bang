@@ -19,7 +19,6 @@ namespace ConsoleApp3
         {
             int low = 0;
             int high = nums.Count - 1;
-            nums.Sort();
             while (low <= high)
             {
                 int middle = (low + high) / 2;
