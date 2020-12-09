@@ -7,9 +7,12 @@ using ServiceInterface;
 using ServiceInterface.Category;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
+using System.Web.UI;
 using ViewModel.Articles;
 
 namespace _17bangMvc.Controllers
@@ -30,13 +33,27 @@ namespace _17bangMvc.Controllers
 
         #region Url:/Article;Requset:Get;
         [HttpGet]
-        public ActionResult index(IEnumerable<IndexModel> model)
+        [OutputCache(Duration =100,Location =OutputCacheLocation.Any,VaryByParam ="id")]
+        public ActionResult index(IEnumerable<IndexModel> models)
         {
             ViewData["title"] = "精品文章-一起帮";
+            
+            #region SqlCacheDependency  缓存
+            //string cachekey = "user_1";
+            //models = HttpContext.Cache.Get(cachekey) as IEnumerable<IndexModel>;
+            //if (models is null)
+            //{
+            //    models = _service.GetBy(6);
+            //    HttpContext.Cache.Add(cachekey, models, new SqlCacheDependency("18bang", "Articles"), DateTime.MaxValue,
+            //        new TimeSpan(0, 20, 0), CacheItemPriority.NotRemovable,
+            //        (k, v, r) => { Trace.WriteLine($"cache with key:{k},value:{v}is deleted,reason:{r}"); });
+            //}//else do nothing 
+            #endregion
+
             Pager pager = new Pager();
             pager.PageIndex = Convert.ToInt32(RouteData.Values["Id"]);
-            model = Select.Get(_service.GetBy(3), pager.PageIndex, Const.PAGE_SIZE);
-            return View(model);
+            models = Select.Get(_service.GetBy(3), pager.PageIndex, Const.PAGE_SIZE);
+            return View(models);
         }
         #endregion
 

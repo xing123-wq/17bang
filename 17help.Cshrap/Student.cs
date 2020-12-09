@@ -39,9 +39,9 @@ namespace ConsoleApp3
                 //new Student { Name = "红莲", Age = 800 }.Save();
             }
         }
-        public void Save()
+        public int Save()
         {
-            _dBhelper.ExecuteNonQuery($" INSERT DREAM VALUES(N'{Name}',{Age})");
+            return _dBhelper.ExecuteNonQuery($" INSERT DREAM VALUES(N'{Name}',{Age})");
         }
         public void Save(SqlConnection connection)
         {

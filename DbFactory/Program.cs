@@ -20,6 +20,7 @@ namespace DbFactory
             RegisterFactory.Create();
             ArticleFactory.Create();
             #endregion
+            Global.context.SaveChanges();
         }
     }
 }

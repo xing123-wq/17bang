@@ -24,6 +24,8 @@ namespace _17bangMvc.Controllers
         {
             ViewData["title"] = "一起帮-首页";
             model.CurrentUserId = service.CurrentUserId;
+
+      
             return View(model);
         }
         #endregion
