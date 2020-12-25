@@ -1,4 +1,5 @@
-﻿using ExtensionMethods;
+﻿using _17bangMvc.Filters;
+using ExtensionMethods;
 using Global;
 using ProdService;
 using ProdService.Articles;
@@ -33,11 +34,11 @@ namespace _17bangMvc.Controllers
 
         #region Url:/Article;Requset:Get;
         [HttpGet]
-        [OutputCache(Duration =100,Location =OutputCacheLocation.Any,VaryByParam ="id")]
+        [OutputCache(Duration = 100, Location = OutputCacheLocation.Any, VaryByParam = "id")]
         public ActionResult index(IEnumerable<IndexModel> models)
         {
             ViewData["title"] = "精品文章-一起帮";
-            
+
             #region SqlCacheDependency  缓存
             //string cachekey = "user_1";
             //models = HttpContext.Cache.Get(cachekey) as IEnumerable<IndexModel>;
@@ -59,10 +60,11 @@ namespace _17bangMvc.Controllers
 
         #region Url:/Article/New; Requset:Get,Post;
         [HttpGet]
+        [NeedLogOnFilter]
         public ActionResult New()
         {
             ViewData["title"] = "精品文章-一起帮";
-            ViewData["SelectList"] = _series.GetSelectListItems(_series.Get(_service.CurrentUserId.Value));
+            ViewData["SelectList"] = _series.Get(_service.CurrentUserId.Value);
             ViewData["ADs"] = _ad.GetSelectListItems(_ad.Get());
             return View();
         }
@@ -73,7 +75,7 @@ namespace _17bangMvc.Controllers
             ModelState.Remove("Digest");
             if (!ModelState.IsValid)
             {
-                ViewData["SelectList"] = _series.GetSelectListItems(_series.Get(_service.CurrentUserId.Value));
+                ViewData["SelectList"] = _series.Get(_service.CurrentUserId.Value);
                 ViewData["ADs"] = _ad.GetSelectListItems(_ad.Get());
                 ViewData["title"] = "精品文章-一起帮";
                 return View(model);

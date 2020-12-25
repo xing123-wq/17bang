@@ -1,4 +1,4 @@
-﻿@model ViewModel.Category.SeriesModel
+﻿@model ViewModel.Category.ManageModel
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
 }
@@ -12,20 +12,30 @@
             <span class="fa fa-list" aria-hidden="true"></span> 文章系列管理
             <a class="small pull-right" zyf-category-add><span class="fa fa-plus"></span> 添加</a>
         </h2>
-        <form class="hidden" method="post" zyf-category-edit-form="">
+        <form method="post" zyf-category-edit-form="">
             <div class="form-group">
                 <label>父系列：</label>
-                @Html.DropDownListFor(s => s.SeriesLevel, ViewData["SelectLists"] as IEnumerable<SelectListItem>, "默认分类", new { @class = "form-control", zyf_series_list = "" })
+                @Html.DropDownListFor(s => s._Input.ParentId, new SelectList(Model._Items, "Id", "Title")
+                                      , "默认分类", new
+                                      {
+                                               @class = "form-control",
+                                               zyf_series_list = ""
+                                      })
             </div>
             <div class="form-group">
                 <label>标题：</label>
-                @Html.TextBoxFor(s => s.Title, new { @class = "form-control", placeholder = "不能为空，25字符以内", zyf_category_new_name = "" })
-                @Html.ValidationMessageFor(s => s.Title, "", new { style = "color:red" })
+                @Html.TextBoxFor(s => s._Input.Title, new { @class = "form-control", placeholder = "不能为空，25字符以内", zyf_category_new_name = "" })
+                @Html.ValidationMessageFor(s => s._Input.Title, "", new { style = "color:red" })
             </div>
             <div class="form-group">
                 <label>描述：</label>
-                @Html.TextBoxFor(s => s.Body, new { @class = "form-control", placeholder = "255个字符以内，简单描述系列的目的、内容等", zyf_category_new_body = "" })
-                @Html.ValidationMessageFor(s => s.Body, "", new { style = "color:red" })
+                @Html.TextBoxFor(s => s._Input.Body, new
+                {
+                    @class = "form-control",
+                    placeholder = "255个字符以内，简单描述系列的目的、内容等",
+                    zyf_category_new_body = ""
+                })
+                @Html.ValidationMessageFor(s => s._Input.Body, "", new { style = "color:red" })
             </div>
             <button zyf-series-submit type="submit" class="btn btn-primary">提交</button>
             <button zyf-category-edit-cancel="" type="button" class="btn btn-default">放弃</button>
@@ -41,133 +51,7 @@
                 系统自动生成的默认分类
             </p>
         </div>
-        @foreach (var item in Model.SeriesModels)
-        {
-            <div zyf-category-manage-item="" data-parent="13">
-                <span class="pull-right">
-                    <a zyf-category-delete="" data-self-id="12" class="text-warning"><span class="fa fa-trash"></span>删除</a>
-                    <a zyf-category-edit="" data-self-id="12" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
-                </span>
-                <h4 zyf-category-edit-name="">
-                    <a class="" href="/Article/Category-@item.Id"><span class="fa fa-folder"></span>@item.Title</a>
-                </h4>
-                <p zyf-category-edit-description="">
-                    @item.Body
-                </p>
-                @*@Html.Action("_NewInManage", "Category")*@
-            </div>
-        }
+        @Html.Action("_NewCategory")
     </div>
-    <div class="col-md-3" style="margin-top: 40px;">
-        <div zyf-newbie-reminder="" class="widget yellow-highlight">
-            <h4><span class="fa fa-list"></span> 新手任务</h4>
-            <p zyf-newbie-tasks-done="" class="text-right">
-                <span class="fa fa-thumbs-o-up text-success"></span> 全部完成！
-                <a zyf-newbie-reminder-hide="" href="#" class="text-primary">不再显示</a>
-            </p>
-            <hr>
 
-            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 填写：<a href="/Contact/New?prepage=%2fCategory%2fManage">联系方式</a></p>
-            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 激活：<a href="/Email/Activate?prepage=%2fCategory%2fManage">Email</a></p>
-            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 邀请：<a href="/Invite">我的小伙伴</a></p>
-            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 参加：<a href="/Exam/Newbie">新人测试</a></p>
-            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 发布：<a href="/Problem/New">第一个求助</a></p>
-            <p><span class="fa fa-check-square-o text-success fa-fw"></span> 尝试：<a href="/Problem"> 第一次协助</a></p>
-            <p>
-                <span class="fa fa-check-square-o text-success fa-fw"></span> 获得：若干
-                <a href="/FAQ/Money" data-toggle="tooltip" class="credit" title="" data-original-title="点击了解">
-                    <span class="iconfont icon-money"></span> 帮帮币
-                </a>
-            </p>
-        </div>
-
-
-        <a href="/Profile/Write?prepage=%2fCategory%2fManage" class="btn pull-right" zyf-profile-edit="">
-            <span class="fa fa-pencil-square-o"></span>
-            <span>修改</span>
-        </a>
-        <div class="img-responsive img-thumbnail" id="profile-no-picture">
-            <span class="fa fa-picture-o" id="camera"></span>
-            <div id="wait">
-                等待上传中<span class="fa fa-hourglass-half"></span>...
-            </div>
-        </div>
-        <div class="user-show">
-            <div class="row">
-                <div class="col-xs-12">
-                    <label>用户：</label>
-
-
-                    <span data-toggle="tooltip" title="" data-original-title="捐赠 9.9">
-                        <a href="/User/7" zyf-show-contact="7" style="color:#DCB962">
-                            DK
-                        </a>
-                    </span>
-                    <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                        <span>④</span>
-                    </a>
-                    <a href="/User/ChangeName" class="btn" zyf-username-change="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
-                </div>
-                <input type="hidden" value="7" zyf-profile-user-id="">
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <label>性别：</label>
-                    男
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <label>生日：</label>
-                    1991 <span>年</span>
-                </div>
-            </div>
-            <div>
-                <label>关注：</label>
-                <p>
-                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">DF</span>
-                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 3 次">工具软件</span>
-                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">Excel</span>
-                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">单位</span>
-                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">C#</span>
-                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 5 次">编程开发语言</span>
-                    <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">Python</span>
-                </p>
-            </div>
-
-        </div>
-    </div>
-    <script>
-        $(document).ready(function () {
-            $('[zyf-category-add]').click(function () {
-                var $editForm = $('[zyf-category-edit-form]');
-                $editForm.removeClass('hidden');
-            });
-            $('[zyf-category-edit-cancel]').click(function () {
-                $(this).parents('form').addClass('hidden');
-            });
-            $('[zyf-series-submit]').click(function () {
-                var SeriesLevelId = $('[zyf-series-list]').val(),
-                    Title = $('[zyf-category-new-name]').val(),
-                    Body = $('[zyf-category-new-body]').val();
-                event.preventDefault();
-                $.ajax({
-                    url: '/Category/Manage',
-                    method: 'POST',
-                    data: { 'SeriesLevelId': SeriesLevelId, 'Title': Title, 'Body': Body },
-                    complete: function () {
-                        refresh(1);
-                    }
-                });
-            });
-            function refresh(timeOut) {
-                setTimeout(function () {
-                    $.ajax({
-                        url: '/Category/Manage',
-                        method: 'GET',
-                    });
-                }, timeOut);
-            }
-        });
-    </script>
 </div>

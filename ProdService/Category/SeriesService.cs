@@ -19,28 +19,18 @@ namespace ProdService.Category
             repository = new SeriesRepository(context);
         }
 
-        public IList<SeriesModel> Get(int userId)
+        public IList<_ItemMdodel> Get(int userId)
         {
             IList<Series> series = repository.GetSeries(userId);
-            return mapper.Map<IList<SeriesModel>>(series);
+            return mapper.Map<IList<_ItemMdodel>>(series);
         }
 
-        public int Save(SeriesModel model)
+        public int Save(ManageModel model)
         {
             Series series = mapper.Map<Series>(model);
             series.Author = GetByCurrentUser();
-            series.PublishTime = DateTime.Now;
             repository.Add(series);
             return series.Id;
-        }
-        public IEnumerable<SelectListItem> GetSelectListItems(IList<SeriesModel> source)
-        {
-            var selectList = new List<SelectListItem>();
-            foreach (var item in source)
-            {
-                selectList.Add(new SelectListItem { Value = item.Id.ToString(), Text = item.SeriesTitle });
-            }
-            return selectList;
         }
     }
 }

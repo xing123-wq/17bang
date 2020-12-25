@@ -10,15 +10,15 @@ namespace _17bangMvc.Filters
 {
     public class NeedLogOnFilter : AuthorizeAttribute
     {
-        public BaseService service;
+        private IBaseService _service;
         public NeedLogOnFilter()
         {
-            service = new BaseService();
+            _service = new BaseService();
         }
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             string pth = filterContext.HttpContext.Request.Path;
-            if (service.CurrentUserId == null)
+            if (_service.CurrentUserId == null)
             {
                 filterContext.HttpContext.Response.Redirect($"/Log/On?pagepth={pth}");
             }

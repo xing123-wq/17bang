@@ -64,8 +64,7 @@ namespace ProdService
                 {
                     int userId = Convert.ToInt32(cookie.Value);
                     string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
-                    Users user = new Users();
-                    user = _userRepositroy.GetById(userId);
+                    Users user = _userRepositroy.GetById(userId);
                     if (user == null)
                     {
                         throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
@@ -127,6 +126,10 @@ namespace ProdService
                 return autoMapperConfig.CreateMapper();
             }
         }
+
+        /// <summary>
+        /// model和entity映射
+        /// </summary>
         static BaseService()
         {
             autoMapperConfig = new MapperConfiguration(cfg =>
@@ -172,10 +175,13 @@ namespace ProdService
                 .ReverseMap()
                 .ForMember(a => a.Series, opt => opt.Ignore());
 
-                cfg.CreateMap<Series, ViewModel.Category.SeriesModel>(MemberList.None)
-                .ForMember(i => i.SeriesTitle, opt => opt.MapFrom(s => s.Title))
-                .ForMember(i => i.SeriesBody, opt => opt.MapFrom(s => s.Describe))
-                .ForMember(i => i.LevelId, opt => opt.MapFrom(s => s.LevelId))
+                cfg.CreateMap<Series, ViewModel.Category.ManageModel>(MemberList.None)
+                .ReverseMap();
+
+                cfg.CreateMap<Series, ViewModel.Category._InputModel>(MemberList.None)
+                .ReverseMap();
+
+                cfg.CreateMap<Series, ViewModel.Category._ItemMdodel>(MemberList.None)
                 .ReverseMap();
 
                 cfg.CreateMap<Chat, ViewModel.Chat.ChatItemModel>(MemberList.None)

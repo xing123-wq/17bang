@@ -8,6 +8,11 @@ namespace BLL
 {
     public class BaseEntity
     {
+        public BaseEntity()
+        {
+            PublishTime = DateTime.Now;
+        }
         public int Id { get; set; }
+        public DateTime PublishTime { get; set; }
     }
 }

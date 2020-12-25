@@ -26,7 +26,7 @@ namespace Repositorys
         }
         public IList<Advertising> GetByUserId(int? userId)
         {
-            return entities.Where(a => a.AuthorId == userId).ToList();
+            return entities.Where(a => a.Author.Id == userId).ToList();
         }
     }
 }

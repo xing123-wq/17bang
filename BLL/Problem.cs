@@ -10,7 +10,6 @@ namespace BLL
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public DateTime PublishTime { get; set; }
         public int AuthorId { get; set; }
         public Users Author { get; set; }
         public IList<ProblemAndKeyword> Keywords { get; set; }

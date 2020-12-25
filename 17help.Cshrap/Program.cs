@@ -39,15 +39,18 @@ namespace ConsoleApp3
 
             students.Sort();
 
-            foreach (var item in students)
-            {
-                Console.WriteLine(item.Age);
-            }
+            //foreach (var item in students)
+            //{
+            //    Console.WriteLine(item.Age);
+            //}
 
-            int a = students.BinarySearch(student4);
-            Console.WriteLine(a);
+            //int a = students.BinarySearch(student4);
+            //Console.WriteLine(a);
             //DataStucture<Student>.BinaryWhile(students, student4);
             #endregion
+
+            string site = "http://pv.sohu.com/cityjson ";
+            Console.WriteLine(site);
         }
 
         #region 委托方法

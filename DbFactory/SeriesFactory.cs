@@ -15,26 +15,27 @@ namespace DbFactory
             series1 = new Series
             {
                 Author = RegisterFactory.at,
-                Describe = "发生的回访电话",
-                LevelId = null,
+                Body = "发生的回访电话",
                 Title = "别的办法",
                 PublishTime = Global.Time.AddDays(-1),
-                Articles = new List<Article> { ArticleFactory.JAVA }
+                Articles = new List<Article> { ArticleFactory.JAVA },
+                Parent = series1
             };
             series2 = new Series
             {
                 Author = RegisterFactory.at,
-                Describe = "讲课费的 发v",
-                LevelId = series1.Id,
+                Body = "讲课费的 发v",
+                Parent = series1,
                 Title = "丰富方法v发发发 ",
-                Articles = new List<Article> { ArticleFactory.SQL },
+                Articles = new List<Article> { ArticleFactory.SQL
+    },
                 PublishTime = Global.Time.AddDays(-1)
             };
             series3 = new Series
             {
                 Author = RegisterFactory.at,
-                Describe = "v大师傅士大夫士大夫撒旦",
-                LevelId = null,
+                Body = "v大师傅士大夫士大夫撒旦",
+                Parent = series2,
                 Title = "发射点发射点发射点发射点",
                 PublishTime = Global.Time.AddDays(-1),
                 Articles = new List<Article> { ArticleFactory.UI },

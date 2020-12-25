@@ -9,25 +9,25 @@ namespace ConsoleApp3
 {
     public class DBhelper //工具类
     {
-        public SqlConnection LongConnection { get; set; }
         private SqlConnection _connection;
-        public DBhelper(string connection)
+        protected const string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=18bang;Integrated Security=True;";
+        public DBhelper()
         {
-            _connection = new SqlConnection(connection);
+            _connection = new SqlConnection(connectionString);
         }
-        
-        public void HasConnection(SqlConnection connection)
+
+        public bool HasConnection(SqlConnection connection)
         {
             if (connection.State == ConnectionState.Closed)
             {
                 connection.Open();  //需要显式的Open()
             }
+            return true;
         }
         public int ExecuteNonQuery(string cmdText)
         {
             using (_connection)
             {
-                HasConnection(_connection);
                 SqlCommand command = new SqlCommand();
                 command.Connection = _connection;
                 command.CommandText = cmdText;
@@ -35,11 +35,11 @@ namespace ConsoleApp3
                 return row;
             }
         }
+
         public object ExecuteScalar(string cmdText)//得到的结果是个标量
         {
             using (_connection)
             {
-                HasConnection(_connection);
                 SqlCommand command = new SqlCommand();
                 command.Connection = _connection;
                 command.CommandText = cmdText;
@@ -51,7 +51,6 @@ namespace ConsoleApp3
         {
             using (_connection)
             {
-                HasConnection(_connection);
                 SqlCommand command = new SqlCommand();
                 command.Connection = _connection;
                 command.CommandText = cmdText;
@@ -63,7 +62,6 @@ namespace ConsoleApp3
         {
             using (_connection)
             {
-                HasConnection(_connection);
                 command.Connection = _connection;
                 //command.CommandText = cmdText;
                 int row = command.ExecuteNonQuery();

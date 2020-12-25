@@ -20,24 +20,28 @@ namespace _17bangMvc.Controllers
         [HttpGet]
         public ActionResult Manage()
         {
-            SeriesModel model = new SeriesModel();
-            ViewData["SelectLists"] = service.GetSelectListItems(service.Get(service.CurrentUserId.Value));
-            model.SeriesModels = service.Get(service.CurrentUserId.Value);
+            ManageModel model = new ManageModel
+            {
+                    _Items = service.Get(service.CurrentUserId.Value)
+            };
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Manage(SeriesModel model)
+        public ActionResult Manage(ManageModel model)
         {
             if (!ModelState.IsValid)
             {
-                ViewData["SelectLists"] = service.GetSelectListItems(service.Get(service.CurrentUserId.Value));
-                model.SeriesModels = service.Get(service.CurrentUserId.Value);
                 return View(model);
             }
             service.Save(model);
             return View(model);
         }
-
+        public PartialViewResult _NewCategory()
+        {
+            ManageModel model = new ManageModel();
+            model._Items = service.Get(service.CurrentUserId.Value);
+            return PartialView(model);
+        }
     }
 }

@@ -20,21 +20,19 @@ namespace _17bangMvc.Controllers
         [HttpGet]
         public ActionResult _Series()
         {
-            SeriesModel model = new SeriesModel();
-            ViewData["SelectList"] = Series.GetSelectListItems(Series.Get(Series.CurrentUserId.Value));
-            return View(model);
+            return View(new ManageModel()._Items = Series.Get(Series.CurrentUserId.Value));
         }
         [HttpPost]
-        public ActionResult _Series(SeriesModel model)
+        public ActionResult _Series(ManageModel model)
         {
             if (!ModelState.IsValid)
             {
-                ViewData["SelectList"] = Series.GetSelectListItems(Series.Get(Series.CurrentUserId.Value));
                 throw new Exception("用户输入不服规定");
             }
             Series.Save(model);
             return Redirect("/Article/New");
         }
 
+       
     }
 }

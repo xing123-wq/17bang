@@ -9,10 +9,9 @@ namespace BLL
     public class Series : BaseEntity
     {
         public string Title { get; set; }
-        public int? LevelId { set; get; }
-        public string Describe { get; set; }
+        public string Body { get; set; }
         public Users Author { get; set; }
-        public DateTime PublishTime { get; set; }
+        public Series Parent { get; set; }
         public IList<Article> Articles { get; set; }
     }
 }

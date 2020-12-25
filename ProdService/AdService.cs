@@ -35,8 +35,6 @@ namespace ProdService
         {
             Advertising advertising = mapper.Map<Advertising>(model);
             advertising.Author = GetByCurrentUser();
-            advertising.PublishTime = DateTime.Now;
-            advertising.Expires = DateTime.Now.AddDays(1);
             _repositroy.Add(advertising);
             return advertising.Id;
         }
