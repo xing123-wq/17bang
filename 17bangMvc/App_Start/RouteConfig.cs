@@ -42,6 +42,14 @@ namespace _17bangMvc
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 constraints: new { id = @"\d*" });
+
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapMvcAttributeRoutes();
+            routes.MapRoute(
+                name: "CategoryEidt",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Category", action = "_New", id = UrlParameter.Optional },
+                constraints: new { id = @"^[0-9]*[1-9][0-9]*$" });
         }
     }
 }

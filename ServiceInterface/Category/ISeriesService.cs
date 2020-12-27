@@ -11,7 +11,9 @@ namespace ServiceInterface.Category
 {
     public interface ISeriesService : IBaseService
     {
-        int Save(ManageModel model);
+        int Save(_InputModel model);
         IList<_ItemMdodel> Get(int userId);
+        _InputModel GetBy(int Id);
+
     }
 }

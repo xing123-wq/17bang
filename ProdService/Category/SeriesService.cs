@@ -25,7 +25,13 @@ namespace ProdService.Category
             return mapper.Map<IList<_ItemMdodel>>(series);
         }
 
-        public int Save(ManageModel model)
+        public _InputModel GetBy(int Id)
+        {
+            Series series = repository.Find(Id);
+            return mapper.Map<_InputModel>(series);
+        }
+
+        public int Save(_InputModel model)
         {
             Series series = mapper.Map<Series>(model);
             series.Author = GetByCurrentUser();

@@ -20,7 +20,7 @@ namespace _17bangMvc.Filters
             string pth = filterContext.HttpContext.Request.Path;
             if (_service.CurrentUserId == null)
             {
-                filterContext.HttpContext.Response.Redirect($"/Log/On?pagepth={pth}");
+                filterContext.Result = new RedirectResult($"/Log/On?pagepth={pth}");
             }
             base.OnAuthorization(filterContext);
         }

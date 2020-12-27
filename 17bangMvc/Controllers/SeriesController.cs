@@ -23,7 +23,7 @@ namespace _17bangMvc.Controllers
             return View(new ManageModel()._Items = Series.Get(Series.CurrentUserId.Value));
         }
         [HttpPost]
-        public ActionResult _Series(ManageModel model)
+        public ActionResult _Series(_InputModel model)
         {
             if (!ModelState.IsValid)
             {

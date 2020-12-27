@@ -27,7 +27,7 @@ namespace ViewModel.Category
         [AllowHtml]
         public string Body { get; set; }
 
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
         public IList<_ItemMdodel> _Items { get; set; }
     }
 

@@ -22,26 +22,41 @@ namespace _17bangMvc.Controllers
         {
             ManageModel model = new ManageModel
             {
-                    _Items = service.Get(service.CurrentUserId.Value)
+                _Items = service.Get(service.CurrentUserId.Value)
             };
             return View(model);
         }
 
+        public PartialViewResult _List()
+        {
+            ManageModel model = new ManageModel
+            {
+                _Items = service.Get(service.CurrentUserId.Value)
+            };
+            return PartialView(model);
+        }
+        #region Url:/Category/_New
+        [HttpGet]
+        public PartialViewResult _New(int Id)
+        {
+            ManageModel model = new ManageModel
+            {
+                _Input = service.GetBy(Id),
+                _Items = service.Get(service.CurrentUserId.Value)
+            };
+            return PartialView(model);
+        }
+
         [HttpPost]
-        public ActionResult Manage(ManageModel model)
+        public ActionResult _New(_InputModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             service.Save(model);
-            return View(model);
+            return RedirectToAction("Manage");
         }
-        public PartialViewResult _NewCategory()
-        {
-            ManageModel model = new ManageModel();
-            model._Items = service.Get(service.CurrentUserId.Value);
-            return PartialView(model);
-        }
+        #endregion
     }
 }

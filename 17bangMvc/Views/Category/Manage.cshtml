@@ -12,34 +12,6 @@
             <span class="fa fa-list" aria-hidden="true"></span> 文章系列管理
             <a class="small pull-right" zyf-category-add><span class="fa fa-plus"></span> 添加</a>
         </h2>
-        <form method="post" zyf-category-edit-form="">
-            <div class="form-group">
-                <label>父系列：</label>
-                @Html.DropDownListFor(s => s._Input.ParentId, new SelectList(Model._Items, "Id", "Title")
-                                      , "默认分类", new
-                                      {
-                                               @class = "form-control",
-                                               zyf_series_list = ""
-                                      })
-            </div>
-            <div class="form-group">
-                <label>标题：</label>
-                @Html.TextBoxFor(s => s._Input.Title, new { @class = "form-control", placeholder = "不能为空，25字符以内", zyf_category_new_name = "" })
-                @Html.ValidationMessageFor(s => s._Input.Title, "", new { style = "color:red" })
-            </div>
-            <div class="form-group">
-                <label>描述：</label>
-                @Html.TextBoxFor(s => s._Input.Body, new
-                {
-                    @class = "form-control",
-                    placeholder = "255个字符以内，简单描述系列的目的、内容等",
-                    zyf_category_new_body = ""
-                })
-                @Html.ValidationMessageFor(s => s._Input.Body, "", new { style = "color:red" })
-            </div>
-            <button zyf-series-submit type="submit" class="btn btn-primary">提交</button>
-            <button zyf-category-edit-cancel="" type="button" class="btn btn-default">放弃</button>
-        </form>
         <div zyf-category-manage-item="" data-parent="0" style="margin-bottom:10px;">
             <span class="pull-right">
                 <a zyf-category-edit="" data-self-id="10" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
@@ -51,7 +23,100 @@
                 系统自动生成的默认分类
             </p>
         </div>
-        @Html.Action("_NewCategory")
+        @Html.Action("_List")
     </div>
 
 </div>
+
+<div zyf-category-modal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 zyf-category-header-title class="modal-title">
+                    <span class="fa fa-clock-o"></span>
+                </h4>
+            </div>
+            <div zyf-category-modal-body class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('[zyf-category-add]').click(function (event) {
+            event.preventDefault();
+            var $modal = $('[zyf-category-modal]');
+            $modal.find('[zyf-category-header-title]').text('添加新系列');
+            $modal.modal('show');
+            $.ajax({
+                url: '/Category/_New',
+                method: 'Get',
+                success: function (data) {
+                    var $data = $(data);
+                    $modal.find('[zyf-category-modal-body]').html($data);
+                    postnew($data);
+                }
+            });
+        });
+        function postnew(data) {
+            var $data = $(data);
+            $data.find('[zyf-new-category-submit]').click(function (event) {
+                event.preventDefault();
+                var $form = $(this).parents("form"),
+                    $modal = $('[zyf-category-modal]'),
+                    formData = $form.serialize();
+                $.validator.unobtrusive.parse($data);
+                if (!$form.valid()) {
+                    return false;
+                }
+                $.ajax({
+                    url: '/Category/_New',
+                    method: 'Post',
+                    data: formData,
+                    success: function () {
+                        $modal.modal("hide");
+                    }
+                });
+            });
+        }
+
+        $('[zyf-category-cancel]').click(function (event) {
+            event.preventDefault();
+            var $categoryform = $('[zyf-category-form]');
+            $categoryform.addClass("hidden")
+        });
+
+        $('[zyf-category-edit]').click(function (event) {
+            event.preventDefault();
+            var $modal = $('[zyf-category-modal]'),
+                $this = $(this),
+                $form = $this.parents('form'),
+                Id = $this.data('self-id');
+            $modal.modal('show');
+            $modal.find('[zyf-category-header-title]').text('修改系列');
+            $.ajax({
+                url: '/Category/_New/' + Id,
+                method: 'Get',
+                success: function (data) {
+                    var $data = $(data);
+                    $modal.find('[zyf-category-modal-body]').html($data);
+                    $data.find('[zyf-new-category-submit]').click(function (event) {
+                        event.preventDefault();
+                        if (!$form.valid()) {
+                            return false;
+                        }
+                        $.ajax({
+                            url: '/Category/_Eidt/' + Id,
+                            method: 'Post',
+
+
+                        });
+                    })
+                }
+            });
+
+        });
+    });
+</script>
