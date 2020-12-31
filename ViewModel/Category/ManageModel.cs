@@ -11,8 +11,6 @@ namespace ViewModel.Category
 {
     public class ManageModel : BaseModel
     {
-        public _InputModel _Input { get; set; }
-
         public IList<_ItemMdodel> _Items { get; set; }
 
     }
@@ -20,6 +18,7 @@ namespace ViewModel.Category
     {
         [Required(ErrorMessage = "* 名称不能为空")]
         [MaxLength(25, ErrorMessage = "* 名称的长度不能大于25")]
+        [Remote("_IsDuplicatedOnTitle", "Category", ErrorMessage = "* 名称重复，请重新输入")]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "* 描述不能为空")]

@@ -13,9 +13,19 @@ namespace Repositorys
         public SeriesRepository(SQLContext context) : base(context)
         {
         }
-        public IList<Series> GetSeries(int userId)
+        public IQueryable<Series> GetSeries(int userId)
         {
-            return entities.Where(s => s.Author.Id == userId).ToList();
+            return entities.Where(s => s.Author.Id == userId);
+        }
+
+        public Series GetToId(int Id)
+        {
+            return entities.Where(s => s.Id == Id).Include(s => s.Parent).SingleOrDefault();
+        }
+
+        public bool IsDuplicatedOnName(string name, int id)
+        {
+            return GetSeries(id).Where(s => s.Title == name).FirstOrDefault() != null;
         }
     }
 }

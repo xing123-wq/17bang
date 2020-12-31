@@ -17,7 +17,6 @@ namespace _17bangMvc.Filters
         }
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-
             base.OnActionExecuted(filterContext);
         }
         public override void OnActionExecuting(ActionExecutingContext filterContext)

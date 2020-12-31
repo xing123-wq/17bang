@@ -40,6 +40,7 @@ namespace Repositorys
         public void Update(T source)
         {
             entities.Attach(source);
+            context.Entry(source).State = EntityState.Modified;
             context.SaveChanges();
         }
         public T Find(int id)

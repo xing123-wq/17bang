@@ -23,7 +23,11 @@
                 系统自动生成的默认分类
             </p>
         </div>
-        @Html.Action("_List")
+        @foreach (var item in Model._Items)
+        {
+            @Html.Partial("_List", item)
+        }
+
     </div>
 
 </div>
@@ -46,7 +50,6 @@
 <script>
     $(document).ready(function () {
         $('[zyf-category-add]').click(function (event) {
-            event.preventDefault();
             var $modal = $('[zyf-category-modal]');
             $modal.find('[zyf-category-header-title]').text('添加新系列');
             $modal.modal('show');
@@ -82,25 +85,32 @@
             });
         }
 
-        $('[zyf-category-cancel]').click(function (event) {
-            event.preventDefault();
-            var $categoryform = $('[zyf-category-form]');
-            $categoryform.addClass("hidden")
+        $('[zyf-category-delete]').click(function () {
+            var Id = $(this).data('self-id');
+            $.ajax({
+                url: '/Category/_Delete/' + Id,
+                method: 'Post',
+                success: function () {
+
+                }
+            });
         });
+
+
 
         $('[zyf-category-edit]').click(function (event) {
             event.preventDefault();
             var $modal = $('[zyf-category-modal]'),
-                $this = $(this),
-                $form = $this.parents('form'),
-                Id = $this.data('self-id');
+                Id = $(this).data('self-id');
             $modal.modal('show');
             $modal.find('[zyf-category-header-title]').text('修改系列');
             $.ajax({
                 url: '/Category/_New/' + Id,
                 method: 'Get',
                 success: function (data) {
-                    var $data = $(data);
+                    var $data = $(data),
+                        $form = $data.select("form")
+                        ;
                     $modal.find('[zyf-category-modal-body]').html($data);
                     $data.find('[zyf-new-category-submit]').click(function (event) {
                         event.preventDefault();
@@ -108,10 +118,12 @@
                             return false;
                         }
                         $.ajax({
-                            url: '/Category/_Eidt/' + Id,
+                            url: '/Category/_Eidt?Id=' + Id,
                             method: 'Post',
-
-
+                            data:$form.serialize(),
+                            success: function () {
+                                $modal.modal("hide");
+                            }
                         });
                     })
                 }

@@ -19,23 +19,55 @@ namespace ProdService.Category
             repository = new SeriesRepository(context);
         }
 
+        public void Delete(int id)
+        {
+            Series series = repository.Find(id);
+            if (series != null)
+            {
+                repository.Remove(series);
+            }
+            else
+            {
+                throw new Exception($"找不到该Id：{id},所对应的系列。");
+            }
+        }
+
         public IList<_ItemMdodel> Get(int userId)
         {
-            IList<Series> series = repository.GetSeries(userId);
-            return mapper.Map<IList<_ItemMdodel>>(series);
+            var query = repository.GetSeries(userId);
+            return mapper.Map<IList<_ItemMdodel>>(query.ToList());
         }
 
         public _InputModel GetBy(int Id)
         {
-            Series series = repository.Find(Id);
-            return mapper.Map<_InputModel>(series);
+            Series series = repository.GetToId(Id);
+            if (series != null)
+            {
+                return mapper.Map<_InputModel>(series);
+            }
+            else
+            {
+                throw new Exception($"找不到该Id：{Id}，所对应的系列。");
+            }
         }
 
-        public int Save(_InputModel model)
+        public bool IsDuplicatedOnName(string name)
+        {
+            return repository.IsDuplicatedOnName(name, CurrentUserId.Value);
+        }
+
+        public int Save(_InputModel model, bool HasEidt = false)
         {
             Series series = mapper.Map<Series>(model);
-            series.Author = GetByCurrentUser();
-            repository.Add(series);
+            if (HasEidt)
+            {
+                repository.Update(series);
+            }
+            else
+            {
+                series.Author = GetByCurrentUser();
+                repository.Add(series);
+            }
             return series.Id;
         }
     }

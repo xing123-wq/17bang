@@ -1,16 +1,12 @@
-﻿@model ViewModel.Category.ManageModel
-@foreach (var item in Model._Items)
-{
-    <div zyf-category-manage-item="" data-parent="@item.ParentId">
-        <span class="pull-right">
-            <a zyf-category-delete="" data-self-id="@item.Id" class="text-warning"><span class="fa fa-trash"></span>删除</a>
-            <a zyf-category-edit="" data-self-id="@item.Id" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
-        </span>
-        <h4 zyf-category-edit-name="">
-            <a class="" href="/Article/Category-@item.Id"><span class="fa fa-folder"></span>@item.Title</a>
-        </h4>
-        <p zyf-category-edit-description="">
-            @item.Body
-        </p>
-    </div>
-}
+﻿<div zyf-category-manage-item="" data-parent="@Model.ParentId">
+    <span class="pull-right">
+        <a zyf-category-delete="" data-self-id="@Model.Id" class="text-warning"><span class="fa fa-trash"></span>删除</a>
+        <a zyf-category-edit="" data-self-id="@Model.Id" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
+    </span>
+    <h4 zyf-category-edit-name="">
+        <a class="" href="/Article/Category-@Model.Id"><span class="fa fa-folder"></span>@Model.Title</a>
+    </h4>
+    <p zyf-category-edit-description="">
+        @Model.Body
+    </p>
+</div>

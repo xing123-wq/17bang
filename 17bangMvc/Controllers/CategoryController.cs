@@ -27,23 +27,16 @@ namespace _17bangMvc.Controllers
             return View(model);
         }
 
-        public PartialViewResult _List()
-        {
-            ManageModel model = new ManageModel
-            {
-                _Items = service.Get(service.CurrentUserId.Value)
-            };
-            return PartialView(model);
-        }
         #region Url:/Category/_New
         [HttpGet]
-        public PartialViewResult _New(int Id)
+        public PartialViewResult _New(int? Id)
         {
-            ManageModel model = new ManageModel
+            _InputModel model = new _InputModel();
+            if (Id.HasValue)
             {
-                _Input = service.GetBy(Id),
-                _Items = service.Get(service.CurrentUserId.Value)
-            };
+                model = service.GetBy(Id.Value);
+            }
+            model._Items = service.Get(service.CurrentUserId.Value);
             return PartialView(model);
         }
 
@@ -58,5 +51,42 @@ namespace _17bangMvc.Controllers
             return RedirectToAction("Manage");
         }
         #endregion
+        [HttpGet]
+        public ActionResult _Eidt()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult _Eidt(_InputModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            if (model.Id == model.ParentId)
+            {
+                throw new ArgumentException($"系列Id为：{model.Id}," +
+                                           $"父系列Id为：{model.ParentId}，" +
+                                           $"两者不能相同。");
+            }
+            service.Save(model, true);
+            return RedirectToAction("Manage");
+        }
+
+        [HttpPost]
+        public ActionResult _Delete(int id)
+        {
+            service.Delete(id);
+            return RedirectToAction("Manage");
+        }
+
+        [HttpGet]
+        public JsonResult _IsDuplicatedOnTitle(string Title)
+        {
+            return Json(!service.IsDuplicatedOnName(Title),
+                           JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
