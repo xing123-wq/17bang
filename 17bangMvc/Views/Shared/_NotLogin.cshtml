@@ -1,0 +1,12 @@
+﻿@model string
+@{string withPrepage = "?prepage=" + Server.UrlEncode(Model); }
+<p>
+    （◐ˍ◑）你还没有登录哟！
+</p>
+<p>
+    未登录用户无权查看该页面。
+</p>
+<p>
+    马上 <a href="/Log/On@(withPrepage)"><span class="fa fa-sign-in"></span> 登录</a> 或 <a href="/Register@(withPrepage)"> 
+    <span class="fa fa-registered"></span> 注册</a> 吧。
+</p>

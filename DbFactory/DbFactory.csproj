@@ -75,6 +75,10 @@
       <Project>{C1D93A0B-55FF-4097-AC41-06F5B5956F86}</Project>
       <Name>ExtensionMethods</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Global\Global.csproj">
+      <Project>{ea5d9b11-26ea-4a8d-8637-e9c28e12ac34}</Project>
+      <Name>Global</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Repositorys\Repositorys.csproj">
       <Project>{D5EA1592-9FE9-42BF-8238-23CE401563FE}</Project>
       <Name>Repositorys</Name>

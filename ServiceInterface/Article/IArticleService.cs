@@ -12,7 +12,7 @@ namespace ServiceInterface
     public interface IArticleService : IBaseService
     {
         IList<ViewModel.Articles.IndexModel> GetBy(int sum);
-        int Save(NewModel model);
+        int Save(_InputeModel model);
         ViewModel.Articles.User.IndexModel GetCurrentArticle(Pager pager, int Id);
         IndexModel GetSingle(int id);
     }

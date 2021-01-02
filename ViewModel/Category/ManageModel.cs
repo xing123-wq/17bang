@@ -11,7 +11,7 @@ namespace ViewModel.Category
 {
     public class ManageModel : BaseModel
     {
-        public IList<_ItemMdodel> _Items { get; set; }
+        public IList<_SeriesItemMdodel> _Items { get; set; }
 
     }
     public class _InputModel : BaseModel
@@ -27,10 +27,10 @@ namespace ViewModel.Category
         public string Body { get; set; }
 
         public int? ParentId { get; set; }
-        public IList<_ItemMdodel> _Items { get; set; }
+        public IList<_SeriesItemMdodel> _Items { get; set; }
     }
 
-    public class _ItemMdodel : BaseModel
+    public class _SeriesItemMdodel : BaseModel
     {
         public string Title { get; set; }
         public string Body { get; set; }

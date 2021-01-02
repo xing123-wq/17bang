@@ -43,19 +43,19 @@
             {
                 <div class="form-group">
                     <label>标题(*必填)</label>
-                    @Html.TextBoxFor(n => n.Title, "", new { @class = "form-control", placeholder = "来一个醒目的标题吧" })
-                    @Html.ValidationMessageFor(n => n.Title)
+                    @Html.TextBoxFor(n => n._Inpute.Title, "", new { @class = "form-control", placeholder = "来一个醒目的标题吧" })
+                    @Html.ValidationMessageFor(n => n._Inpute.Title)
                 </div>
                 <div class="form-group">
                     <label>内容(*必填)</label>
-                    @Html.TextAreaFor(m => m.Body, new { @class = "form-control", rows = "30", style = "width:100%;height:450px;", id = "MyEidtor", placeholder = "请直接粘贴原生HTML代码", zyf_kindeditor = "" })
-                    @Html.ValidationMessageFor(n => n.Body)
+                    @Html.TextAreaFor(m => m._Inpute.Body, new { @class = "form-control", rows = "30", style = "width:100%;height:450px;", id = "MyEidtor", placeholder = "请直接粘贴原生HTML代码", zyf_kindeditor = "" })
+                    @Html.ValidationMessageFor(n => n._Inpute.Body)
                 </div>
                 <div class="form-group">
                     <label>添加到系列：</label>
                     <a href="/Category/Manage" class="pull-right"><span class="fa fa-cog"></span>管理</a>
                     <div class="input-group">
-                        @Html.DropDownListFor(n => n.SeriesId, ViewData["SelectList"] as IEnumerable<SelectListItem>, "默认分类", new { @class = "form-control", zyf_article_series = "" })
+                        @Html.DropDownListFor(n => n._Inpute.SeriesId, new SelectList(Model._Series, "Id", "Title"), "---------", new { @class = "form-control", zyf_article_series = "" })
                         <a class="btn input-group-addon" data-toggle="modal" data-target="#new-category">
                             <span class="fa fa-plus" data-toggle="tooltip" title="" data-original-title="添加"></span> 新系列
                         </a>
@@ -65,8 +65,8 @@
                     <label>
                         关键字：（* 必填）
                     </label>
-                    @Html.TextBoxFor(n => n.Keyword, "", new { @class = "form-control", placeholder = "用空格分割，总长度不超过25个字符" })
-                    @Html.ValidationMessageFor(n => n.Keyword)
+                    @Html.TextBoxFor(n => n._Inpute.Keyword, "", new { @class = "form-control", placeholder = "用空格分割，总长度不超过25个字符" })
+                    @Html.ValidationMessageFor(n => n._Inpute.Keyword)
                 </div>
                 <div class="form-group">
                     <label>摘要：（* 建议填写）</label>
@@ -76,7 +76,7 @@
                 <div class="form-group">
                     <a zyf-ad-delete="" class="text-warning pull-right"><span class="fa fa-remove"></span> 删除</a>
                     <label>之前用过的广告：</label>
-                    @Html.DropDownListFor(n => n.ADId, ViewData["ADs"] as IList<SelectListItem>, "使用之前的广告", new { @class = "form-control", zyf_article_Ad = "" })
+                    @Html.DropDownListFor(n => n._Inpute.ADId, new SelectList(Model._Items, "Id", "Title"), "使用之前的广告", new { @class = "form-control", zyf_article_Ad = "" })
                 </div>
                 <ul class="hide" zyf-ad-in-widget-history-url="">
                     <li id="5">http://task.zyfei.net/</li>
@@ -89,13 +89,13 @@
                     </div>
                     <div class="form-group">
                         <label>文字内容：（* 必填）</label>
-                        @Html.TextBoxFor(n => n.text, "", new { @class = "form-control", placeholder = "最多不超过24个字符" })
-                        @Html.ValidationMessageFor(n => n.text)
+                        @Html.TextBoxFor(n => n._Inpute.text, "", new { @class = "form-control", placeholder = "最多不超过24个字符" })
+                        @Html.ValidationMessageFor(n => n._Inpute.text)
                     </div>
                     <div class="form-group">
                         <label>链接：（* 必填）</label>
-                        @Html.TextBoxFor(n => n.Interlinkage, "", new { @class = "form-control", placeholder = "http或https开头的网址" })
-                        @Html.ValidationMessageFor(n => n.Interlinkage)
+                        @Html.TextBoxFor(n => n._Inpute.Interlinkage, "", new { @class = "form-control", placeholder = "http或https开头的网址" })
+                        @Html.ValidationMessageFor(n => n._Inpute.Interlinkage)
                     </div>
                 </section>
                 <div class="submit">
@@ -107,7 +107,7 @@
             }
             <div class="modal fade" id="new-category" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                    @Html.Action("_Series", "Series")
+                    @Html.Action("_Series", "Category")
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
         </div>

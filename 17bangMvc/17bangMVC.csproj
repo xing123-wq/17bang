@@ -158,7 +158,6 @@
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Controllers\SeriesController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Filters\ContextPerRequest.cs" />
     <Compile Include="Filters\NeedLogOnFilter.cs" />
@@ -535,6 +534,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -581,6 +581,8 @@
     <Content Include="Views\Article\Single.cshtml" />
     <Content Include="Views\Category\_List.cshtml" />
     <Content Include="Views\Category\_New.cshtml" />
+    <Content Include="Views\Shared\_NotLogin.cshtml" />
+    <Content Include="Views\Shared\_NotAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

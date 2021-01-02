@@ -47,10 +47,10 @@ namespace ProdService
             }
             return selectList;
         }
-        public IList<IndexModel> Get()
+        public IList<_adItmeModel> Get()
         {
             IList<Advertising> ad = _repositroy.GetAdvertisings(5);
-            return mapper.Map<IList<IndexModel>>(ad);
+            return mapper.Map<IList<_adItmeModel>>(ad);
         }
         public IList<IndexModel> GetUserId(int? userId)
         {

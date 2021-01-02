@@ -60,23 +60,25 @@ namespace _17bangMvc.Controllers
 
         #region Url:/Article/New; Requset:Get,Post;
         [HttpGet]
+        [NeedLogOnFilter]
         public ActionResult New()
         {
             ViewData["title"] = "精品文章-一起帮";
-            ViewData["SelectList"] = _series.Get(_service.CurrentUserId.Value);
-            ViewData["ADs"] = _ad.GetSelectListItems(_ad.Get());
-            return View();
+            NewModel model = new NewModel
+            {
+                _Series = _series.GetSeries(),
+                _Items = _ad.Get(),
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult New(NewModel model)
+        [NeedLogOnFilter]
+        public ActionResult New(_InputeModel model)
         {
             ModelState.Remove("Digest");
             if (!ModelState.IsValid)
             {
-                ViewData["SelectList"] = _series.Get(_service.CurrentUserId.Value);
-                ViewData["ADs"] = _ad.GetSelectListItems(_ad.Get());
-                ViewData["title"] = "精品文章-一起帮";
                 return View(model);
             }
             if (string.IsNullOrEmpty(model.Digest))
@@ -90,6 +92,7 @@ namespace _17bangMvc.Controllers
 
         #region Url:/Aticle/User-{Id}; Requset:Get,Post;
         [HttpGet]
+        [NeedLogOnFilter]
         public new ActionResult User(int Id)
         {
             ViewData["title"] = "精品文章.一起帮";

@@ -1,4 +1,5 @@
 ﻿using _17bangMvc.Filters;
+using Global;
 using ProdService.Category;
 using ServiceInterface.Category;
 using System;
@@ -12,23 +13,29 @@ namespace _17bangMvc.Controllers
 {
     public class CategoryController : BaseController
     {
+        #region constructor 
         private ISeriesService service;
         public CategoryController(ISeriesService service)
         {
             this.service = service;
         }
+        #endregion
+
+        #region Url:/Category/Manage
         [HttpGet]
+        [NeedLogOnFilter]
         public ActionResult Manage()
         {
-            ManageModel model = new ManageModel
-            {
-                _Items = service.Get(service.CurrentUserId.Value)
-            };
+            ManageModel model = service.Get();
             return View(model);
         }
+        #endregion
+
+        #region PartialView
 
         #region Url:/Category/_New
         [HttpGet]
+        [NeedLogOnFilter]
         public PartialViewResult _New(int? Id)
         {
             _InputModel model = new _InputModel();
@@ -36,11 +43,12 @@ namespace _17bangMvc.Controllers
             {
                 model = service.GetBy(Id.Value);
             }
-            model._Items = service.Get(service.CurrentUserId.Value);
+            model._Items = service.GetSeries();
             return PartialView(model);
         }
 
         [HttpPost]
+        [NeedLogOnFilter]
         public ActionResult _New(_InputModel model)
         {
             if (!ModelState.IsValid)
@@ -51,13 +59,17 @@ namespace _17bangMvc.Controllers
             return RedirectToAction("Manage");
         }
         #endregion
+
+        #region Url:/Category/_Eidt 
         [HttpGet]
+        [NeedLogOnFilter]
         public ActionResult _Eidt()
         {
             return View();
         }
 
         [HttpPost]
+        [NeedLogOnFilter]
         public ActionResult _Eidt(_InputModel model)
         {
             if (!ModelState.IsValid)
@@ -73,20 +85,51 @@ namespace _17bangMvc.Controllers
             service.Save(model, true);
             return RedirectToAction("Manage");
         }
+        #endregion
+
+        #region Url:/Category/_Delete/{id}
 
         [HttpPost]
+        [NeedLogOnFilter]
         public ActionResult _Delete(int id)
         {
             service.Delete(id);
             return RedirectToAction("Manage");
         }
+        #endregion
 
         [HttpGet]
+        [NeedLogOnFilter]
         public JsonResult _IsDuplicatedOnTitle(string Title)
         {
             return Json(!service.IsDuplicatedOnName(Title),
                            JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult _Series()
+        {
+            _InputModel model = new _InputModel
+            {
+                _Items = service.GetSeries()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [NeedLogOnFilter]
+        public ActionResult _Series(_InputModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new Exception("用户输入不服规定");
+            }
+            service.Save(model);
+            return Redirect("/Article/New");
+        }
+
+
+        #endregion
 
     }
 }

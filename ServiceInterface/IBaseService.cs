@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Global;
 using Repositorys;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,6 @@ namespace ServiceInterface
         void ClearContext();
         int? CurrentUserId { get; }
         Users GetByCurrentUser();
+        bool IsAdmin();
     }
 }

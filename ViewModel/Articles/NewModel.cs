@@ -6,11 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ViewModel.Ad;
+using ViewModel.Category;
 
 namespace ViewModel.Articles
 {
     public class NewModel
     {
+        public Articles._InputeModel _Inpute { get; set; }
+        public IList<_adItmeModel> _Items { get; set; }
+        public IList<_SeriesItemMdodel> _Series { get; set; }
+
+    }
+
+    public class _InputeModel : BaseModel
+    {
+
         [Required(ErrorMessage = "* 正文不能为空")]
         [AllowHtml]
         [StringLength(2312412, MinimumLength = 5, ErrorMessage = "* 正文不能小于{2}和大于{1}字")]
@@ -39,6 +50,5 @@ namespace ViewModel.Articles
         [Required(ErrorMessage = "* 文本不能为空")]
         public string text { get; set; }
         public int? ADId { get; set; }
-
     }
 }

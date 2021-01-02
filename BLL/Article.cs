@@ -13,7 +13,13 @@ namespace BLL
         public int userId { get; set; }
         public Users Author { get; set; }
         public Series Series { get; set; }
+        public Article Next { get; set; }
+        public Article Previous { get; set; }
+
         public Advertising Advertising { get; set; }
         public virtual IList<ArticleAndKeyword> Keywords { get; set; }
+        public void Publish()
+        {
+        }
     }
 }

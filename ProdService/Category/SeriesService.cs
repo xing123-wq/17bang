@@ -24,6 +24,10 @@ namespace ProdService.Category
             Series series = repository.Find(id);
             if (series != null)
             {
+                if (series.IsDefault)
+                {
+                    throw new Exception($"删除的系列Id：{id}，是系统默认的，不允许被删除。");
+                }
                 repository.Remove(series);
             }
             else
@@ -32,10 +36,10 @@ namespace ProdService.Category
             }
         }
 
-        public IList<_ItemMdodel> Get(int userId)
+        public IList<_SeriesItemMdodel> GetSeries()
         {
-            var query = repository.GetSeries(userId);
-            return mapper.Map<IList<_ItemMdodel>>(query.ToList());
+            var query = repository.GetSeries(CurrentUserId.Value);
+            return mapper.Map<IList<_SeriesItemMdodel>>(query.ToList());
         }
 
         public _InputModel GetBy(int Id)
@@ -61,6 +65,10 @@ namespace ProdService.Category
             Series series = mapper.Map<Series>(model);
             if (HasEidt)
             {
+                if (series.IsDefault)
+                {
+                    throw new Exception($"修改的系列Id：{model.Id}是系统默认的，不允许被更改。");
+                }
                 repository.Update(series);
             }
             else
@@ -69,6 +77,16 @@ namespace ProdService.Category
                 repository.Add(series);
             }
             return series.Id;
+        }
+
+        public ManageModel Get()
+        {
+            IQueryable<Series> series = repository.GetSeries(CurrentUserId.Value);
+            ManageModel model = new ManageModel
+            {
+                _Items = mapper.Map<IList<_SeriesItemMdodel>>(series.ToList())
+            };
+            return model;
         }
     }
 }

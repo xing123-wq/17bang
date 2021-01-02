@@ -41,7 +41,7 @@ namespace ProdService.Articles
             return model;
         }
 
-        public int Save(NewModel model)
+        public int Save(_InputeModel model)
         {
             Article article = mapper.Map<Article>(model);
             article.Author = GetByCurrentUser();

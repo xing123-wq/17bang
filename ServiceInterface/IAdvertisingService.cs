@@ -14,6 +14,6 @@ namespace ServiceInterface
         int Sava(IndexModel model);
         IEnumerable<SelectListItem> GetSelectListItems(IList<IndexModel> source);
         IList<IndexModel> GetByads(int sum);
-        IList<IndexModel> Get();
+        IList<_adItmeModel> Get();
     }
 }

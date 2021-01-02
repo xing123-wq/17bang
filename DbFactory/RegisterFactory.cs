@@ -1,5 +1,6 @@
 ﻿using BLL;
 using ExtensionMethods;
+using Global;
 using Repositorys;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace DbFactory
                 Password = password.GetMd5Hash(),
                 Inviter = at,
                 InviterCode = StringExtension.GetRandomNumber(4),
+                Role = Role.Admin
             };
             wpz = new Users
             {
@@ -45,6 +47,9 @@ namespace DbFactory
                 at,wpz,lzb
 
             };
+            at.NewSeriers();
+            wpz.NewSeriers();
+            lzb.NewSeriers();
             new UserRepositroy(Global.context).AddRange(users);
         }
     }

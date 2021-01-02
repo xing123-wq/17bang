@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL;
+using Global;
 using Repositorys;
 using ServiceInterface;
 using System;
@@ -112,7 +113,14 @@ namespace ProdService
                 }
             }
         }
-
+        public bool IsAdmin()
+        {
+            if (GetByCurrentUser().Role == Role.Admin)
+            {
+                return true;
+            }//eles do nothing
+            return false;
+        }
         public void ClearContext()
         {
             HttpContext.Current.Items["dbContext"] = null;
@@ -168,12 +176,11 @@ namespace ProdService
                 .ForMember(a => a.Advertising, opt => opt.Ignore());
 
                 cfg.CreateMap<Article, ViewModel.Articles.NewModel>(MemberList.None)
-                .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
-                .ForMember(i => i.Body, opt => opt.MapFrom(a => a.Content))
-                .ForMember(i => i.Keyword, opt => opt.Ignore())
-                .ForMember(i => i.SeriesId, opt => opt.Ignore())
-                .ReverseMap()
-                .ForMember(a => a.Series, opt => opt.Ignore());
+                .ForMember(n => n._Items, opt => opt.Ignore())
+                .ForMember(n => n._Series, opt => opt.Ignore());
+
+
+                cfg.CreateMap<Article, ViewModel.Articles._InputeModel>(MemberList.None);
 
                 cfg.CreateMap<Series, ViewModel.Category.ManageModel>(MemberList.None)
                 .ReverseMap();
@@ -181,7 +188,7 @@ namespace ProdService
                 cfg.CreateMap<Series, ViewModel.Category._InputModel>(MemberList.None)
                 .ReverseMap();
 
-                cfg.CreateMap<Series, ViewModel.Category._ItemMdodel>(MemberList.None)
+                cfg.CreateMap<Series, ViewModel.Category._SeriesItemMdodel>(MemberList.None)
                 .ReverseMap();
 
                 cfg.CreateMap<Chat, ViewModel.Chat.ChatItemModel>(MemberList.None)

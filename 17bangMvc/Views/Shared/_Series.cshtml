@@ -1,9 +1,9 @@
-﻿@model ViewModel.Category.SeriesModel
+﻿@model ViewModel.Category._InputModel
 @{
     Layout = null;
 }
 <div class="modal-content">
-    @using (Html.BeginForm("_Series", "Series", FormMethod.Post))
+    @using (Html.BeginForm("_Series", "Category", FormMethod.Post))
     {
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
@@ -12,22 +12,22 @@
         <div class="modal-body">
             <div class="form-group">
                 <label>父系列：</label>
-                @Html.DropDownListFor(s => s.LevelId, ViewData["SelectList"] as IEnumerable<SelectListItem>, "默认分类", new { @class = "form-control", zyf_series_list = "" })
+                @Html.DropDownListFor(s => s.ParentId, new SelectList(Model._Items, "Id", "Title"), "-------", new { @class = "form-control", zyf_series_list = "" })
             </div>
             <div class="form-group">
                 <label>名称：（* 必填）</label>
-                @Html.TextBoxFor(s => s.SeriesTitle, new { @class = "form-control", placeholder = "不能为空，25字符以内" })
-                @Html.ValidationMessageFor(s => s.SeriesTitle)
+                @Html.TextBoxFor(s => s.Title, new { @class = "form-control", placeholder = "不能为空，25字符以内" })
+                @Html.ValidationMessageFor(s => s.Title)
             </div>
             <div class="form-group">
                 <label>描述：</label>
-                @Html.TextBoxFor(s => s.SeriesBody, new { @class = "form-control", placeholder = "255个字符以内，简单描述系列的目的、内容等" })
-                @Html.ValidationMessageFor(s => s.SeriesBody, "", new { @class = "field-validation-valid" })
+                @Html.TextBoxFor(s => s.Body, new { @class = "form-control", placeholder = "255个字符以内，简单描述系列的目的、内容等" })
+                @Html.ValidationMessageFor(s => s.Body, "", new { @class = "field-validation-valid" })
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            <button type="submit" class="btn btn-primary"zyf-new-category-submit>提交</button>
+            <button type="submit" class="btn btn-primary" zyf-new-category-submit>提交</button>
         </div>
     }
 </div><!-- /.modal-content -->

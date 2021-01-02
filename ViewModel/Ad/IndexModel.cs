@@ -19,4 +19,9 @@ namespace ViewModel.Ad
         public IList<IndexModel> ADS { get; set; }
         public IndexModel AD { get; set; }
     }
+    public class _adItmeModel : BaseModel
+    {
+        public string Title { get; set; }
+        public string Url { get; set; }
+    }
 }
