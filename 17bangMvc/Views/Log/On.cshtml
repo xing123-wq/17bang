@@ -6,10 +6,13 @@
 {
     <title>@ViewData["title"]</title>
 }
-
+@{
+    string path = Request.Params["pagepth"];
+    string role = Request.Params["Role"];
+}
 <div class="container body-content">
     <div class="return-prepage">
-        <a href="/Page-1"><span class="fa fa-share"></span> 返回</a>
+        <a href="@path"><span class="fa fa-share"></span> 返回</a>
     </div>
     <div class="dualcolumns-container">
         <div class="page-header">
@@ -29,14 +32,14 @@
                         </a>
                     </div>
                 </div>
-                @{
-                    string path = Request.QueryString["pagepth"];
-                }
-                @if (path != null)
+                @if (!string.IsNullOrEmpty(role))
                 {
-                    <div class="well text-warning">
-                        <p><span class="fa fa-exclamation-triangle"></span> 访问页面：<a href="@path">@path</a> 需要 登录用户 权限。 </p>
-                    </div>
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        <div class="well text-warning">
+                            <p><span class="fa fa-exclamation-triangle"></span> 访问页面：<a href="@path">@path</a> 需要 @role 权限。 </p>
+                        </div>
+                    }
                 }
                 @using (Html.BeginForm())
                 {
@@ -54,11 +57,9 @@
                         <label>验证码：（* 必填）</label>
                         <br>
                         <span>
-                            @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control", id = "phpernote" })
+                            @Html.TextBoxFor(u => u.SecurityCode, "", new { @class = "form-control", zyf_log_on_focus = "" })
                             @Html.ValidationMessageFor(u => u.SecurityCode, "", new { style = "color:red" })
-                            <a name="imageCode">
-                            </a>
-                            <a href="#" style="font-size: 12px; display: none">
+                            <a zyf-log-on-captcha>
                                 看不清楚
                             </a>
                             <span>点击输入框显示</span>
@@ -77,6 +78,16 @@
                         </span>
                     </div>
                 }
+                <script>
+                    $('#SecurityCode').focus(function () {
+                        $('#checkCode').html('<img src="/Shared/_Captcha" />');
+                        $('[zyf-log-on-focus]').removeAttr('id');
+                    });
+                    $('[zyf-log-on-captcha]').click(function (event) {
+
+                        $('#checkCode').html('<img src="/Shared/_Captcha" />');
+                    });
+                </script>
                 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="introductionLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

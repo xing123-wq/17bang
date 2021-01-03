@@ -27,17 +27,13 @@ namespace ExtensionMethods
             }
         }
         static Random random = new Random();
-        private static char[] constant = "1234567890".ToArray();
+        private static char[] constant = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM".ToArray();
         public static string GetRandomNumber(int length)
         {
-            if (length > 4 || 4 < length)
-            {
-                throw new ArgumentException("字符串长度不能超过4");
-            }
             StringBuilder newRandom = new StringBuilder(length);
             for (int i = 0; i < length; i++)
             {
-                newRandom.Append(constant[random.Next(length)]);
+                newRandom.Append(constant[random.Next(constant.Length)]);
             }
             return newRandom.ToString();
         }

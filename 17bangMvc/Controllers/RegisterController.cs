@@ -57,8 +57,7 @@ namespace _17bangMvc.Controllers
             }
             int UserId = _service.Register(model);
             CookieHelper.LogOn(UserId, model.Password);
-            string path = Request.QueryString[Const.PAGE_PATH];
-            return GetByPagePath(path);
+            return PrepageUrlHelper.Return();
         }
     }
 }

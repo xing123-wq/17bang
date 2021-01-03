@@ -23,7 +23,7 @@ namespace _17bangMvc.Controllers
 
         #region Url:/Category/Manage
         [HttpGet]
-        [NeedLogOnFilter]
+        [NeedLogOnFilter(role: Role.Admin)]
         public ActionResult Manage()
         {
             ManageModel model = service.Get();
@@ -47,6 +47,12 @@ namespace _17bangMvc.Controllers
             return PartialView(model);
         }
 
+        /// <summary>
+        /// 由于Ajax请求，重定向到Manage，只会放会到Ajax的回调函数success当中，
+        /// 所以如果要使用Ajax请求，就在success中用location.href
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [NeedLogOnFilter]
         public ActionResult _New(_InputModel model)

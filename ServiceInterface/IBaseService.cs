@@ -17,5 +17,7 @@ namespace ServiceInterface
         int? CurrentUserId { get; }
         Users GetByCurrentUser();
         bool IsAdmin();
+        Role GetCurrentRole();
+        bool IsBlogger();
     }
 }

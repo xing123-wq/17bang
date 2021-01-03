@@ -121,6 +121,22 @@ namespace ProdService
             }//eles do nothing
             return false;
         }
+        public bool IsBlogger()
+        {
+            if (GetByCurrentUser().Role == Role.Blogger || IsAdmin())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Role GetCurrentRole()
+        {
+            return GetByCurrentUser().Role;
+        }
         public void ClearContext()
         {
             HttpContext.Current.Items["dbContext"] = null;

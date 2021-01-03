@@ -26,11 +26,11 @@ namespace _17bangMvc.Controllers
         #endregion
 
         #region Captcha
-        public ActionResult Captcha()
+        public ActionResult _Captcha()
         {
             string length = StringExtension.GetRandomNumber(4);
             HttpContext.Session[Const.CAPTCHA] = new SharedController();
-            Session[Const.CAPTCHA] = length.GetMd5Hash();
+            Session[Const.CAPTCHA] = length.ToLower().GetMd5Hash();
             Verification.Captcha(length);
             MemoryStream stream = new MemoryStream();
             Verification.image.Save(stream, ImageFormat.Jpeg);

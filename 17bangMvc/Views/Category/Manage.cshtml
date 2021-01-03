@@ -65,7 +65,6 @@
         function postnew(data) {
             var $data = $(data);
             $data.find('[zyf-new-category-submit]').click(function (event) {
-                event.preventDefault();
                 var $form = $(this).parents("form"),
                     $modal = $('[zyf-category-modal]'),
                     formData = $form.serialize();
@@ -77,8 +76,9 @@
                     url: '/Category/_New',
                     method: 'Post',
                     data: formData,
-                    success: function () {
+                    success: function (data) {
                         $modal.modal("hide");
+                        location.href = '/Category/Manage';
                     }
                 });
             });
@@ -90,7 +90,7 @@
                 url: '/Category/_Delete/' + Id,
                 method: 'Post',
                 success: function () {
-
+                    location.href = '/Category/Manage';
                 }
             });
         });
@@ -122,6 +122,7 @@
                             data: $form.serialize(),
                             success: function () {
                                 $modal.modal("hide");
+                                location.href = '/Category/Manage';
                             }
                         });
                     })

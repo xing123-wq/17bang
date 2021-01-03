@@ -583,6 +583,7 @@
     <Content Include="Views\Category\_New.cshtml" />
     <Content Include="Views\Shared\_NotLogin.cshtml" />
     <Content Include="Views\Shared\_NotAdmin.cshtml" />
+    <Content Include="Views\Shared\_NotBlogger.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

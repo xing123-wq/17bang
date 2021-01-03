@@ -60,7 +60,7 @@ namespace _17bangMvc.Controllers
 
         #region Url:/Article/New; Requset:Get,Post;
         [HttpGet]
-        [NeedLogOnFilter]
+        [NeedLogOnFilter(role: Role.Blogger)]
         public ActionResult New()
         {
             ViewData["title"] = "精品文章-一起帮";

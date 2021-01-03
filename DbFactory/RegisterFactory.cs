@@ -37,7 +37,8 @@ namespace DbFactory
                 Name = "小李头哦",
                 Password = password.GetMd5Hash(),
                 Inviter = at,
-                InviterCode = StringExtension.GetRandomNumber(4)
+                InviterCode = StringExtension.GetRandomNumber(4),
+                Role = Role.Blogger
             };
         }
         public static void Create()

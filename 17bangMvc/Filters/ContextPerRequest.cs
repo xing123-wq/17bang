@@ -18,11 +18,11 @@ namespace _17bangMvc.Filters
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             base.OnActionExecuted(filterContext);
-        }
+        }//已经执行完成
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-        }
+        }//执行中
         public override void OnResultExecuted(ResultExecutedContext filterContext)
         {
             if (!filterContext.IsChildAction)
@@ -38,6 +38,6 @@ namespace _17bangMvc.Filters
                 _Service.ClearContext();
             }
             base.OnResultExecuted(filterContext);
-        }
+        }//执行结束
     }
 }
