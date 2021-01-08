@@ -65,6 +65,7 @@
     <Compile Include="Article\IArticleService.cs" />
     <Compile Include="Article\INewArticleService.cs" />
     <Compile Include="Category\ISeriesService.cs" />
+    <Compile Include="Email\IEmailService.cs" />
     <Compile Include="IAdvertisingService.cs" />
     <Compile Include="IBaseService.cs" />
     <Compile Include="IChatRoomService.cs" />

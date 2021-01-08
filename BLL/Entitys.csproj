@@ -51,6 +51,7 @@
     <Compile Include="BanMoney.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Chat.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="Keyword.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="ProblemAndKeyword.cs" />
@@ -63,6 +64,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
+      <Project>{c1d93a0b-55ff-4097-ac41-06f5b5956f86}</Project>
+      <Name>ExtensionMethods</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Global\Global.csproj">
       <Project>{ea5d9b11-26ea-4a8d-8637-e9c28e12ac34}</Project>
       <Name>Global</Name>

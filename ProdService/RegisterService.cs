@@ -17,7 +17,7 @@ namespace ProdService
         private Users _user;
         public IndexModel GetBy(string name)
         {
-             _user = _userRepositroy.GetByName(name);
+            _user = _userRepositroy.GetByName(name);
             return mapper.Map<ViewModel.Register.IndexModel>(_user);
         }
         public int Register(IndexModel model)
@@ -26,6 +26,7 @@ namespace ProdService
             _user.InviterCode = StringExtension.GetRandomNumber(4);
             _user.Password = StringExtension.GetMd5Hash(model.Password);
             _user.Inviter = _userRepositroy.GetByInviter(model.Inviter);
+            _user.Role = Global.Role.Logon;
             _userRepositroy.Add(_user);
             return _user.Id;
         }

@@ -9,10 +9,6 @@ namespace BLL
 {
     public class Users : BaseEntity
     {
-        public Users()
-        {
-            this.Role = Role.Logon;
-        }
         public string Name { get; set; }
         public string Password { get; set; }
         public int? InviterId { get; set; }
@@ -26,7 +22,7 @@ namespace BLL
         public IList<Series> Series { get; set; }
         public Series DefaultSeries { get; set; }
         public Role Role { get; set; }
-
+        public Email Email { get; set; }
         public void NewSeriers()
         {
             DefaultSeries = new Series

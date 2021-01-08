@@ -153,6 +153,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
@@ -584,6 +585,7 @@
     <Content Include="Views\Shared\_NotLogin.cshtml" />
     <Content Include="Views\Shared\_NotAdmin.cshtml" />
     <Content Include="Views\Shared\_NotBlogger.cshtml" />
+    <Content Include="Views\Email\Activate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

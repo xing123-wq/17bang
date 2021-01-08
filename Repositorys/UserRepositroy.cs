@@ -27,5 +27,10 @@ namespace Repositorys
         {
             return entities.FirstOrDefault(u => u.Name == inviter);
         }
+
+        public Users GetEmail()
+        {
+            return entities.Include(u => u.Email).FirstOrDefault();
+        }
     }
 }

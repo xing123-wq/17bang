@@ -71,6 +71,7 @@
     <Compile Include="Category\ManageModel.cs" />
     <Compile Include="Chat\ChatItemModel.cs" />
     <Compile Include="Chat\ChatRoomModel.cs" />
+    <Compile Include="Email\ActivateModel.cs" />
     <Compile Include="Home\IndexModel.cs" />
     <Compile Include="Keyword\IndexModel.cs" />
     <Compile Include="LogOn\IndexModel.cs" />

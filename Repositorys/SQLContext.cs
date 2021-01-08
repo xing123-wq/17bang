@@ -29,6 +29,7 @@ namespace Repositorys
             modelBuilder.Entity<Series>();
             modelBuilder.Entity<Advertising>();
             modelBuilder.Entity<Chat>();
+            modelBuilder.Entity<Email>();
 
             modelBuilder.Entity<ArticleAndKeyword>()
                 .HasKey(ak => new { ak.ArticleId, ak.KeywordId });

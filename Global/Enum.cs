@@ -17,6 +17,11 @@ namespace Global
         [Description("管理员")]
         Admin
     }
+    public enum EmailValidationResult
+    {
+        HasSend = 1,
+        Duplicated = 2
+    }
     public static class EnumExtension
     {
         public static string GetDescription<T>(this T value)

@@ -198,6 +198,9 @@ namespace ProdService
 
                 cfg.CreateMap<Article, ViewModel.Articles._InputeModel>(MemberList.None);
 
+                cfg.CreateMap<Email, ViewModel.Email.ActivateModel>(MemberList.None);
+
+
                 cfg.CreateMap<Series, ViewModel.Category.ManageModel>(MemberList.None)
                 .ReverseMap();
 

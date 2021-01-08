@@ -18,11 +18,5 @@ namespace _17bangMvc.Controllers
         {
             _service = new BaseService();
         }
-        public ActionResult GetByPagePath(string path)
-        {
-        
-         
-            return Redirect(path);
-        }
     }
 }
