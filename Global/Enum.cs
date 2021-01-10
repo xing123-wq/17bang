@@ -22,6 +22,19 @@ namespace Global
         HasSend = 1,
         Duplicated = 2
     }
+    public enum Sort
+    {
+        [Description("顺序")]
+        Asc,
+        [Description("倒叙")]
+        Desc
+    }
+    public enum MoveDirection
+    {
+        Forward,
+        Backward
+    }
+
     public static class EnumExtension
     {
         public static string GetDescription<T>(this T value)

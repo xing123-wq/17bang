@@ -51,6 +51,7 @@
     <Compile Include="BanMoney.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Chat.cs" />
+    <Compile Include="DoubleLinked.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Keyword.cs" />
     <Compile Include="Problem.cs" />

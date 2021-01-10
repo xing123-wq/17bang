@@ -45,8 +45,7 @@ namespace ProdService.Articles
         {
             Article article = mapper.Map<Article>(model);
             article.Author = GetByCurrentUser();
-            article.Keywords = repository.GetString(model.Keyword);
-            article.PublishTime = DateTime.Now;
+            article.Publish(model.Keyword);
             repository.Add(article);
             return article.Id;
         }
@@ -55,6 +54,17 @@ namespace ProdService.Articles
         {
             Article article = repository.GetArticle(id);
             return mapper.Map<IndexModel>(article);
+        }
+        public _PreAndNextModel GetPreAndNext(int id)
+        {
+            _PreAndNextModel model = new _PreAndNextModel();
+
+            Article current = repository.Find(id);
+
+            model.Pre = mapper.Map<LiteTitleModel>(repository.GetPre(current));
+            model.Next = mapper.Map<LiteTitleModel>(repository.GetNext(current));
+
+            return model;
         }
     }
 }

@@ -19,7 +19,6 @@ namespace DbFactory
                 Content = "SQL是数据库",
                 Author = RegisterFactory.at,
                 PublishTime = Global.Time.AddDays(1),
-                Advertising = null,
                 Series = SeriesFactory.series1,
                 Keywords = ArticleAndKeywordFactory.sqls
             };
@@ -29,23 +28,26 @@ namespace DbFactory
                 Content = "JAVA是一种语言",
                 Author = RegisterFactory.wpz,
                 PublishTime = Global.Time.AddDays(-1),
-                Advertising = null,
                 Series = SeriesFactory.series2,
                 Keywords = ArticleAndKeywordFactory.javas
-            }; UI = new Article
+            };
+            UI = new Article
             {
                 Title = "什么是UI?",
                 Content = "UI是HTML等组成的统称",
                 Author = RegisterFactory.lzb,
                 PublishTime = Global.Time.AddDays(2),
-                Advertising = null,
                 Series = SeriesFactory.series3,
                 Keywords = ArticleAndKeywordFactory.uis
             };
+
         }
         internal static void Create()
         {
-            new ArticleRepository(Global.context).AddRange(new List<Article> { SQL, JAVA, UI });
+            ArticleRepository repository = new ArticleRepository(Global.context);
+            repository.AddRange(new List<Article> { SQL, JAVA, UI });
+            SQL.InsertAfter(JAVA);
+            JAVA.InsertAfter(UI);
         }
     }
 }

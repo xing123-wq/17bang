@@ -22,6 +22,19 @@ namespace Repositorys
                 .ToList();
         }
 
+        public Article GetNext(Article current)
+        {
+            return entities.Where(a => a.Id > current.Id)
+                            .OrderBy(a => a.PublishTime)
+                            .FirstOrDefault();
+        }
+        public Article GetPre(Article current)
+        {
+            return entities.Where(a => a.Id < current.Id)
+                .OrderByDescending(a => a.Id).FirstOrDefault();
+        }
+
+
         public Article GetArticle(int id)
         {
             return entities.Where(a => a.Id == id)
@@ -30,24 +43,7 @@ namespace Repositorys
                 .SingleOrDefault();
         }
 
-        public IList<ArticleAndKeyword> GetString(string keyword)
-        {
-            IList<ArticleAndKeyword> maps = new List<ArticleAndKeyword>();
-            if (!string.IsNullOrEmpty(keyword))
-            {
-                IList<string> SKeywords = keyword.Trim().Split();
-                for (int i = 0; i < SKeywords.Count; i++)
-                {
-                    if (string.IsNullOrWhiteSpace(SKeywords[i]))
-                    {
-                        continue;
-                    }
-                    ArticleAndKeyword articleMaps = new ArticleAndKeyword { Keyword = new Keyword { Name = SKeywords[i] } };
-                    maps.Add(articleMaps);
-                }
-            }
-            return maps;
-        }
+
 
         public IList<Article> GetByUserId(int id)
         {

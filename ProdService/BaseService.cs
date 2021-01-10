@@ -179,6 +179,9 @@ namespace ProdService
                 .ForMember(i => i.Url, opt => opt.MapFrom(u => u.Url))
                 .ReverseMap();
 
+                cfg.CreateMap<Advertising, ViewModel.Ad._adItmeModel>(MemberList.None)
+                .ReverseMap();
+
                 cfg.CreateMap<Article, ViewModel.Articles.IndexModel>(MemberList.None)
                 .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
                 .ForMember(i => i.Body, opt => opt.MapFrom(a => a.Content))
@@ -195,8 +198,16 @@ namespace ProdService
                 .ForMember(n => n._Items, opt => opt.Ignore())
                 .ForMember(n => n._Series, opt => opt.Ignore());
 
+                cfg.CreateMap<Article, ViewModel.Articles._PreAndNextModel>(MemberList.None);
 
-                cfg.CreateMap<Article, ViewModel.Articles._InputeModel>(MemberList.None);
+                cfg.CreateMap<Article, ViewModel.Articles.LiteTitleModel>(MemberList.None);
+
+
+                cfg.CreateMap<Article, ViewModel.Articles._InputeModel>(MemberList.None)
+                .ForMember(m => m.Interlinkage, opt => opt.MapFrom(a => a.Advertising.Url))
+                .ForMember(m => m.text, opt => opt.MapFrom(a => a.Advertising.Title))
+                .ForMember(m => m.Body, opt => opt.MapFrom(a => a.Content))
+                .ReverseMap();
 
                 cfg.CreateMap<Email, ViewModel.Email.ActivateModel>(MemberList.None);
 

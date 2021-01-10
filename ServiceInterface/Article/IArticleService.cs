@@ -15,5 +15,6 @@ namespace ServiceInterface
         int Save(_InputeModel model);
         ViewModel.Articles.User.IndexModel GetCurrentArticle(Pager pager, int Id);
         IndexModel GetSingle(int id);
+        _PreAndNextModel GetPreAndNext(int id);
     }
 }

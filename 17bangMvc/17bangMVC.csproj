@@ -586,6 +586,7 @@
     <Content Include="Views\Shared\_NotAdmin.cshtml" />
     <Content Include="Views\Shared\_NotBlogger.cshtml" />
     <Content Include="Views\Email\Activate.cshtml" />
+    <Content Include="Views\Article\_PreAndNext.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

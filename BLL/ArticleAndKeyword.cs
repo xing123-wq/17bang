@@ -12,5 +12,24 @@ namespace BLL
         public virtual Article Article { get; set; }
         public int KeywordId { get; set; }
         public virtual Keyword Keyword { get; set; }
+        public IList<ArticleAndKeyword> GetString(string keyword)
+        {
+            IList<ArticleAndKeyword> maps = new List<ArticleAndKeyword>();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                IList<string> SKeywords = keyword.Trim().Split();
+                for (int i = 0; i < SKeywords.Count; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(SKeywords[i]))
+                    {
+                        continue;
+                    }
+                    ArticleAndKeyword articleMaps = new ArticleAndKeyword { Keyword = new Keyword { Name = SKeywords[i] } };
+                    maps.Add(articleMaps);
+                }
+            }
+            return maps;
+        }
     }
+
 }

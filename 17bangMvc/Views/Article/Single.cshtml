@@ -44,9 +44,6 @@
                 </span>
                 <div style="clear:both; word-break:break-all; padding-top:20px;">
                     <p>
-                        测试文章发布-内容
-                    </p>
-                    <p>
                         <span>@Html.Raw(Model.Body)</span>
                     </p>
                 </div>
@@ -160,19 +157,7 @@
                     <a class="btn btn-default btn-sm pull-right" href="/Article/Category-10?fulltext=1&amp;articleId=36">
                         <span class="iconfont icon-pages"></span> 全系列阅读
                     </a>
-                    <div zyf-article-nav-container="" style="clear:both; margin-bottom:20px; padding:10px 15px; border: 2px dashed #808080; border-radius:4px 5px;">
-                        <div>
-                            <span class="fa fa-arrow-up"></span>
-                            上一篇：
-                            <a href="/Article/35">50城抢人才大战：谁在以人才名义放松限购？</a>
-
-                        </div>
-                        <div style="margin-top:6px;">
-                            <span class="fa fa-arrow-down"></span>
-                            下一篇：
-                            <span class="text-info">已经是最后一篇了……</span>
-                        </div>
-                    </div>
+                    @Html.Action("_PreAndNext")
                 </div>
                 <div class="appraise-status" style="clear:both; margin-top: 15px;">
                     <span class="lead" style="margin-right:20px">

@@ -34,6 +34,7 @@ namespace _17bangMvc.Controllers
 
         #region Url:/Article;Requset:Get;
         [HttpGet]
+        //Duration以秒为单位，VaryByParam=""，只要后面参数，有所改变，就会重新缓存
         [OutputCache(Duration = 100, Location = OutputCacheLocation.Any, VaryByParam = "id")]
         public ActionResult index(IEnumerable<IndexModel> models)
         {
@@ -73,19 +74,21 @@ namespace _17bangMvc.Controllers
         }
 
         [HttpPost]
-        [NeedLogOnFilter]
-        public ActionResult New(_InputeModel model)
+        [NeedLogOnFilter(role: Role.Blogger)]
+        public ActionResult New(NewModel model)
         {
-            ModelState.Remove("Digest");
             if (!ModelState.IsValid)
             {
+                model._Items = _ad.Get();
+                model._Series = _series.GetSeries();
                 return View(model);
             }
-            if (string.IsNullOrEmpty(model.Digest))
+            _InputeModel _Inpute = model._Inpute;
+            if (string.IsNullOrEmpty(_Inpute.Digest))
             {
-                model.Digest = model.Body.Substring(15);
+                _Inpute.Digest = _Inpute.Body.Substring(15);
             }
-            _service.Save(model);
+            _service.Save(_Inpute);
             return Redirect("/Article");
         }
         #endregion
@@ -112,5 +115,13 @@ namespace _17bangMvc.Controllers
             return View(model);
         }
         #endregion
+
+        [ChildActionOnly]
+        public PartialViewResult _PreAndNext(int id)
+        {
+            _PreAndNextModel model = _service.GetPreAndNext(id);
+            return PartialView(model);
+        }
+
     }
 }

@@ -23,7 +23,10 @@ namespace Repositorys
             modelBuilder.Entity<Problem>();
             modelBuilder.Entity<ProblemAndKeyword>();
             modelBuilder.Entity<Keyword>();
-            modelBuilder.Entity<Article>().Ignore(a => a.Next).Ignore(a => a.Previous);
+            modelBuilder.Entity<Article>()
+                .HasOptional(a => a.Next).WithOptionalDependent();
+            modelBuilder.Entity<Article>()
+                .HasOptional(a => a.Previous).WithOptionalDependent();
             modelBuilder.Entity<ArticleAndKeyword>();
             modelBuilder.Entity<BanMoney>();
             modelBuilder.Entity<Series>();

@@ -37,7 +37,6 @@ namespace ViewModel.Articles
         [DataType(DataType.Date)]
         public DateTime PublishTime { get; set; }
 
-        [Required(ErrorMessage = "* 摘要不能为空")]
         [StringLength(115, ErrorMessage = "* 摘要的长度不能大于155")]
         public string Digest { get; set; }
 
