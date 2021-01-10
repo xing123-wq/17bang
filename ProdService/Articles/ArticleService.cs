@@ -55,16 +55,41 @@ namespace ProdService.Articles
             Article article = repository.GetArticle(id);
             return mapper.Map<IndexModel>(article);
         }
-        public _PreAndNextModel GetPreAndNext(int id)
+        public _PreAndNextModel GetPreAndNext(int id, bool inCategory)
         {
             _PreAndNextModel model = new _PreAndNextModel();
+            Article prevArticle, nextArticle;
 
             Article current = repository.Find(id);
 
-            model.Pre = mapper.Map<LiteTitleModel>(repository.GetPre(current));
-            model.Next = mapper.Map<LiteTitleModel>(repository.GetNext(current));
+            if (inCategory)
+            {
+                prevArticle = current.Previous;
+                checkCategorySame(prevArticle, current);
 
+                nextArticle = current.Next;
+                checkCategorySame(nextArticle, current);
+            }
+            else
+            {
+                prevArticle = repository.GetPre(current);
+                nextArticle = repository.GetNext(current);
+            }
+            model.Pre = mapper.Map<LiteTitleModel>(prevArticle);
+            model.Next = mapper.Map<LiteTitleModel>(nextArticle);
             return model;
+        }
+        private void checkCategorySame(Article a, Article b)
+        {
+            if (a != null && b != null)
+            {
+                if (a.Series != b.Series)
+                {
+                    throw new Exception(
+                        $"根据前后关系取到的Article（id={a.Id}），" +
+                        $"其Category(id={a.Series.Id})和Article（id={b.Id}）的Category（id={b.Series.Id}）不合");
+                }//else nothing: category can NOT be null
+            }//else nothing
         }
     }
 }

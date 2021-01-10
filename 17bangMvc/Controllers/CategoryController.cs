@@ -26,7 +26,7 @@ namespace _17bangMvc.Controllers
         [NeedLogOnFilter(role: Role.Admin)]
         public ActionResult Manage()
         {
-            ManageModel model = service.Get();
+            ManageModel model = service.GetManage();
             return View(model);
         }
         #endregion
@@ -137,5 +137,11 @@ namespace _17bangMvc.Controllers
 
         #endregion
 
+        [ChildActionOnly]
+        public PartialViewResult _Item(int id)
+        {
+            _SeriesItemMdodel model = service.Get(id);
+            return PartialView(model);
+        }
     }
 }

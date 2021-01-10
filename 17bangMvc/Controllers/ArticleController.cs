@@ -111,15 +111,34 @@ namespace _17bangMvc.Controllers
         {
             IndexModel model = new IndexModel();
             model = _service.GetSingle(Id);
+            ViewBag.NavInCategory = navInCategory();
             ViewData["title"] = model.Title + ".一起帮";
             return View(model);
         }
+        private bool navInCategory()
+        {
+            HttpCookie cookie = Request.Cookies["NavInCategory"];
+            return cookie != null ?
+                Convert.ToBoolean(cookie.Value) :
+                false;
+        }
+        #endregion
+
+        #region Url:/Article/Edit{id}
+        
+        [HttpPost]
+        public ActionResult Edit(int id)
+        {
+
+            return View();
+        }
+
         #endregion
 
         [ChildActionOnly]
         public PartialViewResult _PreAndNext(int id)
         {
-            _PreAndNextModel model = _service.GetPreAndNext(id);
+            _PreAndNextModel model = _service.GetPreAndNext(id, navInCategory());
             return PartialView(model);
         }
 

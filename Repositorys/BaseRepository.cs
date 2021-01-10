@@ -11,6 +11,7 @@ namespace Repositorys
     public class BaseRepository<T> where T : BaseEntity
     {
         protected SQLContext context;
+
         public BaseRepository(SQLContext context)
         {
             this.context = context;
@@ -22,6 +23,11 @@ namespace Repositorys
                 return context.Set<T>();
             }
         }
+        public IList<T> FindAll()
+        {
+            return context.Set<T>().ToList();
+        }
+
         public void Add(T source)
         {
             entities.Add(source);

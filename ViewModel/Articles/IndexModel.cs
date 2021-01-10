@@ -15,5 +15,7 @@ namespace ViewModel.Articles
         public IList<ArticleAndKeyword> Keywords { get; set; }
         public DateTime PublishTime { get; set; }
         public Users Author { get; set; }
+        public int CategoryId { get; set; }
+
     }
 }

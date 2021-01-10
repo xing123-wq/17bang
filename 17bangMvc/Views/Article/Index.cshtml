@@ -31,13 +31,7 @@
                                 @{
                                     BaseService service = new BaseService();
                                 }
-                                @if (article.Author != service.GetByCurrentUser())
-                                {
-                                    <a href="/Article/Edits/@article.Id" class="hide" style="margin-left: 14px;" zyf-article-edit="" data-author-id="1">
-                                        <span class="fa fa-pencil-square-o"></span> 修改
-                                    </a>
-                                }
-                                else
+                                @if (article.Author == service.GetByCurrentUser())
                                 {
                                     <a href="/Article/Edits/@article.Id" style="margin-left: 14px;" zyf-article-edit="" data-author-id="1">
                                         <span class="fa fa-pencil-square-o"></span> 修改
@@ -87,5 +81,5 @@
             @Html.Partial("_Advertising")
         </div><!-- /.modal -->
     </div>
-  @Html.Partial("_Pager",Model)
+    @Html.Partial("_Pager", Model)
 </div>

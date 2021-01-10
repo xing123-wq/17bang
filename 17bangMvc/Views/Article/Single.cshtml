@@ -149,12 +149,11 @@
                 <div style="margin-top: 25px;">
                     <div class="checkbox pull-left">
                         <label>
-                            <input id="inCategory" name="inCategory" type="checkbox" value="true" zyf-nav-in-category=""><input name="inCategory" type="hidden" value="false">
-                            在系列 <a href="/Article/Category-10"><span class="fa fa-folder"></span> 默认分类</a>
-                            中的：
+                            @Html.CheckBox("inCategory", (bool)ViewBag.NavInCategory, new { zyf_nav_in_category = string.Empty })
+                            在系列 @Html.Action("_Item", "Category", new { id = Model.CategoryId }) 中的：
                         </label>
                     </div>
-                    <a class="btn btn-default btn-sm pull-right" href="/Article/Category-10?fulltext=1&amp;articleId=36">
+                    <a class="btn btn-default btn-sm pull-right" href="/Article/Category-@(Model.CategoryId)?fulltext=1&articleId=@Model.Id">
                         <span class="iconfont icon-pages"></span> 全系列阅读
                     </a>
                     @Html.Action("_PreAndNext")
@@ -178,3 +177,25 @@
         </div>
     </div>
 </div>
+@{
+    string articleId = ViewContext.RouteData.Values["id"].ToString();
+}
+<script>
+    $(document).ready(function () {
+         $("[zyf-nav-in-category]").on("click", function () {
+                var articleId = "@articleId",
+                    $this = $(this),
+                    inCategory = $this.is(":checked"),
+                    $container = $("[zyf-article-nav-container]");
+                $this.prop("readonly", true);
+                $.ajax({
+                    url: "/Article/_PreAndNext/" + articleId + "?inCategory=" + inCategory,
+                    type: "POST",
+                    success: function (data) {
+                        $container.html($(data).html());
+                    },
+                    error: JqueryAjaxError
+                })
+            })
+    });
+</script>

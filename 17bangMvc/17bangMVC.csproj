@@ -587,9 +587,12 @@
     <Content Include="Views\Shared\_NotBlogger.cshtml" />
     <Content Include="Views\Email\Activate.cshtml" />
     <Content Include="Views\Article\_PreAndNext.cshtml" />
+    <Content Include="Views\Category\_Item.cshtml" />
+    <Content Include="Views\Shared\_GlobalModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />
+    <Folder Include="Scripts\Article\" />
     <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>

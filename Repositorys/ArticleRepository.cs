@@ -40,6 +40,7 @@ namespace Repositorys
             return entities.Where(a => a.Id == id)
                 .Include(a => a.Author)
                 .Include(a => a.Keywords.Select(k => k.Keyword))
+                .Include(a => a.Series)
                 .SingleOrDefault();
         }
 

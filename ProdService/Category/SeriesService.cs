@@ -18,7 +18,11 @@ namespace ProdService.Category
         {
             repository = new SeriesRepository(context);
         }
-
+        public _SeriesItemMdodel Get(int id)
+        {
+            return mapper.Map<_SeriesItemMdodel>(
+                repository.Find(id));
+        }
         public void Delete(int id)
         {
             Series series = repository.Find(id);
@@ -79,7 +83,7 @@ namespace ProdService.Category
             return series.Id;
         }
 
-        public ManageModel Get()
+        public ManageModel GetManage()
         {
             IQueryable<Series> series = repository.GetSeries(CurrentUserId.Value);
             ManageModel model = new ManageModel

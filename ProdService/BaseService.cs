@@ -183,16 +183,7 @@ namespace ProdService
                 .ReverseMap();
 
                 cfg.CreateMap<Article, ViewModel.Articles.IndexModel>(MemberList.None)
-                .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
-                .ForMember(i => i.Body, opt => opt.MapFrom(a => a.Content))
-                .ForMember(i => i.Id, opt => opt.MapFrom(a => a.Id))
-                .ForMember(i => i.PublishTime, opt => opt.MapFrom(a => a.PublishTime))
-                .ForMember(i => i.Author, opt => opt.MapFrom(a => a.Author))
-                .ForMember(i => i.Keywords, opt => opt.MapFrom(a => a.Keywords))
-                .ReverseMap()
-                .ForMember(a => a.Keywords, opt => opt.Ignore())
-                .ForMember(a => a.Series, opt => opt.Ignore())
-                .ForMember(a => a.Advertising, opt => opt.Ignore());
+                .ForMember(m => m.CategoryId, opt => opt.MapFrom(a => a.Series.Id));
 
                 cfg.CreateMap<Article, ViewModel.Articles.NewModel>(MemberList.None)
                 .ForMember(n => n._Items, opt => opt.Ignore())
