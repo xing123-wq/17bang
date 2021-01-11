@@ -47,7 +47,7 @@
                 </span>
                 <div style="clear:both; word-break:break-all; padding-top:20px;">
                     <p>
-                        <span>@Html.Raw(Model.Body)</span>
+                        <span>@Html.Raw(Model.Abstract)</span>
                     </p>
                 </div>
                 <div class="clearfix" style="padding-top:10px;">
@@ -58,7 +58,7 @@
                         </label>
                         @foreach (var item in Model.Keywords)
                         {
-                            <span class="badge">@item.Keyword.Name</span>
+                            <span class="badge">@item._Keyword.Name</span>
                         }
                     </div>
                     <div class="article-appraise appraise-status pull-right">
