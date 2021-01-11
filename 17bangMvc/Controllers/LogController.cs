@@ -3,6 +3,7 @@ using ExtensionMethods;
 using Global;
 using ProdService;
 using ServiceInterface;
+using ServiceInterface.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace _17bangMvc.Controllers
     public class LogController : BaseController
     {
         #region Constructor
-        private ILogOnService _service;
-        public LogController(ILogOnService service)
+        private IUserService _service;
+        public LogController(IUserService service)
         {
             this._service = service;
         }

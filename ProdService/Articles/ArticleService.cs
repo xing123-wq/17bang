@@ -1,8 +1,10 @@
 ﻿using BLL;
 using ExtensionMethods;
 using Global;
+using ProdService.Category;
 using Repositorys;
 using ServiceInterface;
+using ServiceInterface.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,34 +12,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Routing;
 using ViewModel.Articles;
+using ViewModel.Shared.Article;
 
 namespace ProdService.Articles
 {
     public class ArticleService : BaseService, IArticleService
     {
         private ArticleRepository repository;
+        private ISeriesService series;
+        private IAdvertisingService advertising;
         public ArticleService()
         {
+            series = new SeriesService();
+            advertising = new AdService();
             repository = new ArticleRepository(context);
         }
 
-        public IList<ViewModel.Articles.IndexModel> GetBy(int sum)
+        public IndexModel Get(Pager pager)
         {
-            IList<Article> articles = repository.GetArticles(sum);
-            return mapper.Map<IList<ViewModel.Articles.IndexModel>>(articles);
+            IndexModel model = new IndexModel();
+
+            IList<Article> articles = repository.GetArticles();
+
+            articles = articles.Paged<Article>(pager);
+
+            model.SumOfPages = pager.GetSumOfPage(articles.Count());
+            model.Items = mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
+
+            return model;
         }
 
-        public IList<ViewModel.Articles.IndexModel> Get(int Id)
+        public IndexModel Get(int userId, Pager pager)
         {
-            IList<Article> articles = repository.GetByUserId(Id);
-            return mapper.Map<IList<ViewModel.Articles.IndexModel>>(articles);
-        }
+            IndexModel model = new IndexModel();
 
-        public ViewModel.Articles.User.IndexModel GetCurrentArticle(Pager pager, int Id)
-        {
-            ViewModel.Articles.User.IndexModel model = new ViewModel.Articles.User.IndexModel();
-            model.Articles = Select.Get(Get(Id), pager.PageIndex, Const.PAGE_SIZE);
-            model.Author = GetByCurrentUser();
+            IList<Article> articles = repository.GetByUserId(userId);
+
+            articles = articles.Paged<Article>(pager);
+
+            model.Items = mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
+
             return model;
         }
 
@@ -50,10 +64,10 @@ namespace ProdService.Articles
             return article.Id;
         }
 
-        public IndexModel GetSingle(int id)
+        public _SingleItemModel GetSingle(int id)
         {
             Article article = repository.GetArticle(id);
-            return mapper.Map<IndexModel>(article);
+            return mapper.Map<_SingleItemModel>(article);
         }
         public _PreAndNextModel GetPreAndNext(int id, bool inCategory)
         {
@@ -90,6 +104,33 @@ namespace ProdService.Articles
                         $"其Category(id={a.Series.Id})和Article（id={b.Id}）的Category（id={b.Series.Id}）不合");
                 }//else nothing: category can NOT be null
             }//else nothing
+        }
+
+        public NewModel Get()
+        {
+            NewModel model = new NewModel
+            {
+                _Series = series.GetSeries(),
+                _Items = advertising.Get()
+            };
+            return model;
+        }
+
+        public EditModel Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public _WidgetModel GetWidget(Pager pager)
+        {
+            _WidgetModel model = new _WidgetModel();
+            model.Items = mapper.Map<IList<WidgetItemModel>>(
+                repository.FindAll()
+                .OrderByDescending(a => a.PublishTime)
+                .ToList()
+                .Paged(pager)
+                );
+            return model;
         }
     }
 }

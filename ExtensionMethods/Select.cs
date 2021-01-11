@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Global;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,9 @@ namespace ExtensionMethods
         {
             return parameter.Count();
         }
-        public static IEnumerable<T> Get<T>(this IEnumerable<T> soure, int pageindex, int pagesize)
+        public static IList<TRoot> Paged<TRoot>(this IList<TRoot> query, Pager pager)
         {
-            return soure.Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();
+            return query.Skip((pager.Index - 1) * pager.Size).Take(pager.Size).ToList();
         }
     }
 }

@@ -14,13 +14,6 @@ namespace Repositorys
         {
         }
 
-        public IList<Article> GetArticles(int sum)
-        {
-            return entities.Include(a => a.Keywords.Select(k => k.Keyword))
-                .Include(u => u.Author)
-                .OrderByDescending(a => a.PublishTime)
-                .ToList();
-        }
 
         public Article GetNext(Article current)
         {
@@ -34,7 +27,6 @@ namespace Repositorys
                 .OrderByDescending(a => a.Id).FirstOrDefault();
         }
 
-
         public Article GetArticle(int id)
         {
             return entities.Where(a => a.Id == id)
@@ -45,14 +37,20 @@ namespace Repositorys
         }
 
 
+        public IList<Article> GetArticles()
+        {
+            return entities
+                .Include(a => a.Keywords.Select(k => k.Keyword))
+                .Include(a => a.Series)
+                .Include(a => a.Advertising)
+                .Include(a => a.Author)
+                .ToList();
+        }
 
         public IList<Article> GetByUserId(int id)
         {
-            return entities.Include(a => a.Keywords.Select(k => k.Keyword))
-                .Include(u => u.Author)
-                .OrderByDescending(a => a.PublishTime)
-                .Where(a => a.Author.Id == id)
-                .ToList();
+            return entities
+                .Where(a => a.Author.Id == id).ToList();
         }
     }
 }

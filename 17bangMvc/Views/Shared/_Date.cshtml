@@ -1,0 +1,7 @@
+﻿@using ExtensionMethods
+@model DateTime
+<small class="text-muted" zyf-datetime>
+    <span>
+        <span class="fa fa-calendar"></span> <span zyf-can-hide> @Model.ToChinese()</span>
+    </span>
+</small>

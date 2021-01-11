@@ -163,7 +163,6 @@ namespace ProdService
                 .ForMember(i => i.ConfirmPassword, opt => opt.Ignore())
                 .ForMember(i => i.SecurityCode, opt => opt.Ignore())
                 .ForMember(i => i.Inviter, opt => opt.Ignore())
-                .ForMember(i => i.InviterCode, opt => opt.MapFrom(u => u.InviterCode))
                 .ReverseMap()
                 .ForMember(u => u.Inviter, opt => opt.Ignore());
 
@@ -174,6 +173,9 @@ namespace ProdService
                 .ForMember(i => i.RememberMe, opt => opt.Ignore())
                 .ReverseMap();
 
+                cfg.CreateMap<Users, ViewModel.Shared._UserModel>(MemberList.None)
+                ;
+
                 cfg.CreateMap<Advertising, ViewModel.Ad.IndexModel>(MemberList.None)
                 .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
                 .ForMember(i => i.Url, opt => opt.MapFrom(u => u.Url))
@@ -182,8 +184,17 @@ namespace ProdService
                 cfg.CreateMap<Advertising, ViewModel.Ad._adItmeModel>(MemberList.None)
                 .ReverseMap();
 
-                cfg.CreateMap<Article, ViewModel.Articles.IndexModel>(MemberList.None)
-                .ForMember(m => m.CategoryId, opt => opt.MapFrom(a => a.Series.Id));
+                cfg.CreateMap<Article, ViewModel.Articles._SingleItemModel>(MemberList.None)
+                .ForMember(m => m.CategoryId, opt => opt.MapFrom(a => a.Series.Id))
+                .ForMember(i => i.Keywords, opt => opt.MapFrom(a => a.Keywords));
+
+                cfg.CreateMap<ArticleAndKeyword, ViewModel.Shared.ArticleAndKeywordModel>(MemberList.None)
+                .ForMember(m => m._Keyword, opt => opt.MapFrom(k => k.Keyword))
+                .ForMember(m => m._Article, opt => opt.MapFrom(k => k.Article));
+
+                cfg.CreateMap<Keyword, ViewModel.Shared._KeywordModel>(MemberList.None)
+                .ForMember(m => m.articles, opt => opt.MapFrom(k => k.Articles));
+
 
                 cfg.CreateMap<Article, ViewModel.Articles.NewModel>(MemberList.None)
                 .ForMember(n => n._Items, opt => opt.Ignore())
@@ -192,6 +203,9 @@ namespace ProdService
                 cfg.CreateMap<Article, ViewModel.Articles._PreAndNextModel>(MemberList.None);
 
                 cfg.CreateMap<Article, ViewModel.Articles.LiteTitleModel>(MemberList.None);
+
+
+                cfg.CreateMap<Article, ViewModel.Shared.Article._WidgetModel>(MemberList.None);
 
 
                 cfg.CreateMap<Article, ViewModel.Articles._InputeModel>(MemberList.None)

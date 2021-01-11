@@ -165,7 +165,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\CookieHelper.cs" />
+    <Compile Include="WebHelp\CookieHelper.cs" />
+    <Compile Include="WebHelp\HtmlExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -405,6 +406,7 @@
     <Content Include="kindeditor\themes\qq\editor.gif" />
     <Content Include="kindeditor\themes\qq\qq.css" />
     <Content Include="kindeditor\themes\simple\simple.css" />
+    <Content Include="Scripts\Article\JavaScript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chat\Ajax.js" />
@@ -412,6 +414,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\Global\JavaScript.js" />
     <Content Include="Scripts\JavaScript.js" />
     <Content Include="font-awesome-4.7.0\fonts\FontAwesome.otf" />
     <Content Include="font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
@@ -576,7 +579,6 @@
     <Content Include="Views\Chat\Room.cshtml" />
     <Content Include="Views\Category\Manage.cshtml" />
     <Content Include="Views\Article\Category.cshtml" />
-    <Content Include="Views\Article\User.cshtml" />
     <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
     <Content Include="Views\Article\Single.cshtml" />
@@ -589,10 +591,15 @@
     <Content Include="Views\Article\_PreAndNext.cshtml" />
     <Content Include="Views\Category\_Item.cshtml" />
     <Content Include="Views\Shared\_GlobalModal.cshtml" />
+    <Content Include="Views\Article\_MapSignsOfAuthor.cshtml" />
+    <Content Include="Views\Article\_SingleItem.cshtml" />
+    <Content Include="Views\Shared\_Date.cshtml" />
+    <Content Include="Views\Article\_AuthorLink.cshtml" />
+    <Content Include="Views\Article\_Appraise.cshtml" />
+    <Content Include="Views\Shared\Article\_Widget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />
-    <Folder Include="Scripts\Article\" />
     <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>

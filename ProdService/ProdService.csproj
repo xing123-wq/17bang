@@ -82,9 +82,8 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="ChatRoomService.cs" />
     <Compile Include="EmailService.cs" />
-    <Compile Include="LogOnService.cs" />
+    <Compile Include="Shared\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

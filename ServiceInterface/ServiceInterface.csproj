@@ -69,9 +69,8 @@
     <Compile Include="IAdvertisingService.cs" />
     <Compile Include="IBaseService.cs" />
     <Compile Include="IChatRoomService.cs" />
-    <Compile Include="ILogOnService.cs" />
+    <Compile Include="Shared\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IRegisterService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\Entitys.csproj">

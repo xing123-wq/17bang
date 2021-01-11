@@ -7,6 +7,23 @@ namespace Global
 {
     public class Pager
     {
-        public int PageIndex { get; set; }
+        public Pager()
+        {
+
+        }
+
+        public Pager(int index, int size)
+        {
+            Index = index;
+            Size = size;
+        }
+
+        public int Index { get; set; }
+        public int Size { get; set; }
+
+        public int GetSumOfPage(int sumOfItems)
+        {
+            return (sumOfItems - 1) / Size + 1;
+        }
     }
 }

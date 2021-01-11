@@ -9,7 +9,7 @@ namespace ServiceInterface.Article
 {
     public interface INewArticleService
     {
-        int Publish(IndexModel model);
+        int Publish(_SingleItemModel model);
 
     }
 }

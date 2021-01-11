@@ -1,4 +1,4 @@
-﻿@model ViewModel.Articles.IndexModel
+﻿@model ViewModel.Articles._SingleItemModel
 @using ProdService
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
@@ -10,6 +10,7 @@
 {
     <title>@ViewData["title"]</title>
 }
+<script src="~/Scripts/Article/JavaScript.js"></script>
 <div class="container body-content">
     <div style="margin-top:55px" class="row">
         <div class="col-md-8">
@@ -39,7 +40,9 @@
                     </span>
                     @if (Model.Author.Id == service.CurrentUserId)
                     {
-                        <a href="/Article/Edits/@Model.Id" style="margin-left:14px;" data-author-id="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
+                        <a href="/Article/Edits/@Model.Id" style="margin-left: 14px;" zyf-article-edit=""  data-article-id="@Model.Id">
+                            <span class="fa fa-pencil-square-o"></span> 修改
+                        </a>
                     }
                 </span>
                 <div style="clear:both; word-break:break-all; padding-top:20px;">
@@ -182,20 +185,21 @@
 }
 <script>
     $(document).ready(function () {
-         $("[zyf-nav-in-category]").on("click", function () {
-                var articleId = "@articleId",
-                    $this = $(this),
-                    inCategory = $this.is(":checked"),
-                    $container = $("[zyf-article-nav-container]");
-                $this.prop("readonly", true);
-                $.ajax({
-                    url: "/Article/_PreAndNext/" + articleId + "?inCategory=" + inCategory,
-                    type: "POST",
-                    success: function (data) {
-                        $container.html($(data).html());
-                    },
-                    error: JqueryAjaxError
-                })
-            })
+
+    $("[zyf-nav-in-category]").on("click", function () {
+        var articleId = "@articleId",
+            $this = $(this),
+            inCategory = $this.is(":checked"),
+            $container = $("[zyf-article-nav-container]");
+        $this.prop("readonly", true);
+        $.ajax({
+            url: "/Article/_PreAndNext/" + articleId + "?inCategory=" + inCategory,
+            type: "POST",
+            success: function (data) {
+                $container.html($(data).html());
+            },
+            error: JqueryAjaxError
+        })
+    })
     });
 </script>

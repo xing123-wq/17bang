@@ -1,29 +1,33 @@
-﻿@model IEnumerable<object>
-@using ProdService
-@using Global
+﻿@*note: model值为总的页数*@
+@model int
 @{
-    Layout = null;
+    int sumOfPage = Model;
+    int rowSize = Request.Browser.IsMobileDevice ? 5 : 10;
+
+    object objPageIndex = ViewContext.RouteData.Values["pageIndex"] ?? 1;
+    int pageIndex = Convert.ToInt32(objPageIndex);
+
+    int beginPage = pageIndex > 1 ? ((pageIndex - 1) / rowSize) * rowSize : 0;
+    int endPage = beginPage + rowSize;
+    endPage = endPage > sumOfPage ? sumOfPage : endPage;
+
+    string formatUrl = Html.FormatPage();
+
 }
 <nav>
-    @{
-        int currentPageIndex = Convert.ToInt32(ViewContext.RouteData.Values["id"]);
-        int Sum = ExtensionMethods.Select.GetSum(Model) / Const.PAGE_SIZE;
-    }
     <ul class="pagination">
-        @if (currentPageIndex > 1)
+        @if (pageIndex > 1)
         {
-            <li><a href="/Article/Page-@(currentPageIndex-1)">&lt;&lt;</a></li>
+            <li><a id="@(pageIndex - 1)" href="@string.Format(formatUrl, pageIndex - 1)">&lt;&lt;</a></li>
         }
-        @if (currentPageIndex <= Sum)
+        @for (int i = beginPage; i < endPage; i++)
         {
-            for (int i = 1; i <= Sum + 1; i++)
-            {
-                <li class="active"><a href="/Article/Page-@i">@(i)</a></li>
-            }
-            if (currentPageIndex <= Sum)
-            {
-                <li><a href="/Article/Page-@(currentPageIndex+1)">&gt;&gt;</a></li>
-            }
+            string currentPage = (i + 1 == pageIndex) ? "active" : string.Empty;
+            <li class="@currentPage"><a id="@(i + 1)" href="@string.Format(formatUrl, i + 1)">@(i + 1)</a></li>
+        }
+        @if (pageIndex < sumOfPage)
+        {
+            <li><a id="@(pageIndex + 1)" href="@string.Format(formatUrl, pageIndex + 1)">&gt;&gt;</a></li>
         }
     </ul>
 </nav>

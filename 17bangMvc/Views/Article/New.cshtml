@@ -11,17 +11,6 @@
 <link href="~/kindeditor/themes/default/default.css" rel="stylesheet" />
 <link href="~/kindeditor/plugins/code/prettify.css" rel="stylesheet" />
 <script src="~/kindeditor/plugins/code/prettify.js"></script>
-<script>
-        KindEditor.ready(function (K) { window.editor = K.create('#editor_id'); });
-    KindEditor.ready(function (K) {
-        window.editor = K.create('#MyEidtor', {
-            fileManagerJson: '@Url.Action("KindFileManager", "Editor")',
-            allowFileManager: true,
-            autoHeightMode : true,
-        });
-    });
-
-</script>
 <style>
     .field-validation-error {
         color: #b94a48;
@@ -182,16 +171,4 @@
         </div>
     </div>
 </div>
-<script>
-
-    $(document).ready(function () {
-        $('[zyf-new-category-submit]').on('click', function (event) {
-            event.preventDefault();
-            var $this = $(this),
-                $form = $this.parents("form");
-            if (!$form.valid()) {
-                return false;
-            }
-        })
-    })
-</script>
+<script src="~/Scripts/Article/JavaScript.js"></script>

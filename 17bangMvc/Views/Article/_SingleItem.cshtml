@@ -1,0 +1,32 @@
+﻿@model ViewModel.Articles._SingleItemModel
+<div class="clearfix">
+    <div>
+        @Html.Partial("_Date", Model.PublishTime)
+        <span class="pull-right">
+            @Html.Partial("_AuthorLink", Model.Author)
+            <a href="/Article/Edit/@Model.Id" class="hide" style="margin-left:14px;" zyf-article-edit data-author-id="@Model.Author.Id"><span class="fa fa-pencil-square-o"></span> 修改</a>
+        </span>
+    </div>
+    <h4>
+        <a href="/Article/@Model.Id">@Model.Title</a>
+
+    </h4>
+    <p style="word-break:break-all; clear:both; margin-top:8px;">
+        @Html.Raw(Model.Abstract) <a href="/Article/@Model.Id" data-toggle="tooltip" title="全文">……</a>
+    </p>
+    <div>
+        <label><span class="fa fa-tags"></span>  关键字：</label>
+        @foreach (var item in Model.Keywords)
+        {
+            <span class="badge">@item._Keyword.Name</span>
+        }
+    </div>
+    <div class="pull-right appraise-status">
+        <a class="appraise-status-item text-info" href="/Article/@Model.Id#comments">
+            <span class="fa fa-comments-o"></span>
+            <span class="visible-sm-inline visible-md-inline visible-lg-inline">评论：</span>@Model.Comments
+        </a>
+        @*@Html.Partial("_Appraise", Model.AppraiseManager,
+            new ViewDataDictionary { { "ArticleId", Model.Id }, { "AuthorId", Model.Author.Id } })*@
+    </div>
+</div>

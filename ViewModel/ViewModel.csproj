@@ -64,9 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ad\IndexModel.cs" />
+    <Compile Include="Articles\EditModel.cs" />
     <Compile Include="Articles\IndexModel.cs" />
     <Compile Include="Articles\NewModel.cs" />
-    <Compile Include="Articles\User\IndexModel.cs" />
+    <Compile Include="Articles\_InputeModel.cs" />
     <Compile Include="Articles\_PreAndNextModel.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="Category\ManageModel.cs" />
@@ -74,12 +75,16 @@
     <Compile Include="Chat\ChatRoomModel.cs" />
     <Compile Include="Email\ActivateModel.cs" />
     <Compile Include="Home\IndexModel.cs" />
-    <Compile Include="Keyword\IndexModel.cs" />
     <Compile Include="LogOn\IndexModel.cs" />
     <Compile Include="Problem\IndexModel.cs" />
     <Compile Include="Problem\NewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register\IndexModel.cs" />
+    <Compile Include="Shared\Article\AppraiseManagerModel.cs" />
+    <Compile Include="Shared\ArticleAndKeywordModel.cs" />
+    <Compile Include="Shared\Article\_WidgetModel.cs" />
+    <Compile Include="Shared\_KeywordModel.cs" />
+    <Compile Include="Shared\_UserModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\Entitys.csproj">

@@ -1,20 +1,16 @@
 ﻿using _17bangMvc.Filters;
-using ExtensionMethods;
 using Global;
-using ProdService;
-using ProdService.Articles;
-using ProdService.Category;
 using ServiceInterface;
 using ServiceInterface.Category;
+using ServiceInterface.Shared;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 using System.Web.UI;
 using ViewModel.Articles;
+using ViewModel.Shared;
+using ViewModel.Shared.Article;
 
 namespace _17bangMvc.Controllers
 {
@@ -24,11 +20,13 @@ namespace _17bangMvc.Controllers
         private IArticleService _service;
         private ISeriesService _series;
         private IAdvertisingService _ad;
-        public ArticleController(IArticleService service, ISeriesService series, IAdvertisingService ad)
+        private IUserService _userService;
+        public ArticleController(IArticleService service, ISeriesService series, IAdvertisingService ad, IUserService userService)
         {
             this._service = service;
             this._series = series;
             this._ad = ad;
+            this._userService = userService;
         }
         #endregion
 
@@ -36,7 +34,7 @@ namespace _17bangMvc.Controllers
         [HttpGet]
         //Duration以秒为单位，VaryByParam=""，只要后面参数，有所改变，就会重新缓存
         [OutputCache(Duration = 100, Location = OutputCacheLocation.Any, VaryByParam = "id")]
-        public ActionResult index(IEnumerable<IndexModel> models)
+        public ActionResult index(int pageindex = 1)
         {
             ViewData["title"] = "精品文章-一起帮";
 
@@ -52,25 +50,23 @@ namespace _17bangMvc.Controllers
             //}//else do nothing 
             #endregion
 
-            Pager pager = new Pager();
-            pager.PageIndex = Convert.ToInt32(RouteData.Values["Id"]);
-            models = Select.Get(_service.GetBy(3), pager.PageIndex, Const.PAGE_SIZE);
-            return View(models);
+            Pager pager = new Pager
+            {
+                Index = pageindex,
+                Size = Const.PAGE_SIZE
+            };
+            IndexModel model = _service.Get(pager);
+            return View(model);
         }
         #endregion
 
-        #region Url:/Article/New; Requset:Get,Post;
+        #region Url:/Article/New{Id}; Requset:Get,Post;
         [HttpGet]
         [NeedLogOnFilter(role: Role.Blogger)]
         public ActionResult New()
         {
             ViewData["title"] = "精品文章-一起帮";
-            NewModel model = new NewModel
-            {
-                _Series = _series.GetSeries(),
-                _Items = _ad.Get(),
-            };
-            return View(model);
+            return View(_service.Get());
         }
 
         [HttpPost]
@@ -93,15 +89,18 @@ namespace _17bangMvc.Controllers
         }
         #endregion
 
-        #region Url:/Aticle/User-{Id}; Requset:Get,Post;
+        #region Url:/Aticle/User; Requset:Get,Post;
         [HttpGet]
         [NeedLogOnFilter]
-        public new ActionResult User(int Id)
+        public new ActionResult User(int userId, int pageIndex = 1)
         {
             ViewData["title"] = "精品文章.一起帮";
-            Pager pager = new Pager();
-            pager.PageIndex = Convert.ToInt32(RouteData.Values["Id"]);
-            return View("User", _service.GetCurrentArticle(pager, Id));
+            Pager pager = new Pager
+            {
+                Index = pageIndex,
+                Size = Const.PAGE_SIZE
+            };
+            return View("Index", _service.Get(userId, pager));
         }
         #endregion
 
@@ -109,7 +108,7 @@ namespace _17bangMvc.Controllers
         [HttpGet]
         public ActionResult Single(int Id)
         {
-            IndexModel model = new IndexModel();
+            _SingleItemModel model = new _SingleItemModel();
             model = _service.GetSingle(Id);
             ViewBag.NavInCategory = navInCategory();
             ViewData["title"] = model.Title + ".一起帮";
@@ -124,14 +123,14 @@ namespace _17bangMvc.Controllers
         }
         #endregion
 
-        #region Url:/Article/Edit{id}
-        
-        [HttpPost]
+        #region /Article/Edit{id}
+        [HttpGet]
+        [NeedLogOnFilter(role: Role.Blogger)]
         public ActionResult Edit(int id)
         {
-
-            return View();
+            return View(_service.Get(id));
         }
+
 
         #endregion
 
@@ -142,5 +141,19 @@ namespace _17bangMvc.Controllers
             return PartialView(model);
         }
 
+        [ChildActionOnly]
+        public PartialViewResult _MapSignsOfAuthor(int userId)
+        {
+            _UserModel model =_userService._Get(userId);
+            return PartialView(model);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult _Widget()
+        {
+            Pager pager = new Pager { Index = 1, Size = 5 };
+            _WidgetModel model = _service.GetWidget(pager);
+            return PartialView("Article/_Widget", model);
+        }
     }
 }

@@ -6,15 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModel.Articles;
+using ViewModel.Shared.Article;
 
 namespace ServiceInterface
 {
     public interface IArticleService : IBaseService
     {
-        IList<ViewModel.Articles.IndexModel> GetBy(int sum);
+        IndexModel Get(Pager pager);
         int Save(_InputeModel model);
-        ViewModel.Articles.User.IndexModel GetCurrentArticle(Pager pager, int Id);
-        IndexModel GetSingle(int id);
+        IndexModel Get(int userId, Pager pager);
+        _SingleItemModel GetSingle(int id);
         _PreAndNextModel GetPreAndNext(int id, bool inCategory);
+        NewModel Get();
+        EditModel Get(int id);
+        _WidgetModel GetWidget(Pager pager);
     }
 }

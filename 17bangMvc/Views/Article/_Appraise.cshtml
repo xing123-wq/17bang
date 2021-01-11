@@ -1,0 +1,14 @@
+﻿@model ViewModel.Shared.AppraiseManagerModel
+<a class="appraise-status-item text-success" href="/Article/Appraise?id=@ViewBag.ArticleId&direction=1"
+   zyf-vote data-author-id="@ViewBag.AuthorId">
+    <span class="fa fa-thumbs-o-up"></span>
+    <span class="visible-sm-inline visible-md-inline visible-lg-inline">赞：</span>
+    <span zyf-votes-count>@Model.AgreeCount</span>
+</a>
+<a class="appraise-status-item text-muted" href="/Article/Appraise?id=@ViewBag.ArticleId&direction=-1"
+   zyf-vote data-author-id="@ViewBag.AuthorId">
+    <span class="fa fa-thumbs-o-down"></span>
+    <span class="visible-sm-inline visible-md-inline visible-lg-inline">踩：</span>
+    <span zyf-votes-count>@Model.DisagreeCount</span>
+</a>
+

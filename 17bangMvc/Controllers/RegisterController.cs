@@ -3,6 +3,7 @@ using ExtensionMethods;
 using Global;
 using ProdService;
 using ServiceInterface;
+using ServiceInterface.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace _17bangMvc.Controllers
 {
     public class RegisterController : BaseController
     {
-        private IRegisterService _service;
-        public RegisterController(IRegisterService _service)
+        private IUserService _service;
+        public RegisterController(IUserService _service)
         {
             this._service = _service;
         }

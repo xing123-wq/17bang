@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModel.Articles;
 
-namespace ViewModel.Keyword
+namespace ViewModel.Shared
 {
-    public class IndexModel : BaseModel
+    public class _KeywordModel : BaseModel
     {
         public string Name { get; set; }
-        public int Usd { get; set; }
+        public IList<ArticleAndKeywordModel> articles { get; set; }
     }
 }

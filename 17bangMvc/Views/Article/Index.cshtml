@@ -1,85 +1,35 @@
-﻿@model  IEnumerable<ViewModel.Articles.IndexModel>
+﻿@model  ViewModel.Articles.IndexModel
 @using ProdService
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
+
+    object userId = ViewContext.RouteData.Values["userId"];
 }
 @section Description
 {
     <title>@ViewData["title"]</title>
 }
-
-<style>
-    .col-md-4.visible-md.visible-lg {
-        float: right;
-    }
-</style>
-<div class="container body-content" style=" padding-top: 50px;">
-    <div style="margin-top:50px" class="row">
-        @foreach (var article in Model)
-        {
-            <div class="col-md-8">
-                <div style="margin-bottom:20px; padding-bottom:10px; border-bottom: 1px dashed #ccc;">
-                    <div class="clearfix">
-                        <div>
-                            <small class="text-muted">
-                                <span>
-                                    <span class="fa fa-calendar"></span> <span zyf-can-hide=""> @article.PublishTime</span>
-                                </span>
-                            </small>
-                            <span class="pull-right">
-                                作者：<a href="/Article/User-@article.Author.Id">@article.Author.Name</a>
-                                @{
-                                    BaseService service = new BaseService();
-                                }
-                                @if (article.Author == service.GetByCurrentUser())
-                                {
-                                    <a href="/Article/Edits/@article.Id" style="margin-left: 14px;" zyf-article-edit="" data-author-id="1">
-                                        <span class="fa fa-pencil-square-o"></span> 修改
-                                    </a>
-                                }
-
-                            </span>
-                        </div>
-                        <h4>
-                            <a href="/Article/@article.Id">@article.Title</a>
-                        </h4>
-                        <p style="word-break:break-all; clear:both; margin-top:8px;">
-                            @Html.Raw(article.Body)
-                            <a href="/Article/@article.Id" data-toggle="tooltip" title="" data-original-title="全文">……</a>
-                        </p>
-                        <div>
-                            <label><span class="fa fa-tags"></span>  关键字：</label>
-                            @foreach (var item in article.Keywords)
-                            {
-                                <span class="badge">@item.Keyword.Name</span>
-                            }
-                        </div>
-                        <div class="pull-right appraise-status">
-                            <a class="appraise-status-item text-info" href="/Article/612#comments">
-                                <span class="fa fa-comments-o"></span>
-                                <span class="visible-sm-inline visible-md-inline visible-lg-inline">评论：</span>0
-                            </a>
-                            <a class="appraise-status-item text-success" href="/Article/Appraise?id=612&amp;direction=1" zyf-vote="" data-author-id="1">
-                                <span class="fa fa-thumbs-o-up"></span>
-                                <span class="visible-sm-inline visible-md-inline visible-lg-inline">赞：</span>
-                                <span zyf-votes-count="">0</span>
-                            </a>
-                            <a class="appraise-status-item text-muted" href="/Article/Appraise?id=612&amp;direction=-1" zyf-vote="" data-author-id="1">
-                                <span class="fa fa-thumbs-o-down"></span>
-                                <span class="visible-sm-inline visible-md-inline visible-lg-inline">踩：</span>
-                                <span zyf-votes-count="">0</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        <div class="col-md-4 visible-md visible-lg" style="margin-top: -180px;">
-            <vc:_keyword></vc:_keyword>
-            <partial name="_Widget" />
-            <vc:_article></vc:_article>
-            @Html.Partial("_Advertising")
-        </div><!-- /.modal -->
+@if (userId != null)
+{
+    @Html.Action("_MapSignsOfAuthor")
+    <hr />
+}
+<span class="fa fa-window-restore"></span> 更多
+@foreach (var item in Model.Items)
+{
+    <div style="margin-bottom:20px; padding-bottom:10px; border-bottom: 1px dashed #ccc;">
+        @Html.Partial("_SingleItem", item)
     </div>
-    @Html.Partial("_Pager", Model)
-</div>
+}
+@if (Model.SumOfPages > 1)
+{
+    @Html.Partial("_Pager", Model.SumOfPages)
+}
+@*@Html.Action("_Widget", "Invite")*@
+@*@if (userId != null)
+{
+    @Html.Action("_WidgetOnOwner", "Category", new { ownerId = userId })
+}
+@Html.Action("_Widget", "Keyword")
+@Html.Action("_Widget", "User")
+@Html.Action("_Show", "AdInWidget")*@

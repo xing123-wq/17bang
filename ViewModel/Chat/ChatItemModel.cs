@@ -9,7 +9,6 @@ namespace ViewModel.Chat
 {
     public class ChatItemModel : BaseModel
     {
-        public DateTime PublishTime { get; set; }
         public string Content { get; set; }
         public int ChatAuthorId { get; set; }
         public string AuthorName { get; set; }
