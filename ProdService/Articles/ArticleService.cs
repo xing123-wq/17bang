@@ -32,11 +32,12 @@ namespace ProdService.Articles
         {
             IndexModel model = new IndexModel();
 
-            IList<Article> articles = repository.GetArticles();
-
-            articles = articles.Paged<Article>(pager);
+            var articles = repository.GetArticles();
 
             model.SumOfPages = pager.GetSumOfPage(articles.Count());
+
+            articles = articles.Paged(pager);
+
             model.Items = mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
 
             return model;
@@ -48,7 +49,7 @@ namespace ProdService.Articles
 
             IList<Article> articles = repository.GetByUserId(userId);
 
-            articles = articles.Paged<Article>(pager);
+            articles = articles.Paged(pager);
 
             model.Items = mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
 
@@ -126,9 +127,8 @@ namespace ProdService.Articles
             _WidgetModel model = new _WidgetModel();
             model.Items = mapper.Map<IList<WidgetItemModel>>(
                 repository.FindAll()
-                .OrderByDescending(a => a.PublishTime)
-                .ToList()
                 .Paged(pager)
+                .OrderByDescending(a => a.PublishTime)
                 );
             return model;
         }

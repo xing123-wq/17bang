@@ -14,19 +14,26 @@ namespace _17bangMvc
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "ArticleUserPaged",
-                url: "Article/User-{userId}/Page-{pageIndex}",
-                defaults: new { controller = "Article", action = "User" },
-                constraints: new { userId = @"\d+", pageIndex = @"\d+" }
-            );
+               name: "ArticleUserPaged",
+               url: "Article/User-{userId}/Page-{pageIndex}",
+               defaults: new { controller = "Article", action = "User" },
+               constraints: new { userId = @"\d+", pageIndex = @"\d+" }
+           );
+
+            routes.MapRoute(
+             name: "ArticleUser",
+             url: "Article/User-{userId}",
+             defaults: new { controller = "Article", action = "User" },
+             constraints: new { userId = @"\d+" }
+             );
 
 
             routes.MapRoute(
-                name: "ArticlePage",
-                url: "{controller}/Page-{pageIndex}",
-                defaults: new { controller = "Article", action = "Index", pageIndex = UrlParameter.Optional },
-                constraints: new { pageIndex = @"^[0-9]*[1-9][0-9]*$" });
-
+             name: "ArticlePage",
+             url: "Article/Page-{pageIndex}",
+             defaults: new { controller = "Article", action = "index" },
+             constraints: new { pageIndex = @"\d+" }
+             );
 
             routes.MapRoute(
                 name: "ArticleSingle",

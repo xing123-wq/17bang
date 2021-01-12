@@ -185,6 +185,7 @@ namespace ProdService
                 .ReverseMap();
 
                 cfg.CreateMap<Article, ViewModel.Articles._SingleItemModel>(MemberList.None)
+                .ForMember(m => m.Abstract, opt => opt.MapFrom(a => a.Content))
                 .ForMember(m => m.CategoryId, opt => opt.MapFrom(a => a.Series.Id))
                 .ForMember(i => i.Keywords, opt => opt.MapFrom(a => a.Keywords));
 

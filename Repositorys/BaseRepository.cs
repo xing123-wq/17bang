@@ -23,9 +23,9 @@ namespace Repositorys
                 return context.Set<T>();
             }
         }
-        public IQueryable<T> FindAll()
+        public IList<T> FindAll()
         {
-            return context.Set<T>().AsQueryable();
+            return context.Set<T>().ToList();
         }
 
         public void Add(T source)

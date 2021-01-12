@@ -10,7 +10,7 @@ namespace ExtensionMethods
 {
     public static class Select
     {
-        public static int GetSum<T>(this IEnumerable<T> parameter)
+        public static int GetSum<T>(this IList<T> parameter)
         {
             return parameter.Count();
         }
