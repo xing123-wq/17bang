@@ -1,4 +1,5 @@
 ﻿@model  ViewModel.Articles.IndexModel
+@using Global
 @using ProdService
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
@@ -27,9 +28,27 @@
 }
 @*@Html.Action("_Widget", "Invite")*@
 @*@if (userId != null)
-{
-    @Html.Action("_WidgetOnOwner", "Category", new { ownerId = userId })
-}
-@Html.Action("_Widget", "Keyword")
-@Html.Action("_Widget", "User")
-@Html.Action("_Show", "AdInWidget")*@
+    {
+        @Html.Action("_WidgetOnOwner", "Category", new { ownerId = userId })
+    }
+    @Html.Action("_Widget", "Keyword")
+    @Html.Action("_Widget", "User")
+    @Html.Action("_Show", "AdInWidget")*@
+<script>
+    $(document).ready(function () {
+       $("[zyf-article-edit]").each(function () {
+            if (isCurrent($(this).data("author-id"))) {
+                $(this).removeClass("hide");
+            }
+        })
+        function isCurrent(userId) {
+            if (isVisitor()) {
+                return false;
+            }
+            return getCookie('@Const.USER_ID')[0] == userId;
+        }
+        function isVisitor() {
+            return !getCookie('@Const.USER_ID') == undefined;
+        }
+    });
+</script>
