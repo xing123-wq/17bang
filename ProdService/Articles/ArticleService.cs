@@ -71,8 +71,13 @@ namespace ProdService.Articles
 
         public NewModel Get(int id)
         {
-            Article article = repository.Find(id);
-            return mapper.Map<NewModel>(article);
+            Article article = repository.GetArticle(id);
+
+            NewModel model = Get();
+
+            model._Inpute = mapper.Map<_InputeModel>(article);
+
+            return model;
         }
 
         public _SingleItemModel GetSingle(int id)
@@ -118,12 +123,26 @@ namespace ProdService.Articles
         }
         #endregion
 
-        public int Save(_InputeModel model)
+        public int Save(_InputeModel model, bool HasEdit = false)
         {
-            Article article = mapper.Map<Article>(model);
-            article.Author = GetByCurrentUser();
-            article.Publish(model.Keyword);
-            repository.Add(article);
+            Article article;
+
+            if (HasEdit)
+            {
+                article = repository.Find(model.Id);
+                if (CurrentUserId != article.Author.Id)
+                {
+                    throw new Exception($"当前用户Id：{CurrentUserId.Value}，不该文章作者Id：{article.Author.Id}!");
+                }
+                repository.Update(article);
+            }
+            else
+            {
+                article = mapper.Map<Article>(model);
+                article.Author = GetByCurrentUser();
+                article.Publish(model.Keyword);
+                repository.Add(article);
+            }
             return article.Id;
         }
 

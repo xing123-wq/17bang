@@ -4,7 +4,8 @@
         @Html.Partial("_Date", Model.PublishTime)
         <span class="pull-right">
             @Html.Partial("_AuthorLink", Model.Author)
-            <a href="/Article/Edit/@Model.Id" class="hide" style="margin-left:14px;" zyf-article-edit data-author-id="@Model.Author.Id"><span class="fa fa-pencil-square-o"></span> 修改</a>
+            <a href="/Article/Edit/@Model.Id" class="hide" style="margin-left:14px;" zyf-article-edit data-author-id="@Model.Author.Id">
+            <span class="fa fa-pencil-square-o"></span> 修改</a>
         </span>
     </div>
     <h4>

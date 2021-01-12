@@ -60,7 +60,7 @@ namespace _17bangMvc.Controllers
         }
         #endregion
 
-        #region Url:/Article/New{Id}; Requset:Get,Post;
+        #region Url:/Article/New; Requset:Get,Post;
         [HttpGet]
         [NeedLogOnFilter(role: Role.Blogger)]
         public ActionResult New()
@@ -71,6 +71,7 @@ namespace _17bangMvc.Controllers
 
         [HttpPost]
         [NeedLogOnFilter(role: Role.Blogger)]
+        [ValidateModelStateRedirect]
         public ActionResult New(NewModel model)
         {
             if (!ModelState.IsValid)
@@ -131,6 +132,15 @@ namespace _17bangMvc.Controllers
             return View("New", _service.Get(id));
         }
 
+        [HttpPost]
+        [NeedLogOnFilter(role: Role.Blogger)]
+        [ValidateModelStateRedirect]
+        public ActionResult Edit(NewModel model)
+        {
+      
+            int id = _service.Save(model._Inpute, true);
+            return RedirectToAction("Single", new { Id = id });
+        }
 
         #endregion
 

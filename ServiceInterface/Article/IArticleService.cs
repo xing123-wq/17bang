@@ -13,7 +13,7 @@ namespace ServiceInterface
     public interface IArticleService : IBaseService
     {
         IndexModel Get(Pager pager);
-        int Save(_InputeModel model);
+        int Save(_InputeModel model, bool HasEdit = false);
         IndexModel Get(int userId, Pager pager);
         _SingleItemModel GetSingle(int id);
         _PreAndNextModel GetPreAndNext(int id, bool inCategory);

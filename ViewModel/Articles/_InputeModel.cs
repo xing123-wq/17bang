@@ -8,11 +8,12 @@ using System.Web.Mvc;
 
 namespace ViewModel.Articles
 {
-    public class _InputeModel
+    public class _InputeModel : BaseModel
     {
         [Required(ErrorMessage = "* 正文不能为空")]
         [AllowHtml]
         [StringLength(2312412, MinimumLength = 5, ErrorMessage = "* 正文不能小于{2}和大于{1}字")]
+        [MinLength(15, ErrorMessage = "* 正文的长度不能小于15")]
         public string Body { get; set; }
 
         [Required(ErrorMessage = "* 关键字不能为空")]
@@ -21,9 +22,6 @@ namespace ViewModel.Articles
         [Required(ErrorMessage = "* 标题不能为空")]
         [StringLength(10, MinimumLength = 4, ErrorMessage = "* 标题不能小于{2}和大于{1}字")]
         public string Title { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTime PublishTime { get; set; }
 
         [StringLength(115, ErrorMessage = "* 摘要的长度不能大于155")]
         public string Digest { get; set; }

@@ -161,7 +161,11 @@
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Filters\ContextPerRequest.cs" />
+    <Compile Include="Filters\FilterHelper.cs" />
+    <Compile Include="Filters\ModelStateTempDataTransfer.cs" />
     <Compile Include="Filters\NeedLogOnFilter.cs" />
+    <Compile Include="Filters\ValidateModelState.cs" />
+    <Compile Include="Filters\ValidateModelStateRedirect.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
