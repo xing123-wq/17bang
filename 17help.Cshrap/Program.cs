@@ -26,31 +26,47 @@ namespace ConsoleApp3
             #endregion
 
             #region binarySeek
-            Student student = new Student(12);
-            Student student1 = new Student(19);
-            Student student2 = new Student(15);
-            Student student3 = new Student(10);
-            Student student4 = new Student();
+            //Student student = new Student(12);
+            //Student student1 = new Student(19);
+            //Student student2 = new Student(15);
+            //Student student3 = new Student(10);
+            //Student student4 = new Student();
 
-            List<Student> students = new List<Student>
-            {
-                student,student1,student3,student2,student4
-            };
-
-            students.Sort();
-
-            //foreach (var item in students)
+            //List<Student> students = new List<Student>
             //{
-            //    Console.WriteLine(item.Age);
-            //}
+            //    student,student1,student3,student2,student4
+            //};
 
-            //int a = students.BinarySearch(student4);
-            //Console.WriteLine(a);
-            //DataStucture<Student>.BinaryWhile(students, student4);
+            //students.Sort();
+
+            ////foreach (var item in students)
+            ////{
+            ////    Console.WriteLine(item.Age);
+            ////}
+
+            ////int a = students.BinarySearch(student4);
+            ////Console.WriteLine(a);
+            ////DataStucture<Student>.BinaryWhile(students, student4);
+            //#endregion
+
+            //string site = "http://pv.sohu.com/cityjson ";
+            //Console.WriteLine(site);
             #endregion
 
-            string site = "http://pv.sohu.com/cityjson ";
-            Console.WriteLine(site);
+            #region boxing
+            //int a = 1;
+            //object x = a;
+            ////x装了一个新的int对象1
+            //a = a + 2;
+            //Console.WriteLine($"x={x}");
+            //Console.WriteLine($"a={a}");
+            #endregion
+
+            #region unboxing
+            int x = 1;
+            object a = x;//装箱
+            int y = (int)a;
+            #endregion
         }
 
         #region 委托方法
