@@ -128,7 +128,7 @@ namespace _17bangMvc.Controllers
         [NeedLogOnFilter(role: Role.Blogger)]
         public ActionResult Edit(int id)
         {
-            return View(_service.Get(id));
+            return View("New", _service.Get(id));
         }
 
 
@@ -144,7 +144,7 @@ namespace _17bangMvc.Controllers
         [ChildActionOnly]
         public PartialViewResult _MapSignsOfAuthor(int userId)
         {
-            _UserModel model =_userService._Get(userId);
+            _UserModel model = _userService._Get(userId);
             return PartialView(model);
         }
 

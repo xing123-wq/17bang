@@ -18,7 +18,7 @@ namespace ServiceInterface
         _SingleItemModel GetSingle(int id);
         _PreAndNextModel GetPreAndNext(int id, bool inCategory);
         NewModel Get();
-        EditModel Get(int id);
+        NewModel Get(int id);
         _WidgetModel GetWidget(Pager pager);
     }
 }

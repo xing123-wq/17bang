@@ -18,6 +18,7 @@ namespace ProdService.Articles
 {
     public class ArticleService : BaseService, IArticleService
     {
+        #region constructor 
         private ArticleRepository repository;
         private ISeriesService series;
         private IAdvertisingService advertising;
@@ -27,7 +28,9 @@ namespace ProdService.Articles
             advertising = new AdService();
             repository = new ArticleRepository(context);
         }
+        #endregion
 
+        #region GetMethod
         public IndexModel Get(Pager pager)
         {
             IndexModel model = new IndexModel();
@@ -56,13 +59,20 @@ namespace ProdService.Articles
             return model;
         }
 
-        public int Save(_InputeModel model)
+        public NewModel Get()
         {
-            Article article = mapper.Map<Article>(model);
-            article.Author = GetByCurrentUser();
-            article.Publish(model.Keyword);
-            repository.Add(article);
-            return article.Id;
+            NewModel model = new NewModel
+            {
+                _Series = series.GetSeries(),
+                _Items = advertising.Get()
+            };
+            return model;
+        }
+
+        public NewModel Get(int id)
+        {
+            Article article = repository.Find(id);
+            return mapper.Map<NewModel>(article);
         }
 
         public _SingleItemModel GetSingle(int id)
@@ -70,6 +80,7 @@ namespace ProdService.Articles
             Article article = repository.GetArticle(id);
             return mapper.Map<_SingleItemModel>(article);
         }
+
         public _PreAndNextModel GetPreAndNext(int id, bool inCategory)
         {
             _PreAndNextModel model = new _PreAndNextModel();
@@ -94,6 +105,29 @@ namespace ProdService.Articles
             model.Next = mapper.Map<LiteTitleModel>(nextArticle);
             return model;
         }
+
+        public _WidgetModel GetWidget(Pager pager)
+        {
+            _WidgetModel model = new _WidgetModel();
+            model.Items = mapper.Map<IList<WidgetItemModel>>(
+                repository.FindAll()
+                .Paged(pager)
+                .OrderByDescending(a => a.PublishTime)
+                );
+            return model;
+        }
+        #endregion
+
+        public int Save(_InputeModel model)
+        {
+            Article article = mapper.Map<Article>(model);
+            article.Author = GetByCurrentUser();
+            article.Publish(model.Keyword);
+            repository.Add(article);
+            return article.Id;
+        }
+
+        #region private
         private void checkCategorySame(Article a, Article b)
         {
             if (a != null && b != null)
@@ -106,31 +140,7 @@ namespace ProdService.Articles
                 }//else nothing: category can NOT be null
             }//else nothing
         }
+        #endregion
 
-        public NewModel Get()
-        {
-            NewModel model = new NewModel
-            {
-                _Series = series.GetSeries(),
-                _Items = advertising.Get()
-            };
-            return model;
-        }
-
-        public EditModel Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public _WidgetModel GetWidget(Pager pager)
-        {
-            _WidgetModel model = new _WidgetModel();
-            model.Items = mapper.Map<IList<WidgetItemModel>>(
-                repository.FindAll()
-                .Paged(pager)
-                .OrderByDescending(a => a.PublishTime)
-                );
-            return model;
-        }
     }
 }
