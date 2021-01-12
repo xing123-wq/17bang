@@ -74,8 +74,13 @@ namespace ProdService.Articles
             Article article = repository.GetArticle(id);
 
             NewModel model = Get();
+            _InputeModel _Inpute = mapper.Map<_InputeModel>(article);
+            for (int i = 0; i < article.Keywords.Count(); i++)
+            {
+                _Inpute.Keyword = String.Concat(article.Keywords[i].Keyword.Name.Split(' '));
 
-            model._Inpute = mapper.Map<_InputeModel>(article);
+            }
+            model._Inpute = _Inpute;
 
             return model;
         }
