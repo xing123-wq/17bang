@@ -21,14 +21,14 @@ namespace ProdService
             UserRepositroy = new UserRepositroy(Context);
         }
 
-        protected SQLContext Context
+        protected SqlContext Context
         {
             get
             {
-                var context = HttpContext.Current.Items["dbContext"] as SQLContext;
+                var context = HttpContext.Current.Items["dbContext"] as SqlContext;
                 if (context == null)
                 {
-                    context = new SQLContext();
+                    context = new SqlContext();
                     context.Database.BeginTransaction();
                     HttpContext.Current.Items["dbContext"] = context;
                 }
@@ -82,7 +82,7 @@ namespace ProdService
         }
         public void Commit()
         {
-            using (var context = HttpContext.Current.Items["dbContext"] as SQLContext)
+            using (var context = HttpContext.Current.Items["dbContext"] as SqlContext)
             {
                 if (context != null)
                 {
@@ -105,7 +105,7 @@ namespace ProdService
         }
         public void Rollback()
         {
-            using (var context = HttpContext.Current.Items["dbContext"] as SQLContext)
+            using (var context = HttpContext.Current.Items["dbContext"] as SqlContext)
             {
                 if (context == null) return;
                 var transaction = context.Database.CurrentTransaction;

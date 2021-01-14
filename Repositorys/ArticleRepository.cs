@@ -10,7 +10,7 @@ namespace Repositorys
 {
     public class ArticleRepository : BaseRepository<Article>
     {
-        public ArticleRepository(SQLContext context) : base(context)
+        public ArticleRepository(SqlContext context) : base(context)
         {
         }
 

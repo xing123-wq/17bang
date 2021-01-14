@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Repositorys
 {
-    public class SQLContext : DbContext
+    public class SqlContext : DbContext
     {
-        public SQLContext() : base("18bang")
+        public SqlContext() : base("18bang")
         {
 #if DEBUG
             //Database.Log = S => File.AppendAllText("E:\\EF.log", S);

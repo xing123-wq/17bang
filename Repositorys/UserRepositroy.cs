@@ -10,7 +10,7 @@ namespace Repositorys
 {
     public class UserRepositroy : BaseRepository<Users>
     {
-        public UserRepositroy(SQLContext context) : base(context)
+        public UserRepositroy(SqlContext context) : base(context)
         {
         }
 

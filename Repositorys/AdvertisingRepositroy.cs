@@ -9,7 +9,7 @@ namespace Repositorys
 {
     public class AdvertisingRepositroy : BaseRepository<Advertising>
     {
-        public AdvertisingRepositroy(SQLContext context) : base(context)
+        public AdvertisingRepositroy(SqlContext context) : base(context)
         {
         }
         public Advertising GetById(int id)

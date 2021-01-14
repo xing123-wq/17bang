@@ -10,9 +10,9 @@ namespace Repositorys
 {
     public class BaseRepository<T> where T : BaseEntity
     {
-        protected SQLContext context;
+        protected SqlContext context;
 
-        public BaseRepository(SQLContext context)
+        public BaseRepository(SqlContext context)
         {
             this.context = context;
         }

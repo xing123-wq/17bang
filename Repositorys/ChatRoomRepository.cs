@@ -11,7 +11,7 @@ namespace Repositorys
 {
     public class ChatRoomRepository : BaseRepository<Chat>
     {
-        public ChatRoomRepository(SQLContext context) : base(context)
+        public ChatRoomRepository(SqlContext context) : base(context)
         {
         }
 

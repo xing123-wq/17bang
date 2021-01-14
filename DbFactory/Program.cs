@@ -12,7 +12,7 @@ namespace DbFactory
     {
         static void Main(string[] args)
         {
-            Database database = new SQLContext().Database;
+            Database database = new SqlContext().Database;
             database.Log = Console.Write;
             database.Delete();
             database.Create();

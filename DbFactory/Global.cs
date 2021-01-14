@@ -9,7 +9,7 @@ namespace DbFactory
 {
     static class Global
     {
-        internal static SQLContext context = new SQLContext();
+        internal static SqlContext context = new SqlContext();
         public static DateTime Time { get => DateTime.Now; }
     }
 }

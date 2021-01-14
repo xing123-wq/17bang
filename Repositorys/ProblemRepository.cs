@@ -9,7 +9,7 @@ namespace Repositorys
 {
     public class ProblemRepository : BaseRepository<Problem>
     {
-        public ProblemRepository(SQLContext context) : base(context)
+        public ProblemRepository(SqlContext context) : base(context)
         {
         }
     }

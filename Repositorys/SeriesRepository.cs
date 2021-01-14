@@ -10,7 +10,7 @@ namespace Repositorys
 {
     public class SeriesRepository : BaseRepository<Series>
     {
-        public SeriesRepository(SQLContext context) : base(context)
+        public SeriesRepository(SqlContext context) : base(context)
         {
         }
         public IQueryable<Series> GetSeries(int userId)

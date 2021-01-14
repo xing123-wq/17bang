@@ -9,7 +9,7 @@ namespace Repositorys
 {
     public class EmailRepository : BaseRepository<Email>
     {
-        public EmailRepository(SQLContext context) : base(context)
+        public EmailRepository(SqlContext context) : base(context)
         {
         }
         public bool IsDuplication(string address)
