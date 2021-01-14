@@ -17,8 +17,8 @@ namespace ProdService
         private UserRepositroy userRepositroy;
         public EmailService()
         {
-            repository = new EmailRepository(context);
-            userRepositroy = new UserRepositroy(context);
+            repository = new EmailRepository(Context);
+            userRepositroy = new UserRepositroy(Context);
         }
         public ActivateModel GetActivate()
         {
@@ -27,7 +27,7 @@ namespace ProdService
             {
                 if (!string.IsNullOrEmpty(email.Address))
                 {
-                    return mapper.Map<ActivateModel>(email);
+                    return Mapper.Map<ActivateModel>(email);
                 }
             }
             return null;

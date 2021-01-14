@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Routing;
+using ServiceInterface.Article;
 using ViewModel.Articles;
 using ViewModel.Shared.Article;
 
@@ -19,14 +20,14 @@ namespace ProdService.Articles
     public class ArticleService : BaseService, IArticleService
     {
         #region constructor 
-        private ArticleRepository repository;
-        private ISeriesService series;
-        private IAdvertisingService advertising;
+        private readonly ArticleRepository _repository;
+        private readonly ISeriesService _series;
+        private readonly IAdvertisingService _advertising;
         public ArticleService()
         {
-            series = new SeriesService();
-            advertising = new AdService();
-            repository = new ArticleRepository(context);
+            _series = new SeriesService();
+            _advertising = new AdService();
+            _repository = new ArticleRepository(Context);
         }
         #endregion
 
@@ -35,60 +36,61 @@ namespace ProdService.Articles
         {
             IndexModel model = new IndexModel();
 
-            var articles = repository.GetArticles();
+            var articles = _repository.GetArticles();
 
             model.SumOfPages = pager.GetSumOfPage(articles.Count());
 
             articles = articles.Paged(pager);
 
-            model.Items = mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
+            model.Items = Mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
 
             return model;
         }
 
         public IndexModel Get(int userId, Pager pager)
         {
-            IndexModel model = new IndexModel();
+            var model = new IndexModel();
 
-            IList<Article> articles = repository.GetByUserId(userId);
+            var articles = _repository.GetByUserId(userId);
 
             articles = articles.Paged(pager);
 
-            model.Items = mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
+            model.Items = Mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
 
             return model;
         }
 
-        public NewModel Get()
+        public _InputeModel Get()
         {
-            NewModel model = new NewModel
+            _InputeModel model = new _InputeModel
             {
-                _Series = series.GetSeries(),
-                _Items = advertising.Get()
+                _Series = _series.GetSeries(),
+                _Items = _advertising.Get()
             };
             return model;
         }
 
-        public NewModel Get(int id)
+        public _InputeModel Get(int id)
         {
-            Article article = repository.GetArticle(id);
+            var article = _repository.GetArticle(id);
 
-            NewModel model = Get();
-            _InputeModel _Inpute = mapper.Map<_InputeModel>(article);
-            for (int i = 0; i < article.Keywords.Count(); i++)
+            var input = Mapper.Map<_InputeModel>(article);
+            input._Series = _series.GetSeries();
+            input._Items = _advertising.Get();
+
+            for (var i = 0; i < article.Keywords.Count(); i++)
             {
-                _Inpute.Keyword = String.Concat(article.Keywords[i].Keyword.Name.Split(' '));
+                input.Keyword = string.Concat(article.Keywords[i].Keyword.Name.Split(' '));
 
             }
-            model._Inpute = _Inpute;
 
-            return model;
+            return input;
         }
 
         public _SingleItemModel GetSingle(int id)
         {
-            Article article = repository.GetArticle(id);
-            return mapper.Map<_SingleItemModel>(article);
+            Article article = _repository.GetArticle(id);
+            return Mapper.Map<_SingleItemModel>(article);
         }
 
         public _PreAndNextModel GetPreAndNext(int id, bool inCategory)
@@ -96,73 +98,77 @@ namespace ProdService.Articles
             _PreAndNextModel model = new _PreAndNextModel();
             Article prevArticle, nextArticle;
 
-            Article current = repository.Find(id);
+            var current = _repository.Find(id);
 
             if (inCategory)
             {
                 prevArticle = current.Previous;
-                checkCategorySame(prevArticle, current);
+                CheckCategorySame(prevArticle, current);
 
                 nextArticle = current.Next;
-                checkCategorySame(nextArticle, current);
+                CheckCategorySame(nextArticle, current);
             }
             else
             {
-                prevArticle = repository.GetPre(current);
-                nextArticle = repository.GetNext(current);
+                prevArticle = _repository.GetPre(current);
+                nextArticle = _repository.GetNext(current);
             }
-            model.Pre = mapper.Map<LiteTitleModel>(prevArticle);
-            model.Next = mapper.Map<LiteTitleModel>(nextArticle);
+            model.Pre = Mapper.Map<LiteTitleModel>(prevArticle);
+            model.Next = Mapper.Map<LiteTitleModel>(nextArticle);
             return model;
         }
 
         public _WidgetModel GetWidget(Pager pager)
         {
-            _WidgetModel model = new _WidgetModel();
-            model.Items = mapper.Map<IList<WidgetItemModel>>(
-                repository.FindAll()
-                .Paged(pager)
-                .OrderByDescending(a => a.PublishTime)
-                );
+            _WidgetModel model = new _WidgetModel
+            {
+                Items = Mapper.Map<IList<WidgetItemModel>>(
+                    _repository.FindAll()
+                        .Paged(pager)
+                        .OrderByDescending(a => a.PublishTime)
+                )
+            };
             return model;
         }
         #endregion
 
-        public int Save(_InputeModel model, bool HasEdit = false)
+        public int Save(_InputeModel model, bool hasEdit = false)
         {
             Article article;
 
-            if (HasEdit)
+            if (hasEdit)
             {
-                article = repository.Find(model.Id);
+                article = _repository.Find(model.Id);
                 if (CurrentUserId != article.Author.Id)
                 {
-                    throw new Exception($"当前用户Id：{CurrentUserId.Value}，不该文章作者Id：{article.Author.Id}!");
+                    if (CurrentUserId != null)
+                        throw new Exception($"当前用户Id：{CurrentUserId}，不该文章作者Id：{article.Author.Id}!");
                 }
-                repository.Update(article);
+                article = Mapper.Map<Article>(model);
+                article.Publish(model.Keyword);
+                article.Author = GetByCurrentUser();
+                _repository.Update(article);
             }
             else
             {
-                article = mapper.Map<Article>(model);
+                article = Mapper.Map<Article>(model);
                 article.Author = GetByCurrentUser();
                 article.Publish(model.Keyword);
-                repository.Add(article);
+                _repository.Add(article);
             }
             return article.Id;
         }
 
         #region private
-        private void checkCategorySame(Article a, Article b)
+        private static void CheckCategorySame(Article a, Article b)
         {
-            if (a != null && b != null)
+            if (a == null || b == null) return;
+            if (a.Series != b.Series)
             {
-                if (a.Series != b.Series)
-                {
-                    throw new Exception(
-                        $"根据前后关系取到的Article（id={a.Id}），" +
-                        $"其Category(id={a.Series.Id})和Article（id={b.Id}）的Category（id={b.Series.Id}）不合");
-                }//else nothing: category can NOT be null
-            }//else nothing
+                throw new Exception(
+                    $"根据前后关系取到的Article（id={a.Id}），" +
+                    $"其Category(id={a.Series.Id})和Article（id={b.Id}）的Category（id={b.Series.Id}）不合");
+            }//else nothing: category can NOT be null
         }
         #endregion
 

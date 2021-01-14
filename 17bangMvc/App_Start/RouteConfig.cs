@@ -21,6 +21,13 @@ namespace _17bangMvc
            );
 
             routes.MapRoute(
+              name: "ArticleEdit",
+              url: "Article/Edit/{id}",
+              defaults: new { controller = "Article", action = "Edit" },
+              constraints: new { id = @"\d+" }
+             );
+
+            routes.MapRoute(
              name: "ArticleUser",
              url: "Article/User-{userId}",
              defaults: new { controller = "Article", action = "User" },

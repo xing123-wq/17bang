@@ -1,14 +1,8 @@
-﻿using BLL;
-using Global;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Global;
 using ViewModel.Articles;
 using ViewModel.Shared.Article;
 
-namespace ServiceInterface
+namespace ServiceInterface.Article
 {
     public interface IArticleService : IBaseService
     {
@@ -17,8 +11,8 @@ namespace ServiceInterface
         IndexModel Get(int userId, Pager pager);
         _SingleItemModel GetSingle(int id);
         _PreAndNextModel GetPreAndNext(int id, bool inCategory);
-        NewModel Get();
-        NewModel Get(int id);
+        _InputeModel Get();
+        _InputeModel Get(int id);
         _WidgetModel GetWidget(Pager pager);
     }
 }

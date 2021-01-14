@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 using System.Web.UI;
+using ServiceInterface.Article;
 using ViewModel.Articles;
 using ViewModel.Shared;
 using ViewModel.Shared.Article;
@@ -71,21 +72,17 @@ namespace _17bangMvc.Controllers
 
         [HttpPost]
         [NeedLogOnFilter(role: Role.Blogger)]
-        [ValidateModelStateRedirect]
-        public ActionResult New(NewModel model)
+        [ValidateModelState]
+        public ActionResult New(_InputeModel model)
         {
-            if (!ModelState.IsValid)
+            if (model != null)
             {
-                model._Items = _ad.Get();
-                model._Series = _series.GetSeries();
-                return View(model);
+                if (string.IsNullOrEmpty(model.Digest))
+                {
+                    model.Digest = model.Body.Substring(15);
+                }
             }
-            _InputeModel _Inpute = model._Inpute;
-            if (string.IsNullOrEmpty(_Inpute.Digest))
-            {
-                _Inpute.Digest = _Inpute.Body.Substring(15);
-            }
-            _service.Save(_Inpute);
+            _service.Save(model);
             return Redirect("/Article");
         }
         #endregion
@@ -135,10 +132,9 @@ namespace _17bangMvc.Controllers
         [HttpPost]
         [NeedLogOnFilter(role: Role.Blogger)]
         [ValidateModelStateRedirect]
-        public ActionResult Edit(NewModel model)
+        public ActionResult Edit(_InputeModel model)
         {
-      
-            int id = _service.Save(model._Inpute, true);
+            int id = _service.Save(model, true);
             return RedirectToAction("Single", new { Id = id });
         }
 

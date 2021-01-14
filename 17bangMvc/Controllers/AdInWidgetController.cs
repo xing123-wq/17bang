@@ -26,7 +26,6 @@ namespace _17bangMvc.Controllers
             AdService service = new AdService();
 
             model.ADS = service.GetUserId(service.CurrentUserId);
-            ViewData["SelectADList"] = service.GetSelectListItems(model.ADS);
 
             return View(model);
         }
@@ -37,7 +36,6 @@ namespace _17bangMvc.Controllers
             AdService service = new AdService();
             if (!ModelState.IsValid)
             {
-                ViewData["SelectADList"] = service.GetSelectListItems(model.ADS);
                 return View(model);
             }
             service.Sava(model);

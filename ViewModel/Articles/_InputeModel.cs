@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using ViewModel.Ad;
+using ViewModel.Category;
 
 namespace ViewModel.Articles
 {
@@ -35,5 +37,9 @@ namespace ViewModel.Articles
         [Required(ErrorMessage = "* 文本不能为空")]
         public string text { get; set; }
         public int? ADId { get; set; }
+
+        public IList<_adItmeModel> _Items { get; set; }
+        public IList<_SeriesItemMdodel> _Series { get; set; }
+
     }
 }

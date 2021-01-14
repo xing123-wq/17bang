@@ -13,49 +13,40 @@ namespace ProdService
 {
     public class AdService : BaseService, IAdvertisingService
     {
-        private AdvertisingRepositroy _repositroy;
+        private readonly AdvertisingRepositroy _repositroy;
         public AdService()
         {
-            _repositroy = new AdvertisingRepositroy(context);
+            _repositroy = new AdvertisingRepositroy(Context);
         }
 
         public IList<IndexModel> GetByads(int sum)
         {
-            IList<Advertising> advertisings = _repositroy.GetAdvertisings(sum);
-            return mapper.Map<IList<IndexModel>>(advertisings);
+            var advertisings = _repositroy.GetAdvertisings(sum);
+            return Mapper.Map<IList<IndexModel>>(advertisings);
         }
 
         public IndexModel GetByTitle(string title)
         {
             Advertising advertising = _repositroy.GetByTitle(title);
-            return mapper.Map<IndexModel>(advertising);
+            return Mapper.Map<IndexModel>(advertising);
         }
 
         public int Sava(IndexModel model)
         {
-            Advertising advertising = mapper.Map<Advertising>(model);
+            var advertising = Mapper.Map<Advertising>(model);
             advertising.Author = GetByCurrentUser();
             _repositroy.Add(advertising);
             return advertising.Id;
         }
-        public IEnumerable<SelectListItem> GetSelectListItems(IList<IndexModel> source)
-        {
-            var selectList = new List<SelectListItem>();
-            foreach (var item in source)
-            {
-                selectList.Add(new SelectListItem { Value = item.Title, Text = item.Title });
-            }
-            return selectList;
-        }
         public IList<_adItmeModel> Get()
         {
-            IList<Advertising> ad = _repositroy.GetAdvertisings(5);
-            return mapper.Map<IList<_adItmeModel>>(ad);
+            var ad = _repositroy.GetAdvertisings(5);
+            return Mapper.Map<IList<_adItmeModel>>(ad);
         }
         public IList<IndexModel> GetUserId(int? userId)
         {
-            IList<Advertising> ad = _repositroy.GetByUserId(userId);
-            return mapper.Map<IList<IndexModel>>(ad);
+            var ad = _repositroy.GetByUserId(userId);
+            return Mapper.Map<IList<IndexModel>>(ad);
         }
     }
 }

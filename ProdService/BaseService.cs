@@ -15,17 +15,17 @@ namespace ProdService
 {
     public class BaseService : IBaseService
     {
-        protected UserRepositroy _userRepositroy;
+        protected UserRepositroy UserRepositroy;
         public BaseService()
         {
-            _userRepositroy = new UserRepositroy(context);
+            UserRepositroy = new UserRepositroy(Context);
         }
 
-        protected SQLContext context
+        protected SQLContext Context
         {
             get
             {
-                SQLContext context = HttpContext.Current.Items["dbContext"] as SQLContext;
+                var context = HttpContext.Current.Items["dbContext"] as SQLContext;
                 if (context == null)
                 {
                     context = new SQLContext();
@@ -37,13 +37,37 @@ namespace ProdService
         }
         public Users GetByCurrentUser()
         {
-            HttpCookie cookie = HttpContext.Current.Request.Cookies["UserId"];
-            if (cookie != null)
+            var cookie = HttpContext.Current.Request.Cookies["UserId"];
+            
+            if (cookie == null) return null;
+            
+            var userId = Convert.ToInt32(cookie.Value);
+            var password = HttpContext.Current.Request.Cookies["UserPassword"]?.Value;
+            var user = UserRepositroy.GetById(userId);
+            
+            if (user == null)
             {
-                int userId = Convert.ToInt32(cookie.Value);
-                string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
-                Users user = new Users();
-                user = _userRepositroy.GetById(userId);
+                throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
+            }
+            if (password != user.Password)
+            {
+                throw new Exception("该用户密码错误");
+            }
+            
+            return user;
+        }
+        public int? CurrentUserId
+        {
+            get
+            {
+                var cookie = HttpContext.Current.Request.Cookies["UserId"];
+                
+                if (cookie == null) return null;
+                
+                var userId = Convert.ToInt32(cookie.Value);
+                var password = HttpContext.Current.Request.Cookies["UserPassword"]?.Value;
+                var user = UserRepositroy.GetById(userId);
+                
                 if (user == null)
                 {
                     throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
@@ -52,40 +76,17 @@ namespace ProdService
                 {
                     throw new Exception("该用户密码错误");
                 }
-                return user;
-            }
-            return null;
-        }
-        public int? CurrentUserId
-        {
-            get
-            {
-                HttpCookie cookie = HttpContext.Current.Request.Cookies["UserId"];
-                if (cookie != null)
-                {
-                    int userId = Convert.ToInt32(cookie.Value);
-                    string password = HttpContext.Current.Request.Cookies["UserPassword"].Value;
-                    Users user = _userRepositroy.GetById(userId);
-                    if (user == null)
-                    {
-                        throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
-                    }
-                    if (password != user.Password)
-                    {
-                        throw new Exception("该用户密码错误");
-                    }
-                    return userId;
-                }
-                return null;
+                
+                return userId;
             }
         }
         public void Commit()
         {
-            using (SQLContext context = HttpContext.Current.Items["dbContext"] as SQLContext)
+            using (var context = HttpContext.Current.Items["dbContext"] as SQLContext)
             {
                 if (context != null)
                 {
-                    DbContextTransaction transaction = context.Database.CurrentTransaction;
+                    var transaction = context.Database.CurrentTransaction;
                     using (transaction)
                     {
                         try
@@ -104,9 +105,10 @@ namespace ProdService
         }
         public void Rollback()
         {
-            using (SQLContext context = HttpContext.Current.Items["dbContext"] as SQLContext)
+            using (var context = HttpContext.Current.Items["dbContext"] as SQLContext)
             {
-                DbContextTransaction transaction = context.Database.CurrentTransaction;
+                if (context == null) return;
+                var transaction = context.Database.CurrentTransaction;
                 using (transaction)
                 {
                     transaction.Rollback();
@@ -115,22 +117,11 @@ namespace ProdService
         }
         public bool IsAdmin()
         {
-            if (GetByCurrentUser().Role == Role.Admin)
-            {
-                return true;
-            }//eles do nothing
-            return false;
+            return GetByCurrentUser().Role == Role.Admin;
         }
         public bool IsBlogger()
         {
-            if (GetByCurrentUser().Role == Role.Blogger || IsAdmin())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return GetByCurrentUser().Role == Role.Blogger || IsAdmin();
         }
 
         public Role GetCurrentRole()
@@ -142,21 +133,15 @@ namespace ProdService
             HttpContext.Current.Items["dbContext"] = null;
         }
 
-        private static MapperConfiguration autoMapperConfig;
-        protected IMapper mapper
-        {
-            get
-            {
-                return autoMapperConfig.CreateMapper();
-            }
-        }
+        private protected static readonly MapperConfiguration AutoMapperConfig;
+        protected IMapper Mapper => AutoMapperConfig.CreateMapper();
 
         /// <summary>
         /// model和entity映射
         /// </summary>
         static BaseService()
         {
-            autoMapperConfig = new MapperConfiguration(cfg =>
+            AutoMapperConfig = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Users, ViewModel.Register.IndexModel>(MemberList.None)
                 .ForMember(i => i.UserName, opt => opt.MapFrom(u => u.Name))
@@ -196,11 +181,6 @@ namespace ProdService
                 cfg.CreateMap<Keyword, ViewModel.Shared._KeywordModel>(MemberList.None)
                 .ForMember(m => m.articles, opt => opt.MapFrom(k => k.Articles));
 
-
-                cfg.CreateMap<Article, ViewModel.Articles.NewModel>(MemberList.None)
-                .ForMember(n => n._Items, opt => opt.Ignore())
-                .ForMember(n => n._Series, opt => opt.Ignore());
-
                 cfg.CreateMap<Article, ViewModel.Articles._PreAndNextModel>(MemberList.None);
 
                 cfg.CreateMap<Article, ViewModel.Articles.LiteTitleModel>(MemberList.None);
@@ -213,6 +193,8 @@ namespace ProdService
                 .ForMember(m => m.Interlinkage, opt => opt.MapFrom(a => a.Advertising.Url))
                 .ForMember(m => m.text, opt => opt.MapFrom(a => a.Advertising.Title))
                 .ForMember(m => m.Body, opt => opt.MapFrom(a => a.Content))
+                .ForMember(n => n._Items, opt => opt.Ignore())
+                .ForMember(n => n._Series, opt => opt.Ignore())
                 .ReverseMap();
 
                 cfg.CreateMap<Email, ViewModel.Email.ActivateModel>(MemberList.None);
@@ -236,7 +218,7 @@ namespace ProdService
                 .ReverseMap();
             });
 #if DEBUG   //复习：这是什么？
-            autoMapperConfig.AssertConfigurationIsValid();
+            AutoMapperConfig.AssertConfigurationIsValid();
 #endif
         }
     }
