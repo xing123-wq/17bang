@@ -40,14 +40,14 @@
                     </span>
                     @if (Model.Author.Id == service.CurrentUserId)
                     {
-                        <a href="/Article/Edit/@Model.Id" style="margin-left: 14px;" zyf-article-edit=""  data-article-id="@Model.Id">
+                        <a href="/Article/Edit/@Model.Id" style="margin-left: 14px;" zyf-article-edit="" data-article-id="@Model.Id">
                             <span class="fa fa-pencil-square-o"></span> 修改
                         </a>
                     }
                 </span>
                 <div style="clear:both; word-break:break-all; padding-top:20px;">
                     <p>
-                        <span>@Html.Raw(Model.Abstract)</span>
+                        <span>@Html.Raw(Model.Body)</span>
                     </p>
                 </div>
                 <div class="clearfix" style="padding-top:10px;">

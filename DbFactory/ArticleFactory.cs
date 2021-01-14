@@ -16,7 +16,7 @@ namespace DbFactory
             SQL = new Article
             {
                 Title = "什么是SQL?",
-                Content = "SQL是数据库",
+                Body = "SQL是数据库",
                 Author = RegisterFactory.at,
                 PublishTime = Global.Time.AddDays(1),
                 Series = SeriesFactory.series1,
@@ -25,7 +25,7 @@ namespace DbFactory
             JAVA = new Article
             {
                 Title = "什么是JAVA?",
-                Content = "JAVA是一种语言",
+                Body = "JAVA是一种语言",
                 Author = RegisterFactory.wpz,
                 PublishTime = Global.Time.AddDays(-1),
                 Series = SeriesFactory.series2,
@@ -34,7 +34,7 @@ namespace DbFactory
             UI = new Article
             {
                 Title = "什么是UI?",
-                Content = "UI是HTML等组成的统称",
+                Body = "UI是HTML等组成的统称",
                 Author = RegisterFactory.lzb,
                 PublishTime = Global.Time.AddDays(2),
                 Series = SeriesFactory.series3,

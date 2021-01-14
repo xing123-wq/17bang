@@ -12,6 +12,7 @@ namespace BLL
         public string Name { get; set; }
         public string Password { get; set; }
         public int? InviterId { get; set; }
+        public virtual int Ballots { get; protected internal set; }
         public Users Inviter { get; set; }
         public string InviterCode { get; set; }
         public int WalletId { get; set; }
@@ -34,5 +35,18 @@ namespace BLL
             };
             Series = new List<Series> { DefaultSeries };
         }
+
+        protected internal virtual void BallotConsumed(int amount)
+        {
+            //投票人消耗了帮帮豆
+            if (Ballots - amount < 0)
+            {
+                throw new Exception(string.Format(
+                    "用户（id={0}）进行评价时，需消耗帮帮豆{1}枚，但现在仅有{2}枚",
+                    Id, amount, Ballots));
+            }
+            Ballots -= amount;
+        }
+
     }
 }

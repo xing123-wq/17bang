@@ -38,13 +38,13 @@ namespace ProdService
         public Users GetByCurrentUser()
         {
             var cookie = HttpContext.Current.Request.Cookies["UserId"];
-            
+
             if (cookie == null) return null;
-            
+
             var userId = Convert.ToInt32(cookie.Value);
             var password = HttpContext.Current.Request.Cookies["UserPassword"]?.Value;
             var user = UserRepositroy.GetById(userId);
-            
+
             if (user == null)
             {
                 throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
@@ -53,7 +53,7 @@ namespace ProdService
             {
                 throw new Exception("该用户密码错误");
             }
-            
+
             return user;
         }
         public int? CurrentUserId
@@ -61,13 +61,13 @@ namespace ProdService
             get
             {
                 var cookie = HttpContext.Current.Request.Cookies["UserId"];
-                
+
                 if (cookie == null) return null;
-                
+
                 var userId = Convert.ToInt32(cookie.Value);
                 var password = HttpContext.Current.Request.Cookies["UserPassword"]?.Value;
                 var user = UserRepositroy.GetById(userId);
-                
+
                 if (user == null)
                 {
                     throw new Exception($"通过Id:{userId},没有查询到该Id所对应的用户");
@@ -76,7 +76,7 @@ namespace ProdService
                 {
                     throw new Exception("该用户密码错误");
                 }
-                
+
                 return userId;
             }
         }
@@ -162,17 +162,18 @@ namespace ProdService
                 ;
 
                 cfg.CreateMap<Advertising, ViewModel.Ad.IndexModel>(MemberList.None)
-                .ForMember(i => i.Title, opt => opt.MapFrom(a => a.Title))
-                .ForMember(i => i.Url, opt => opt.MapFrom(u => u.Url))
                 .ReverseMap();
 
                 cfg.CreateMap<Advertising, ViewModel.Ad._adItmeModel>(MemberList.None)
                 .ReverseMap();
 
+                cfg.CreateMap<Appraise, ViewModel.Shared.AppraiseManagerModel>(MemberList.None)
+                    .ReverseMap();
+
                 cfg.CreateMap<Article, ViewModel.Articles._SingleItemModel>(MemberList.None)
-                .ForMember(m => m.Abstract, opt => opt.MapFrom(a => a.Content))
                 .ForMember(m => m.CategoryId, opt => opt.MapFrom(a => a.Series.Id))
-                .ForMember(i => i.Keywords, opt => opt.MapFrom(a => a.Keywords));
+                .ForMember(m => m.Keywords, opt => opt.MapFrom(a => a.Keywords))
+                .ForMember(m => m.Body, opt => opt.MapFrom(a => a.Body));
 
                 cfg.CreateMap<ArticleAndKeyword, ViewModel.Shared.ArticleAndKeywordModel>(MemberList.None)
                 .ForMember(m => m._Keyword, opt => opt.MapFrom(k => k.Keyword))
@@ -192,7 +193,6 @@ namespace ProdService
                 cfg.CreateMap<Article, ViewModel.Articles._InputeModel>(MemberList.None)
                 .ForMember(m => m.Interlinkage, opt => opt.MapFrom(a => a.Advertising.Url))
                 .ForMember(m => m.text, opt => opt.MapFrom(a => a.Advertising.Title))
-                .ForMember(m => m.Body, opt => opt.MapFrom(a => a.Content))
                 .ForMember(n => n._Items, opt => opt.Ignore())
                 .ForMember(n => n._Series, opt => opt.Ignore())
                 .ReverseMap();

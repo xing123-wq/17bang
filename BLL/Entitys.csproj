@@ -46,11 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Advertising.cs" />
+    <Compile Include="Appraise.cs" />
     <Compile Include="Article.cs" />
     <Compile Include="ArticleAndKeyword.cs" />
     <Compile Include="BanMoney.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Chat.cs" />
+    <Compile Include="Comment.cs" />
+    <Compile Include="Content.cs" />
     <Compile Include="DoubleLinked.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Keyword.cs" />

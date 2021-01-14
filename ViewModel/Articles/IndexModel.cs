@@ -13,12 +13,12 @@ namespace ViewModel.Articles
         public AppraiseManagerModel AppraiseManager { get; set; }
         public _UserModel Author { get; set; }
         public string Abstract { get; set; }
+        public string Body { get; set; }
         //public int Bonus { get; set; }
         public int? CategoryId { get; set; }
         public int Comments { get; set; }
         public IList<ArticleAndKeywordModel> Keywords { get; set; }
         public string Title { get; set; }
-
     }
 
     public class IndexModel

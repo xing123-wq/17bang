@@ -7,22 +7,26 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class Article : BaseEntity, IDoubleLinked<Article>
+    public class Article : Content, IDoubleLinked<Article>
     {
-        public string Title { get; set; }
-        public string Content { get; set; }
-        public Users Author { get; set; }
         public Series Series { get; set; }
-
         public Article Next { get; set; }
         public Article Previous { get; set; }
-
+        public string Abstract { get; set; }
         public Advertising Advertising { get; set; }
+        public virtual Appraise AppraiseManager { get; set; }
+
         public virtual IList<ArticleAndKeyword> Keywords { get; set; }
-        public void Publish(string keyword)
+        public virtual void Publish(string keyword)
         {
-            PublishTime = DateTime.Now;
+            if (string.IsNullOrEmpty(this.Abstract))
+            {
+                this.Abstract = this.Body.Substring(15);
+            }
+            
             Keywords = new ArticleAndKeyword().GetString(keyword);
+            
+            base.Publish();
         }
         public virtual void InsertAfter(Article node)
         {
