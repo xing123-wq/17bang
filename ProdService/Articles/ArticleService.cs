@@ -8,9 +8,6 @@ using ServiceInterface.Category;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Routing;
 using ServiceInterface.Article;
 using ViewModel.Articles;
 using ViewModel.Shared.Article;
@@ -42,7 +39,7 @@ namespace ProdService.Articles
 
             articles = articles.Paged(pager);
 
-            model.Items = Mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
+            model.Items = Mapper.Map<IList<_SingleItemModel>>(articles);
 
             return model;
         }
@@ -55,7 +52,7 @@ namespace ProdService.Articles
 
             articles = articles.Paged(pager);
 
-            model.Items = Mapper.Map<IList<ViewModel.Articles._SingleItemModel>>(articles);
+            model.Items = Mapper.Map<IList<_SingleItemModel>>(articles);
 
             return model;
         }
@@ -142,7 +139,7 @@ namespace ProdService.Articles
                 if (CurrentUserId != article.Author.Id)
                 {
                     if (CurrentUserId != null)
-                        throw new Exception($"当前用户Id：{CurrentUserId}，不该文章作者Id：{article.Author.Id}!");
+                        throw new Exception($"当前用户Id：{CurrentUserId}，不是该文章作者Id：{article.Author.Id}!");
                 }
                 article = Mapper.Map<Article>(model);
                 article.Publish(model.Keyword);
@@ -163,6 +160,7 @@ namespace ProdService.Articles
         private static void CheckCategorySame(Article a, Article b)
         {
             if (a == null || b == null) return;
+            
             if (a.Series != b.Series)
             {
                 throw new Exception(

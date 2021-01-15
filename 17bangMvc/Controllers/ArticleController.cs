@@ -106,8 +106,7 @@ namespace _17bangMvc.Controllers
         [HttpGet]
         public ActionResult Single(int Id)
         {
-            _SingleItemModel model = new _SingleItemModel();
-            model = _service.GetSingle(Id);
+            _SingleItemModel model = _service.GetSingle(Id);
             ViewBag.NavInCategory = navInCategory();
             ViewData["title"] = model.Title + ".一起帮";
             return View(model);
@@ -115,9 +114,8 @@ namespace _17bangMvc.Controllers
         private bool navInCategory()
         {
             HttpCookie cookie = Request.Cookies["NavInCategory"];
-            return cookie != null ?
-                Convert.ToBoolean(cookie.Value) :
-                false;
+
+            return cookie != null && Convert.ToBoolean(cookie.Value);
         }
         #endregion
 
@@ -144,7 +142,18 @@ namespace _17bangMvc.Controllers
         public PartialViewResult _PreAndNext(int id)
         {
             _PreAndNextModel model = _service.GetPreAndNext(id, navInCategory());
+
             return PartialView(model);
+        }
+        [HttpPost]
+        public PartialViewResult _PreAndNext(int id, bool inCategory)
+        {
+            _PreAndNextModel model = _service.GetPreAndNext(id, inCategory);
+
+            Response.Cookies.Add(new HttpCookie(
+                "NavInCategory", inCategory.ToString()));
+
+            return PartialView("_PreAndNext", model);
         }
 
         [ChildActionOnly]
