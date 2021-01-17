@@ -112,29 +112,6 @@ namespace _17bangMvc.Controllers
                            JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public ActionResult _Series()
-        {
-            _InputModel model = new _InputModel
-            {
-                _Items = service.GetSeries()
-            };
-            return View(model);
-        }
-
-        [HttpPost]
-        [NeedLogOnFilter]
-        public ActionResult _Series(_InputModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                throw new Exception("用户输入不服规定");
-            }
-            service.Save(model);
-            return Redirect("/Article/New");
-        }
-
-
         #endregion
 
         [ChildActionOnly]

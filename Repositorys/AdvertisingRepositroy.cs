@@ -7,24 +7,25 @@ using System.Threading.Tasks;
 
 namespace Repositorys
 {
-    public class AdvertisingRepositroy : BaseRepository<Advertising>
+    public class AdvertisingRepositroy : BaseRepository<AdInWidget>
     {
         public AdvertisingRepositroy(SqlContext context) : base(context)
         {
         }
-        public Advertising GetById(int id)
+      
+        public AdInWidget GetById(int id)
         {
-            return entities.Where(a => a.Id == id).FirstOrDefault();
+            return entities.FirstOrDefault(a => a.Id == id);
         }
-        public Advertising GetByTitle(string title)
+        public AdInWidget GetByTitle(string title)
         {
-            return entities.Where(a => a.Title == title).FirstOrDefault();
+            return entities.FirstOrDefault(a => a.Title == title);
         }
-        public IList<Advertising> GetAdvertisings(int sum)
+        public IList<AdInWidget> GetAdvertisings(int sum)
         {
             return entities.OrderByDescending(a => a.Id).Take(sum).ToList();
         }
-        public IList<Advertising> GetByUserId(int? userId)
+        public IList<AdInWidget> GetByUserId(int? userId)
         {
             return entities.Where(a => a.Author.Id == userId).ToList();
         }

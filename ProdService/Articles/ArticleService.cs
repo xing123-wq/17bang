@@ -11,6 +11,7 @@ using System.Linq;
 using ServiceInterface.Article;
 using ViewModel.Articles;
 using ViewModel.Shared.Article;
+using ViewModel.Shared.EditorTemplates;
 
 namespace ProdService.Articles
 {
@@ -57,27 +58,29 @@ namespace ProdService.Articles
             return model;
         }
 
-        public _InputeModel Get()
+        public InputeModel Get()
         {
-            _InputeModel model = new _InputeModel
+            InputeModel model = new InputeModel
             {
-                _Series = _series.GetSeries(),
-                _Items = _advertising.Get()
+                Categories = _series.GetSeries(),
+                AdContent = new AdContentModel
+                {
+                    History = _advertising.GetHistory(),
+                }
             };
             return model;
         }
 
-        public _InputeModel Get(int id)
+        public InputeModel Get(int id)
         {
             var article = _repository.GetArticle(id);
 
-            var input = Mapper.Map<_InputeModel>(article);
-            input._Series = _series.GetSeries();
-            input._Items = _advertising.Get();
+            var input = Mapper.Map<InputeModel>(article);
+            input.Categories = _series.GetSeries();
 
             for (var i = 0; i < article.Keywords.Count(); i++)
             {
-                input.Keyword = string.Concat(article.Keywords[i].Keyword.Name.Split(' '));
+                input.Keywords = string.Concat(article.Keywords[i].Keyword.Name.Split(' '));
 
             }
 
@@ -129,7 +132,7 @@ namespace ProdService.Articles
         }
         #endregion
 
-        public int Save(_InputeModel model, bool hasEdit = false)
+        public int Save(InputeModel model, bool hasEdit = false)
         {
             Article article;
 
@@ -142,7 +145,7 @@ namespace ProdService.Articles
                         throw new Exception($"当前用户Id：{CurrentUserId}，不是该文章作者Id：{article.Author.Id}!");
                 }
                 article = Mapper.Map<Article>(model);
-                article.Publish(model.Keyword);
+                article.Publish(model.Keywords);
                 article.Author = GetByCurrentUser();
                 _repository.Update(article);
             }
@@ -150,7 +153,7 @@ namespace ProdService.Articles
             {
                 article = Mapper.Map<Article>(model);
                 article.Author = GetByCurrentUser();
-                article.Publish(model.Keyword);
+                article.Publish(model.Keywords);
                 _repository.Add(article);
             }
             return article.Id;

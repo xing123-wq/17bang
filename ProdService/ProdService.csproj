@@ -102,6 +102,10 @@
       <Project>{EA5D9B11-26EA-4A8D-8637-E9C28E12AC34}</Project>
       <Name>Global</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Queqry\Queqry.csproj">
+      <Project>{ded0dcb7-f3a9-41a3-8138-a8882aa06af6}</Project>
+      <Name>Queqry</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Repositorys\Repositorys.csproj">
       <Project>{d5ea1592-9fe9-42bf-8238-23ce401563fe}</Project>
       <Name>Repositorys</Name>

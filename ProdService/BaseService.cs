@@ -161,10 +161,10 @@ namespace ProdService
                 cfg.CreateMap<Users, ViewModel.Shared._UserModel>(MemberList.None)
                 ;
 
-                cfg.CreateMap<Advertising, ViewModel.Ad.IndexModel>(MemberList.None)
+                cfg.CreateMap<AdInWidget, ViewModel.Ad.IndexModel>(MemberList.None)
                 .ReverseMap();
 
-                cfg.CreateMap<Advertising, ViewModel.Ad._adItmeModel>(MemberList.None)
+                cfg.CreateMap<AdInWidget, ViewModel.Ad._adItmeModel>(MemberList.None)
                 .ReverseMap();
 
                 cfg.CreateMap<Appraise, ViewModel.Shared.AppraiseManagerModel>(MemberList.None)
@@ -190,12 +190,10 @@ namespace ProdService
                 cfg.CreateMap<Article, ViewModel.Shared.Article._WidgetModel>(MemberList.None);
 
 
-                cfg.CreateMap<Article, ViewModel.Articles._InputeModel>(MemberList.None)
-                .ForMember(m => m.Interlinkage, opt => opt.MapFrom(a => a.Advertising.Url))
-                .ForMember(m => m.text, opt => opt.MapFrom(a => a.Advertising.Title))
-                .ForMember(n => n._Items, opt => opt.Ignore())
-                .ForMember(n => n._Series, opt => opt.Ignore())
-                .ReverseMap();
+                cfg.CreateMap<Article, ViewModel.Articles.InputeModel>(MemberList.None);
+
+                cfg.CreateMap<AdInWidget, ViewModel.Shared.EditorTemplates.AdContentModel>(MemberList.None);
+
 
                 cfg.CreateMap<Email, ViewModel.Email.ActivateModel>(MemberList.None);
 

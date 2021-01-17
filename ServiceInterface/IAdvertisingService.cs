@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using ViewModel.Ad;
+using ViewModel.AdInWidget;
 
 namespace ServiceInterface
 {
@@ -14,5 +15,6 @@ namespace ServiceInterface
         int Sava(IndexModel model);
         IList<IndexModel> GetByads(int sum);
         IList<_adItmeModel> Get();
+        IList<ShowItemModel> GetHistory();
     }
 }

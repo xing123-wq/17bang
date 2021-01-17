@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Advertising.cs" />
+    <Compile Include="AdInWidget.cs" />
     <Compile Include="Appraise.cs" />
     <Compile Include="Article.cs" />
     <Compile Include="ArticleAndKeyword.cs" />

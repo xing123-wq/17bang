@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdInWidget\ShowItemModel.cs" />
     <Compile Include="Ad\IndexModel.cs" />
     <Compile Include="Articles\IndexModel.cs" />
     <Compile Include="Articles\_InputeModel.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Shared\Article\AppraiseManagerModel.cs" />
     <Compile Include="Shared\ArticleAndKeywordModel.cs" />
     <Compile Include="Shared\Article\_WidgetModel.cs" />
+    <Compile Include="Shared\EditorTemplates\AdContentModel.cs" />
     <Compile Include="Shared\_KeywordModel.cs" />
     <Compile Include="Shared\_UserModel.cs" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿@model ViewModel.Articles._InputeModel
+﻿@model ViewModel.Articles.InputeModel
 @using System.Web.Mvc;
 @{
     Layout = "~/Views/Shared/Layout/_DualColumn.cshtml";
@@ -7,175 +7,61 @@
 {
     <title>@ViewData["title"]</title>
 }
-<script src="~/kindeditor/kindeditor-all.js"></script>
-<script src="~/kindeditor/lang/zh-CN.js"></script>
-<link href="~/kindeditor/themes/default/default.css" rel="stylesheet" />
-<link href="~/kindeditor/plugins/code/prettify.css" rel="stylesheet" />
-<script src="~/kindeditor/plugins/code/prettify.js"></script>
-<style>
-    .field-validation-error {
-        color: #b94a48;
-    }
-
-    .yellow-highlight {
-        background-color: lightyellow;
-        border: 2px dashed #eee;
-        border-radius: 4px 5px;
-    }
-</style>
-<div class="container body-content">
-    <div class="row">
-        <div class="col-md-9">
-            <h2 class="page-header">
-                <span class="fa fa-pencil-square-o " aria-hidden="true"></span> 文章发布
-            </h2>
-            @using (Html.BeginForm())
-            {
-                <div class="form-group">
-                    <label>标题(*必填)</label>
-                    @Html.TextBoxFor(n => n.Title, "", new { @class = "form-control", placeholder = "来一个醒目的标题吧" })
-                    @Html.ValidationMessageFor(n => n.Title)
-                </div>
-                <div class="form-group">
-                    <label>内容(*必填)</label>
-                    @Html.TextAreaFor(m => m.Body, new { @class = "form-control", rows = "30", style = "width:100%;height:450px;", id = "MyEidtor", placeholder = "请直接粘贴原生HTML代码", zyf_kindeditor = "" })
-                    @Html.ValidationMessageFor(n => n.Body)
-                </div>
-                <div class="form-group">
-                    <label>添加到系列：</label>
-                    <a href="/Category/Manage" class="pull-right"><span class="fa fa-cog"></span>管理</a>
-                    <div class="input-group">
-                        @Html.DropDownListFor(n => n.SeriesId, new SelectList(Model._Series, "Id", "Title"), "---------", new { @class = "form-control", zyf_article_series = "" })
-                        <a class="btn input-group-addon" data-toggle="modal" data-target="#new-category">
-                            <span class="fa fa-plus" data-toggle="tooltip" title="" data-original-title="添加"></span> 新系列
-                        </a>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>
-                        关键字：（* 必填）
-                    </label>
-                    @Html.TextBoxFor(n => n.Keyword, "", new { @class = "form-control", placeholder = "用空格分割，总长度不超过25个字符" })
-                    @Html.ValidationMessageFor(n => n.Keyword)
-                </div>
-                <div class="form-group">
-                    <label>摘要：（* 建议填写）</label>
-                    <textarea class="form-control" placeholder="不填写的话，系统会截取文章前255字作为摘要显示" name="Digest"></textarea>
-                    <span class="field-validation-valid" name="Digest"></span>
-                </div>
-                <div class="form-group">
-                    <a zyf-ad-delete="" class="text-warning pull-right"><span class="fa fa-remove"></span> 删除</a>
-                    <label>之前用过的广告：</label>
-                    @Html.DropDownListFor(n => n.ADId, new SelectList(Model._Items, "Id", "Title"), "使用之前的广告", new { @class = "form-control", zyf_article_Ad = "" })
-                </div>
-                <ul class="hide" zyf-ad-in-widget-history-url="">
-                    <li id="5">http://task.zyfei.net/</li>
-                </ul>
-                <section style="padding:10px 20px; margin-bottom:20px;" class="yellow-highlight" zyf-ad-content-container="">
-                    <div class="text-right checkbox">
-                        <label>
-                            <input data-val="true" data-val-required="Edit 字段是必需的。" id="AdContent_Edit" name="AdContent.Edit" type="checkbox" value="true" zyf-ad-content-edit=""><input name="AdContent.Edit" type="hidden" value="false"> 修改
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>文字内容：（* 必填）</label>
-                        @Html.TextBoxFor(n => n.text, "", new { @class = "form-control", placeholder = "最多不超过24个字符" })
-                        @Html.ValidationMessageFor(n => n.text)
-                    </div>
-                    <div class="form-group">
-                        <label>链接：（* 必填）</label>
-                        @Html.TextBoxFor(n => n.Interlinkage, "", new { @class = "form-control", placeholder = "http或https开头的网址" })
-                        @Html.ValidationMessageFor(n => n.Interlinkage)
-                    </div>
-                </section>
-                <div class="submit">
-                    <input type="submit" zyf-article-submit="" class="btn btn-primary loading" value="发布">
-                    <button type="button" class="btn btn-default" data-toggle="tooltip" data-original-title="存为草稿">保存</button>
-                    <small class="text-success" zyf-article-draft-remind=""></small>
-                    <input type="hidden" name="draftId" zyf-draft-hide-id="">
-                </div>
-            }
-            <div class="modal fade" id="new-category" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    @Html.Action("_Series", "Category")
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-        </div>
-        <input hidden zyf-edit-id id="@Html.ViewContext.RouteData.Values["id"]" />
-        <div class="col-md-3" style="margin-top: 40px;">
-            <div zyf-newbie-reminder="" class="widget yellow-highlight">
-                <h4><span class="fa fa-list"></span> 新手任务</h4>
-                <p zyf-newbie-tasks-done="" class="hide text-right">
-                    <span class="fa fa-thumbs-o-up text-success"></span> 全部完成！
-                    <a zyf-newbie-reminder-hide="" href="#" class="text-primary">不再显示</a>
-                </p>
-                <hr>
-                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 填写：<a href="/Contact/New?prepage=%2fArticle%2fNew">联系方式</a></p>
-                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 激活：<a href="/Email/Activate?prepage=%2fArticle%2fNew">Email</a></p>
-                <p><span class="fa fa-square-o fa-fw"></span> 邀请：<a href="/Invite">我的小伙伴</a></p>
-                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 参加：<a href="/Exam/Newbie">新人测试</a></p>
-                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 发布：<a href="/Problem/New">第一个求助</a></p>
-                <p><span class="fa fa-check-square-o text-success fa-fw"></span> 尝试：<a href="/Problem"> 第一次协助</a></p>
-                <p>
-                    <span class="fa fa-check-square-o text-success fa-fw"></span> 获得：若干
-                    <a href="/FAQ/Money" data-toggle="tooltip" class="credit" title="" data-original-title="点击了解">
-                        <span class="iconfont icon-money"></span> 帮帮币
-                    </a>
-                </p>
-            </div>
-            <a href="/Profile/Write?prepage=%2fArticle%2fNew" class="btn pull-right" zyf-profile-edit="">
-                <span class="fa fa-pencil-square-o"></span>
-                <span>修改</span>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>标题：（* 必填）</label>
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "来一个醒目的标题吧", zyf_draft_check_title = string.Empty })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+    <div class="form-group">
+        <label>内容：（* 必填）</label>
+        @Html.TextAreaFor(m => m.Body, new { @class = "form-control", rows = "30", placeholder = "请直接粘贴原生HTML代码", zyf_kindeditor = "" })
+        @Html.ValidationMessageFor(m => m.Body)
+    </div>
+    <div class="form-group">
+        <label>添加到系列：</label>
+        <a href="/Category/Manage" class="pull-right"><span class="fa fa-cog"></span>  管理</a>
+        <div class="input-group">
+            @Html.DropDownListFor(m => m.SelectedCategoryId,
+                new SelectList(Model.Categories, "Id", "Title"),
+                new { @class = "form-control", zyf_categories = string.Empty })
+            <a class="btn input-group-addon" data-toggle="modal" data-target="#new-category">
+                <span class="fa fa-plus" data-toggle="tooltip" title="添加"></span> 新系列
             </a>
-            <div class="img-responsive img-thumbnail" id="profile-no-picture">
-                <span class="fa fa-picture-o" id="camera"></span>
-                <div id="wait">
-                    等待上传中<span class="fa fa-hourglass-half"></span>...
-                </div>
-            </div>
-            <div class="user-show">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label>用户：</label>
-                        <span data-toggle="tooltip" title="" data-original-title="捐赠 9.9">
-                            <a href="/User/7" zyf-show-contact="7" style="color:#DCB962">
-                                DK
-                            </a>
-                        </span>
-                        <a href="/FAQ/Credit#" data-toggle="tooltip" title="" class="text-muted" style="position:relative; top:-1px;" data-original-title="初级教师">
-                            <span>④</span>
-                        </a>
-                        <a href="/User/ChangeName" class="btn" zyf-username-change="7"><span class="fa fa-pencil-square-o"></span> 修改</a>
-                    </div>
-                    <input type="hidden" value="7" zyf-profile-user-id="">
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label>性别：</label>
-                        男
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label>生日：</label>
-                        1991 <span>年</span>
-                    </div>
-                </div>
-                <div>
-                    <label>关注：</label>
-                    <p>
-                        <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 1 次">Python</span>
-                        <span title="" data-toggle="tooltip" class="badge" data-original-title="被使用过 3 次">编程开发语言</span>
-                    </p>
-                </div>
-
-            </div>
         </div>
     </div>
-</div>
+    <div class="form-group">
+        <label>关键字：（* 必填）</label>
+        @Html.TextBoxFor(m => m.Keywords, new { @class = "form-control", placeholder = "用空格分割，总长度不超过25个字符" })
+        @Html.ValidationMessageFor(m => m.Keywords)
+    </div>
+    <div class="form-group">
+        <label>摘要：（* 建议填写）</label>
+        @Html.TextAreaFor(m => m.Abstract,
+        new
+        {
+            @class = "form-control",
+            rows = "3",
+            zyf_in_max_length = 255,
+            placeholder = "不填写的话，系统会截取文章前255字作为摘要显示"
+        })
+        @Html.ValidationMessageFor(m => m.Abstract)
+    </div>
+    @Html.EditorFor(m => m.AdContent, "_AdContent")
+    <div class="submit">
+        <input type="submit" class="btn btn-primary loading" value="发布为最新" zyf-submit-once zyf-exclude-draft />
+        @Html.Partial("Draft/_SaveButton", new ViewDataDictionary { { "Kind", "Article" } })
+    </div>
+}
+@Html.Action("_New", "Category")
+
+<input hidden zyf-edit-id id="@Html.ViewContext.RouteData.Values["id"]" />
+
+
 <script src="~/Scripts/Article/JavaScript.js"></script>
 <script>
-    $('[zyf-article-submit]').click(function (event) {
+    $('[zyf-submit-once]').click(function (event) {
         event.preventDefault();
         var edit = window.location.pathname;
         if (edit.indexOf('Edit') < 0) {

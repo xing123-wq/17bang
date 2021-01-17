@@ -73,13 +73,13 @@ namespace _17bangMvc.Controllers
         [HttpPost]
         [NeedLogOnFilter(role: Role.Blogger)]
         [ValidateModelState]
-        public ActionResult New(_InputeModel model)
+        public ActionResult New(InputeModel model)
         {
             if (model != null)
             {
-                if (string.IsNullOrEmpty(model.Digest))
+                if (string.IsNullOrEmpty(model.Abstract))
                 {
-                    model.Digest = model.Body.Substring(15);
+                    model.Abstract = model.Body.Substring(15);
                 }
             }
             _service.Save(model);
@@ -130,7 +130,7 @@ namespace _17bangMvc.Controllers
         [HttpPost]
         [NeedLogOnFilter(role: Role.Blogger)]
         [ValidateModelStateRedirect]
-        public ActionResult Edit(_InputeModel model)
+        public ActionResult Edit(InputeModel model)
         {
             int id = _service.Save(model, true);
             return RedirectToAction("Single", new { Id = id });

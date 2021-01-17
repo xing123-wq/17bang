@@ -583,7 +583,6 @@
     <Content Include="Views\Chat\Room.cshtml" />
     <Content Include="Views\Category\Manage.cshtml" />
     <Content Include="Views\Article\Category.cshtml" />
-    <Content Include="Views\Shared\_Series.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
     <Content Include="Views\Article\Single.cshtml" />
     <Content Include="Views\Category\_List.cshtml" />
@@ -601,6 +600,7 @@
     <Content Include="Views\Article\_AuthorLink.cshtml" />
     <Content Include="Views\Article\_Appraise.cshtml" />
     <Content Include="Views\Shared\Article\_Widget.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_AdContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

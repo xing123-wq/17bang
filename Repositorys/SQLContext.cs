@@ -30,7 +30,7 @@ namespace Repositorys
             modelBuilder.Entity<ArticleAndKeyword>();
             modelBuilder.Entity<BanMoney>();
             modelBuilder.Entity<Series>();
-            modelBuilder.Entity<Advertising>();
+            modelBuilder.Entity<AdInWidget>();
             modelBuilder.Entity<Chat>();
             modelBuilder.Entity<Comment>();
             modelBuilder.Entity<Email>();

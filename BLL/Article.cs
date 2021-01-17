@@ -13,7 +13,7 @@ namespace BLL
         public Article Next { get; set; }
         public Article Previous { get; set; }
         public string Abstract { get; set; }
-        public Advertising Advertising { get; set; }
+        public AdInWidget Advertising { get; set; }
         public virtual Appraise AppraiseManager { get; set; }
 
         public virtual IList<ArticleAndKeyword> Keywords { get; set; }
