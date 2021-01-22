@@ -160,6 +160,7 @@
     <Compile Include="Controllers\ProblemController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Filters\AtStringLengthAttribute.cs" />
     <Compile Include="Filters\ContextPerRequest.cs" />
     <Compile Include="Filters\FilterHelper.cs" />
     <Compile Include="Filters\ModelStateTempDataTransfer.cs" />
@@ -585,7 +586,7 @@
     <Content Include="Views\Article\Category.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
     <Content Include="Views\Article\Single.cshtml" />
-    <Content Include="Views\Category\_List.cshtml" />
+    <Content Include="Views\Category\_SubManage.cshtml" />
     <Content Include="Views\Category\_New.cshtml" />
     <Content Include="Views\Shared\_NotLogin.cshtml" />
     <Content Include="Views\Shared\_NotAdmin.cshtml" />
@@ -601,6 +602,7 @@
     <Content Include="Views\Article\_Appraise.cshtml" />
     <Content Include="Views\Shared\Article\_Widget.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_AdContent.cshtml" />
+    <Content Include="Views\Category\_SubManageItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

@@ -5,130 +5,98 @@
 @section Description
 {
     <title>@ViewData["title"]</title>
-}<div class="row" style="padding-top: 20px;">
-    <div class="col-md-9">
-        <h2 class="page-header">
-            <span class="fa fa-list" aria-hidden="true"></span> 文章系列管理
-            <a class="small pull-right" zyf-category-add><span class="fa fa-plus"></span> 添加</a>
-        </h2>
-        <div id="app">
-            {{ message }}
-        </div>
-
-        @foreach (var item in Model._Items)
-        {
-            @Html.Partial("_List", item)
-        }
-
-    </div>
-
-</div>
-<script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello Vue!'
-        }
-    })
-</script>
-<div zyf-category-modal class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 zyf-category-header-title class="modal-title">
-                    <span class="fa fa-clock-o"></span>
-                </h4>
-            </div>
-            <div zyf-category-modal-body class="modal-body">
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    $(document).ready(function () {
-        $('[zyf-category-add]').click(function (event) {
-            var $modal = $('[zyf-category-modal]');
-            $modal.find('[zyf-category-header-title]').text('添加新系列');
-            $modal.modal('show');
-            $.ajax({
-                url: '/Category/_New',
-                method: 'Get',
-                success: function (data) {
-                    var $data = $(data);
-                    $modal.find('[zyf-category-modal-body]').html($data);
-                    postnew($data);
-                }
-            });
-        });
-        function postnew(data) {
-            var $data = $(data);
-            $data.find('[zyf-new-category-submit]').click(function (event) {
-                var $form = $(this).parents("form"),
-                    $modal = $('[zyf-category-modal]'),
-                    formData = $form.serialize();
-                $.validator.unobtrusive.parse($data);
-                if (!$form.valid()) {
-                    return false;
-                }
-                $.ajax({
-                    url: '/Category/_New',
-                    method: 'Post',
-                    data: formData,
-                    success: function (data) {
-                        $modal.modal("hide");
-                        location.href = '/Category/Manage';
+    <script>
+        $(document).ready(function () {
+            $("[zyf-category-delete]").click(function (event) {
+                event.preventDefault();
+                var $trigger = $(this),
+                    $container = $trigger.parents("[zyf-category-manage-item]"),
+                    currentId = $trigger.data("self-id"),
+                    $deleteForm = $("[zyf-category-delete-form]");
+                $deleteForm.find("[zyf-category-delete-btn]").data("self-id", currentId);
+                $("[zyf-categories]").children("option").each(function () {
+                    if ($(this).attr('value') === currentId) {
+                        $(this).attr("disabled", "disabled");
                     }
                 });
-            });
-        }
-
-        $('[zyf-category-delete]').click(function () {
-            var Id = $(this).data('self-id');
-            $.ajax({
-                url: '/Category/_Delete/' + Id,
-                method: 'Post',
-                success: function () {
-                    location.href = '/Category/Manage';
-                }
-            });
-        });
-
-
-
-        $('[zyf-category-edit]').click(function (event) {
-            event.preventDefault();
-            var $modal = $('[zyf-category-modal]'),
-                Id = $(this).data('self-id');
-            $modal.modal('show');
-            $modal.find('[zyf-category-header-title]').text('修改系列');
-            $.ajax({
-                url: '/Category/_New/' + Id,
-                method: 'Get',
-                success: function (data) {
-                    var $data = $(data),
-                        $form = $data.select("form")
-                        ;
-                    $modal.find('[zyf-category-modal-body]').html($data);
-                    $data.find('[zyf-new-category-submit]').click(function (event) {
-                        event.preventDefault();
-                        if (!$form.valid()) {
-                            return false;
-                        }
-                        $.ajax({
-                            url: '/Category/_Eidt?Id=' + Id,
-                            method: 'Post',
-                            data: $form.serialize(),
-                            success: function () {
-                                $modal.modal("hide");
-                                location.href = '/Category/Manage';
-                            }
-                        });
-                    })
-                }
+                $container.append($deleteForm.removeClass("hide"));
             });
 
-        });
-    });
-</script>
+            $("[zyf-category-delete-btn]").click(function () {
+                var currentId = $(this).data("self-id"),
+                    moveToId = $(this).parents('form[zyf-category-delete-form]').find("[zyf-categories]").val(),
+                    location = "/Category/_Delete/" + currentId + "?moveToId=" + moveToId;
+            });
+
+            $("[zyf-category-add]").click(function (event) {
+                event.preventDefault();
+                var $editForm = $("[zyf-category-edit-form]");
+                $editForm.attr("action", "/Category/_NewInManage");
+                $editForm.removeClass("hide");
+            });
+
+            $("[zyf-category-edit]").click(function (event) {
+                event.preventDefault();
+                var $trigger = $(this),
+                    $container = $trigger.parents("[zyf-category-manage-item]"),
+                    parentId = $container.data("parent"),
+                    currentId = $trigger.data("self-id"),
+                    $oldName = $container.find("[zyf-category-edit-name]"),
+                    $oldDescription = $container.find("[zyf-category-edit-description]"),
+                    $editForm = $("[zyf-category-edit-form]");
+                $editForm.attr("action", "/Category/_EditInManage/" + currentId);
+                $("[zyf-categories]").val(parentId);
+                $("[zyf-categories]").children("option").each(function () {
+                    if ($(this).attr('value') == currentId) {
+                        $(this).attr("disabled", "disabled");
+                    }
+                });
+                $("[zyf-category-edit-new-name]").val($.trim($oldName.text()));
+                $("[zyf-category-edit-new-description]").val($.trim($oldDescription.text()));
+                $container.append($editForm.removeClass("hide"));
+            });
+
+            $("[zyf-category-edit-cancel]").click(function () {
+                $(this).parents("form").addClass("hide");
+            });
+        })
+
+    </script>
+}
+<form class="hide" method="post" zyf-category-edit-form>
+    <div class="form-group">
+        <label>父系列：</label>
+        @Html.DropDownListFor(m => m.Input.SelectedCategoryId,
+            new SelectList(Model.Input.Categories, "Id", "Title"),
+            "--------------",
+            new { @class = "form-control", zyf_categories = string.Empty })
+    </div>
+    <div class="form-group">
+        <label>标题：</label>
+        @Html.TextBoxFor(m => m.Input.Name, new { zyf_category_edit_new_name = string.Empty, @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Input.Name)
+    </div>
+    <div class="form-group">
+        <label>描述：</label>
+        @Html.TextAreaFor(m => m.Input.Description, new { zyf_category_edit_new_description = string.Empty, @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Input.Description)
+    </div>
+    <button type="submit" class="btn btn-primary zyf-submit-once">提交</button>
+    <button zyf-category-edit-cancel type="button" class="btn btn-default">放弃</button>
+</form>
+<form style="padding:10px 20px;" class="hide yellow-highlight" zyf-category-delete-form>
+    <a zyf-category-edit-cancel class="btn pull-right"><span class="fa fa-stop-circle-o"></span> 放弃</a>
+    <label>同时将该系列下文章移到：</label>
+    <div class="input-group">
+        @Html.DropDownListFor(m => m.Input.SelectedCategoryId,
+            new SelectList(Model.Input.Categories, "Id", "Title"),
+            "--------------",
+            new { @class = "form-control", zyf_categories = string.Empty })
+        <a zyf-category-delete-btn class="input-group-addon">提交</a>
+    </div>
+
+</form>
+@foreach (var item in Model.Items)
+{
+    @Html.Action("_SubManage", new { parentId = item.Id })
+}

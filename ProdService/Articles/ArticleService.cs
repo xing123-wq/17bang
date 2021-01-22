@@ -77,7 +77,10 @@ namespace ProdService.Articles
 
             var input = Mapper.Map<InputeModel>(article);
             input.Categories = _series.GetSeries();
-
+            input.AdContent = new AdContentModel
+            {
+                History = _advertising.GetHistory()
+            };
             for (var i = 0; i < article.Keywords.Count(); i++)
             {
                 input.Keywords = string.Concat(article.Keywords[i].Keyword.Name.Split(' '));
@@ -144,16 +147,16 @@ namespace ProdService.Articles
                     if (CurrentUserId != null)
                         throw new Exception($"当前用户Id：{CurrentUserId}，不是该文章作者Id：{article.Author.Id}!");
                 }
-                article = Mapper.Map<Article>(model);
-                article.Publish(model.Keywords);
+                article.EditOrPublish(model.Keywords);
                 article.Author = GetByCurrentUser();
+                Mapper.Map(article, model);
                 _repository.Update(article);
             }
             else
             {
                 article = Mapper.Map<Article>(model);
                 article.Author = GetByCurrentUser();
-                article.Publish(model.Keywords);
+                article.EditOrPublish(model.Keywords);
                 _repository.Add(article);
             }
             return article.Id;
@@ -163,7 +166,7 @@ namespace ProdService.Articles
         private static void CheckCategorySame(Article a, Article b)
         {
             if (a == null || b == null) return;
-            
+
             if (a.Series != b.Series)
             {
                 throw new Exception(

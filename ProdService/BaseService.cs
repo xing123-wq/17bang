@@ -198,13 +198,13 @@ namespace ProdService
                 cfg.CreateMap<Email, ViewModel.Email.ActivateModel>(MemberList.None);
 
 
-                cfg.CreateMap<Series, ViewModel.Category.ManageModel>(MemberList.None)
+                cfg.CreateMap<BLL.Category, ViewModel.Category.ManageModel>(MemberList.None)
                 .ReverseMap();
 
-                cfg.CreateMap<Series, ViewModel.Category._InputModel>(MemberList.None)
+                cfg.CreateMap<BLL.Category, ViewModel.Category.InputModel>(MemberList.None)
                 .ReverseMap();
 
-                cfg.CreateMap<Series, ViewModel.Category._SeriesItemMdodel>(MemberList.None)
+                cfg.CreateMap<BLL.Category, ViewModel.Category.SeriesItemMdodel>(MemberList.None)
                 .ReverseMap();
 
                 cfg.CreateMap<Chat, ViewModel.Chat.ChatItemModel>(MemberList.None)

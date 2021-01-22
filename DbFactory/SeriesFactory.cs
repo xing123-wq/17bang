@@ -9,10 +9,10 @@ namespace DbFactory
 {
     public class SeriesFactory
     {
-        public static Series series1, series2, series3;
+        public static Category series1, series2, series3;
         static SeriesFactory()
         {
-            series1 = new Series
+            series1 = new Category
             {
                 Author = RegisterFactory.at,
                 Body = "发生的回访电话",
@@ -21,7 +21,7 @@ namespace DbFactory
                 Articles = new List<Article> { ArticleFactory.JAVA },
                 Parent = series1
             };
-            series2 = new Series
+            series2 = new Category
             {
                 Author = RegisterFactory.at,
                 Body = "讲课费的 发v",
@@ -31,7 +31,7 @@ namespace DbFactory
     },
                 PublishTime = Global.Time.AddDays(-1)
             };
-            series3 = new Series
+            series3 = new Category
             {
                 Author = RegisterFactory.at,
                 Body = "v大师傅士大夫士大夫撒旦",

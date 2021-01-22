@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace Repositorys
 {
-    public class SeriesRepository : BaseRepository<Series>
+    public class SeriesRepository : BaseRepository<Category>
     {
         public SeriesRepository(SqlContext context) : base(context)
         {
         }
-        public IQueryable<Series> GetSeries(int userId)
+        public IQueryable<Category> GetSeries(int userId)
         {
             return entities.Where(s => s.Author.Id == userId);
         }
 
-        public Series GetToId(int Id)
+        public Category GetToId(int Id)
         {
             return entities.Where(s => s.Id == Id).Include(s => s.Parent).SingleOrDefault();
         }

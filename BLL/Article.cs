@@ -9,7 +9,7 @@ namespace BLL
 {
     public class Article : Content, IDoubleLinked<Article>
     {
-        public Series Series { get; set; }
+        public Category Series { get; set; }
         public Article Next { get; set; }
         public Article Previous { get; set; }
         public string Abstract { get; set; }
@@ -17,17 +17,13 @@ namespace BLL
         public virtual Appraise AppraiseManager { get; set; }
 
         public virtual IList<ArticleAndKeyword> Keywords { get; set; }
-        public virtual void Publish(string keyword)
+
+        public  void EditOrPublish(string keyword)
         {
-            if (string.IsNullOrEmpty(this.Abstract))
-            {
-                this.Abstract = this.Body.Substring(15);
-            }
-            
             Keywords = new ArticleAndKeyword().GetString(keyword);
-            
-            base.Publish();
+            base.EditOrPublish();
         }
+
         public virtual void InsertAfter(Article node)
         {
             if (node?.Id == Id)

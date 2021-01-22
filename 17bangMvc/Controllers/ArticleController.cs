@@ -79,7 +79,7 @@ namespace _17bangMvc.Controllers
             {
                 if (string.IsNullOrEmpty(model.Abstract))
                 {
-                    model.Abstract = model.Body.Substring(15);
+                    model.Abstract = model.Body.Substring(25);
                 }
             }
             _service.Save(model);
@@ -132,6 +132,13 @@ namespace _17bangMvc.Controllers
         [ValidateModelStateRedirect]
         public ActionResult Edit(InputeModel model)
         {
+            if (model != null)
+            {
+                if (string.IsNullOrEmpty(model.Abstract))
+                {
+                    model.Abstract = model.Body.Substring(25);
+                }
+            }
             int id = _service.Save(model, true);
             return RedirectToAction("Single", new { Id = id });
         }

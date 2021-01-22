@@ -11,12 +11,13 @@ namespace ServiceInterface.Category
 {
     public interface ISeriesService : IBaseService
     {
-        int Save(_InputModel model, bool HasEidt = false);
+        int Save(InputModel model, bool HasEidt = false);
         ManageModel GetManage();
-        IList<_SeriesItemMdodel> GetSeries();
-        _InputModel GetBy(int Id);
+        IList<SeriesItemMdodel> GetSeries();
+        InputModel GetBy(int Id);
         void Delete(int id);
-        _SeriesItemMdodel Get(int id);
+        SeriesItemMdodel Get(int id);
         bool IsDuplicatedOnName(string name);
+        _SubManageModel GetSubManage(int parentId);
     }
 }

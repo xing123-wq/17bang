@@ -38,12 +38,12 @@ namespace _17bangMvc.Controllers
         [NeedLogOnFilter]
         public PartialViewResult _New(int? Id)
         {
-            _InputModel model = new _InputModel();
+            InputModel model = new InputModel();
             if (Id.HasValue)
             {
                 model = service.GetBy(Id.Value);
             }
-            model._Items = service.GetSeries();
+            model.Categories = service.GetSeries();
             return PartialView(model);
         }
 
@@ -55,7 +55,7 @@ namespace _17bangMvc.Controllers
         /// <returns></returns>
         [HttpPost]
         [NeedLogOnFilter]
-        public ActionResult _New(_InputModel model)
+        public ActionResult _New(InputModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -76,17 +76,11 @@ namespace _17bangMvc.Controllers
 
         [HttpPost]
         [NeedLogOnFilter]
-        public ActionResult _Eidt(_InputModel model)
+        public ActionResult _Eidt(InputModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
-            }
-            if (model.Id == model.ParentId)
-            {
-                throw new ArgumentException($"系列Id为：{model.Id}," +
-                                           $"父系列Id为：{model.ParentId}，" +
-                                           $"两者不能相同。");
             }
             service.Save(model, true);
             return RedirectToAction("Manage");
@@ -117,8 +111,13 @@ namespace _17bangMvc.Controllers
         [ChildActionOnly]
         public PartialViewResult _Item(int id)
         {
-            _SeriesItemMdodel model = service.Get(id);
+            SeriesItemMdodel model = service.Get(id);
             return PartialView(model);
+        }
+
+        public PartialViewResult _SubManage(int parentId)
+        {
+            return PartialView(service.GetSubManage(parentId));
         }
     }
 }

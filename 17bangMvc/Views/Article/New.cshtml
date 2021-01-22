@@ -51,7 +51,7 @@
     @Html.EditorFor(m => m.AdContent, "_AdContent")
     <div class="submit">
         <input type="submit" class="btn btn-primary loading" value="发布为最新" zyf-submit-once zyf-exclude-draft />
-        @Html.Partial("Draft/_SaveButton", new ViewDataDictionary { { "Kind", "Article" } })
+        @*@Html.Partial("Draft/_SaveButton", new ViewDataDictionary { { "Kind", "Article" } })*@
     </div>
 }
 @Html.Action("_New", "Category")

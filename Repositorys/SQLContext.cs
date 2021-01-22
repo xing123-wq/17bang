@@ -29,7 +29,7 @@ namespace Repositorys
                 .HasOptional(a => a.Previous).WithOptionalDependent();
             modelBuilder.Entity<ArticleAndKeyword>();
             modelBuilder.Entity<BanMoney>();
-            modelBuilder.Entity<Series>();
+            modelBuilder.Entity<Category>();
             modelBuilder.Entity<AdInWidget>();
             modelBuilder.Entity<Chat>();
             modelBuilder.Entity<Comment>();

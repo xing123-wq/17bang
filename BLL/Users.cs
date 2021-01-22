@@ -20,20 +20,20 @@ namespace BLL
         public IList<BanMoney> Wallet { get; set; }
         public IList<Problem> Problems { get; set; }
         public IList<Article> Articles { get; set; }
-        public IList<Series> Series { get; set; }
-        public Series DefaultSeries { get; set; }
+        public IList<Category> Series { get; set; }
+        public Category DefaultSeries { get; set; }
         public Role Role { get; set; }
         public Email Email { get; set; }
         public void NewSeriers()
         {
-            DefaultSeries = new Series
+            DefaultSeries = new Category
             {
                 Author = this,
                 Body = "系统默认生成系列。",
                 Title = "默认系列",
                 IsDefault = true
             };
-            Series = new List<Series> { DefaultSeries };
+            Series = new List<Category> { DefaultSeries };
         }
 
         protected internal virtual void BallotConsumed(int amount)

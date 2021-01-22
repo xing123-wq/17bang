@@ -1,39 +1,42 @@
-﻿using BLL;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using Validation;
+using ViewModel.Shared;
 
 namespace ViewModel.Category
 {
     public class ManageModel : BaseModel
     {
-        public IList<_SeriesItemMdodel> _Items { get; set; }
+        public IList<SeriesItemMdodel> Items { get; set; }
+        public InputModel Input { get; set; }
 
     }
-    public class _InputModel : BaseModel
+    public class _SubManageModel
     {
-        [Required(ErrorMessage = "* 名称不能为空")]
-        [MaxLength(25, ErrorMessage = "* 名称的长度不能大于25")]
-        [Remote("_IsDuplicatedOnTitle", "Category", ErrorMessage = "* 名称重复，请重新输入")]
-        public string Title { get; set; }
+        public SeriesItemMdodel Current { get; set; }
+        public IList<SeriesItemMdodel> Children { get; set; }
+    }
+    public class InputModel : BaseModel
+    {
+        public IList<SeriesItemMdodel> Categories { get; set; }
+        public int? SelectedCategoryId { get; set; }
 
-        [Required(ErrorMessage = "* 描述不能为空")]
-        [MaxLength(25, ErrorMessage = "* 描述的长度不能大于25")]
-        [AllowHtml]
-        public string Body { get; set; }
+        [AtRequiredAttrbute]
+        [DisplayName("名称")]
+        [AtStringLengthAttrbute(25)]
+        public string Name { get; set; }
 
-        public int? ParentId { get; set; }
-        public IList<_SeriesItemMdodel> _Items { get; set; }
+        [DisplayName("描述")]
+        [AtStringLengthAttrbute(25)]
+        public string Description { get; set; }
     }
 
-    public class _SeriesItemMdodel : BaseModel
+    public class SeriesItemMdodel : BaseModel
     {
+        public int Id { get; set; }
+        public _UserModel Owner { get; set; }
         public string Title { get; set; }
-        public string Body { get; set; }
+        public string Description { get; set; }
         public int ParentId { get; set; }
         public bool IsDefault { get; set; }
     }

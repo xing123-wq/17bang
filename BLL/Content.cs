@@ -12,18 +12,14 @@ namespace BLL
         public string Body { get; set; }
         public string Title { get; set; }
 
-        public virtual void Publish()
+
+        public virtual void EditOrPublish()
         {
             if (this.Author == null)
             {
                 throw new Exception(string.Format($"作者不能为空，{GetType().Name}"));
             }
-      
-        }
-
-        public virtual void Edit()
-        {
-
+            PublishTime = DateTime.Now;
         }
     }
 }

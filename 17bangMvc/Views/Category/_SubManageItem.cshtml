@@ -1,0 +1,19 @@
+﻿@model ViewModel.Category.SeriesItemMdodel
+<div zyf-category-manage-item data-parent="@Model.ParentId" style="margin-bottom:10px;">
+    <span class="pull-right">
+        @if (!Model.IsDefault)
+        {
+            <a zyf-category-delete data-self-id="@Model.Id" class="text-warning"><span class="fa fa-trash"></span>删除</a>
+        }
+        <a zyf-category-edit data-self-id="@Model.Id" style="margin-left: 14px;"><span class="fa fa-edit"></span>编辑</a>
+    </span>
+    @{ string muted = Model.IsDefault ? "text-muted" : string.Empty;}
+    <h4 zyf-category-edit-name>
+        <a class="@muted" href="/Article/Category-@Model.Id"><span class="fa fa-folder"></span> @Model.Title</a>
+    </h4>
+    <p zyf-category-edit-description>
+        @Model.Description
+    </p>
+</div>
+
+

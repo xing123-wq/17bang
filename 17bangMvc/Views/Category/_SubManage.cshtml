@@ -1,0 +1,12 @@
+﻿@model ViewModel.Category._SubManageModel
+
+@Html.Partial("_SubManageItem", Model.Current)
+@if (Model.Children != null)
+{
+    <div class="" style="padding-left:48px;">
+        @foreach (var item in Model.Children)
+        {
+            @Html.Action("_SubManage", new { parentId = item.Id })
+        }
+    </div>
+}

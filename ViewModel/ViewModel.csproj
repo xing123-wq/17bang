@@ -91,6 +91,10 @@
       <Project>{6173c1fc-92bf-476e-86c4-d4820b120e17}</Project>
       <Name>Entitys</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Validation\Validation.csproj">
+      <Project>{f5d1c903-ba30-4a6f-a5d6-809007fe1210}</Project>
+      <Name>Validation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
