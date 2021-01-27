@@ -37,5 +37,16 @@ namespace ExtensionMethods
             }
             return newRandom.ToString();
         }
+
+        private static char[] intRandom = "1234567890".ToArray();
+        public static int GetRandom(int length)
+        {
+            StringBuilder newRandom = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+                newRandom.Append(random.Next(intRandom.Length));
+            }
+            return Convert.ToInt32(newRandom.ToString());
+        }
     }
 }

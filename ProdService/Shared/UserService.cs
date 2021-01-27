@@ -34,7 +34,7 @@ namespace ProdService.Shared
         public int Register(R.IndexModel model)
         {
             _user = Mapper.Map<Users>(model);
-            _user.InviterCode = StringExtension.GetRandomNumber(4);
+            _user.InviterCode = StringExtension.GetRandom(4);
             _user.Password = StringExtension.GetMd5Hash(model.Password);
             _user.Inviter = UserRepositroy.GetByInviter(model.Inviter);
             _user.Role = Global.Role.Logon;

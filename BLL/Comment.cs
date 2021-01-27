@@ -9,6 +9,7 @@ namespace BLL
     public class Comment : Content
     {
         public Comment Reply { get; set; }
+        public Article Article { get; set; }
         public override void EditOrPublish()
         {
             if (this.Author == Reply.Author)

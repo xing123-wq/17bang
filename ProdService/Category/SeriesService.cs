@@ -14,10 +14,10 @@ namespace ProdService.Category
 {
     public class SeriesService : BaseService, ISeriesService
     {
-        private readonly SeriesRepository _repository;
+        private readonly CategoryRepository _repository;
         public SeriesService()
         {
-            _repository = new SeriesRepository(Context);
+            _repository = new CategoryRepository(Context);
         }
         public SeriesItemMdodel Get(int id)
         {

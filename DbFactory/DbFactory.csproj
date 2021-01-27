@@ -53,14 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdInWidgetFactory.cs" />
     <Compile Include="ArticleAndKeywordFactory.cs" />
     <Compile Include="ArticleFactory.cs" />
+    <Compile Include="CommentFactory.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="KeywordFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterFactory.cs" />
-    <Compile Include="SeriesFactory.cs" />
+    <Compile Include="CategoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

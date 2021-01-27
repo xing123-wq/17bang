@@ -8,8 +8,8 @@ namespace BLL
 {
     public class Appraise : BaseEntity
     {
-        public int AgreeCount { get; protected internal set; }
-        public int DisagreeCount { get; protected internal set; }
+        public int AgreeCount { get; set; }
+        public int DisagreeCount { get; set; }
         public virtual void Agree(Content votee, Users voter, int amount)
         {
             CheckCanVote(votee, voter);

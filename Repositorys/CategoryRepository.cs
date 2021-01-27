@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Repositorys
 {
-    public class SeriesRepository : BaseRepository<Category>
+    public class CategoryRepository : BaseRepository<Category>
     {
-        public SeriesRepository(SqlContext context) : base(context)
+        public CategoryRepository(SqlContext context) : base(context)
         {
         }
         public IQueryable<Category> GetSeries(int userId)

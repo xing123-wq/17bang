@@ -171,9 +171,10 @@ namespace ProdService
                     .ReverseMap();
 
                 cfg.CreateMap<Article, ViewModel.Articles._SingleItemModel>(MemberList.None)
-                .ForMember(m => m.CategoryId, opt => opt.MapFrom(a => a.Series.Id))
+                .ForMember(m => m.CategoryId, opt => opt.MapFrom(a => a.Category.Id))
                 .ForMember(m => m.Keywords, opt => opt.MapFrom(a => a.Keywords))
-                .ForMember(m => m.Body, opt => opt.MapFrom(a => a.Body));
+                .ForMember(m => m.AppraiseManager, opt => opt.MapFrom(a => a.AppraiseManager))
+                .ForMember(m => m.Comments, opt => opt.MapFrom(a => a.Comments.Count()));
 
                 cfg.CreateMap<ArticleAndKeyword, ViewModel.Shared.ArticleAndKeywordModel>(MemberList.None)
                 .ForMember(m => m._Keyword, opt => opt.MapFrom(k => k.Keyword))
@@ -211,7 +212,7 @@ namespace ProdService
                 .ForMember(v => v.ChatAuthorId, opt => opt.MapFrom(c => c.AuthorId))
                 .ForMember(v => v.Content, opt => opt.MapFrom(c => c.Content))
                 .ForMember(v => v.Id, opt => opt.MapFrom(c => c.Id))
-                .ForMember(v => v.PublishTime, opt => opt.MapFrom(c => c.PublishTime))
+                .ForMember(v => v.PublishTime, opt => opt.MapFrom(c => c.CreateTime))
                 .ForMember(v => v.ReplyId, opt => opt.MapFrom(c => c.ReplyId))
                 .ReverseMap();
             });

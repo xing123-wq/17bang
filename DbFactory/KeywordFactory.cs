@@ -11,16 +11,25 @@ namespace DbFactory
     class KeywordFactory
     {
         public static Keyword sql, java, html;
-        static KeywordFactory()
-        {
-            sql = new Keyword { Articles = ArticleAndKeywordFactory.sqls, Name = "SQL" };
-            java = new Keyword { Articles = ArticleAndKeywordFactory.javas, Name = "java" };
-            html = new Keyword { Articles = ArticleAndKeywordFactory.uis, Name = "html" };
-        }
         public static void Create()
         {
-            IList<Keyword> keywords = new List<Keyword> { sql, java, html };
-            new BaseRepository<Keyword>(Global.context).AddRange(keywords);
+            sql = Inserterd("SQL", 2, ArticleAndKeywordFactory.sqls);
+            java = Inserterd("Java", 4, ArticleAndKeywordFactory.javas);
+            html = Inserterd("html", 5, ArticleAndKeywordFactory.uis);
+        }
+
+        private static Keyword Inserterd(string name, int counter, IList<ArticleAndKeyword> articles)
+        {
+            Keyword Keyword = new Keyword
+            {
+                Name = name,
+                Counter = counter,
+                Articles = articles
+            };
+
+            new BaseRepository<Keyword>(Global.context).Add(Keyword);
+
+            return Keyword;
         }
     }
 }

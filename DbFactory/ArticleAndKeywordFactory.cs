@@ -12,32 +12,34 @@ namespace DbFactory
     {
         public static IList<ArticleAndKeyword> sqls, javas, uis;
         public static ArticleAndKeyword sql, java, ui;
-        static ArticleAndKeywordFactory()
+
+        public static void Create()
         {
-            sql = new ArticleAndKeyword
-            {
-                Article = ArticleFactory.SQL,
-                Keyword = KeywordFactory.sql
-            };
-            java = new ArticleAndKeyword
-            {
-                Article = ArticleFactory.JAVA,
-                Keyword = KeywordFactory.java
-            };
-            ui = new ArticleAndKeyword
-            {
-                Article = ArticleFactory.UI,
-                Keyword = KeywordFactory.html
-            };
+            sql = Inserterd(KeywordFactory.sql.Id, KeywordFactory.sql, ArticleFactory.SQL, ArticleFactory.SQL.Id);
+            java = Inserterd(KeywordFactory.java.Id, KeywordFactory.java, ArticleFactory.JAVA, ArticleFactory.JAVA.Id);
+            ui = Inserterd(KeywordFactory.html.Id, KeywordFactory.html, ArticleFactory.UI, ArticleFactory.UI.Id);
+
             sqls = new List<ArticleAndKeyword> { sql };
-            javas = new List<ArticleAndKeyword> { ui };
-            uis = new List<ArticleAndKeyword> { java };
+            javas = new List<ArticleAndKeyword> { java };
+            uis = new List<ArticleAndKeyword> { ui };
+
         }
-        //public static void Create()
-        //{
-        //    new BaseRepository<ArticleAndKeyword>(Global.context).AddRange(sqls);
-        //    new BaseRepository<ArticleAndKeyword>(Global.context).AddRange(javas);
-        //    new BaseRepository<ArticleAndKeyword>(Global.context).AddRange(uis);
-        //}
+
+        private static ArticleAndKeyword Inserterd(int keywordId, Keyword keyword, Article article, int articleId)
+        {
+            ArticleAndKeyword articleAndKeyword = new ArticleAndKeyword
+            {
+                ArticleId = articleId,
+                Article = article,
+                KeywordId = keywordId,
+                Keyword = keyword
+            };
+
+            new BaseRepository<ArticleAndKeyword>(Global.context).Add(articleAndKeyword);
+
+            return articleAndKeyword;
+        }
+
+
     }
 }

@@ -10,7 +10,6 @@ namespace BLL
     {
         public Users Author { get; set; }
         public string Body { get; set; }
-        public string Title { get; set; }
 
 
         public virtual void EditOrPublish()
@@ -19,7 +18,7 @@ namespace BLL
             {
                 throw new Exception(string.Format($"作者不能为空，{GetType().Name}"));
             }
-            PublishTime = DateTime.Now;
+            CreateTime = DateTime.Now;
         }
     }
 }

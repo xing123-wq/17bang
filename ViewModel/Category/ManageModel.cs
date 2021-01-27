@@ -33,7 +33,6 @@ namespace ViewModel.Category
 
     public class SeriesItemMdodel : BaseModel
     {
-        public int Id { get; set; }
         public _UserModel Owner { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

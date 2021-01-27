@@ -128,7 +128,7 @@ namespace ProdService.Articles
                 Items = Mapper.Map<IList<WidgetItemModel>>(
                     _repository.FindAll()
                         .Paged(pager)
-                        .OrderByDescending(a => a.PublishTime)
+                        .OrderByDescending(a => a.CreateTime)
                 )
             };
             return model;
@@ -167,11 +167,11 @@ namespace ProdService.Articles
         {
             if (a == null || b == null) return;
 
-            if (a.Series != b.Series)
+            if (a.Category != b.Category)
             {
                 throw new Exception(
                     $"根据前后关系取到的Article（id={a.Id}），" +
-                    $"其Category(id={a.Series.Id})和Article（id={b.Id}）的Category（id={b.Series.Id}）不合");
+                    $"其Category(id={a.Category.Id})和Article（id={b.Id}）的Category（id={b.Category.Id}）不合");
             }//else nothing: category can NOT be null
         }
         #endregion

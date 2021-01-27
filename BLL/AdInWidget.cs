@@ -11,7 +11,7 @@ namespace BLL
         public string Title { get; set; }
         public string Url { get; set; }
         public Users Author { get; set; }
-        public virtual bool FlagDelete { get; set; }
+        public bool FlagDelete { get; set; }
 
         public IList<Article> Articles { get; set; }
     }

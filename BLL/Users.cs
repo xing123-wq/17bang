@@ -11,19 +11,18 @@ namespace BLL
     {
         public string Name { get; set; }
         public string Password { get; set; }
-        public int? InviterId { get; set; }
-        public virtual int Ballots { get; protected internal set; }
+        public int Ballots { get; protected internal set; }
         public Users Inviter { get; set; }
-        public string InviterCode { get; set; }
-        public int WalletId { get; set; }
+        public int InviterCode { get; set; }
         public IList<AdInWidget> Advertisings { get; set; }
         public IList<BanMoney> Wallet { get; set; }
         public IList<Problem> Problems { get; set; }
         public IList<Article> Articles { get; set; }
-        public IList<Category> Series { get; set; }
+        public IList<Category> Categories { get; set; }
         public Category DefaultSeries { get; set; }
         public Role Role { get; set; }
         public Email Email { get; set; }
+
         public void NewSeriers()
         {
             DefaultSeries = new Category
@@ -33,7 +32,7 @@ namespace BLL
                 Title = "默认系列",
                 IsDefault = true
             };
-            Series = new List<Category> { DefaultSeries };
+            Categories = new List<Category> { DefaultSeries };
         }
 
         protected internal virtual void BallotConsumed(int amount)

@@ -9,22 +9,22 @@ namespace BLL
 {
     public class Article : Content, IDoubleLinked<Article>
     {
-        public Category Series { get; set; }
+        public Category Category { get; set; }
         public Article Next { get; set; }
         public Article Previous { get; set; }
         public string Abstract { get; set; }
         public AdInWidget Advertising { get; set; }
         public virtual Appraise AppraiseManager { get; set; }
-
-        public virtual IList<ArticleAndKeyword> Keywords { get; set; }
-
-        public  void EditOrPublish(string keyword)
+        public string Title { get; set; }
+        public IList<ArticleAndKeyword> Keywords { get; set; }
+        public IList<Comment> Comments { get; set; }
+        public void EditOrPublish(string keyword)
         {
             Keywords = new ArticleAndKeyword().GetString(keyword);
             base.EditOrPublish();
         }
 
-        public virtual void InsertAfter(Article node)
+        public void InsertAfter(Article node)
         {
             if (node?.Id == Id)
             {

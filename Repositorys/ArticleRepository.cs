@@ -18,7 +18,7 @@ namespace Repositorys
         public Article GetNext(Article current)
         {
             return entities.Where(a => a.Id > current.Id)
-                            .OrderBy(a => a.PublishTime)
+                            .OrderBy(a => a.CreateTime)
                             .FirstOrDefault();
         }
         public Article GetPre(Article current)
@@ -32,7 +32,7 @@ namespace Repositorys
             return entities.Where(a => a.Id == id)
                 .Include(a => a.Author)
                 .Include(a => a.Keywords.Select(k => k.Keyword))
-                .Include(a => a.Series)
+                .Include(a => a.Category)
                 .SingleOrDefault();
         }
 
@@ -41,7 +41,7 @@ namespace Repositorys
         {
             return entities
                 .Include(a => a.Keywords.Select(k => k.Keyword))
-                .Include(a => a.Series)
+                .Include(a => a.Category)
                 .Include(a => a.Advertising)
                 .Include(a => a.Author)
                 .ToList();

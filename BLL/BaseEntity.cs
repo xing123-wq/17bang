@@ -10,9 +10,9 @@ namespace BLL
     {
         public BaseEntity()
         {
-            PublishTime = DateTime.Now;
+            CreateTime = DateTime.Now;
         }
         public int Id { get; set; }
-        public DateTime PublishTime { get; set; }
+        public DateTime CreateTime { get; set; }
     }
 }

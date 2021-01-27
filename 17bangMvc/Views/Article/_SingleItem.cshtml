@@ -5,7 +5,8 @@
         <span class="pull-right">
             @Html.Partial("_AuthorLink", Model.Author)
             <a href="/Article/Edit/@Model.Id" class="hide" style="margin-left:14px;" zyf-article-edit data-author-id="@Model.Author.Id">
-            <span class="fa fa-pencil-square-o"></span> 修改</a>
+                <span class="fa fa-pencil-square-o"></span> 修改
+            </a>
         </span>
     </div>
     <h4>
@@ -27,7 +28,7 @@
             <span class="fa fa-comments-o"></span>
             <span class="visible-sm-inline visible-md-inline visible-lg-inline">评论：</span>@Model.Comments
         </a>
-        @*@Html.Partial("_Appraise", Model.AppraiseManager,
-            new ViewDataDictionary { { "ArticleId", Model.Id }, { "AuthorId", Model.Author.Id } })*@
+        @Html.Partial("_Appraise", Model.AppraiseManager,
+            new ViewDataDictionary { { "ArticleId", Model.Id }, { "AuthorId", Model.Author.Id } })
     </div>
 </div>

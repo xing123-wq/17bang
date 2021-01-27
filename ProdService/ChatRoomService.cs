@@ -37,7 +37,7 @@ namespace ProdService
         public int Save(ChatItemModel model)
         {
             var chat = Mapper.Map<Chat>(model);
-            chat.PublishTime = DateTime.Now;
+            chat.CreateTime = DateTime.Now;
             chat.Author = GetByCurrentUser();
             _repository.Add(chat);
             return chat.Id;
