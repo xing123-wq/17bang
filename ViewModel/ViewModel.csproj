@@ -81,9 +81,12 @@
     <Compile Include="Register\IndexModel.cs" />
     <Compile Include="Shared\Article\AppraiseManagerModel.cs" />
     <Compile Include="Shared\ArticleAndKeywordModel.cs" />
+    <Compile Include="Shared\Article\_ItemModel.cs" />
     <Compile Include="Shared\Article\_WidgetModel.cs" />
+    <Compile Include="Shared\CommentBodyModel.cs" />
     <Compile Include="Shared\EditorTemplates\AdContentModel.cs" />
     <Compile Include="Shared\_KeywordModel.cs" />
+    <Compile Include="Shared\_ListModel.cs" />
     <Compile Include="Shared\_UserModel.cs" />
   </ItemGroup>
   <ItemGroup>

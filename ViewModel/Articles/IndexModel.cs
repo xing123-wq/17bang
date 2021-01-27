@@ -18,6 +18,7 @@ namespace ViewModel.Articles
         public int? CategoryId { get; set; }
         public int Comments { get; set; }
         public IList<ArticleAndKeywordModel> Keywords { get; set; }
+        public AdInWidget.ShowItemModel Ad { get; set; }
         public string Title { get; set; }
     }
 

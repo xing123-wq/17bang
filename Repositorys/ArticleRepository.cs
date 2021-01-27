@@ -29,10 +29,7 @@ namespace Repositorys
 
         public Article GetArticle(int id)
         {
-            return entities.Where(a => a.Id == id)
-                .Include(a => a.Author)
-                .Include(a => a.Keywords.Select(k => k.Keyword))
-                .Include(a => a.Category)
+            return GetArticles().Where(a => a.Id == id)
                 .SingleOrDefault();
         }
 
@@ -44,6 +41,7 @@ namespace Repositorys
                 .Include(a => a.Category)
                 .Include(a => a.Advertising)
                 .Include(a => a.Author)
+                .Include(a=>a.Comments)
                 .ToList();
         }
 

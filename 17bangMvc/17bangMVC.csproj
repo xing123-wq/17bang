@@ -603,6 +603,9 @@
     <Content Include="Views\Shared\Article\_Widget.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_AdContent.cshtml" />
     <Content Include="Views\Category\_SubManageItem.cshtml" />
+    <Content Include="Views\Shared\Article\_List.cshtml" />
+    <Content Include="Views\Shared\Article\_Item.cshtml" />
+    <Content Include="Views\Article\_AD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="APP_Data\" />

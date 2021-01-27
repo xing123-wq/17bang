@@ -1,5 +1,6 @@
 ﻿using Global;
 using ViewModel.Articles;
+using ViewModel.Shared;
 using ViewModel.Shared.Article;
 
 namespace ServiceInterface.Article
@@ -14,5 +15,6 @@ namespace ServiceInterface.Article
         InputeModel Get();
         InputeModel Get(int id);
         _WidgetModel GetWidget(Pager pager);
+        _ListModel GetComments(int id, Pager pager);
     }
 }

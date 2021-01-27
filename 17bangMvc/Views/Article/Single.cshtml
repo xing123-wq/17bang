@@ -5,6 +5,7 @@
 }
 @{
     BaseService service = new BaseService();
+    string articleId = ViewContext.RouteData.Values["id"].ToString();
 }
 @section Description
 {
@@ -62,16 +63,8 @@
                         }
                     </div>
                     <div class="article-appraise appraise-status pull-right">
-                        <a class="appraise-status-item text-success" href="/Article/Appraise?id=36&amp;direction=1" zyf-vote="" data-author-id="7">
-                            <span class="fa fa-thumbs-o-up"></span>
-                            <span class="visible-sm-inline visible-md-inline visible-lg-inline">赞：</span>
-                            <span zyf-votes-count="">4</span>
-                        </a>
-                        <a class="appraise-status-item text-muted" href="/Article/Appraise?id=36&amp;direction=-1" zyf-vote="" data-author-id="7">
-                            <span class="fa fa-thumbs-o-down"></span>
-                            <span class="visible-sm-inline visible-md-inline visible-lg-inline">踩：</span>
-                            <span zyf-votes-count="">0</span>
-                        </a>
+                        @Html.Partial("_Appraise", Model.AppraiseManager,
+                            new ViewDataDictionary { { "ArticleId", Model.Id }, { "AuthorId", Model.Author.Id } })
                     </div>
                     <div zyf-article-donate-container="" style="padding-bottom:25px;">
                         <div style="clear:both;margin-left:auto;margin-right:auto;width:65px;height:65px;">
@@ -113,11 +106,12 @@
                         </div>
                     </div>
                 </div>
-                <div style="margin-top:20px;">
-                    <div class="yellow-highlight" style="padding:5px 10px;">
-                        <a style="color:#354756" title="" data-toggle="tooltip" href="/FAQ/Ad#article" data-original-title="这是什么？">投稿人推广：</a> <a href="http://task.zyfei.net/">雅芳比女人更了解女人</a>
+                @if (Model.Ad != null)
+                {
+                    <div style="margin-top:20px;">
+                        @Html.Partial("_AD", Model.Ad)
                     </div>
-                </div>
+                }
                 <div style="padding-top:20px;">
                     <div zyf-not-logon="" class="yellow-highlight need-login">
                         <span class="fa fa-exclamation-triangle" style="color:yellowgreen;"></span>
@@ -161,15 +155,18 @@
                     </a>
                     @Html.Action("_PreAndNext")
                 </div>
+                <a name="comments"></a>
                 <div class="appraise-status" style="clear:both; margin-top: 15px;">
                     <span class="lead" style="margin-right:20px">
                         <span class="fa fa-comments-o"></span>
-                        <span class="visible-sm-inline visible-md-inline visible-lg-inline">评论</span>
-                        <small>
-                            （ <span zyf-comment-of-article-count="" title="" data-toggle="tooltip" data-original-title="精选评论">0</span> /
-                            <span title="" data-toggle="tooltip" data-original-title="全部评论">0</span> ）
+                        <span class="visible-sm-inline visible-md-inline visible-lg-inline">评论</span><small>
+                            （ <span zyf-comment-of-article-count title="精选评论" data-toggle="tooltip"></span> / <span title="全部评论" data-toggle="tooltip">@Model.Comments</span> ）
                         </small>
                     </span>
+                </div>
+                <div zyf-comment-of-article>
+                    <div id="published_comment"></div>
+                    @Html.Action("_CommentsList", "Article", new { id = articleId })
                 </div>
             </div>
         </div>
@@ -180,9 +177,6 @@
         </div>
     </div>
 </div>
-@{
-    string articleId = ViewContext.RouteData.Values["id"].ToString();
-}
 <script>
     $(document).ready(function () {
 

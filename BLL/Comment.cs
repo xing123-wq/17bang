@@ -10,6 +10,7 @@ namespace BLL
     {
         public Comment Reply { get; set; }
         public Article Article { get; set; }
+        public Appraise Appraise { get; set; }
         public override void EditOrPublish()
         {
             if (this.Author == Reply.Author)

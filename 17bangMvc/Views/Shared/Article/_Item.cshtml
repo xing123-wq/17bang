@@ -1,0 +1,54 @@
+﻿@model ViewModel.Shared.Article._ItemModel
+<a zyf-comment-anchor data-comment-id="@Model.Id" name="@ViewBag.LayerId"></a>
+<div zyf-problem-comment data-has-handpicked="@Model.Handpicked" class="clearfix comment-container">
+    <div>
+        @Html.Partial("_Date", Model.CreateTime)
+        @if (Request.RequestType == "GET")
+        {
+            <small class="text-primary">--- 第 @ViewBag.LayerId 楼 ---</small>
+        }
+        @if (!Model.Handpicked)
+        {
+            <a href="/Article/Comment/Handpick?id=@Model.Id" zyf-comment-of-article-handpick class="hide"><span class="fa fa-flag"></span> 推荐</a>
+        }
+        <span class="pull-right">@*@Html.Partial("_User", Model.Author, new ViewDataDictionary { { "ShowIcon", true } })*@</span>
+    </div>
+    <div class="comment-body clearfix">
+        @if (Request.RequestType == "GET" && Model.ReplyId > 0)
+        {
+            <p><small class="text-info">--- 回复：<a zyf-comment-reply-layer data-reply-id="@Model.ReplyId"></a> ---</small></p>
+        }
+        @if (Model.Handpicked)
+        {
+            <a data-toggle="tooltip" title="这是？" href="/FAQ/Article#handpick"
+               class="text-success pull-left text-center yellow-highlight handpicked-mark">
+                <span class="fa fa-check"></span> <br />
+                <small>精选</small>
+            </a>
+        }
+        @Html.Raw(Model.Body.Content)
+    </div>
+    <div class="appraise-status pull-right">
+        <span zyf-comment-hide class="hide">
+            <a href="#new-comment" zyf-comment-delete data-current-comment-id="@Model.Id" data-current-comment-layer="@ViewBag.LayerId"
+               class="hide" style="margin-left:20px;">
+                <span class="fa fa-trash"></span> 删除
+            </a>
+            <a href="#new-comment" zyf-comment-reply data-current-comment-id="@Model.Id" data-current-comment-layer="@ViewBag.LayerId"
+               style="margin-left:20px;">
+                <span class="fa fa-send"></span> 回复
+            </a>
+        </span>
+
+        @*<a href="/Article/Comment/Appraise?id=@Model.Id&direction=1" class="appraise-status-item"
+           zyf-vote data-author-id="@Model.Author.Id">
+            <span class="fa fa-thumbs-o-up text-success"></span> 支持
+            <span zyf-votes-count>@Model.AppraiseManager.AgreeCount</span>
+        </a>
+        <a href="/Article/Comment/Appraise?id=@Model.Id&direction=-1" class="appraise-status-item"
+           zyf-vote data-author-id="@Model.Author.Id">
+            <span class="fa fa-thumbs-o-down text-success"></span> 反对
+            <span zyf-votes-count>@Model.AppraiseManager.DisagreeCount</span>
+        </a>*@
+    </div>
+</div>

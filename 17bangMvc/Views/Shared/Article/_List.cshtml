@@ -1,0 +1,12 @@
+﻿@model ViewModel.Shared._ListModel
+<div zyf-comments-container>
+    @for (int i = 0; i < Model.List.Count; i++)
+    {
+        @Html.Partial("Article/_Item", Model.List[i], new ViewDataDictionary { { "LayerId", Model.List.Count - i } })
+    }
+</div>
+@if (Model.SumOfPages > 1)
+{
+    @Html.Partial("_Pager", Model.SumOfPages)
+}
+

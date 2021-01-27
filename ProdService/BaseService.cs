@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using ViewModel.Shared;
 
 namespace ProdService
 {
@@ -161,11 +162,26 @@ namespace ProdService
                 cfg.CreateMap<Users, ViewModel.Shared._UserModel>(MemberList.None)
                 ;
 
+
+                cfg.CreateMap<Comment, ViewModel.Shared.Article._ItemModel>(MemberList.None)
+                .ForMember(m => m.ReplyId, opt => opt.MapFrom(c => c.Reply.Id))
+                  .ForMember(i => i.Body, opt => opt.MapFrom(c => new CommentBodyModel
+                  {
+                      Content = c.Body,
+                      ReplyId = c.Article.Id
+                  }))
+                .ForMember(i => i.AppraiseManager, opt => opt.NullSubstitute(new Appraise()))
+                ;
+
                 cfg.CreateMap<AdInWidget, ViewModel.Ad.IndexModel>(MemberList.None)
                 .ReverseMap();
 
                 cfg.CreateMap<AdInWidget, ViewModel.Ad._adItmeModel>(MemberList.None)
                 .ReverseMap();
+
+
+                cfg.CreateMap<AdInWidget, ViewModel.AdInWidget.ShowItemModel>(MemberList.None)
+                .ForMember(m => m.Text, opt => opt.MapFrom(w => w.Title));
 
                 cfg.CreateMap<Appraise, ViewModel.Shared.AppraiseManagerModel>(MemberList.None)
                     .ReverseMap();
@@ -173,8 +189,8 @@ namespace ProdService
                 cfg.CreateMap<Article, ViewModel.Articles._SingleItemModel>(MemberList.None)
                 .ForMember(m => m.CategoryId, opt => opt.MapFrom(a => a.Category.Id))
                 .ForMember(m => m.Keywords, opt => opt.MapFrom(a => a.Keywords))
-                .ForMember(m => m.AppraiseManager, opt => opt.MapFrom(a => a.AppraiseManager))
-                .ForMember(m => m.Comments, opt => opt.MapFrom(a => a.Comments.Count()));
+                .ForMember(m => m.Comments, opt => opt.MapFrom(a => a.Comments.Count()))
+                .ForMember(m => m.Ad, opt => opt.MapFrom(a => a.Advertising));
 
                 cfg.CreateMap<ArticleAndKeyword, ViewModel.Shared.ArticleAndKeywordModel>(MemberList.None)
                 .ForMember(m => m._Keyword, opt => opt.MapFrom(k => k.Keyword))

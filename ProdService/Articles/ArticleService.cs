@@ -12,6 +12,8 @@ using ServiceInterface.Article;
 using ViewModel.Articles;
 using ViewModel.Shared.Article;
 using ViewModel.Shared.EditorTemplates;
+using ViewModel.Shared;
+using Queqry;
 
 namespace ProdService.Articles
 {
@@ -19,6 +21,7 @@ namespace ProdService.Articles
     {
         #region constructor 
         private readonly ArticleRepository _repository;
+        private readonly CommentRepository _comment;
         private readonly ISeriesService _series;
         private readonly IAdvertisingService _advertising;
         public ArticleService()
@@ -26,6 +29,7 @@ namespace ProdService.Articles
             _series = new SeriesService();
             _advertising = new AdService();
             _repository = new ArticleRepository(Context);
+            _comment = new CommentRepository(Context);
         }
         #endregion
 
@@ -173,6 +177,25 @@ namespace ProdService.Articles
                     $"根据前后关系取到的Article（id={a.Id}），" +
                     $"其Category(id={a.Category.Id})和Article（id={b.Id}）的Category（id={b.Category.Id}）不合");
             }//else nothing: category can NOT be null
+        }
+
+        public _ListModel GetComments(int id, Pager pager)
+        {
+            Article article = _repository.Find(id);
+
+            _ListModel model = new _ListModel();
+
+            var comments = _comment.FindAll().Belong(article);
+            var sumofSuggests = comments.Count();
+            model.SumOfPages = pager.GetSumOfPage(sumofSuggests);
+
+            model.List = Mapper.Map<IList<_ItemModel>>(comments
+                //.OrderByDescending(c => c.Handpicked)
+                .OrderByDescending(c => c.CreateTime)
+                .ToList()
+                .Paged(pager));
+
+            return model;
         }
         #endregion
 

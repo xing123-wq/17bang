@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="OnAdInWideget.cs" />
     <Compile Include="OnCategroy.cs" />
+    <Compile Include="OnComment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

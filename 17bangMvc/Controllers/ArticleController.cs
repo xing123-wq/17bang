@@ -177,5 +177,14 @@ namespace _17bangMvc.Controllers
             _WidgetModel model = _service.GetWidget(pager);
             return PartialView("Article/_Widget", model);
         }
+
+        [ChildActionOnly]
+        public PartialViewResult _CommentsList(int id, int pageIndex = 1)
+        {
+            Pager pager = new Pager { Index = pageIndex, Size = 20 };
+
+            _ListModel model = _service.GetComments(id, pager);
+            return PartialView("Article/_List", model);
+        }
     }
 }

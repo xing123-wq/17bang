@@ -78,6 +78,7 @@
     <Compile Include="ArticleRepository.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="ChatRoomRepository.cs" />
+    <Compile Include="CommentRepository.cs" />
     <Compile Include="EmailRepository.cs" />
     <Compile Include="ProblemRepository.cs" />
     <Compile Include="Program.cs" />
